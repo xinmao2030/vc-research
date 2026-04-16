@@ -1,0 +1,134 @@
+{
+  "sources_hit": ["itjuzi(模拟)", "crunchbase(模拟)", "公开新闻"],
+  "itjuzi": {
+    "legal_name": "北京字节跳动科技有限公司",
+    "founded_date": "2012-03-09",
+    "headquarters": "北京 / 新加坡",
+    "region": "中国",
+    "industry": "互联网/内容平台",
+    "sub_industry": "短视频 + 信息流 + AI",
+    "business_model": "广告 + 电商抽佣 + 订阅 + 游戏",
+    "stage": "pre_ipo",
+    "employee_count": 150000,
+    "one_liner": "全球领先的内容平台公司 (TikTok/抖音/今日头条),以推荐算法为核心竞争力",
+    "founders": [
+      {
+        "name": "张一鸣",
+        "title": "创始人",
+        "background": "南开大学软件工程,酷讯/九九房技术背景,以推荐算法起家",
+        "equity_pct": 0.22
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2012-07-01",
+        "amount_usd": 5000000,
+        "post_money_valuation_usd": 50000000,
+        "lead_investors": ["SIG 海纳亚洲"],
+        "notes": "天使/A 轮,以今日头条产品获投"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2013-09-01",
+        "amount_usd": 10000000,
+        "post_money_valuation_usd": 100000000,
+        "lead_investors": ["DST Global"]
+      },
+      {
+        "stage": "c",
+        "announce_date": "2014-06-01",
+        "amount_usd": 100000000,
+        "post_money_valuation_usd": 500000000,
+        "lead_investors": ["红杉资本"]
+      },
+      {
+        "stage": "d",
+        "announce_date": "2016-12-01",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 11000000000,
+        "lead_investors": ["建银国际", "CCB International"]
+      },
+      {
+        "stage": "e",
+        "announce_date": "2018-10-01",
+        "amount_usd": 3000000000,
+        "post_money_valuation_usd": 75000000000,
+        "lead_investors": ["软银愿景基金", "KKR"]
+      },
+      {
+        "stage": "pre-ipo",
+        "announce_date": "2021-03-01",
+        "amount_usd": 5000000000,
+        "post_money_valuation_usd": 180000000000,
+        "lead_investors": ["泛大西洋", "红杉", "Sequoia", "General Atlantic"]
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "张一鸣技术产品双强,团队年轻化+全球化,高管团队稳定性经受多轮考验",
+      "market": {
+        "tam_usd": 1500000000000,
+        "sam_usd": 500000000000,
+        "som_usd": 80000000000,
+        "growth_rate": 0.15
+      },
+      "moat": "推荐算法 + 数据飞轮 + 全球化用户网络效应 + 极强的产品迭代能力 + ByteDance 式组织能力",
+      "unit_economics": {
+        "gross_margin": 0.62,
+        "payback_months": 8
+      },
+      "growth": {
+        "arr_usd": 120000000000,
+        "yoy_growth": 0.30,
+        "mau": 1800000000,
+        "dau": 750000000,
+        "gmv_usd": 500000000000
+      },
+      "competitors": ["Meta", "YouTube/Google", "快手", "腾讯视频号", "Snapchat"],
+      "bull": [
+        "TikTok 在全球 150+ 国家渗透,Meta 级别的用户时长已被证明",
+        "算法壁垒 + 数据飞轮,后来者难以复制",
+        "电商(抖音小店+TikTok Shop)打开第二增长曲线,GMV 增速 >50%",
+        "组织能力与执行效率在全行业处于第一梯队"
+      ],
+      "bear": [
+        "美国监管风险持续 (TikTok 剥离/禁令),海外 40%+ 收入受威胁",
+        "中国市场广告增速趋缓,依赖电商补足",
+        "全球内容治理(儿童保护/仇恨言论)合规成本指数级上升",
+        "AI 对内容平台的颠覆尚未充分定价"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 12000000000,
+      "deal_count_12m": 180,
+      "gartner_phase": "成熟期 (内容平台);复苏期 (AI+内容)",
+      "policy_tailwinds": ["数字经济纳入国家战略", "平台出海政策支持"],
+      "policy_headwinds": [
+        "美国 FCC/CFIUS 对 TikTok 持续调查",
+        "国内平台反垄断常态化",
+        "欧盟 DSA/DMA 对大型平台加强监管"
+      ],
+      "exit_window": "香港/美国 IPO 窗口受地缘影响;国内 A 股独角兽回归通道待开",
+      "hot_keywords": ["短视频", "AIGC", "跨境电商", "推荐算法", "全球化"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": 50000000000
+    },
+    "extra_risks": [
+      {
+        "category": "监管",
+        "description": "TikTok 在美国可能被强制剥离,引发海外业务估值重估",
+        "level": "high",
+        "mitigation": "推进 Project Texas 数据本地化 + 寻找可信托管方"
+      },
+      {
+        "category": "退出",
+        "description": "上市时点受中美关系影响,IPO 窗口不可控",
+        "level": "medium",
+        "mitigation": "保持充裕现金 + 灵活选择港股/美股/新加坡"
+      }
+    ]
+  }
+}

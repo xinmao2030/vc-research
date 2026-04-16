@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Secrets
+.env
+.env.local
+*.key
+
+# Runtime data
+.vc-research/
+examples/reports/*.pdf
+
+# Generated reports are examples — keep .md, exclude user-generated
+# (comment out next line if you want to commit all sample reports)
+# examples/reports/*.md
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,130 @@
+{
+  "sources_hit": ["itjuzi(模拟)", "招股书", "年报"],
+  "itjuzi": {
+    "legal_name": "蔚来汽车 (NIO Inc.)",
+    "founded_date": "2014-11-25",
+    "headquarters": "上海 / 合肥",
+    "region": "中国",
+    "industry": "新能源汽车",
+    "sub_industry": "高端智能电动车 + 换电网络",
+    "business_model": "整车销售 + 换电服务 + 订阅 + 电池 BaaS",
+    "stage": "ipo",
+    "employee_count": 32000,
+    "one_liner": "中国高端智能电动车品牌,以用户运营 + 换电网络构建差异化",
+    "founders": [
+      {
+        "name": "李斌",
+        "title": "创始人 & CEO",
+        "background": "易车网创始人,汽车互联网连续创业者,'出行教父'",
+        "equity_pct": 0.09
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2015-06-01",
+        "amount_usd": 500000000,
+        "post_money_valuation_usd": 1500000000,
+        "lead_investors": ["腾讯", "高瓴资本", "红杉资本"]
+      },
+      {
+        "stage": "b",
+        "announce_date": "2016-09-01",
+        "amount_usd": 500000000,
+        "post_money_valuation_usd": 3000000000,
+        "lead_investors": ["百度资本"]
+      },
+      {
+        "stage": "c",
+        "announce_date": "2017-11-01",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 5000000000,
+        "lead_investors": ["腾讯"]
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2018-09-12",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 6400000000,
+        "lead_investors": ["NYSE IPO"]
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2020-04-01",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 3000000000,
+        "lead_investors": ["合肥国资"],
+        "notes": "合肥战投,起死回生关键一笔"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2023-12-01",
+        "amount_usd": 2200000000,
+        "post_money_valuation_usd": 12000000000,
+        "lead_investors": ["CYVN Holdings (阿布扎比)"]
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "李斌连续创业者经验+用户运营强;管理团队汽车+互联网混编;曾经历 2019 现金流危机考验",
+      "market": {
+        "tam_usd": 2000000000000,
+        "sam_usd": 400000000000,
+        "som_usd": 30000000000,
+        "growth_rate": 0.22
+      },
+      "moat": "换电网络护城河 (2500+ 换电站) + 高端品牌定位 + NIO Community 用户粘性 + BaaS 电池分离模式",
+      "unit_economics": {
+        "gross_margin": 0.10,
+        "payback_months": 36
+      },
+      "growth": {
+        "yoy_growth": 0.35,
+        "gmv_usd": 7500000000
+      },
+      "competitors": ["特斯拉", "理想汽车", "小鹏汽车", "比亚迪", "问界"],
+      "bull": [
+        "换电网络形成差异化壁垒,他人难以复制",
+        "阿布扎比 CYVN 战略投资打开中东/欧洲市场",
+        "子品牌 ONVO (乐道) 下探 20-30 万主流市场,扩大出货量",
+        "智能驾驶 NIO NAD 自研路径清晰"
+      ],
+      "bear": [
+        "持续亏损,2023 净亏损 >200 亿人民币,盈亏平衡遥遥无期",
+        "毛利率远低于特斯拉/理想,规模效应不足",
+        "换电网络资本开支巨大,单站 ROI 回收期长",
+        "高端定位受宏观消费降级冲击",
+        "新势力洗牌加剧,小鹏/零跑也在亏损抢份额"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 35000000000,
+      "deal_count_12m": 280,
+      "gartner_phase": "幻灭期 (新势力) / 成熟期 (电动化)",
+      "policy_tailwinds": [
+        "新能源购置税减免延续至 2027",
+        "换电标准化/双积分政策",
+        "出海目的地国补贴"
+      ],
+      "policy_headwinds": [
+        "欧盟反补贴调查",
+        "国内价格战压缩利润空间",
+        "自动驾驶法规限制 L3 商用"
+      ],
+      "exit_window": "已美股+港股双重上市;战略并购可能性上升",
+      "hot_keywords": ["换电", "智驾", "出海", "高端新能源"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 280000000,
+      "cash_usd": 6000000000
+    },
+    "extra_risks": [
+      {
+        "category": "退市",
+        "description": "美股市场对持续亏损中概股耐心下降,PCAOB 审计风险",
+        "level": "medium",
+        "mitigation": "港股双重主要上市已完成,降低单一市场风险"
+      }
+    ]
+  }
+}

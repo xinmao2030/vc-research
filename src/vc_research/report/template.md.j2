@@ -1,0 +1,214 @@
+# 📊 {{ profile.name }} — 创投研报
+
+> **生成时间**: {{ generated_at }}　|　**分析师**: {{ analyst }}
+> **一句话概括**: {{ profile.one_liner }}
+
+---
+
+## 🏢 模块 1 · 企业画像
+
+| 项目 | 内容 |
+|------|------|
+| 公司名 | {{ profile.name }}{% if profile.legal_name %} ({{ profile.legal_name }}){% endif %} |
+| 成立时间 | {{ profile.founded_date or "—" }} |
+| 总部 | {{ profile.headquarters or "—" }} |
+| 地域 | {{ profile.region.value | upper }} |
+| 赛道 | {{ profile.industry }}{% if profile.sub_industry %} / {{ profile.sub_industry }}{% endif %} |
+| 商业模式 | {{ profile.business_model }} |
+| 当前阶段 | **{{ profile.stage.value }}** |
+| 员工数 | {{ profile.employee_count or "—" }} |
+
+### 创始团队
+{% for f in profile.founders %}
+- **{{ f.name }}** · {{ f.title }}{% if f.equity_pct %} · 持股 {{ "%.1f"|format(f.equity_pct * 100) }}%{% endif %}
+  > {{ f.background }}
+{% endfor %}
+
+---
+
+## 💰 模块 2 · 融资轨迹
+
+{% if funding.total_raised_usd %}
+- **累计融资**: ${{ "{:,.0f}".format(funding.total_raised_usd) }}
+{% endif %}
+{% if funding.latest_valuation_usd %}
+- **最新估值**: ${{ "{:,.0f}".format(funding.latest_valuation_usd) }}
+{% endif %}
+{% if funding.valuation_cagr %}
+- **估值 CAGR**: {{ "%.1f"|format(funding.valuation_cagr * 100) }}%
+{% endif %}
+{% if funding.dilution_estimate %}
+- **创始团队累计稀释**: ~{{ "%.0f"|format(funding.dilution_estimate * 100) }}% (估算)
+{% endif %}
+
+| 轮次 | 时间 | 金额 | 投后估值 | 领投方 |
+|------|------|------|----------|--------|
+{% for r in funding.rounds %}
+| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
+{% endfor %}
+
+> 💡 **类比教学**: 融资轮次就像游戏升级 — 每打通一关,估值翻倍,但股权也切薄一次。创始人每轮稀释 15-25% 是正常血条消耗。
+
+---
+
+## 🎯 模块 3 · 投资依据 (Thesis)
+
+### 团队评分: **{{ thesis.team_score }}/10**
+> {{ thesis.team_notes }}
+
+### 市场规模
+{% if thesis.market.tam_usd %}
+- **TAM**: ${{ "{:,.0f}".format(thesis.market.tam_usd) }}
+{% endif %}
+{% if thesis.market.sam_usd %}
+- **SAM**: ${{ "{:,.0f}".format(thesis.market.sam_usd) }}
+{% endif %}
+{% if thesis.market.som_usd %}
+- **SOM**: ${{ "{:,.0f}".format(thesis.market.som_usd) }}
+{% endif %}
+{% if thesis.market.growth_rate %}
+- **年增速**: {{ "%.1f"|format(thesis.market.growth_rate * 100) }}%
+{% endif %}
+
+### 护城河
+> {{ thesis.moat }}
+
+### 单位经济学
+{% if thesis.unit_economics.ltv_cac_ratio %}
+- **LTV/CAC**: {{ "%.2f"|format(thesis.unit_economics.ltv_cac_ratio) }}x {% if thesis.unit_economics.ltv_cac_ratio >= 3 %}✅ 健康{% else %}⚠️ 需改善{% endif %}
+{% endif %}
+{% if thesis.unit_economics.gross_margin %}
+- **毛利率**: {{ "%.1f"|format(thesis.unit_economics.gross_margin * 100) }}%
+{% endif %}
+{% if thesis.unit_economics.payback_months %}
+- **回本周期**: {{ "%.1f"|format(thesis.unit_economics.payback_months) }} 个月
+{% endif %}
+
+### 增长指标
+{% if thesis.growth.arr_usd %}
+- **ARR**: ${{ "{:,.0f}".format(thesis.growth.arr_usd) }}
+{% endif %}
+{% if thesis.growth.yoy_growth %}
+- **同比增长**: {{ "%.0f"|format(thesis.growth.yoy_growth * 100) }}%
+{% endif %}
+{% if thesis.growth.mau %}
+- **MAU**: {{ "{:,}".format(thesis.growth.mau) }}
+{% endif %}
+
+### 竞争格局
+{% for c in thesis.competitors %}- {{ c }}
+{% endfor %}
+
+### 🐂 看多理由
+{% for b in thesis.key_bull_points %}- {{ b }}
+{% endfor %}
+
+### 🐻 看空理由
+{% for b in thesis.key_bear_points %}- {{ b }}
+{% endfor %}
+
+---
+
+## 🌊 模块 4 · 产业趋势
+
+- **赛道**: {{ industry.industry }}
+{% if industry.funding_total_12m_usd %}
+- **近 12 月融资总额**: ${{ "{:,.0f}".format(industry.funding_total_12m_usd) }}
+{% endif %}
+{% if industry.deal_count_12m %}
+- **近 12 月交易数**: {{ industry.deal_count_12m }}
+{% endif %}
+- **Gartner 周期定位**: {{ industry.gartner_phase }}
+- **退出窗口**: {{ industry.exit_window }}
+
+{% if industry.policy_tailwinds %}
+**政策顺风**:
+{% for p in industry.policy_tailwinds %}- {{ p }}
+{% endfor %}
+{% endif %}
+
+{% if industry.policy_headwinds %}
+**政策逆风**:
+{% for p in industry.policy_headwinds %}- {{ p }}
+{% endfor %}
+{% endif %}
+
+{% if industry.hot_keywords %}
+**热词**: {{ industry.hot_keywords | join(" · ") }}
+{% endif %}
+
+---
+
+## 💎 模块 5 · 估值分析
+
+**公允价值区间**: `${{ "{:,.0f}".format(valuation.fair_value_low_usd) }} — ${{ "{:,.0f}".format(valuation.fair_value_high_usd) }}`
+
+{% if valuation.current_valuation_usd %}
+**当前估值**: ${{ "{:,.0f}".format(valuation.current_valuation_usd) }}
+{% endif %}
+{% if valuation.premium_discount is not none %}
+**溢价/折价**: {{ "%.1f"|format(valuation.premium_discount * 100) }}% {% if valuation.premium_discount > 0.3 %}⚠️ 明显溢价{% elif valuation.premium_discount < -0.2 %}💎 明显折价{% else %}合理{% endif %}
+{% endif %}
+
+### 估值方法交叉验证
+
+| 方法 | 估值区间 | 关键假设 |
+|------|----------|----------|
+{% for m in valuation.methods %}
+| {{ m.method }} | ${{ "{:,.0f}".format(m.valuation_low_usd) }} - ${{ "{:,.0f}".format(m.valuation_high_usd) }} | {{ m.assumptions }} |
+{% endfor %}
+
+### 敏感性说明
+> {{ valuation.sensitivity_notes }}
+
+---
+
+## ⚠️ 模块 6 · 风险矩阵
+
+**整体风险等级**: **{{ risks.overall_level.value | upper }}**
+
+{% if risks.runway_months %}
+- **现金跑道**: {{ "%.1f"|format(risks.runway_months) }} 个月
+{% endif %}
+{% if risks.burn_rate_usd_monthly %}
+- **月烧钱**: ${{ "{:,.0f}".format(risks.burn_rate_usd_monthly) }}
+{% endif %}
+
+| 类别 | 风险 | 等级 | 缓释方案 |
+|------|------|------|----------|
+{% for r in risks.risks %}
+| {{ r.category }} | {{ r.description }} | **{{ r.level.value }}** | {{ r.mitigation or "—" }} |
+{% endfor %}
+
+> 💡 **类比教学**: 现金跑道就像游戏里的血条 — 低于 6 个月 = 濒死,12 个月 = 警戒,18 个月以上 = 安全区。
+
+---
+
+## 🎯 模块 7 · 投资建议
+
+### 裁决: **{{ recommendation.verdict }}**
+
+{% if recommendation.target_entry_valuation_usd %}
+**建议入场估值**: ≤ ${{ "{:,.0f}".format(recommendation.target_entry_valuation_usd) }}
+{% endif %}
+
+### 投资逻辑
+> {{ recommendation.investment_logic }}
+
+### 建议条款
+{% for t in recommendation.suggested_terms %}- {{ t }}
+{% endfor %}
+
+### 退出情景
+{% for e in recommendation.exit_scenarios %}- {{ e }}
+{% endfor %}
+
+---
+
+## 📚 数据来源
+{% for s in data_sources %}- {{ s }}
+{% endfor %}
+
+---
+
+> {{ disclaimer }}
