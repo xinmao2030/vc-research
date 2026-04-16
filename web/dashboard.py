@@ -282,12 +282,9 @@ def _index() -> bytes:
     available = ", ".join(companies) if companies else "(暂无)"
     body = f"""
 <h1>📊 VC Research Dashboard</h1>
-<p>创投企业投资分析系统 · 为零基础投资者打造 · 7 层分析框架</p>
-<div class="disclaimer">
-  ⚠️ 本系统所有研报仅供学习研究,<b>不构成投资建议</b>。
-  数据可能过时,决策前请独立核实。术语不懂?
-  <a href="/glossary">点这里查术语表</a>。
-</div>
+<p>创投企业投资分析系统 · 为零基础投资者打造 · 7 层分析框架 ·
+  <a href="/glossary">术语不懂?查术语表</a>
+</p>
 
 <h2>🔎 查任意公司</h2>
 <form action="/search" method="get" style="display:flex;gap:.5em;margin:1em 0;max-width:520px"
@@ -312,6 +309,13 @@ def _index() -> bytes:
 <p style="color:#6a737d;font-size:.9em;margin-top:2em">
   💡 点击任意案例查看完整研报,关键术语悬停即显示类比解释。
 </p>
+
+<div class="disclaimer" style="margin-top:2.5em">
+  ⚠️ <b>免责声明</b>:本系统所有研报仅供学习研究,<b>不构成投资建议</b>。
+  数据可能过时或由本地 LLM 推断,决策前请独立核实。
+  术语不懂?<a href="/glossary">点这里查术语表</a>。
+</div>
+
 <p style="color:#6a737d;font-size:.85em;margin-top:1em;border-top:1px solid #eaecef;padding-top:.8em">
   LLM 缓存目录:<code>~/.vc-research/llm_cache/</code> (TTL 30 天) ·
   <a href="/clear-cache">🧹 清所有 LLM 缓存</a> ·
