@@ -95,6 +95,39 @@ def test_xss_sanitized_in_dashboard_path() -> None:
     assert "onclick" not in _sanitize_html('<a onclick="x">y</a>')
 
 
+def test_xss_javascript_url_stripped() -> None:
+    """v0.1.13: javascript:/data:/vbscript: URL schemes 在 href/src 里必须被剥离."""
+    from vc_research.report.renderer import _sanitize_html
+
+    # href="javascript:..." (双引号)
+    assert "javascript:" not in _sanitize_html(
+        '<a href="javascript:alert(1)">x</a>'
+    ).lower()
+    # href='javascript:...' (单引号)
+    assert "javascript:" not in _sanitize_html(
+        "<a href='javascript:alert(1)'>x</a>"
+    ).lower()
+    # 大小写混淆
+    assert "javascript:" not in _sanitize_html(
+        '<a href="JaVaScRiPt:alert(1)">x</a>'
+    ).lower()
+    # data:text/html (iframe 外常见 XSS 载体)
+    assert "data:text/html" not in _sanitize_html(
+        '<a href="data:text/html,hello">x</a>'
+    ).lower()
+    # vbscript (legacy IE)
+    assert "vbscript:" not in _sanitize_html(
+        '<a href="vbscript:msgbox(1)">x</a>'
+    ).lower()
+    # src on img
+    assert "javascript:" not in _sanitize_html(
+        '<img src="javascript:void(0)">'
+    ).lower()
+    # 正常 URL 保留
+    safe = _sanitize_html('<a href="https://example.com">ok</a>')
+    assert "https://example.com" in safe
+
+
 # ─────────────────── 4. utils 宽容解析 ──────────────────
 @pytest.mark.parametrize(
     "raw,expected",

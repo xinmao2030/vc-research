@@ -17,17 +17,30 @@ from ..education.analogy_teacher import explain_with_analogy, list_concepts
 from ..schema import VCReport
 
 
-# 极小白名单式 HTML 消毒 (MD → HTML 路径兜底; Phase 2+ 换成 bleach)
+# 极小白名单式 HTML 消毒 (MD → HTML 路径兜底; Phase 2+ 换成 nh3)
 _DANGEROUS_TAGS = re.compile(
-    r"<\s*(script|iframe|object|embed|style|link|meta)[\s\S]*?>[\s\S]*?<\s*/\s*\1\s*>"
-    r"|<\s*(script|iframe|object|embed|style|link|meta)[^>]*/?>"
+    r"<\s*(script|iframe|object|embed|style|link|meta|form)[\s\S]*?>[\s\S]*?<\s*/\s*\1\s*>"
+    r"|<\s*(script|iframe|object|embed|style|link|meta|form)[^>]*/?>"
     r"|\son\w+\s*=\s*(\"[^\"]*\"|'[^']*'|[^\s>]+)",  # onclick= onerror= 等事件属性
+    re.IGNORECASE,
+)
+
+# javascript:/data:/vbscript: URL scheme 出现在 href/src/action 等属性值里,
+# 直接整段属性剥离 (v0.1.13 修复 QA 报告的 XSS 绕过)
+_DANGEROUS_URL_ATTRS = re.compile(
+    r"\s(?:href|src|action|formaction|xlink:href|background|poster)"
+    r"\s*=\s*"
+    r"(?:\"\s*(?:javascript|data|vbscript)\s*:[^\"]*\""
+    r"|'\s*(?:javascript|data|vbscript)\s*:[^']*'"
+    r"|\s*(?:javascript|data|vbscript)\s*:[^\s>]*)",
     re.IGNORECASE,
 )
 
 
 def _sanitize_html(raw_html: str) -> str:
-    return _DANGEROUS_TAGS.sub("", raw_html)
+    cleaned = _DANGEROUS_TAGS.sub("", raw_html)
+    cleaned = _DANGEROUS_URL_ATTRS.sub("", cleaned)
+    return cleaned
 
 
 _TEMPLATE_DIR = Path(__file__).parent

@@ -7,9 +7,25 @@
 ## [Unreleased]
 
 ### Planned
-- Phase 2: IT桔子 / Crunchbase API 真实接入(当前仅骨架)
+- Phase 2: IT桔子 / Crunchbase / Tushare API 真实接入(当前仅骨架)
 - Phase 3: Claude 推理深度增强 + 向量检索对标
 - Phase 4: Next.js Web Dashboard
+
+---
+
+## [0.1.13] - 2026-04-16
+
+### Security
+- **XSS 修复**: `renderer._sanitize_html` 之前允许 `href="javascript:..."` / `data:text/html` / `vbscript:` URL scheme 通过,v0.1.13 新增 `_DANGEROUS_URL_ATTRS` 正则剥离 `href/src/action/formaction/xlink:href/background/poster` 属性里的危险 scheme (7 组新测试覆盖大小写混淆/单双引号/data URI/vbscript)
+
+### Fixed — public repo 首日门面修缮
+- `docs/quickstart.md` 死示例:`字节跳动/商汤科技/蔚来` → `影石创新/银诺医药/比贝特医药` (v0.1.11 已替换 fixture,quickstart 未同步,新用户照做会 FileNotFoundError)
+- `requirements.lock` L72 版本漂移:`vc-research==0.1.0` → `0.1.13`
+- quickstart 新增 `vc-research history` 命令指引 (v0.1.12 已实现但入口文档缺失)
+
+### Added
+- `.github/workflows/test.yml` — push/PR 触发 uv + pytest on Python 3.10-3.12 矩阵
+- `SECURITY.md` — 安全漏洞披露流程 (GitHub advisory + email)
 
 ---
 

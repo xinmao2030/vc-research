@@ -34,18 +34,18 @@ pip install -e .
 vc-research list-examples
 ```
 
-你会看到三家标杆案例: **字节跳动 / 商汤科技 / 蔚来**。
+你会看到六家 2025 IPO 标杆案例: **影石创新 / 澜起科技 / 银诺医药 / 比贝特医药 / 汉朔科技 / 强一股份**。
 
 任选一家生成研报:
 
 ```bash
-vc-research analyze "字节跳动" -o 字节.md
+vc-research analyze "影石创新" -o 影石.md
 ```
 
 **预期输出**(约 1 秒):
 
 ```
-────────────── 分析: 字节跳动 ──────────────
+────────────── 分析: 影石创新 ──────────────
 ⚠️  免责声明: 本工具产出仅供学习研究,不构成投资建议。
 🎮 闯关进度: 🏢⬜ 💰🔒 🎯🔒 🌊🔒 💎🔒 ⚠️🔒 🎯🔒 (0/7)
 ✓ 数据源命中: fixtures
@@ -56,10 +56,10 @@ vc-research analyze "字节跳动" -o 字节.md
 ...
 ────────── ✓ 研报生成完成 ──────────
 🎮 闯关进度: 🏢✅ 💰✅ 🎯✅ 🌊✅ 💎✅ ⚠️✅ 🎯✅ (7/7)
-📄 Markdown: 字节.md
+📄 Markdown: 影石.md
 ```
 
-用 VS Code / Typora / 其他 Markdown 阅读器打开 `字节.md`。
+用 VS Code / Typora / 其他 Markdown 阅读器打开 `影石.md`。
 
 ---
 
@@ -84,7 +84,7 @@ vc-research analyze "字节跳动" -o 字节.md
 ### 导出 PDF
 
 ```bash
-vc-research analyze "蔚来" -o 蔚来.md --pdf
+vc-research analyze "比贝特医药" -o 比贝特.md --pdf
 ```
 
 系统依赖缺失会自动降级到 `.html`,浏览器"打印为 PDF"即可。
@@ -93,7 +93,7 @@ vc-research analyze "蔚来" -o 蔚来.md --pdf
 
 ```bash
 cp .env.example .env   # 编辑填入 ANTHROPIC_API_KEY
-vc-research analyze "商汤科技" -o 商汤.md --llm
+vc-research analyze "银诺医药" -o 银诺.md --llm
 ```
 
 没有 key 也没关系,所有分析的 base 逻辑都已实现。
@@ -112,7 +112,7 @@ python web/dashboard.py
 | 现象 | 原因 | 解决 |
 |------|------|------|
 | `company: command not found` | 没 activate venv | `source .venv/bin/activate` |
-| `未在 fixtures 中找到 xxx` | 不在 3 家标杆中 | 目前只有这 3 家,Phase 2 会接入真实数据源 |
+| `未在 fixtures 中找到 xxx` | 不在 6 家标杆中 | 跑 `vc-research list-examples` 看全部 6 家;Phase 2 会接入真实数据源 |
 | `--pdf` 报错 libgobject | 缺 pango/cairo | `brew install pango cairo glib` |
 | `ANTHROPIC_API_KEY` 未设置 | 用了 `--llm` | 去掉 `--llm` 或补 `.env` |
 | 研报金额看不懂(13 位数字) | 原始精度数据 | 后续版本会显示 `$180B` |
@@ -121,10 +121,11 @@ python web/dashboard.py
 
 ## 6. 下一步建议的学习路径
 
-1. ✅ 现在: 生成 3 家标杆研报,对比看 3 个赛道(互联网 / AI / 新能源车)
-2. 📖 读 [glossary.md](./glossary.md) — 理解核心术语
-3. 🏗️ 读 [architecture.md](./architecture.md) — 看工具如何工作
-4. 🔧 贡献 fixtures: 写一份你熟悉的公司的 JSON,放到 `examples/fixtures/`
+1. ✅ 现在: 生成 6 家标杆研报,对比看 3 大赛道(消费电子 / 医药 / 半导体硬件)
+2. 🕒 用 `vc-research history` 查看你已生成的全部研报(裁决/估值/公允区间一表对比)
+3. 📖 读 [glossary.md](./glossary.md) — 理解核心术语
+4. 🏗️ 读 [architecture.md](./architecture.md) — 看工具如何工作
+5. 🔧 贡献 fixtures: 写一份你熟悉的公司的 JSON,放到 `examples/fixtures/`
 
 **核心心法**:
 > 研报不是结论,是思考框架。每看一份,在大脑里多走一次"钱从哪来 → 值多少 → 风险在哪"的神经通路。
