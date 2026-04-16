@@ -21,7 +21,7 @@ from vc_research.report import render_markdown
 from vc_research.schema import VCReport
 
 
-CASES = ["字节跳动", "商汤科技", "蔚来"]
+CASES = ["字节跳动", "商汤科技", "蔚来", "小米"]
 
 
 @pytest.mark.parametrize("company", CASES)

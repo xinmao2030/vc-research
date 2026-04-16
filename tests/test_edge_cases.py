@@ -191,6 +191,13 @@ BENCHMARKS = {
         "overall_risk": "medium",
         "stage": FundingStage.STRATEGIC,
     },
+    "小米": {
+        "rounds": 6,
+        "latest_valuation_usd": Decimal("54000000000"),
+        "verdict": "推荐",
+        "overall_risk": "high",  # 供应链 + 汽车监管
+        "stage": FundingStage.IPO,
+    },
 }
 
 

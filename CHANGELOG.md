@@ -13,6 +13,17 @@
 
 ---
 
+## [0.1.3] - 2026-04-15
+
+### Added — Phase 2 接入准备完成
+- `docs/data-source-spec.md` — fixtures JSON schema 契约,Phase 2 真实 API
+  接入的目标格式 + 字段级别的宽容性承诺
+- `examples/fixtures/小米.json` — 第 4 家标杆案例 (硬件/消费电子赛道),
+  验证架构扩展到多样化赛道无代码改动
+- `BENCHMARKS` 测试扩展到 4 家,全量 49/49 通过
+
+---
+
 ## [0.1.2] - 2026-04-15
 
 ### Added — Milestone 1 教育层落地 + Phase 2 接口准备
