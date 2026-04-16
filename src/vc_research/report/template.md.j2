@@ -7,6 +7,8 @@
 
 ## 🏢 模块 1 · 企业画像
 
+### 基本信息
+
 | 项目 | 内容 |
 |------|------|
 | 公司名 | {{ profile.name }}{% if profile.legal_name %} ({{ profile.legal_name }}){% endif %} |
@@ -16,40 +18,50 @@
 | 赛道 | {{ profile.industry }}{% if profile.sub_industry %} / {{ profile.sub_industry }}{% endif %} |
 | 商业模式 | {{ profile.business_model }} |
 | 当前阶段 | **{{ profile.stage.value }}** |
-| 员工数 | {{ profile.employee_count or "—" }} |
+| 员工数 | {% if profile.employee_count %}{{ "{:,}".format(profile.employee_count) }}{% else %}—{% endif %} |
 {% if profile.website %}| 官网 | {{ profile.website }} |
 {% endif %}
 
 ### 创始团队
-{% for f in profile.founders %}
-- **{{ f.name }}** · {{ f.title }}{% if f.equity_pct %} · 持股 {{ "%.1f"|format(f.equity_pct * 100) }}%{% endif %}{% if not f.still_active %} · ⚠️ 已离任{% if f.current_role %}(现任: {{ f.current_role }}){% endif %}{% endif %}
-  > {{ f.background or "背景待补充" }}
+
+| 姓名 | 职位 | 持股 | 状态 | 背景 |
+|------|------|------|------|------|
+{% for f in profile.founders %}| **{{ f.name }}** | {{ f.title }} | {% if f.equity_pct %}{{ "%.1f"|format(f.equity_pct * 100) }}%{% else %}—{% endif %} | {% if f.still_active %}✅ 在任{% else %}⚠️ 已离任{% if f.current_role %}<br>({{ f.current_role }}){% endif %}{% endif %} | {{ f.background or "—" }} |
 {% endfor %}
 
 {% if profile.executives %}
 ### 现任核心高管
-{% for e in profile.executives %}
-- **{{ e.name }}** · {{ e.title }}{% if e.joined %} · 加入 {{ e.joined }}{% endif %}
-  > {{ e.background or "背景待补充" }}
+
+| 姓名 | 职位 | 加入时间 | 背景 |
+|------|------|----------|------|
+{% for e in profile.executives %}| **{{ e.name }}** | {{ e.title }} | {{ e.joined or "—" }} | {{ e.background or "—" }} |
 {% endfor %}
 {% endif %}
 
 {% if profile.products %}
 ### 核心产品 / 业务线
-{% for p in profile.products %}- {{ p }}
+
+| # | 产品 / 业务 |
+|---|-------------|
+{% for p in profile.products %}| {{ loop.index }} | {{ p }} |
 {% endfor %}
 {% endif %}
 
 {% if profile.key_customers %}
 ### 标志性客户 / 用户群体
-{% for c in profile.key_customers %}- {{ c }}
+
+| # | 客户 / 群体 |
+|---|-------------|
+{% for c in profile.key_customers %}| {{ loop.index }} | {{ c }} |
 {% endfor %}
 {% endif %}
 
 {% if profile.milestones %}
 ### 关键里程碑
-{% for m in profile.milestones %}
-- {% if m.date %}**{{ m.date }}** — {% endif %}{{ m.event }}
+
+| 时间 | 事件 |
+|------|------|
+{% for m in profile.milestones %}| {{ m.date or "—" }} | {{ m.event }} |
 {% endfor %}
 {% endif %}
 
@@ -57,45 +69,67 @@
 
 ## 💰 模块 2 · 融资轨迹
 
-{% if funding.total_raised_usd %}
-- **累计融资**: ${{ "{:,.0f}".format(funding.total_raised_usd) }}
-{% endif %}
-{% if funding.latest_valuation_usd %}
-- **最新估值**: ${{ "{:,.0f}".format(funding.latest_valuation_usd) }}
-{% endif %}
-{% if funding.valuation_cagr %}
-- **估值 CAGR**: {{ "%.1f"|format(funding.valuation_cagr * 100) }}%
-{% endif %}
-{% if funding.dilution_estimate %}
-- **创始团队累计稀释**: ~{{ "%.0f"|format(funding.dilution_estimate * 100) }}% (估算)
-{% endif %}
+### 融资总览
 
-| 轮次 | 时间 | 金额 | 投前→投后估值 | 领投方 |
-|------|------|------|----------|--------|
-{% for r in funding.rounds %}
-| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.pre_money_valuation_usd %}${{ "{:,.0f}".format(r.pre_money_valuation_usd) }} → {% endif %}{% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
+| 指标 | 数值 |
+|------|------|
+{% if funding.total_raised_usd %}| 累计融资 | ${{ "{:,.0f}".format(funding.total_raised_usd) }} |
+{% endif %}
+{% if funding.latest_valuation_usd %}| 最新估值 | ${{ "{:,.0f}".format(funding.latest_valuation_usd) }} |
+{% endif %}
+{% if funding.valuation_cagr %}| 估值复合增长率 (CAGR) | {{ "%.1f"|format(funding.valuation_cagr * 100) }}% |
+{% endif %}
+{% if funding.dilution_estimate %}| 创始团队累计稀释(估算) | ~{{ "%.0f"|format(funding.dilution_estimate * 100) }}% |
+{% endif %}
+| 轮次数 | {{ funding.rounds | length }} 轮 |
+
+### 历史轮次一览
+
+| 轮次 | 时间 | 金额 | 投前估值 | 投后估值 | 领投方 |
+|------|------|------|----------|----------|--------|
+{% for r in funding.rounds %}| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.pre_money_valuation_usd %}${{ "{:,.0f}".format(r.pre_money_valuation_usd) }}{% else %}—{% endif %} | {% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
 {% endfor %}
+
+{% set dated_rounds = funding.rounds | selectattr("post_money_valuation_usd") | selectattr("announce_date") | list %}
+{% if dated_rounds | length >= 2 %}
+
+### 估值成长曲线
+
+```mermaid
+xychart-beta
+    title "估值成长曲线 (单位: 百万美元)"
+    x-axis [{% for r in dated_rounds %}"{{ r.stage.value }}/{{ r.announce_date.year }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+    y-axis "投后估值 ($M)"
+    line [{% for r in dated_rounds %}{{ (r.post_money_valuation_usd / 1000000) | round(0) | int }}{% if not loop.last %}, {% endif %}{% endfor %}]
+```
+{% endif %}
 
 {% for r in funding.rounds %}
 {% if r.investor_details or r.share_class or r.use_of_proceeds or r.notes %}
-### {{ r.stage.value | upper }}{% if r.announce_date %} · {{ r.announce_date }}{% endif %}
-{% if r.share_class %}- **股权类别**: {{ r.share_class }}
-{% endif %}
-{% if r.use_of_proceeds %}- **融资用途**: {{ r.use_of_proceeds }}
-{% endif %}
-{% if r.notes %}- **备注**: {{ r.notes }}
-{% endif %}
-{% if r.investor_details %}
 
-**投资方详情**:
-{% for i in r.investor_details %}
-- **{{ i.name }}**{% if i.is_lead %} 🎯 领投{% endif %}{% if i.type %} · {{ i.type }}{% endif %}{% if i.hq %} · {{ i.hq }}{% endif %}{% if i.founded_year %} · 成立于 {{ i.founded_year }}{% endif %}{% if i.aum_usd %} · AUM ${{ "{:,.0f}".format(i.aum_usd) }}{% endif %}
-{% if i.sector_focus %}  - 擅长赛道: {{ i.sector_focus | join(" · ") }}
+### 🔍 {{ r.stage.value | upper }}{% if r.announce_date %} · {{ r.announce_date }}{% endif %}
+
+| 项目 | 内容 |
+|------|------|
+{% if r.amount_usd %}| 融资金额 | ${{ "{:,.0f}".format(r.amount_usd) }} |
 {% endif %}
-{% if i.notable_portfolio %}  - 代表案例: {{ i.notable_portfolio | join(" · ") }}
+{% if r.pre_money_valuation_usd %}| 投前估值 | ${{ "{:,.0f}".format(r.pre_money_valuation_usd) }} |
 {% endif %}
-{% if i.deal_thesis %}  - 本轮逻辑: {{ i.deal_thesis }}
+{% if r.post_money_valuation_usd %}| 投后估值 | ${{ "{:,.0f}".format(r.post_money_valuation_usd) }} |
 {% endif %}
+{% if r.share_class %}| 股权类别 | {{ r.share_class }} |
+{% endif %}
+{% if r.use_of_proceeds %}| 融资用途 | {{ r.use_of_proceeds }} |
+{% endif %}
+{% if r.notes %}| 备注 | {{ r.notes }} |
+{% endif %}
+
+{% if r.investor_details %}
+**投资方档案**:
+
+| 机构 | 角色 | 类型 | 总部 | 成立 | AUM | 擅长赛道 | 代表案例 | 本轮逻辑 |
+|------|------|------|------|------|-----|----------|----------|----------|
+{% for i in r.investor_details %}| **{{ i.name }}** | {% if i.is_lead %}🎯 领投{% else %}跟投{% endif %} | {{ i.type or "—" }} | {{ i.hq or "—" }} | {{ i.founded_year or "—" }} | {% if i.aum_usd %}${{ "{:,.0f}".format(i.aum_usd) }}{% else %}—{% endif %} | {{ i.sector_focus | join(" · ") or "—" }} | {{ i.notable_portfolio | join(" · ") or "—" }} | {{ i.deal_thesis or "—" }} |
 {% endfor %}
 {% endif %}
 {% endif %}
@@ -109,8 +143,12 @@
 
 ## 🎯 模块 3 · 投资依据 (Thesis)
 
-### 团队评分: **{{ thesis.team_score }}/10**
-> {{ thesis.team_notes }}
+### 团队评估
+
+| 维度 | 值 |
+|------|-----|
+| 综合评分 | **{{ thesis.team_score }}/10** &nbsp; `{{ '█' * thesis.team_score }}{{ '░' * (10 - thesis.team_score) }}` |
+| 一句话点评 | {{ thesis.team_notes }} |
 
 {% if thesis.team_analysis %}
 **深度分析**:
@@ -122,17 +160,15 @@
 
 > {{ analogies.tam_sam_som }}
 
-{% if thesis.market.tam_usd %}
-- **TAM**: ${{ "{:,.0f}".format(thesis.market.tam_usd) }}
+| 层级 | 规模 | 说明 |
+|------|------|------|
+{% if thesis.market.tam_usd %}| **TAM** (总可达市场) | ${{ "{:,.0f}".format(thesis.market.tam_usd) }} | 全球/全品类天花板 |
 {% endif %}
-{% if thesis.market.sam_usd %}
-- **SAM**: ${{ "{:,.0f}".format(thesis.market.sam_usd) }}
+{% if thesis.market.sam_usd %}| **SAM** (可服务市场) | ${{ "{:,.0f}".format(thesis.market.sam_usd) }} | 公司产品能覆盖的部分 |
 {% endif %}
-{% if thesis.market.som_usd %}
-- **SOM**: ${{ "{:,.0f}".format(thesis.market.som_usd) }}
+{% if thesis.market.som_usd %}| **SOM** (可获取市场) | ${{ "{:,.0f}".format(thesis.market.som_usd) }} | 3-5 年内可拿下的份额 |
 {% endif %}
-{% if thesis.market.growth_rate %}
-- **年增速**: {{ "%.1f"|format(thesis.market.growth_rate * 100) }}%
+{% if thesis.market.growth_rate %}| 年增速 | {{ "%.1f"|format(thesis.market.growth_rate * 100) }}% | CAGR |
 {% endif %}
 
 {% if thesis.market_analysis %}
@@ -145,27 +181,29 @@
 
 > {{ analogies.moat }}
 
-**本案评估**: {{ thesis.moat }}
+| 项目 | 内容 |
+|------|------|
+| 本案 headline | {{ thesis.moat }} |
 
 {% if thesis.moat_analysis %}
 
-**7 维度护城河评分** (Hamilton Helmer · 7 Powers):
+**7 Powers 护城河评分** (Hamilton Helmer):
 
-| 维度 | 评分 | 证据 |
-|------|------|------|
-{% if thesis.moat_analysis.network_effect %}| 网络效应 | {{ thesis.moat_analysis.network_effect.score }}/10 | {{ thesis.moat_analysis.network_effect.evidence }} |
+| 维度 | 评分 | 强度可视化 | 证据 |
+|------|:----:|-----------|------|
+{% if thesis.moat_analysis.network_effect %}| 网络效应 | {{ thesis.moat_analysis.network_effect.score }}/10 | `{{ '█' * thesis.moat_analysis.network_effect.score }}{{ '░' * (10 - thesis.moat_analysis.network_effect.score) }}` | {{ thesis.moat_analysis.network_effect.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.scale_economy %}| 规模经济 | {{ thesis.moat_analysis.scale_economy.score }}/10 | {{ thesis.moat_analysis.scale_economy.evidence }} |
+{% if thesis.moat_analysis.scale_economy %}| 规模经济 | {{ thesis.moat_analysis.scale_economy.score }}/10 | `{{ '█' * thesis.moat_analysis.scale_economy.score }}{{ '░' * (10 - thesis.moat_analysis.scale_economy.score) }}` | {{ thesis.moat_analysis.scale_economy.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.switching_cost %}| 切换成本 | {{ thesis.moat_analysis.switching_cost.score }}/10 | {{ thesis.moat_analysis.switching_cost.evidence }} |
+{% if thesis.moat_analysis.switching_cost %}| 切换成本 | {{ thesis.moat_analysis.switching_cost.score }}/10 | `{{ '█' * thesis.moat_analysis.switching_cost.score }}{{ '░' * (10 - thesis.moat_analysis.switching_cost.score) }}` | {{ thesis.moat_analysis.switching_cost.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.brand %}| 品牌 | {{ thesis.moat_analysis.brand.score }}/10 | {{ thesis.moat_analysis.brand.evidence }} |
+{% if thesis.moat_analysis.brand %}| 品牌 | {{ thesis.moat_analysis.brand.score }}/10 | `{{ '█' * thesis.moat_analysis.brand.score }}{{ '░' * (10 - thesis.moat_analysis.brand.score) }}` | {{ thesis.moat_analysis.brand.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.counter_positioning %}| 反定位 | {{ thesis.moat_analysis.counter_positioning.score }}/10 | {{ thesis.moat_analysis.counter_positioning.evidence }} |
+{% if thesis.moat_analysis.counter_positioning %}| 反定位 | {{ thesis.moat_analysis.counter_positioning.score }}/10 | `{{ '█' * thesis.moat_analysis.counter_positioning.score }}{{ '░' * (10 - thesis.moat_analysis.counter_positioning.score) }}` | {{ thesis.moat_analysis.counter_positioning.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.cornered_resource %}| 独家资源 | {{ thesis.moat_analysis.cornered_resource.score }}/10 | {{ thesis.moat_analysis.cornered_resource.evidence }} |
+{% if thesis.moat_analysis.cornered_resource %}| 独家资源 | {{ thesis.moat_analysis.cornered_resource.score }}/10 | `{{ '█' * thesis.moat_analysis.cornered_resource.score }}{{ '░' * (10 - thesis.moat_analysis.cornered_resource.score) }}` | {{ thesis.moat_analysis.cornered_resource.evidence }} |
 {% endif %}
-{% if thesis.moat_analysis.process_power %}| 流程势能 | {{ thesis.moat_analysis.process_power.score }}/10 | {{ thesis.moat_analysis.process_power.evidence }} |
+{% if thesis.moat_analysis.process_power %}| 流程势能 | {{ thesis.moat_analysis.process_power.score }}/10 | `{{ '█' * thesis.moat_analysis.process_power.score }}{{ '░' * (10 - thesis.moat_analysis.process_power.score) }}` | {{ thesis.moat_analysis.process_power.evidence }} |
 {% endif %}
 {% endif %}
 
@@ -173,14 +211,17 @@
 
 > {{ analogies.ltv_cac }}
 
-{% if thesis.unit_economics.ltv_cac_ratio %}
-- **LTV/CAC**: {{ "%.2f"|format(thesis.unit_economics.ltv_cac_ratio) }}x {% if thesis.unit_economics.ltv_cac_ratio >= 3 %}✅ 健康{% else %}⚠️ 需改善{% endif %}
+| 指标 | 数值 | 健康度 |
+|------|------|--------|
+{% if thesis.unit_economics.ltv_cac_ratio %}| LTV/CAC | {{ "%.2f"|format(thesis.unit_economics.ltv_cac_ratio) }}x | {% if thesis.unit_economics.ltv_cac_ratio >= 3 %}✅ 健康{% else %}⚠️ 需改善{% endif %} |
 {% endif %}
-{% if thesis.unit_economics.gross_margin %}
-- **毛利率**: {{ "%.1f"|format(thesis.unit_economics.gross_margin * 100) }}%
+{% if thesis.unit_economics.gross_margin %}| 毛利率 | {{ "%.1f"|format(thesis.unit_economics.gross_margin * 100) }}% | {% if thesis.unit_economics.gross_margin >= 0.6 %}✅ 高毛利{% elif thesis.unit_economics.gross_margin >= 0.3 %}🟡 中等{% else %}⚠️ 偏低{% endif %} |
 {% endif %}
-{% if thesis.unit_economics.payback_months %}
-- **回本周期**: {{ "%.1f"|format(thesis.unit_economics.payback_months) }} 个月
+{% if thesis.unit_economics.payback_months %}| 回本周期 | {{ "%.1f"|format(thesis.unit_economics.payback_months) }} 个月 | {% if thesis.unit_economics.payback_months <= 12 %}✅ 优秀{% elif thesis.unit_economics.payback_months <= 24 %}🟡 合理{% else %}⚠️ 过长{% endif %} |
+{% endif %}
+{% if thesis.unit_economics.cac_usd %}| CAC | ${{ "{:,.0f}".format(thesis.unit_economics.cac_usd) }} | 客户获取成本 |
+{% endif %}
+{% if thesis.unit_economics.ltv_usd %}| LTV | ${{ "{:,.0f}".format(thesis.unit_economics.ltv_usd) }} | 客户生命周期价值 |
 {% endif %}
 
 {% if thesis.unit_economics_analysis %}
@@ -190,14 +231,20 @@
 {% endif %}
 
 ### 增长指标
-{% if thesis.growth.arr_usd %}
-- **ARR**: ${{ "{:,.0f}".format(thesis.growth.arr_usd) }}
+
+| 指标 | 数值 |
+|------|------|
+{% if thesis.growth.arr_usd %}| ARR (年化经常性收入) | ${{ "{:,.0f}".format(thesis.growth.arr_usd) }} |
 {% endif %}
-{% if thesis.growth.yoy_growth %}
-- **同比增长**: {{ "%.0f"|format(thesis.growth.yoy_growth * 100) }}%
+{% if thesis.growth.yoy_growth %}| 同比增长率 | {{ "%.0f"|format(thesis.growth.yoy_growth * 100) }}% |
 {% endif %}
-{% if thesis.growth.mau %}
-- **MAU**: {{ "{:,}".format(thesis.growth.mau) }}
+{% if thesis.growth.mau %}| MAU (月活) | {{ "{:,}".format(thesis.growth.mau) }} |
+{% endif %}
+{% if thesis.growth.dau %}| DAU (日活) | {{ "{:,}".format(thesis.growth.dau) }} |
+{% endif %}
+{% if thesis.growth.gmv_usd %}| GMV | ${{ "{:,.0f}".format(thesis.growth.gmv_usd) }} |
+{% endif %}
+{% if thesis.growth.retention_m12 %}| 12 月留存 | {{ "%.0f"|format(thesis.growth.retention_m12 * 100) }}% |
 {% endif %}
 
 {% if thesis.growth_analysis %}
@@ -209,43 +256,45 @@
 ### 竞争格局
 {% if thesis.competitors_detailed %}
 
-| 竞品 | 总部 | 阶段/状态 | 估值 | 市占率 | 威胁 | 核心差异 |
-|------|------|-----------|------|--------|------|----------|
-{% for c in thesis.competitors_detailed %}
-| {{ c.name }} | {{ c.hq or "—" }} | {{ c.stage_or_status or "—" }} | {% if c.valuation_usd %}${{ "{:,.0f}".format(c.valuation_usd) }}{% else %}—{% endif %} | {% if c.market_share_pct %}{{ "%.1f"|format(c.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ c.threat_level or "—" }} | {{ c.differentiator or "—" }} |
+| 竞品 | 总部 | 阶段/状态 | 估值 | 市占率 | 威胁等级 | 核心差异 |
+|------|------|-----------|------|--------|:--------:|----------|
+{% for c in thesis.competitors_detailed %}| **{{ c.name }}** | {{ c.hq or "—" }} | {{ c.stage_or_status or "—" }} | {% if c.valuation_usd %}${{ "{:,.0f}".format(c.valuation_usd) }}{% else %}—{% endif %} | {% if c.market_share_pct %}{{ "%.1f"|format(c.market_share_pct * 100) }}%{% else %}—{% endif %} | {% if c.threat_level == "high" %}🔴 高{% elif c.threat_level == "medium" %}🟡 中{% elif c.threat_level == "low" %}🟢 低{% else %}—{% endif %} | {{ c.differentiator or "—" }} |
 {% endfor %}
-{% else %}
-{% for c in thesis.competitors %}- {{ c }}
+{% elif thesis.competitors %}
+
+| # | 竞品 |
+|---|------|
+{% for c in thesis.competitors %}| {{ loop.index }} | {{ c }} |
 {% endfor %}
 {% endif %}
 
 ### 🐂 看多理由
 {% if thesis.key_bull_points_detailed %}
-{% for p in thesis.key_bull_points_detailed %}
-- **{{ p.headline }}**
-  > {{ p.analysis }}
-{% if p.evidence %}
-{% for e in p.evidence %}  - _{{ e }}_
+
+| # | 论点 | 展开分析 | 证据 |
+|:-:|------|----------|------|
+{% for p in thesis.key_bull_points_detailed %}| {{ loop.index }} | **{{ p.headline }}** | {{ p.analysis }} | {% if p.evidence %}{{ p.evidence | join("<br>") }}{% else %}—{% endif %} |
 {% endfor %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% for b in thesis.key_bull_points %}- {{ b }}
+{% elif thesis.key_bull_points %}
+
+| # | 看多理由 |
+|:-:|----------|
+{% for b in thesis.key_bull_points %}| {{ loop.index }} | {{ b }} |
 {% endfor %}
 {% endif %}
 
 ### 🐻 看空理由
 {% if thesis.key_bear_points_detailed %}
-{% for p in thesis.key_bear_points_detailed %}
-- **{{ p.headline }}**
-  > {{ p.analysis }}
-{% if p.evidence %}
-{% for e in p.evidence %}  - _{{ e }}_
+
+| # | 论点 | 展开分析 | 证据 |
+|:-:|------|----------|------|
+{% for p in thesis.key_bear_points_detailed %}| {{ loop.index }} | **{{ p.headline }}** | {{ p.analysis }} | {% if p.evidence %}{{ p.evidence | join("<br>") }}{% else %}—{% endif %} |
 {% endfor %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% for b in thesis.key_bear_points %}- {{ b }}
+{% elif thesis.key_bear_points %}
+
+| # | 看空理由 |
+|:-:|----------|
+{% for b in thesis.key_bear_points %}| {{ loop.index }} | {{ b }} |
 {% endfor %}
 {% endif %}
 
@@ -253,34 +302,53 @@
 
 ## 🌊 模块 4 · 产业趋势
 
-- **赛道**: {{ industry.industry }}
-{% if industry.funding_total_12m_usd %}
-- **近 12 月融资总额**: ${{ "{:,.0f}".format(industry.funding_total_12m_usd) }}
+### 赛道概览
+
+| 指标 | 数值 |
+|------|------|
+| 赛道 | {{ industry.industry }} |
+{% if industry.funding_total_12m_usd %}| 近 12 月融资总额 | ${{ "{:,.0f}".format(industry.funding_total_12m_usd) }} |
 {% endif %}
-{% if industry.deal_count_12m %}
-- **近 12 月交易数**: {{ industry.deal_count_12m }}
+{% if industry.deal_count_12m %}| 近 12 月交易数 | {{ industry.deal_count_12m }} |
 {% endif %}
-- **Gartner 周期定位**: {{ industry.gartner_phase }}
-- **退出窗口**: {{ industry.exit_window }}
+| Gartner 周期定位 | {{ industry.gartner_phase }} |
+| 退出窗口评估 | {{ industry.exit_window }} |
+{% if industry.hot_keywords %}| 热词 | {{ industry.hot_keywords | join(" · ") }} |
+{% endif %}
 
 {% if industry.sub_segments %}
 ### 细分赛道
 
-| 子赛道 | 规模 | 增速 | 备注 |
-|--------|------|------|------|
-{% for s in industry.sub_segments %}
-| {{ s.name }} | {% if s.size_usd %}${{ "{:,.0f}".format(s.size_usd) }}{% else %}—{% endif %} | {% if s.growth_rate %}{{ "%.1f"|format(s.growth_rate * 100) }}%{% else %}—{% endif %} | {{ s.notes or "—" }} |
+| 子赛道 | 规模 | 年增速 | 备注 |
+|--------|------|--------|------|
+{% for s in industry.sub_segments %}| **{{ s.name }}** | {% if s.size_usd %}${{ "{:,.0f}".format(s.size_usd) }}{% else %}—{% endif %} | {% if s.growth_rate %}{{ "%.1f"|format(s.growth_rate * 100) }}%{% else %}—{% endif %} | {{ s.notes or "—" }} |
 {% endfor %}
 {% endif %}
 
 {% if industry.value_chain %}
 ### 产业链图谱
 
-{% if industry.value_chain.upstream %}- **上游 (原料/元器件)**: {{ industry.value_chain.upstream | join(" · ") }}
+```mermaid
+flowchart LR
+    U["🔧 上游<br/>{{ industry.value_chain.upstream | join('<br/>') or '—' }}"]
+    M["⚙️ 中游<br/>{{ industry.value_chain.midstream | join('<br/>') or '—' }}"]
+    D["🎯 下游<br/>{{ industry.value_chain.downstream | join('<br/>') or '—' }}"]
+    U --> M --> D
+    classDef up fill:#e8f4ff,stroke:#4a90e2
+    classDef mid fill:#fff4e6,stroke:#f5a623
+    classDef down fill:#e6f7e6,stroke:#7ed321
+    class U up
+    class M mid
+    class D down
+```
+
+| 环节 | 代表玩家 |
+|------|----------|
+{% if industry.value_chain.upstream %}| 🔧 上游 (原料/元器件) | {{ industry.value_chain.upstream | join(" · ") }} |
 {% endif %}
-{% if industry.value_chain.midstream %}- **中游 (本公司所在环节)**: {{ industry.value_chain.midstream | join(" · ") }}
+{% if industry.value_chain.midstream %}| ⚙️ 中游 (本公司所在环节) | {{ industry.value_chain.midstream | join(" · ") }} |
 {% endif %}
-{% if industry.value_chain.downstream %}- **下游 (渠道/终端)**: {{ industry.value_chain.downstream | join(" · ") }}
+{% if industry.value_chain.downstream %}| 🎯 下游 (渠道/终端) | {{ industry.value_chain.downstream | join(" · ") }} |
 {% endif %}
 {% endif %}
 
@@ -289,25 +357,30 @@
 
 | 玩家 | 总部 | 阶段 | 估值 | 市占率 | 核心差异 |
 |------|------|------|------|--------|----------|
-{% for p in industry.top_players %}
-| {{ p.name }} | {{ p.hq or "—" }} | {{ p.stage_or_status or "—" }} | {% if p.valuation_usd %}${{ "{:,.0f}".format(p.valuation_usd) }}{% else %}—{% endif %} | {% if p.market_share_pct %}{{ "%.1f"|format(p.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ p.differentiator or "—" }} |
+{% for p in industry.top_players %}| **{{ p.name }}** | {{ p.hq or "—" }} | {{ p.stage_or_status or "—" }} | {% if p.valuation_usd %}${{ "{:,.0f}".format(p.valuation_usd) }}{% else %}—{% endif %} | {% if p.market_share_pct %}{{ "%.1f"|format(p.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ p.differentiator or "—" }} |
 {% endfor %}
 {% endif %}
 
 {% if industry.growth_drivers %}
 ### 增长驱动力
-{% for d in industry.growth_drivers %}- {{ d }}
+
+| # | 驱动因素 |
+|:-:|----------|
+{% for d in industry.growth_drivers %}| {{ loop.index }} | {{ d }} |
 {% endfor %}
 {% endif %}
 
 {% if industry.barriers_to_entry %}
 ### 进入壁垒
-{% for b in industry.barriers_to_entry %}- {{ b }}
+
+| # | 壁垒 |
+|:-:|------|
+{% for b in industry.barriers_to_entry %}| {{ loop.index }} | {{ b }} |
 {% endfor %}
 {% endif %}
 
 {% if industry.industry_key_metrics %}
-### 行业关键指标
+### 行业关键指标 (KPI)
 
 | 指标 | 当前水平 |
 |------|----------|
@@ -315,43 +388,39 @@
 {% endfor %}
 {% endif %}
 
-{% if industry.policy_tailwinds %}
-**政策顺风**:
-{% for p in industry.policy_tailwinds %}- {{ p }}
-{% endfor %}
-{% endif %}
+{% if industry.policy_tailwinds or industry.policy_headwinds %}
+### 政策环境
 
-{% if industry.policy_headwinds %}
-**政策逆风**:
-{% for p in industry.policy_headwinds %}- {{ p }}
+| 类型 | 内容 |
+|------|------|
+{% for p in industry.policy_tailwinds %}| 🟢 顺风 | {{ p }} |
 {% endfor %}
-{% endif %}
-
-{% if industry.hot_keywords %}
-**热词**: {{ industry.hot_keywords | join(" · ") }}
+{% for p in industry.policy_headwinds %}| 🔴 逆风 | {{ p }} |
+{% endfor %}
 {% endif %}
 
 ---
 
 ## 💎 模块 5 · 估值分析
 
-**公允价值区间**: `${{ "{:,.0f}".format(valuation.fair_value_low_usd) }} — ${{ "{:,.0f}".format(valuation.fair_value_high_usd) }}`
+### 估值摘要
 
-{% if valuation.current_valuation_usd %}
-**当前估值**: ${{ "{:,.0f}".format(valuation.current_valuation_usd) }}
+| 项目 | 数值 |
+|------|------|
+| 公允价值下限 | ${{ "{:,.0f}".format(valuation.fair_value_low_usd) }} |
+| 公允价值上限 | ${{ "{:,.0f}".format(valuation.fair_value_high_usd) }} |
+{% if valuation.current_valuation_usd %}| 当前估值 | ${{ "{:,.0f}".format(valuation.current_valuation_usd) }} |
 {% endif %}
-{% if valuation.premium_discount is not none %}
-**溢价/折价**: {{ "%.1f"|format(valuation.premium_discount * 100) }}% {% if valuation.premium_discount > 0.3 %}⚠️ 明显溢价{% elif valuation.premium_discount < -0.2 %}💎 明显折价{% else %}合理{% endif %}
+{% if valuation.premium_discount is not none %}| 溢价/折价 | {{ "%.1f"|format(valuation.premium_discount * 100) }}% {% if valuation.premium_discount > 0.3 %}⚠️ 明显溢价{% elif valuation.premium_discount < -0.2 %}💎 明显折价{% else %}✅ 合理{% endif %} |
 {% endif %}
 
 ### 估值方法交叉验证
 
 > {{ analogies.valuation_methods }}
 
-| 方法 | 估值区间 | 关键假设 |
-|------|----------|----------|
-{% for m in valuation.methods %}
-| {{ m.method }} | ${{ "{:,.0f}".format(m.valuation_low_usd) }} - ${{ "{:,.0f}".format(m.valuation_high_usd) }} | {{ m.assumptions }} |
+| 方法 | 估值下限 | 估值上限 | 关键假设 |
+|------|----------|----------|----------|
+{% for m in valuation.methods %}| **{{ m.method }}** | ${{ "{:,.0f}".format(m.valuation_low_usd) }} | ${{ "{:,.0f}".format(m.valuation_high_usd) }} | {{ m.assumptions }} |
 {% endfor %}
 
 ### 敏感性说明
@@ -361,19 +430,23 @@
 
 ## ⚠️ 模块 6 · 风险矩阵
 
-**整体风险等级**: **{{ risks.overall_level.value | upper }}**
+### 风险概览
 
-{% if risks.runway_months %}
-- **现金跑道**: {{ "%.1f"|format(risks.runway_months) }} 个月
+| 项目 | 数值 |
+|------|------|
+| 整体风险等级 | **{{ risks.overall_level.value | upper }}** |
+{% if risks.runway_months %}| 现金跑道 | {{ "%.1f"|format(risks.runway_months) }} 个月 |
 {% endif %}
-{% if risks.burn_rate_usd_monthly %}
-- **月烧钱**: ${{ "{:,.0f}".format(risks.burn_rate_usd_monthly) }}
+{% if risks.burn_rate_usd_monthly %}| 月烧钱率 | ${{ "{:,.0f}".format(risks.burn_rate_usd_monthly) }} |
+{% endif %}
+{% if risks.cash_usd %}| 账上现金 | ${{ "{:,.0f}".format(risks.cash_usd) }} |
 {% endif %}
 
-| 类别 | 风险 | 等级 | 缓释方案 |
-|------|------|------|----------|
-{% for r in risks.risks %}
-| {{ r.category }} | {{ r.description }} | **{{ r.level.value }}** | {{ r.mitigation or "—" }} |
+### 风险清单
+
+| # | 类别 | 风险描述 | 等级 | 缓释方案 |
+|:-:|------|----------|:----:|----------|
+{% for r in risks.risks %}| {{ loop.index }} | {{ r.category }} | {{ r.description }} | {% if r.level.value == "critical" %}🔴 致命{% elif r.level.value == "high" %}🔴 高{% elif r.level.value == "medium" %}🟡 中{% else %}🟢 低{% endif %} | {{ r.mitigation or "—" }} |
 {% endfor %}
 
 > {{ analogies.burn_rate }}
@@ -382,30 +455,42 @@
 
 ## 🎯 模块 7 · 投资建议
 
-### 裁决: **{{ recommendation.verdict }}**
+### 投资裁决
 
-{% if recommendation.target_entry_valuation_usd %}
-**建议入场估值**: ≤ ${{ "{:,.0f}".format(recommendation.target_entry_valuation_usd) }}
+| 项目 | 内容 |
+|------|------|
+| **裁决** | **{{ recommendation.verdict }}** |
+{% if recommendation.target_entry_valuation_usd %}| 建议入场估值 | ≤ ${{ "{:,.0f}".format(recommendation.target_entry_valuation_usd) }} |
 {% endif %}
+| 核心逻辑 | {{ recommendation.investment_logic }} |
 
-### 投资逻辑
-> {{ recommendation.investment_logic }}
-
+{% if recommendation.suggested_terms %}
 ### 建议条款
 
 > {{ analogies.liquidation_preference }}
 
-{% for t in recommendation.suggested_terms %}- {{ t }}
+| # | 条款 |
+|:-:|------|
+{% for t in recommendation.suggested_terms %}| {{ loop.index }} | {{ t }} |
 {% endfor %}
+{% endif %}
 
+{% if recommendation.exit_scenarios %}
 ### 退出情景
-{% for e in recommendation.exit_scenarios %}- {{ e }}
+
+| # | 情景 |
+|:-:|------|
+{% for e in recommendation.exit_scenarios %}| {{ loop.index }} | {{ e }} |
 {% endfor %}
+{% endif %}
 
 ---
 
 ## 📚 数据来源
-{% for s in data_sources %}- {{ s }}
+
+| # | 数据源 |
+|:-:|--------|
+{% for s in data_sources %}| {{ loop.index }} | {{ s }} |
 {% endfor %}
 
 ---

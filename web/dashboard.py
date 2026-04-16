@@ -76,12 +76,26 @@ _TERM_RE = re.compile(
 )
 
 
+_MERMAID_BLOCK_RE = re.compile(
+    r'<div class="mermaid">.*?</div>', re.DOTALL
+)
+
+
 def _inject_tooltips(html_body: str) -> str:
     """把 glossary 里的术语包成 <abbr>,使用浏览器原生 tooltip.
 
     只替换普通文本内容,不碰 HTML 标签属性 (用简单分段策略避免 <abbr>
-    内嵌或破坏标签结构).
+    内嵌或破坏标签结构).Mermaid 代码块预先抽出,避免 <abbr> 破坏图表源码。
     """
+    # 先保护 mermaid 块
+    saved: list[str] = []
+
+    def _stash(m: re.Match[str]) -> str:
+        saved.append(m.group(0))
+        return f"\x00MERMAID{len(saved) - 1}\x00"
+
+    html_body = _MERMAID_BLOCK_RE.sub(_stash, html_body)
+
     # 分段: 标签 vs 文本
     parts = re.split(r"(<[^>]+>)", html_body)
     out: list[str] = []
@@ -89,7 +103,6 @@ def _inject_tooltips(html_body: str) -> str:
         if p.startswith("<"):
             out.append(p)
             continue
-        # 在文本里替换
         out.append(
             _TERM_RE.sub(
                 lambda m: (
@@ -99,7 +112,12 @@ def _inject_tooltips(html_body: str) -> str:
                 p,
             )
         )
-    return "".join(out)
+    html_body = "".join(out)
+
+    # 还原 mermaid 块
+    for idx, block in enumerate(saved):
+        html_body = html_body.replace(f"\x00MERMAID{idx}\x00", block)
+    return html_body
 
 
 def _canonical(term: str) -> str:
@@ -162,6 +180,11 @@ STYLE = """
   h2 { border-bottom: 1px solid #eaecef; padding-bottom: .3em; margin-top: 2em; }
   code { background: #f6f8fa; padding: 2px 6px; border-radius: 4px; font-size: .9em; }
   abbr { cursor: help; text-decoration: underline dotted #0366d6; text-underline-offset: 2px; }
+  .mermaid {
+    background: #fafbfc; border: 1px solid #e1e4e8; border-radius: 8px;
+    padding: 1em; margin: 1.5em 0; text-align: center;
+    overflow-x: auto;
+  }
 
   .disclaimer {
     background: #fff8c5; border: 1px solid #d4b808; color: #735c0f;
@@ -179,9 +202,32 @@ STYLE = """
     .disclaimer { background: #332b00; border-color: #735c0f; color: #e3b341; }
     abbr { text-decoration-color: #58a6ff; }
     .badge.industry { background: #30363d; color: #c9d1d9; }
+    .mermaid { background: #161b22; border-color: #30363d; }
   }
 </style>
 """
+
+# ──────────────────────────── Mermaid 图表支持 ────────────────────────────
+MERMAID_SCRIPT = """
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  mermaid.initialize({ startOnLoad: true, theme: isDark ? 'dark' : 'default' });
+</script>
+"""
+
+
+def _enable_mermaid(html_body: str) -> str:
+    """把 <pre><code class="language-mermaid">...</code></pre> 改写成 <div class="mermaid">...</div>
+    这样 mermaid.js 的 startOnLoad 会自动渲染。"""
+    pattern = re.compile(
+        r'<pre><code class="language-mermaid">(.*?)</code></pre>',
+        re.DOTALL,
+    )
+    return pattern.sub(
+        lambda m: f'<div class="mermaid">{html.unescape(m.group(1))}</div>',
+        html_body,
+    )
 
 NAV = """
 <nav>
@@ -199,7 +245,7 @@ def _page(title: str, body: str) -> bytes:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} · VC Research</title>
 {STYLE}
-</head><body>{NAV}{body}</body></html>"""
+</head><body>{NAV}{body}{MERMAID_SCRIPT}</body></html>"""
     return html_text.encode("utf-8")
 
 
@@ -408,6 +454,7 @@ def _report(name: str) -> tuple[bytes, int]:
     md_text = render_markdown(report)
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code"])
     html_body = _sanitize_html(html_body)
+    html_body = _enable_mermaid(html_body)
     html_body = _inject_tooltips(html_body)
     return _page(name, html_body), 200
 
