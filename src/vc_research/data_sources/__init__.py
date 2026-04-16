@@ -3,5 +3,12 @@
 from .aggregator import DataAggregator, RawCompanyData
 from .base import DataSource
 from .fixtures_source import FixturesSource
+from .ollama_researcher import OllamaResearcher
 
-__all__ = ["DataAggregator", "RawCompanyData", "DataSource", "FixturesSource"]
+__all__ = [
+    "DataAggregator",
+    "RawCompanyData",
+    "DataSource",
+    "FixturesSource",
+    "OllamaResearcher",
+]

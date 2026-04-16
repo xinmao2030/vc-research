@@ -1,0 +1,153 @@
+{
+  "sources_hit": ["itjuzi(模拟)", "crunchbase(模拟)", "Nasdaq/港交所披露"],
+  "itjuzi": {
+    "legal_name": "百济神州有限公司 (BeiGene, Ltd.)",
+    "founded_date": "2010-10-28",
+    "headquarters": "北京 / 剑桥 (美国) / 巴塞尔",
+    "region": "中国",
+    "industry": "生物医药",
+    "sub_industry": "肿瘤创新药 + 免疫疗法",
+    "business_model": "自研创新药 + License-out + 授权合作",
+    "stage": "ipo",
+    "employee_count": 11000,
+    "one_liner": "中国创新药一线企业,BTK 抑制剂泽布替尼全球放量,肿瘤管线覆盖全球",
+    "founders": [
+      {
+        "name": "王晓东",
+        "title": "联合创始人/董事长",
+        "background": "美国科学院院士 / 北京生命科学研究所所长 / HHMI 研究员,细胞凋亡领域开山学者",
+        "equity_pct": 0.06
+      },
+      {
+        "name": "John V. Oyler",
+        "title": "联合创始人/CEO",
+        "background": "Telarus 前 CEO / Genta 前高管,商业化与资本运作经验丰富",
+        "equity_pct": 0.04
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2014-11-01",
+        "amount_usd": 75000000,
+        "post_money_valuation_usd": 300000000,
+        "lead_investors": ["中信产业基金", "淡马锡"],
+        "notes": "A 轮以 BTK 抑制剂早期数据获投"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2015-04-01",
+        "amount_usd": 97000000,
+        "post_money_valuation_usd": 500000000,
+        "lead_investors": ["高盛", "信达资本"],
+        "notes": "Pre-IPO 融资,准备登陆 Nasdaq"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2016-02-03",
+        "amount_usd": 158000000,
+        "post_money_valuation_usd": 800000000,
+        "lead_investors": ["Goldman Sachs", "Morgan Stanley"],
+        "notes": "Nasdaq 上市 BGNE,中国创新药出海标志"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2017-08-01",
+        "amount_usd": 150000000,
+        "post_money_valuation_usd": 3500000000,
+        "lead_investors": ["Celgene"],
+        "notes": "Celgene 13.8 亿美元 license 合作 + 1.5 亿股权投资"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2018-08-08",
+        "amount_usd": 903000000,
+        "post_money_valuation_usd": 11000000000,
+        "lead_investors": ["港股 IPO 承销团"],
+        "notes": "港交所 06160 二次上市,首家美中双重上市 biotech"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2020-07-13",
+        "amount_usd": 2080000000,
+        "post_money_valuation_usd": 27000000000,
+        "lead_investors": ["Baker Bros", "高瓴", "贝莱德"],
+        "notes": "注册制后 A 股科创板上市 688235,全球首家三地上市 biotech"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "王晓东院士科学号召力 + Oyler 商业化执行力,团队国际化程度中国 biotech 最高",
+      "market": {
+        "tam_usd": 250000000000,
+        "sam_usd": 80000000000,
+        "som_usd": 10000000000,
+        "growth_rate": 0.09
+      },
+      "moat": "全球商业化能力 (中美欧同步销售) + 研发管线深度 (50+ 临床项目) + 成本优势 (中国研发+欧美注册) + 泽布替尼全球头对头击败伊布替尼",
+      "unit_economics": {
+        "gross_margin": 0.82,
+        "payback_months": 36
+      },
+      "growth": {
+        "arr_usd": 2500000000,
+        "yoy_growth": 0.75,
+        "retention_m12": 0.90
+      },
+      "competitors": ["AbbVie (伊布替尼)", "AstraZeneca", "Pfizer", "信达生物", "君实生物", "恒瑞医药"],
+      "bull": [
+        "泽布替尼 2023 年成为首个中国原研 10 亿美元年收入药物",
+        "替雷利珠单抗 (PD-1) 海外获批,进入发达市场定价",
+        "全球肿瘤管线 50+ 个临床项目,2025-2027 多个里程碑",
+        "商业化基础设施已建成 (美国 2000+ 销售代表),后续新药复用"
+      ],
+      "bear": [
+        "研发烧钱巨大 (年亏损 15-20 亿美元),盈利时间表仍不清晰",
+        "中美生物医药脱钩风险,BIOSECURE 法案影响合作",
+        "医保谈判降价压力持续,国内毛利空间压缩",
+        "创新药估值依赖里程碑事件,波动剧烈"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 18000000000,
+      "deal_count_12m": 380,
+      "gartner_phase": "复苏期 (全球创新药);幻灭期 (中国 PD-1 赛道拥挤)",
+      "policy_tailwinds": [
+        "国谈倾斜创新药,新药医保准入提速",
+        "科创板/港股 18A 为未盈利 biotech 提供融资渠道",
+        "鼓励中国创新药出海"
+      ],
+      "policy_headwinds": [
+        "美国 BIOSECURE 法案可能影响中美 biotech 合作",
+        "国内医保谈判降价压力",
+        "FDA 对中国临床数据审查趋严"
+      ],
+      "exit_window": "三地上市,流动性充足;并购窗口需看大药企现金流",
+      "hot_keywords": ["创新药出海", "双抗/ADC", "CAR-T", "泽布替尼", "License-out"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 140000000,
+      "cash_usd": 3500000000
+    },
+    "extra_risks": [
+      {
+        "category": "监管",
+        "description": "BIOSECURE 法案若通过,可能限制与美国药企合作",
+        "level": "high",
+        "mitigation": "加速管线独立商业化,减少对美方合作依赖"
+      },
+      {
+        "category": "现金流",
+        "description": "年亏损 15-20 亿美元,跑道约 24 个月,需持续融资",
+        "level": "medium",
+        "mitigation": "里程碑驱动的 License-out 合作 + 港股/A 股再融资"
+      },
+      {
+        "category": "技术",
+        "description": "单一重磅药物依赖度高,泽布替尼专利 2036 到期",
+        "level": "medium",
+        "mitigation": "推进 Sonrotoclax (BCL2) 及下一代 BTK 抑制剂"
+      }
+    ]
+  }
+}

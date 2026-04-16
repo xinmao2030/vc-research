@@ -19,6 +19,7 @@ from urllib.parse import unquote
 import markdown
 
 from vc_research.data_sources import DataAggregator
+from vc_research.data_sources.ollama_researcher import DEFAULT_CACHE_DIR as LLM_CACHE_DIR
 from vc_research.modules import (
     analyze_funding,
     analyze_industry,
@@ -211,7 +212,9 @@ def _build_report(name: str) -> VCReport | None:
     if name in _REPORT_CACHE:
         return _REPORT_CACHE[name]
 
-    raw = DataAggregator(use_fixtures=True).fetch(name)
+    raw = DataAggregator(
+        use_fixtures=True, enable_llm_research=True
+    ).fetch(name)
     if raw.is_empty():
         return None
     try:
@@ -276,6 +279,7 @@ def _index() -> bytes:
         else "<p>暂无 fixtures。</p>"
     )
 
+    available = ", ".join(companies) if companies else "(暂无)"
     body = f"""
 <h1>📊 VC Research Dashboard</h1>
 <p>创投企业投资分析系统 · 为零基础投资者打造 · 7 层分析框架</p>
@@ -284,10 +288,35 @@ def _index() -> bytes:
   数据可能过时,决策前请独立核实。术语不懂?
   <a href="/glossary">点这里查术语表</a>。
 </div>
+
+<h2>🔎 查任意公司</h2>
+<form action="/search" method="get" style="display:flex;gap:.5em;margin:1em 0;max-width:520px"
+      onsubmit="document.getElementById('spinner').style.display='block'">
+  <input type="text" name="q" placeholder="输入公司中文名 (如:糖吉医疗、字节跳动)" required
+         style="flex:1;padding:.6em .8em;border:1px solid #d0d7de;border-radius:6px;font-size:1em">
+  <button type="submit"
+         style="padding:.6em 1.2em;background:#0969da;color:#fff;border:0;border-radius:6px;font-size:1em;cursor:pointer">
+    生成研报
+  </button>
+</form>
+<div id="spinner" style="display:none;margin:.5em 0 1em;padding:.8em;background:#fff8c5;border-radius:6px;font-size:.95em">
+  ⏳ 本地 Qwen3 推断中,预计 60-120 秒。请耐心等待,勿关闭页面。
+</div>
+<p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
+  <b>标杆案例</b> (下方)秒开;<b>其他公司</b>由本地 Qwen3 32B 实时推断(1-2 分钟),
+  研报顶部会明确标注"LLM 推断,需交叉核实"。
+</p>
+
 <h2>🗂️ 标杆案例 ({len(cards)})</h2>
 {cards_html}
 <p style="color:#6a737d;font-size:.9em;margin-top:2em">
   💡 点击任意案例查看完整研报,关键术语悬停即显示类比解释。
+</p>
+<p style="color:#6a737d;font-size:.85em;margin-top:1em;border-top:1px solid #eaecef;padding-top:.8em">
+  LLM 缓存目录:<code>~/.vc-research/llm_cache/</code> (TTL 30 天) ·
+  <a href="/clear-cache">🧹 清所有 LLM 缓存</a> ·
+  <a href="/glossary">📖 术语表</a> ·
+  <a href="/about">ℹ️ 关于</a>
 </p>
 """
     return _page("首页", body)
@@ -303,6 +332,28 @@ def _glossary() -> bytes:
     )
     html_body = _sanitize_html(html_body)
     return _page("术语表", html_body)
+
+
+def _clear_cache() -> bytes:
+    """清空 LLM 磁盘缓存 + 进程内研报缓存。"""
+    deleted = 0
+    if LLM_CACHE_DIR.exists():
+        for f in LLM_CACHE_DIR.glob("*.json"):
+            try:
+                f.unlink()
+                deleted += 1
+            except OSError:
+                pass
+    # 清掉非 fixtures 的进程缓存(fixtures 秒构建,留着也无妨,但一并清更干净)
+    global _REPORT_CACHE
+    _REPORT_CACHE = {}
+    body = f"""
+<h1>🧹 缓存已清</h1>
+<p>删除 LLM 磁盘缓存文件: <b>{deleted}</b> 个。</p>
+<p>进程内研报缓存已重置。下次访问任一公司都会重新构建。</p>
+<p><a href="/">← 返回首页</a></p>
+"""
+    return _page("清缓存", body)
 
 
 def _about() -> bytes:
@@ -330,7 +381,26 @@ def _about() -> bytes:
 def _report(name: str) -> tuple[bytes, int]:
     report = _build_report(name)
     if report is None:
-        return _page("404", f"<h1>研报不存在: {html.escape(name)}</h1>"), 404
+        available = sorted(p.stem for p in FIXTURES_DIR.glob("*.json"))
+        links = " · ".join(
+            f'<a href="/report/{html.escape(a)}">{html.escape(a)}</a>' for a in available
+        )
+        body = f"""
+<h1>🤷 {html.escape(name)} · 生成失败</h1>
+<div class="disclaimer">
+  本地大模型 (Qwen3) 未能产出结构化数据 —— 可能是模型服务未运行,
+  或返回格式异常。请检查:
+  <ol>
+    <li><code>ollama serve</code> 是否在运行 (<code>curl localhost:11434/api/tags</code> 应返回模型列表)</li>
+    <li><code>ollama list</code> 是否有 <code>qwen3:32b</code></li>
+    <li>查看 dashboard 进程日志 <code>/tmp/vc-dashboard.log</code></li>
+  </ol>
+</div>
+<h2>已收录的标杆案例(可直接查看)</h2>
+<p>{links}</p>
+<p><a href="/">← 返回首页</a></p>
+"""
+        return _page(f"{name} · 生成失败", body), 404
     md_text = render_markdown(report)
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code"])
     html_body = _sanitize_html(html_body)
@@ -340,13 +410,26 @@ def _report(name: str) -> tuple[bytes, int]:
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
-        path = unquote(self.path)
+        raw_path = self.path
+        path = unquote(raw_path)
+        redirect_to: str | None = None
+
         if path in ("/", ""):
             body, status = _index(), 200
         elif path == "/about":
             body, status = _about(), 200
         elif path == "/glossary":
             body, status = _glossary(), 200
+        elif path == "/clear-cache":
+            body, status = _clear_cache(), 200
+        elif path.startswith("/search"):
+            from urllib.parse import parse_qs, urlparse, quote
+            q = parse_qs(urlparse(raw_path).query).get("q", [""])[0].strip()
+            if q:
+                redirect_to = f"/report/{quote(q)}"
+                body, status = b"", 302
+            else:
+                body, status = _page("404", "<h1>请输入公司名</h1>"), 400
         elif path.startswith("/report/"):
             name = path[len("/report/") :]
             body, status = _report(name)
@@ -354,6 +437,8 @@ class Handler(BaseHTTPRequestHandler):
             body, status = _page("404", "<h1>404</h1>"), 404
 
         self.send_response(status)
+        if redirect_to is not None:
+            self.send_header("Location", redirect_to)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()

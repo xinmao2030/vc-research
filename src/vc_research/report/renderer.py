@@ -63,8 +63,13 @@ def render_markdown(report: VCReport) -> str:
     """渲染为 Markdown 字符串."""
     template = _ENV.get_template("template.md.j2")
     analogies = {key: explain_with_analogy(key) for key in list_concepts()}
+    is_llm_generated = any(
+        any(tag in s.lower() for tag in ("ollama", "qwen", "llm"))
+        for s in report.data_sources
+    )
     return template.render(
         analogies=analogies,
+        is_llm_generated=is_llm_generated,
         **report.model_dump(mode="python"),
     )
 

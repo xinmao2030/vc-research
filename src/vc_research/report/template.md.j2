@@ -2,6 +2,12 @@
 
 > ⚠️ **免责声明**: {{ disclaimer }}
 
+{% if is_llm_generated %}
+> 🤖 **本研报由本地大模型 (Qwen3) 实时推断生成** — 非权威数据源,关键数字(估值/轮次/员工数/TAM) **必须交叉核实**。模型可能有知识滞后或虚构风险,尤其对"新/冷门"公司。
+>
+> 数据源:{{ data_sources | join(", ") }}
+{% endif %}
+
 > **生成时间**: {{ generated_at }}　|　**分析师**: {{ analyst }}
 > **一句话概括**: {{ profile.one_liner }}
 

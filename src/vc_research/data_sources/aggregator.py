@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -42,27 +43,39 @@ class DataAggregator:
         use_fixtures: bool = True,
         fixtures_dir: str | None = None,
         sources: list[DataSource] | None = None,
+        enable_llm_research: bool | None = None,
     ):
         self.use_fixtures = use_fixtures
         self.fixtures_dir = fixtures_dir
         self._custom_sources = sources
         self._sources: list[DataSource] | None = None
+        # 控制本地 LLM 兜底:默认关闭(保证测试确定性),dashboard/CLI 显式开启
+        if enable_llm_research is None:
+            self.enable_llm_research = os.getenv(
+                "VC_ENABLE_LLM_RESEARCH", "0"
+            ).lower() not in ("0", "false", "")
+        else:
+            self.enable_llm_research = enable_llm_research
 
     def _build_sources(self) -> list[DataSource]:
         if self._custom_sources is not None:
             return self._custom_sources
-        if self.use_fixtures:
-            from .fixtures_source import FixturesSource
-            return [FixturesSource(self.fixtures_dir)]
-        # Phase 2: itjuzi → crunchbase → fixtures fallback
-        from .crunchbase_source import CrunchbaseSource
         from .fixtures_source import FixturesSource
-        from .itjuzi_source import ITJuziSource
-        return [
-            ITJuziSource(),
-            CrunchbaseSource(),
-            FixturesSource(self.fixtures_dir),  # 最终兜底
-        ]
+
+        chain: list[DataSource] = [FixturesSource(self.fixtures_dir)]
+        if not self.use_fixtures:
+            # Phase 2: 在 fixtures 前先试真实 API
+            from .crunchbase_source import CrunchbaseSource
+            from .itjuzi_source import ITJuziSource
+
+            chain = [ITJuziSource(), CrunchbaseSource(), *chain]
+
+        # 最终兜底:本地 LLM(任意公司名都能产出)
+        if self.enable_llm_research:
+            from .ollama_researcher import OllamaResearcher
+
+            chain.append(OllamaResearcher())
+        return chain
 
     def fetch(self, company_name: str) -> RawCompanyData:
         data = RawCompanyData(name=company_name)
@@ -70,10 +83,16 @@ class DataAggregator:
             self._sources = self._build_sources()
 
         for src in self._sources:
+            # 已有命中就短路,省掉本地 LLM 的 30-60 秒
+            if not data.is_empty():
+                break
             payload = src.fetch(company_name)
             if not payload:
                 continue
             self._merge(data, src.name, payload)
+            prov = getattr(src, "provenance", None)
+            if prov and prov not in data.sources_hit:
+                data.sources_hit.append(prov)
 
         return data
 

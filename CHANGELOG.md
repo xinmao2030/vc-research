@@ -13,6 +13,28 @@
 
 ---
 
+## [0.1.5] - 2026-04-15
+
+### Added — 本地 LLM 实时研究员 (任意公司名 → 研报)
+- `src/vc_research/data_sources/ollama_researcher.py` —
+  `OllamaResearcher` DataSource,调本地 Ollama + Qwen3 32B,
+  按 `docs/data-source-spec.md` 契约产出结构化 JSON
+- 聚合器兜底链:fixtures → Phase 2 API 占位 → **OllamaResearcher**
+- 磁盘缓存 `~/.vc-research/llm_cache/{model}__{company}.json`,
+  TTL 30 天(可通过 `VC_LLM_CACHE_TTL_DAYS` 改);冷启 ~100s,热启 0ms
+- 研报模板自动识别 LLM 数据源,顶部追加 🤖 警告条
+  ("LLM 推断,需交叉核实")
+- Dashboard 首页加搜索框 + 提交后的黄色"60-120s 推断中"提示
+- Dashboard `/clear-cache` 端点清空磁盘 + 进程缓存,首页带入口
+- CLI `--live` flag — 未命中 fixtures 时自动走 Qwen3(CLI 也支持任意公司)
+- 默认 `enable_llm_research=False` 保证测试确定性,
+  仅 dashboard / CLI `--live` 显式开启
+
+### Tests
+- 49/49 仍通过(新功能不破现有 benchmark)
+
+---
+
 ## [0.1.4] - 2026-04-15
 
 ### Added — Dashboard 教育体验升级

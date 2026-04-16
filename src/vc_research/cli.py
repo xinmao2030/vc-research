@@ -42,6 +42,11 @@ def analyze(
     use_llm: bool = typer.Option(
         False, "--llm", help="启用 Claude 推理层增强 thesis (需 ANTHROPIC_API_KEY)"
     ),
+    live: bool = typer.Option(
+        False,
+        "--live",
+        help="未命中 fixtures 时用本地 Qwen3 (Ollama) 实时推断任意公司",
+    ),
     pdf: bool = typer.Option(False, "--pdf", help="同时生成 PDF"),
 ) -> None:
     """分析一家企业并生成研报."""
@@ -57,15 +62,23 @@ def analyze(
     agg = DataAggregator(
         use_fixtures=True,
         fixtures_dir=str(fixtures_dir) if fixtures_dir else None,
+        enable_llm_research=live,
     )
+    if live:
+        console.print(
+            "[cyan]🤖 Live 模式:未命中 fixtures 将用本地 Qwen3 推断 "
+            "(首次约 60-120 秒,结果会缓存 30 天)[/cyan]"
+        )
     raw = agg.fetch(company)
 
     if raw.is_empty():
-        console.print(
-            f"[yellow]⚠️  未在 fixtures 中找到 {company} 的数据。[/yellow]\n"
+        msg = (
             f"请在 examples/fixtures/{company}.json 创建数据文件,"
-            f"或等待 Phase 2 接入真实数据源。"
+            f"或用 --live 启用本地 LLM 实时推断。"
+            if not live
+            else "本地 Qwen3 也未能产出数据,请检查 ollama serve 是否运行。"
         )
+        console.print(f"[yellow]⚠️  未找到 {company} 的数据。[/yellow]\n{msg}")
         raise typer.Exit(code=1)
 
     console.print(f"[green]✓[/green] 数据源命中: {', '.join(raw.sources_hit)}")
