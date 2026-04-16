@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vc-research"
-version = "0.1.11"
+version = "0.1.12"
 description = "创投企业投资分析系统 — 输入企业名,输出投研报告"
 requires-python = ">=3.10"
 authors = [{name = "xinmao", email = "xinmao2030@gmail.com"}]

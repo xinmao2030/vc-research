@@ -13,6 +13,21 @@
 
 ---
 
+## [0.1.12] - 2026-04-16
+
+### Added — 研报历史记录
+
+- 新增 `src/vc_research/history.py` — 追加式 JSONL 持久化 (`~/.vc-research/history.jsonl`)
+- 每次 `vc-research analyze` 自动追加一条记录(裁决/估值/公允区间/风险/轮次/报告路径/数据源/增强标记)
+- 新增 `vc-research history` 命令 — Rich 表格渲染,裁决/风险色标,支持 `--limit N` `--full-path` 和公司名过滤
+- 环境变量 `VC_HISTORY_PATH` 可覆盖默认路径(便于测试隔离)
+- 7 个单测覆盖 record/load 往返、排序、过滤、limit、损坏行容错、env 覆盖
+
+### Changed
+- 版本号 0.1.11 → 0.1.12 (pyproject.toml / `__init__.py` / `schema.py` 三处同步)
+
+---
+
 ## [0.1.11] - 2026-04-16
 
 ### Changed — 标杆案例迁移:2024-2026 IPO 代表 6 家

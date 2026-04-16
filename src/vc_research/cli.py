@@ -10,6 +10,7 @@ from rich.console import Console
 
 from .data_sources import DataAggregator
 from .education.quest_unlock import QuestProgress
+from .history import load_history, record_report
 from .modules import (
     analyze_funding,
     analyze_industry,
@@ -167,6 +168,24 @@ def analyze(
 
     md = render_markdown(report)
     output.write_text(md, encoding="utf-8")
+
+    try:
+        record_report(
+            company=company,
+            verdict=recommendation.verdict,
+            latest_valuation=int(funding.latest_valuation_usd) if funding.latest_valuation_usd else None,
+            fair_value_low=int(valuation.fair_value_low_usd) if valuation.fair_value_low_usd else None,
+            fair_value_high=int(valuation.fair_value_high_usd) if valuation.fair_value_high_usd else None,
+            risk_level=risks.overall_level.value,
+            rounds=len(funding.rounds),
+            report_path=output,
+            sources_hit=raw.sources_hit,
+            use_llm=use_llm,
+            live=live,
+        )
+    except Exception as e:
+        console.print(f"[yellow]⚠️  history 记录失败(不影响研报): {e}[/yellow]")
+
     console.rule("[bold green]✓ 研报生成完成[/bold green]")
     console.print(f"🎮 闯关进度: {quest.status_bar()}")
     console.print(f"📄 Markdown: [cyan]{output}[/cyan]")
@@ -196,6 +215,75 @@ def list_examples() -> None:
     console.print("[bold]可分析的标杆案例:[/bold]")
     for f in files:
         console.print(f"  • [cyan]{f.stem}[/cyan]")
+
+
+@app.command()
+def history(
+    company: str = typer.Argument(None, help="只看某家公司的历史 (可选)"),
+    limit: int = typer.Option(20, "--limit", "-n", help="显示最新 N 条"),
+    full_path: bool = typer.Option(False, "--full-path", help="显示完整报告路径"),
+) -> None:
+    """列出已生成的研报记录 (类似标杆案例表格,直观查询历史分析结果)."""
+    from rich.table import Table
+
+    rows = load_history(limit=limit, company=company)
+    if not rows:
+        hint = f"还没有 {company} 的记录" if company else "还没有任何研报记录"
+        console.print(f"[yellow]{hint}。先运行 `vc-research analyze <公司名>` 生成一份。[/yellow]")
+        return
+
+    verdict_color = {"推荐": "green", "观望": "yellow", "回避": "red"}
+    risk_color = {"low": "green", "medium": "yellow", "high": "orange1", "critical": "red"}
+
+    def _fmt_usd(v: int | None) -> str:
+        if v is None:
+            return "—"
+        if v >= 1_000_000_000:
+            return f"${v / 1_000_000_000:.1f}B"
+        if v >= 1_000_000:
+            return f"${v / 1_000_000:.1f}M"
+        return f"${v:,}"
+
+    table = Table(title=f"📊 研报历史 · 最近 {len(rows)} 条", show_lines=False)
+    table.add_column("时间 (UTC)", style="dim", no_wrap=True)
+    table.add_column("公司", style="cyan", no_wrap=True)
+    table.add_column("裁决", no_wrap=True)
+    table.add_column("估值", justify="right")
+    table.add_column("公允区间", justify="right")
+    table.add_column("风险", no_wrap=True)
+    table.add_column("轮次", justify="right")
+    table.add_column("增强", no_wrap=True)
+    table.add_column("报告", style="dim", overflow="fold")
+
+    for r in rows:
+        ts = r.get("ts", "")[:16].replace("T", " ")
+        vc = verdict_color.get(r.get("verdict", ""), "white")
+        rc = risk_color.get(r.get("risk_level", ""), "white")
+        enh_flags = []
+        if r.get("use_llm"):
+            enh_flags.append("🤖LLM")
+        if r.get("live"):
+            enh_flags.append("🔴live")
+        enh = " ".join(enh_flags) or "—"
+        path_str = r.get("report_path", "")
+        if not full_path and path_str:
+            path_str = Path(path_str).name
+        table.add_row(
+            ts,
+            r.get("company", "?"),
+            f"[{vc}]{r.get('verdict', '?')}[/{vc}]",
+            _fmt_usd(r.get("latest_valuation")),
+            f"{_fmt_usd(r.get('fair_value_low'))} - {_fmt_usd(r.get('fair_value_high'))}",
+            f"[{rc}]{r.get('risk_level', '?')}[/{rc}]",
+            str(r.get("rounds", 0)),
+            enh,
+            path_str,
+        )
+    console.print(table)
+    console.print(
+        f"[dim]数据源: ~/.vc-research/history.jsonl (共 {len(rows)} 条显示)。"
+        "用 --limit N 扩大窗口,--full-path 看完整路径。[/dim]"
+    )
 
 
 if __name__ == "__main__":
