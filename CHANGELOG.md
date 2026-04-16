@@ -13,6 +13,35 @@
 
 ---
 
+## [0.1.10] - 2026-04-16
+
+### Added — Phase 2.1 真实数据源骨架
+
+- **`SecEdgarSource`**: SEC EDGAR 公开 JSON API 接入
+  - `data.sec.gov/submissions/CIK{10}.json` → 公司基本信息 + 最近 10-K/20-F/6-K
+  - `data.sec.gov/api/xbrl/companyfacts/CIK{10}.json` → XBRL 财务事实
+    (Revenues/NetIncomeLoss/Cash/Assets 最新 3 个 FY)
+  - User-Agent 通过 `SEC_EDGAR_UA` 环境变量配置(默认
+    `vc-research/0.1 xinmao2030@gmail.com`,SEC 要求真实联系方式)
+  - CIK 映射覆盖 蔚来 / 百济神州(BeOne Medicines ONC)
+  - Live 验证:NIO → ticker NIO@NYSE, HQ Shanghai;
+    BeOne → ticker ONC@Nasdaq, HQ Basel(印证 fixture 2025-05 redomicile)
+  - 6 单元测试(mocked httpx),`-m live` 跑真实网络
+
+- **`HkexSource`**: 港交所静态 symbology(最简骨架)
+  - 覆盖 18 个名称别名 → 10 家港股代码
+    (小米/蔚来/百济/商汤/阿里/京东/腾讯/美团/快手)
+  - 说明:HKEX 无官方 JSON API(JS 渲染),本 Phase 仅提供
+    profile URL + search URL 构造器;Phase 2.2 接 AAStocks/Yahoo HK
+  - `lookup_hk_ticker()` 供 `cross_verify.py` 直接校验港股代码
+
+- **`DataAggregator.enable_sec_edgar`**: 显式开关,避免测试默认触网
+
+### Tests
+- 60/60 全绿(+11 vs 0.1.9:SEC EDGAR 6 + HKEX 5)
+
+---
+
 ## [0.1.9] - 2026-04-16
 
 ### Added — 并行交叉验证工具 + 第二轮广度扩展

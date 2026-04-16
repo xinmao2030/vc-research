@@ -18,12 +18,13 @@ class RawCompanyData:
     qichacha: dict[str, Any] | None = None
     itjuzi: dict[str, Any] | None = None
     crunchbase: dict[str, Any] | None = None
+    sec_edgar: dict[str, Any] | None = None
     news_items: list[dict[str, Any]] = field(default_factory=list)
     patents: list[dict[str, Any]] = field(default_factory=list)
     job_postings: list[dict[str, Any]] = field(default_factory=list)
 
     def is_empty(self) -> bool:
-        return not (self.qichacha or self.itjuzi or self.crunchbase)
+        return not (self.qichacha or self.itjuzi or self.crunchbase or self.sec_edgar)
 
 
 class DataAggregator:
@@ -44,11 +45,13 @@ class DataAggregator:
         fixtures_dir: str | None = None,
         sources: list[DataSource] | None = None,
         enable_llm_research: bool | None = None,
+        enable_sec_edgar: bool = False,
     ):
         self.use_fixtures = use_fixtures
         self.fixtures_dir = fixtures_dir
         self._custom_sources = sources
         self._sources: list[DataSource] | None = None
+        self.enable_sec_edgar = enable_sec_edgar
         # 控制本地 LLM 兜底:默认关闭(保证测试确定性),dashboard/CLI 显式开启
         if enable_llm_research is None:
             self.enable_llm_research = os.getenv(
@@ -69,6 +72,14 @@ class DataAggregator:
             from .itjuzi_source import ITJuziSource
 
             chain = [ITJuziSource(), CrunchbaseSource(), *chain]
+
+        # SEC EDGAR (免费):无论 use_fixtures 与否,都可选加入
+        # - 不影响 fixtures 主路径 (is_empty 为 True 才会走 SEC)
+        # - 显式开启,避免测试默认请求真实网络
+        if self.enable_sec_edgar:
+            from .sec_edgar_source import SecEdgarSource
+
+            chain.append(SecEdgarSource())
 
         # 最终兜底:本地 LLM(任意公司名都能产出)
         if self.enable_llm_research:
