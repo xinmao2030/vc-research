@@ -6,7 +6,7 @@ from datetime import date
 from decimal import Decimal
 
 from ..data_sources import RawCompanyData
-from ..schema import FundingHistory, FundingRound, FundingStage
+from ..schema import FundingHistory, FundingRound, FundingStage, Investor
 from ..utils import parse_date, parse_funding_stage, to_decimal
 
 
@@ -36,14 +36,33 @@ def analyze_funding(raw: RawCompanyData) -> FundingHistory:
 
     rounds: list[FundingRound] = []
     for r in rounds_raw:
+        investor_details = [
+            Investor(
+                name=(i.get("name") or "").strip() or "未公开",
+                type=i.get("type"),
+                hq=i.get("hq"),
+                aum_usd=to_decimal(i.get("aum_usd")),
+                founded_year=i.get("founded_year"),
+                sector_focus=i.get("sector_focus") or [],
+                notable_portfolio=i.get("notable_portfolio") or [],
+                deal_thesis=i.get("deal_thesis"),
+                is_lead=bool(i.get("is_lead", False)),
+            )
+            for i in (r.get("investor_details") or [])
+            if (i.get("name") or "").strip()
+        ]
         rounds.append(
             FundingRound(
                 stage=parse_funding_stage(r.get("stage")),
                 announce_date=parse_date(r.get("announce_date")),
                 amount_usd=to_decimal(r.get("amount_usd")),
+                pre_money_valuation_usd=to_decimal(r.get("pre_money_valuation_usd")),
                 post_money_valuation_usd=to_decimal(r.get("post_money_valuation_usd")),
                 lead_investors=r.get("lead_investors") or [],
                 participants=r.get("participants") or [],
+                investor_details=investor_details,
+                share_class=r.get("share_class"),
+                use_of_proceeds=r.get("use_of_proceeds"),
                 notes=r.get("notes"),
             )
         )

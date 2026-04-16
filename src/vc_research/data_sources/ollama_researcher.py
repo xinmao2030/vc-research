@@ -26,7 +26,7 @@ DEFAULT_TIMEOUT_S = 180
 DEFAULT_CACHE_DIR = Path.home() / ".vc-research" / "llm_cache"
 DEFAULT_CACHE_TTL_DAYS = 30
 
-_PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company}" 产出一份结构化 JSON 研报。
+_PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company}" 产出一份结构化 JSON 深度研报。
 
 分析步骤:
 1. 从公司中文名推断赛道。例如 "糖吉医疗"→糖尿病管理/医疗器械、
@@ -48,25 +48,70 @@ _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company
   "stage": "seed / a / b / c / d / pre-ipo / ipo / strategic 之一",
   "employee_count": 整数,
   "one_liner": "一句话概括公司,**不能为 null**",
+  "website": "公司官网或主要产品站点 URL",
   "founders": [
-    {{"name": "姓名", "title": "CEO", "background": "背景一句话", "equity_pct": 0.15}}
+    {{"name": "姓名", "title": "CEO", "background": "教育/过往履历/关键成就",
+      "equity_pct": 0.15, "still_active": true, "current_role": null}}
+  ],
+  "executives": [
+    {{"name": "姓名", "title": "CTO / COO / CFO 等", "joined": "YYYY",
+      "background": "上一家公司/学历/代表成就"}}
+  ],
+  "products": ["核心产品1", "核心产品2"],
+  "key_customers": ["标志性客户或用户群体1", "...2"],
+  "milestones": [
+    {{"date": "YYYY", "event": "关键非融资里程碑,如产品上线/出海/重大合作"}}
   ],
   "rounds": [
     {{"stage": "angel", "announce_date": "YYYY-MM-DD", "amount_usd": 2000000,
-      "post_money_valuation_usd": 10000000, "lead_investors": ["机构"], "notes": "备注"}},
-    {{"stage": "a", "announce_date": "YYYY-MM-DD", "amount_usd": 10000000,
-      "post_money_valuation_usd": 50000000, "lead_investors": ["机构"], "notes": "备注"}}
+      "pre_money_valuation_usd": 8000000, "post_money_valuation_usd": 10000000,
+      "lead_investors": ["机构"], "participants": ["机构A","机构B"],
+      "share_class": "普通股 / A 轮优先股",
+      "use_of_proceeds": "产品研发 / 市场扩张 / 出海",
+      "notes": "备注",
+      "investor_details": [
+        {{"name": "机构名", "type": "VC", "hq": "北京", "aum_usd": 1000000000,
+          "founded_year": 2010, "sector_focus": ["AI","医疗"],
+          "notable_portfolio": ["明星项目1","明星项目2"],
+          "deal_thesis": "本轮为什么投的一句话逻辑", "is_lead": true}}
+      ]}}
   ],
   "thesis": {{
     "team_score": 7,
-    "team_notes": "团队点评",
+    "team_notes": "团队点评 headline",
+    "team_analysis": "3-5 句话深度分析:创始人执行力/高管互补性/过往胜率/文化",
     "market": {{"tam_usd": 10000000000, "sam_usd": 2000000000, "som_usd": 200000000, "growth_rate": 0.2}},
-    "moat": "护城河描述",
+    "market_analysis": "3-5 句话:TAM/SAM/SOM 推导过程 + 增长驱动 + 渗透率曲线阶段",
+    "moat": "护城河描述 headline",
+    "moat_analysis": {{
+      "network_effect":     {{"score": 0, "evidence": "若无此维度设 score=0 / evidence 留空"}},
+      "scale_economy":      {{"score": 0, "evidence": ""}},
+      "switching_cost":     {{"score": 0, "evidence": ""}},
+      "brand":              {{"score": 0, "evidence": ""}},
+      "counter_positioning":{{"score": 0, "evidence": ""}},
+      "cornered_resource":  {{"score": 0, "evidence": ""}},
+      "process_power":      {{"score": 0, "evidence": ""}}
+    }},
     "unit_economics": {{"gross_margin": 0.5, "payback_months": 18, "ltv_cac_ratio": 3.0}},
+    "unit_economics_analysis": "3 句话:LTV/CAC/毛利相对行业中位数位置 + 趋势",
     "growth": {{"arr_usd": null, "yoy_growth": 0.5, "retention_m12": null}},
+    "growth_analysis": "3 句话:增长质量 / 自然增长占比 / S 曲线阶段",
     "competitors": ["竞品1", "竞品2", "竞品3"],
-    "bull": ["看多1", "看多2", "看多3"],
-    "bear": ["看空1", "看空2", "看空3"]
+    "competitors_detailed": [
+      {{"name": "竞品1", "hq": "上海", "stage_or_status": "D 轮",
+        "valuation_usd": 2000000000, "market_share_pct": 0.15,
+        "differentiator": "与本公司核心差异", "threat_level": "high"}}
+    ],
+    "bull": ["看多 headline 1", "..."],
+    "bull_detailed": [
+      {{"headline": "看多 headline", "analysis": "2-4 句展开论据",
+        "evidence": ["数据点 1", "数据点 2"]}}
+    ],
+    "bear": ["看空 headline 1", "..."],
+    "bear_detailed": [
+      {{"headline": "看空 headline", "analysis": "2-4 句展开论据",
+        "evidence": ["数据点"]}}
+    ]
   }},
   "industry_data": {{
     "funding_total_12m_usd": 5000000000,
@@ -75,7 +120,24 @@ _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company
     "policy_tailwinds": ["利好1", "利好2"],
     "policy_headwinds": ["利空1"],
     "exit_window": "退出窗口描述",
-    "hot_keywords": ["热词1", "热词2", "热词3"]
+    "hot_keywords": ["热词1", "热词2", "热词3"],
+    "sub_segments": [
+      {{"name": "子赛道1", "size_usd": 3000000000, "growth_rate": 0.35,
+        "notes": "为什么这个细分有/没有机会"}}
+    ],
+    "value_chain": {{
+      "upstream":   ["原料/元器件/工具供应商"],
+      "midstream":  ["本公司所处环节的其他玩家"],
+      "downstream": ["渠道/分销/终端客户"]
+    }},
+    "top_players": [
+      {{"name": "行业头部1", "hq": "北京", "stage_or_status": "已上市",
+        "valuation_usd": 10000000000, "market_share_pct": 0.25,
+        "differentiator": "核心差异"}}
+    ],
+    "growth_drivers": ["技术/需求/政策/人口 的底层驱动力,3-5 条"],
+    "barriers_to_entry": ["资本 / 技术 / 牌照 / 网络效应 门槛,3-5 条"],
+    "industry_key_metrics": {{"行业 KPI 名": "当前水平"}}
   }},
   "financials": {{"burn_rate_usd_monthly": 500000, "cash_usd": 8000000}},
   "extra_risks": [
@@ -84,7 +146,12 @@ _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company
   ]
 }}
 
-硬性要求:所有字段必须有合理值。所有金额统一用美元 (数字,不带单位)。"""
+硬性要求:
+- 所有金额统一用美元(数字,不带单位)。
+- moat_analysis 7 个维度必须全部出现;确实无此优势就填 score=0、evidence=""。
+- investor_details 至少覆盖领投方;若不了解具体机构档案,仍要给出合理推断并在 deal_thesis 里标注"(推断)"。
+- sub_segments 至少 3 条(大赛道切成可投资细分)。
+- growth_drivers / barriers_to_entry 各至少 3 条。"""
 
 
 class OllamaResearcher:
@@ -184,7 +251,7 @@ class OllamaResearcher:
                 "model": self.model,
                 "prompt": prompt,
                 "stream": False,
-                "options": {"temperature": 0.35, "num_predict": 4096},
+                "options": {"temperature": 0.35, "num_predict": 8192},
             }
         ).encode("utf-8")
         req = urlrequest.Request(

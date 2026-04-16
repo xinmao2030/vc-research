@@ -4,12 +4,27 @@ from __future__ import annotations
 
 from ..data_sources import RawCompanyData
 from ..schema import (
+    Competitor,
     GrowthMetrics,
     InvestmentThesis,
     MarketSize,
+    MoatAnalysis,
+    MoatDimension,
+    ThesisPoint,
     UnitEconomics,
 )
 from ..utils import to_decimal
+
+
+_MOAT_DIMS = (
+    "network_effect",
+    "scale_economy",
+    "switching_cost",
+    "brand",
+    "counter_positioning",
+    "cornered_resource",
+    "process_power",
+)
 
 
 def analyze_thesis(raw: RawCompanyData) -> InvestmentThesis:
@@ -47,17 +62,88 @@ def analyze_thesis(raw: RawCompanyData) -> InvestmentThesis:
         retention_m12=growth_raw.get("retention_m12"),
     )
 
+    competitors_detailed = [
+        Competitor(
+            name=(c.get("name") or "").strip() or "未公开",
+            hq=c.get("hq"),
+            stage_or_status=c.get("stage_or_status"),
+            valuation_usd=to_decimal(c.get("valuation_usd")),
+            market_share_pct=c.get("market_share_pct"),
+            differentiator=c.get("differentiator"),
+            threat_level=c.get("threat_level"),
+        )
+        for c in (thesis_raw.get("competitors_detailed") or [])
+        if (c.get("name") or "").strip()
+    ]
+
+    moat_analysis = _parse_moat(thesis_raw.get("moat_analysis"))
+
+    bull_detailed = _parse_thesis_points(thesis_raw.get("bull_detailed"))
+    bear_detailed = _parse_thesis_points(thesis_raw.get("bear_detailed"))
+
     return InvestmentThesis(
         team_score=thesis_raw.get("team_score", 6),
         team_notes=thesis_raw.get("team_notes") or "团队背景待调研",
+        team_analysis=thesis_raw.get("team_analysis"),
         market=market,
+        market_analysis=thesis_raw.get("market_analysis"),
         moat=thesis_raw.get("moat") or "待识别",
+        moat_analysis=moat_analysis,
         unit_economics=unit_econ,
+        unit_economics_analysis=thesis_raw.get("unit_economics_analysis"),
         growth=growth,
+        growth_analysis=thesis_raw.get("growth_analysis"),
         competitors=thesis_raw.get("competitors") or [],
+        competitors_detailed=competitors_detailed,
         key_bull_points=thesis_raw.get("bull") or [],
+        key_bull_points_detailed=bull_detailed,
         key_bear_points=thesis_raw.get("bear") or [],
+        key_bear_points_detailed=bear_detailed,
     )
+
+
+def _parse_moat(raw_moat: dict | None) -> MoatAnalysis | None:
+    if not raw_moat or not isinstance(raw_moat, dict):
+        return None
+    kwargs: dict = {}
+    any_present = False
+    for dim in _MOAT_DIMS:
+        entry = raw_moat.get(dim)
+        if not entry or not isinstance(entry, dict):
+            continue
+        score = entry.get("score")
+        evidence = entry.get("evidence")
+        if score is None and not evidence:
+            continue
+        try:
+            score_int = max(0, min(10, int(score if score is not None else 0)))
+        except (TypeError, ValueError):
+            score_int = 0
+        kwargs[dim] = MoatDimension(
+            score=score_int, evidence=str(evidence or "").strip()
+        )
+        any_present = True
+    return MoatAnalysis(**kwargs) if any_present else None
+
+
+def _parse_thesis_points(raw_list: list | None) -> list[ThesisPoint]:
+    if not raw_list:
+        return []
+    out: list[ThesisPoint] = []
+    for p in raw_list:
+        if not isinstance(p, dict):
+            continue
+        headline = (p.get("headline") or "").strip()
+        if not headline:
+            continue
+        out.append(
+            ThesisPoint(
+                headline=headline,
+                analysis=(p.get("analysis") or "").strip(),
+                evidence=[str(e) for e in (p.get("evidence") or []) if e],
+            )
+        )
+    return out
 
 
 def _ratio(num, den) -> float | None:

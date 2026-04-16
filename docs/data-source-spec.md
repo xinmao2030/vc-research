@@ -43,16 +43,32 @@ fixtures JSON 文件放在 `examples/fixtures/{company}.json`,顶层结构:
 | `employee_count` | int | 否 | 员工规模 | Profile |
 | `one_liner` | str | **是** | 一句话描述 | Profile |
 
-### 2.2 创始人(数组)
+### 2.2 创始人 / 高管 / 产品 / 客户 / 里程碑
 
 ```jsonc
+"website": "https://www.bytedance.com",
 "founders": [
   {
-    "name": "张一鸣",            // 可为 null → 降级为 "未公开"
-    "title": "创始人",             // 可为 null → 降级为 "创始团队成员"
+    "name": "张一鸣",
+    "title": "创始人",
     "background": "南开大学...",
-    "equity_pct": 0.22             // 0-1 之间,可为 null
+    "equity_pct": 0.22,
+    "still_active": false,          // 是否仍在岗
+    "current_role": "2021 卸任 CEO, 现任技术顾问"  // 离任/换岗后的现状
   }
+],
+"executives": [                    // 现任核心高管(与 founders 可重叠)
+  {
+    "name": "梁汝波",
+    "title": "CEO",
+    "joined": "2012",              // 加入年份或 YYYY-MM
+    "background": "南开大学..."
+  }
+],
+"products": ["抖音", "TikTok", "飞书"],        // 核心产品/业务线
+"key_customers": ["15 亿+ 月活消费者", "品牌广告主"], // 标志性客户或用户群体
+"milestones": [                    // 关键非融资里程碑
+  {"date": "2017-11", "event": "10 亿美元收购 Musical.ly"}
 ]
 ```
 
@@ -64,10 +80,26 @@ fixtures JSON 文件放在 `examples/fixtures/{company}.json`,顶层结构:
     "stage": "a",                                 // 必填,支持多种别名
     "announce_date": "2012-07-01",                // 可为 null / 坏格式 → 自动忽略
     "amount_usd": 5000000,                        // 数字,None 允许
-    "post_money_valuation_usd": 50000000,         // 数字,None 允许
+    "pre_money_valuation_usd": 45000000,          // 投前估值,可选
+    "post_money_valuation_usd": 50000000,         // 投后估值,可选
     "lead_investors": ["SIG 海纳亚洲"],
     "participants": ["其他跟投方"],
-    "notes": "天使/A 轮..."                       // 可选
+    "share_class": "A 轮优先股",                  // 可选
+    "use_of_proceeds": "产品研发 + 市场扩张",    // 可选
+    "notes": "天使/A 轮...",                      // 可选
+    "investor_details": [                         // 可选:每个投资方的完整档案
+      {
+        "name": "SIG 海纳亚洲",
+        "type": "VC",                             // VC / PE / 战投 / 主权 / 天使 等
+        "hq": "香港",
+        "aum_usd": null,                          // 管理规模
+        "founded_year": 2005,
+        "sector_focus": ["TMT", "早期互联网"],
+        "notable_portfolio": ["字节跳动", "小红书"],
+        "deal_thesis": "看好推荐算法在信息分发的颠覆性",  // 本轮投资逻辑
+        "is_lead": true
+      }
+    ]
   }
 ]
 ```
@@ -89,22 +121,32 @@ fixtures JSON 文件放在 `examples/fixtures/{company}.json`,顶层结构:
 
 ```jsonc
 "thesis": {
-  "team_score": 9,                                 // 1-10
-  "team_notes": "...",
+  "team_score": 9,
+  "team_notes": "headline 点评",
+  "team_analysis": "3-5 句深度分析: 创始人执行力/高管互补/过往胜率/文化",  // 可选
   "market": {
     "tam_usd": 1500000000000,
     "sam_usd": 500000000000,
     "som_usd": 80000000000,
-    "growth_rate": 0.15                            // 0-1 小数
+    "growth_rate": 0.15
   },
-  "moat": "推荐算法 + 数据飞轮...",
+  "market_analysis": "3-5 句: TAM/SAM/SOM 推导 + 渗透率曲线",              // 可选
+  "moat": "headline",
+  "moat_analysis": {                                                      // 可选: 7 Powers
+    "network_effect":     {"score": 9, "evidence": "..."},
+    "scale_economy":      {"score": 8, "evidence": "..."},
+    "switching_cost":     {"score": 6, "evidence": "..."},
+    "brand":              {"score": 7, "evidence": "..."},
+    "counter_positioning":{"score": 8, "evidence": "..."},
+    "cornered_resource":  {"score": 7, "evidence": "..."},
+    "process_power":      {"score": 9, "evidence": "..."}
+  },
   "unit_economics": {
-    "cac_usd": null,
-    "ltv_usd": null,
-    "ltv_cac_ratio": 4.5,                          // 健康 >= 3
+    "ltv_cac_ratio": 4.5,
     "gross_margin": 0.62,
     "payback_months": 8
   },
+  "unit_economics_analysis": "LTV/CAC/毛利相对行业中位数位置 + 趋势",      // 可选
   "growth": {
     "arr_usd": 120000000000,
     "yoy_growth": 0.30,
@@ -113,13 +155,34 @@ fixtures JSON 文件放在 `examples/fixtures/{company}.json`,顶层结构:
     "gmv_usd": 500000000000,
     "retention_m12": 0.70
   },
-  "competitors": ["Meta", "YouTube"],
-  "bull": ["看多理由 1", "..."],
-  "bear": ["看空理由 1", "..."]
+  "growth_analysis": "增长质量 / 自然增长占比 / S 曲线阶段",             // 可选
+  "competitors": ["Meta", "YouTube"],                                     // headline fallback
+  "competitors_detailed": [                                               // 可选: 竞品卡片
+    {
+      "name": "Meta",
+      "hq": "Menlo Park",
+      "stage_or_status": "已上市",
+      "valuation_usd": 1500000000000,
+      "market_share_pct": 0.32,
+      "differentiator": "社交图谱 + Instagram 生态",
+      "threat_level": "high"
+    }
+  ],
+  "bull": ["看多 headline 1", "..."],
+  "bull_detailed": [                                                      // 可选: 带论据看多
+    {
+      "headline": "全球内容消费平台的唯一挑战者",
+      "analysis": "2-4 句展开",
+      "evidence": ["数据点 1", "数据点 2"]
+    }
+  ],
+  "bear": ["看空 headline 1", "..."],
+  "bear_detailed": [ /* 结构同 bull_detailed */ ]
 }
 ```
 
-**缺失时**: `analyze_thesis` 用保守默认(`team_score=5`, `moat="数据不足"`),模块不崩溃。
+**缺失时**: `analyze_thesis` 用保守默认(`team_score=6`, `moat="待识别"`),模块不崩溃。
+`moat_analysis` 中任一维度缺失 / score 为 null → 该维度跳过,不会误算为 0。
 
 ### 2.5 Industry 数据(可选)
 
@@ -131,7 +194,38 @@ fixtures JSON 文件放在 `examples/fixtures/{company}.json`,顶层结构:
   "policy_tailwinds": ["..."],
   "policy_headwinds": ["..."],
   "exit_window": "港股 IPO 窗口收紧,美股受地缘影响",
-  "hot_keywords": ["短视频", "AIGC"]
+  "hot_keywords": ["短视频", "AIGC"],
+
+  // ─── 深化字段 (Phase 1.5) ───
+  "sub_segments": [                              // 赛道细分
+    {
+      "name": "内容电商",
+      "size_usd": 650000000000,
+      "growth_rate": 0.35,
+      "notes": "本土已验证,海外快速复制"
+    }
+  ],
+  "value_chain": {                               // 产业链上下游
+    "upstream":   ["芯片", "CDN/带宽"],
+    "midstream":  ["字节跳动", "Meta", "快手"],
+    "downstream": ["广告主", "电商商家", "终端消费者"]
+  },
+  "top_players": [                               // 行业头部(Competitor 结构)
+    {
+      "name": "Meta",
+      "hq": "Menlo Park",
+      "stage_or_status": "已上市",
+      "valuation_usd": 1500000000000,
+      "market_share_pct": 0.32,
+      "differentiator": "社交图谱生态"
+    }
+  ],
+  "growth_drivers": ["移动端时长继续增长", "AIGC 降本 10x"],  // 3-5 条
+  "barriers_to_entry": ["算法研发门槛", "全球合规能力"],      // 3-5 条
+  "industry_key_metrics": {                     // 行业 KPI 字典
+    "用户日均时长": "短视频 > 95 分钟",
+    "广告加载率": "抖音 12% / Reels 15%"
+  }
 }
 ```
 

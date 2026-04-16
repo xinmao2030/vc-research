@@ -17,12 +17,41 @@
 | 商业模式 | {{ profile.business_model }} |
 | 当前阶段 | **{{ profile.stage.value }}** |
 | 员工数 | {{ profile.employee_count or "—" }} |
+{% if profile.website %}| 官网 | {{ profile.website }} |
+{% endif %}
 
 ### 创始团队
 {% for f in profile.founders %}
-- **{{ f.name }}** · {{ f.title }}{% if f.equity_pct %} · 持股 {{ "%.1f"|format(f.equity_pct * 100) }}%{% endif %}
-  > {{ f.background }}
+- **{{ f.name }}** · {{ f.title }}{% if f.equity_pct %} · 持股 {{ "%.1f"|format(f.equity_pct * 100) }}%{% endif %}{% if not f.still_active %} · ⚠️ 已离任{% if f.current_role %}(现任: {{ f.current_role }}){% endif %}{% endif %}
+  > {{ f.background or "背景待补充" }}
 {% endfor %}
+
+{% if profile.executives %}
+### 现任核心高管
+{% for e in profile.executives %}
+- **{{ e.name }}** · {{ e.title }}{% if e.joined %} · 加入 {{ e.joined }}{% endif %}
+  > {{ e.background or "背景待补充" }}
+{% endfor %}
+{% endif %}
+
+{% if profile.products %}
+### 核心产品 / 业务线
+{% for p in profile.products %}- {{ p }}
+{% endfor %}
+{% endif %}
+
+{% if profile.key_customers %}
+### 标志性客户 / 用户群体
+{% for c in profile.key_customers %}- {{ c }}
+{% endfor %}
+{% endif %}
+
+{% if profile.milestones %}
+### 关键里程碑
+{% for m in profile.milestones %}
+- {% if m.date %}**{{ m.date }}** — {% endif %}{{ m.event }}
+{% endfor %}
+{% endif %}
 
 ---
 
@@ -41,10 +70,35 @@
 - **创始团队累计稀释**: ~{{ "%.0f"|format(funding.dilution_estimate * 100) }}% (估算)
 {% endif %}
 
-| 轮次 | 时间 | 金额 | 投后估值 | 领投方 |
+| 轮次 | 时间 | 金额 | 投前→投后估值 | 领投方 |
 |------|------|------|----------|--------|
 {% for r in funding.rounds %}
-| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
+| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.pre_money_valuation_usd %}${{ "{:,.0f}".format(r.pre_money_valuation_usd) }} → {% endif %}{% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
+{% endfor %}
+
+{% for r in funding.rounds %}
+{% if r.investor_details or r.share_class or r.use_of_proceeds or r.notes %}
+### {{ r.stage.value | upper }}{% if r.announce_date %} · {{ r.announce_date }}{% endif %}
+{% if r.share_class %}- **股权类别**: {{ r.share_class }}
+{% endif %}
+{% if r.use_of_proceeds %}- **融资用途**: {{ r.use_of_proceeds }}
+{% endif %}
+{% if r.notes %}- **备注**: {{ r.notes }}
+{% endif %}
+{% if r.investor_details %}
+
+**投资方详情**:
+{% for i in r.investor_details %}
+- **{{ i.name }}**{% if i.is_lead %} 🎯 领投{% endif %}{% if i.type %} · {{ i.type }}{% endif %}{% if i.hq %} · {{ i.hq }}{% endif %}{% if i.founded_year %} · 成立于 {{ i.founded_year }}{% endif %}{% if i.aum_usd %} · AUM ${{ "{:,.0f}".format(i.aum_usd) }}{% endif %}
+{% if i.sector_focus %}  - 擅长赛道: {{ i.sector_focus | join(" · ") }}
+{% endif %}
+{% if i.notable_portfolio %}  - 代表案例: {{ i.notable_portfolio | join(" · ") }}
+{% endif %}
+{% if i.deal_thesis %}  - 本轮逻辑: {{ i.deal_thesis }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
 {% endfor %}
 
 > {{ analogies.funding_round }}
@@ -57,6 +111,12 @@
 
 ### 团队评分: **{{ thesis.team_score }}/10**
 > {{ thesis.team_notes }}
+
+{% if thesis.team_analysis %}
+**深度分析**:
+
+{{ thesis.team_analysis }}
+{% endif %}
 
 ### 市场规模
 
@@ -75,11 +135,39 @@
 - **年增速**: {{ "%.1f"|format(thesis.market.growth_rate * 100) }}%
 {% endif %}
 
+{% if thesis.market_analysis %}
+**深度分析**:
+
+{{ thesis.market_analysis }}
+{% endif %}
+
 ### 护城河
 
 > {{ analogies.moat }}
 
 **本案评估**: {{ thesis.moat }}
+
+{% if thesis.moat_analysis %}
+
+**7 维度护城河评分** (Hamilton Helmer · 7 Powers):
+
+| 维度 | 评分 | 证据 |
+|------|------|------|
+{% if thesis.moat_analysis.network_effect %}| 网络效应 | {{ thesis.moat_analysis.network_effect.score }}/10 | {{ thesis.moat_analysis.network_effect.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.scale_economy %}| 规模经济 | {{ thesis.moat_analysis.scale_economy.score }}/10 | {{ thesis.moat_analysis.scale_economy.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.switching_cost %}| 切换成本 | {{ thesis.moat_analysis.switching_cost.score }}/10 | {{ thesis.moat_analysis.switching_cost.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.brand %}| 品牌 | {{ thesis.moat_analysis.brand.score }}/10 | {{ thesis.moat_analysis.brand.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.counter_positioning %}| 反定位 | {{ thesis.moat_analysis.counter_positioning.score }}/10 | {{ thesis.moat_analysis.counter_positioning.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.cornered_resource %}| 独家资源 | {{ thesis.moat_analysis.cornered_resource.score }}/10 | {{ thesis.moat_analysis.cornered_resource.evidence }} |
+{% endif %}
+{% if thesis.moat_analysis.process_power %}| 流程势能 | {{ thesis.moat_analysis.process_power.score }}/10 | {{ thesis.moat_analysis.process_power.evidence }} |
+{% endif %}
+{% endif %}
 
 ### 单位经济学
 
@@ -95,6 +183,12 @@
 - **回本周期**: {{ "%.1f"|format(thesis.unit_economics.payback_months) }} 个月
 {% endif %}
 
+{% if thesis.unit_economics_analysis %}
+**深度分析**:
+
+{{ thesis.unit_economics_analysis }}
+{% endif %}
+
 ### 增长指标
 {% if thesis.growth.arr_usd %}
 - **ARR**: ${{ "{:,.0f}".format(thesis.growth.arr_usd) }}
@@ -106,17 +200,54 @@
 - **MAU**: {{ "{:,}".format(thesis.growth.mau) }}
 {% endif %}
 
+{% if thesis.growth_analysis %}
+**深度分析**:
+
+{{ thesis.growth_analysis }}
+{% endif %}
+
 ### 竞争格局
+{% if thesis.competitors_detailed %}
+
+| 竞品 | 总部 | 阶段/状态 | 估值 | 市占率 | 威胁 | 核心差异 |
+|------|------|-----------|------|--------|------|----------|
+{% for c in thesis.competitors_detailed %}
+| {{ c.name }} | {{ c.hq or "—" }} | {{ c.stage_or_status or "—" }} | {% if c.valuation_usd %}${{ "{:,.0f}".format(c.valuation_usd) }}{% else %}—{% endif %} | {% if c.market_share_pct %}{{ "%.1f"|format(c.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ c.threat_level or "—" }} | {{ c.differentiator or "—" }} |
+{% endfor %}
+{% else %}
 {% for c in thesis.competitors %}- {{ c }}
 {% endfor %}
+{% endif %}
 
 ### 🐂 看多理由
+{% if thesis.key_bull_points_detailed %}
+{% for p in thesis.key_bull_points_detailed %}
+- **{{ p.headline }}**
+  > {{ p.analysis }}
+{% if p.evidence %}
+{% for e in p.evidence %}  - _{{ e }}_
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% else %}
 {% for b in thesis.key_bull_points %}- {{ b }}
 {% endfor %}
+{% endif %}
 
 ### 🐻 看空理由
+{% if thesis.key_bear_points_detailed %}
+{% for p in thesis.key_bear_points_detailed %}
+- **{{ p.headline }}**
+  > {{ p.analysis }}
+{% if p.evidence %}
+{% for e in p.evidence %}  - _{{ e }}_
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% else %}
 {% for b in thesis.key_bear_points %}- {{ b }}
 {% endfor %}
+{% endif %}
 
 ---
 
@@ -131,6 +262,58 @@
 {% endif %}
 - **Gartner 周期定位**: {{ industry.gartner_phase }}
 - **退出窗口**: {{ industry.exit_window }}
+
+{% if industry.sub_segments %}
+### 细分赛道
+
+| 子赛道 | 规模 | 增速 | 备注 |
+|--------|------|------|------|
+{% for s in industry.sub_segments %}
+| {{ s.name }} | {% if s.size_usd %}${{ "{:,.0f}".format(s.size_usd) }}{% else %}—{% endif %} | {% if s.growth_rate %}{{ "%.1f"|format(s.growth_rate * 100) }}%{% else %}—{% endif %} | {{ s.notes or "—" }} |
+{% endfor %}
+{% endif %}
+
+{% if industry.value_chain %}
+### 产业链图谱
+
+{% if industry.value_chain.upstream %}- **上游 (原料/元器件)**: {{ industry.value_chain.upstream | join(" · ") }}
+{% endif %}
+{% if industry.value_chain.midstream %}- **中游 (本公司所在环节)**: {{ industry.value_chain.midstream | join(" · ") }}
+{% endif %}
+{% if industry.value_chain.downstream %}- **下游 (渠道/终端)**: {{ industry.value_chain.downstream | join(" · ") }}
+{% endif %}
+{% endif %}
+
+{% if industry.top_players %}
+### 行业头部玩家
+
+| 玩家 | 总部 | 阶段 | 估值 | 市占率 | 核心差异 |
+|------|------|------|------|--------|----------|
+{% for p in industry.top_players %}
+| {{ p.name }} | {{ p.hq or "—" }} | {{ p.stage_or_status or "—" }} | {% if p.valuation_usd %}${{ "{:,.0f}".format(p.valuation_usd) }}{% else %}—{% endif %} | {% if p.market_share_pct %}{{ "%.1f"|format(p.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ p.differentiator or "—" }} |
+{% endfor %}
+{% endif %}
+
+{% if industry.growth_drivers %}
+### 增长驱动力
+{% for d in industry.growth_drivers %}- {{ d }}
+{% endfor %}
+{% endif %}
+
+{% if industry.barriers_to_entry %}
+### 进入壁垒
+{% for b in industry.barriers_to_entry %}- {{ b }}
+{% endfor %}
+{% endif %}
+
+{% if industry.industry_key_metrics %}
+### 行业关键指标
+
+| 指标 | 当前水平 |
+|------|----------|
+{% for k, v in industry.industry_key_metrics.items() %}| {{ k }} | {{ v }} |
+{% endfor %}
+{% endif %}
 
 {% if industry.policy_tailwinds %}
 **政策顺风**:

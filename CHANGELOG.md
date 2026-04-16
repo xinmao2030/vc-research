@@ -13,6 +13,35 @@
 
 ---
 
+## [0.1.6] - 2026-04-15
+
+### Added — 研报深度加厚 (Profile / Funding / Thesis / Industry 四模块)
+
+- **模块 1 · 企业画像**: 新增 `executives` / `products` / `key_customers` /
+  `milestones` / `website`;`founders` 加 `still_active` + `current_role`
+  (支持"创始人已离任"场景)
+- **模块 2 · 融资轨迹**: 每轮新增 `pre_money_valuation_usd` / `share_class` /
+  `use_of_proceeds`;`investor_details` 完整投资方档案(机构类型 / AUM / 代表
+  案例 / 本轮投资逻辑)渲染为每轮的投资方详情卡片
+- **模块 3 · 投资依据**: `team_analysis` / `market_analysis` /
+  `unit_economics_analysis` / `growth_analysis` 四段深度叙事字段;
+  `moat_analysis` 采用 Hamilton Helmer《7 Powers》框架 7 维度打分;
+  `competitors_detailed` 表格化竞品对比;`bull_detailed` / `bear_detailed`
+  带论据与证据列表
+- **模块 4 · 产业趋势**: `sub_segments`(赛道细分 + 规模/增速)/ `value_chain`
+  (上中下游玩家)/ `top_players`(行业头部玩家档案)/ `growth_drivers` /
+  `barriers_to_entry` / `industry_key_metrics` 六个深化字段
+- **LLM Prompt**: Ollama researcher prompt 重写要求全部新字段,
+  `num_predict` 4096 → 8192 支撑更大 JSON 产出
+- **标杆 fixture**: `examples/fixtures/字节跳动.json` 扩充示范数据
+  (230 → 370+ 行),研报输出从 ~230 行增至 ~370 行
+- **文档**: `docs/data-source-spec.md` 补全所有新字段契约与可选性说明
+
+### Tests
+- 49/49 全绿;新字段皆可选,既有 benchmark 数据零改动即可通过
+
+---
+
 ## [0.1.5] - 2026-04-15
 
 ### Added — 本地 LLM 实时研究员 (任意公司名 → 研报)
