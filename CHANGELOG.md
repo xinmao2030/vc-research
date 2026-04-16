@@ -7,9 +7,32 @@
 ## [Unreleased]
 
 ### Planned
-- Phase 2: 公开数据源接入 (SEC EDGAR / 港交所披露易 / 企查查)
+- Phase 2: IT桔子 / Crunchbase API 真实接入(当前仅骨架)
 - Phase 3: Claude 推理深度增强 + 向量检索对标
 - Phase 4: Next.js Web Dashboard
+
+---
+
+## [0.1.2] - 2026-04-15
+
+### Added — Milestone 1 教育层落地 + Phase 2 接口准备
+- 报告模板自动注入 8 个类比教学(融资=升级 / 稀释=蛋糕 / 跑道=血条 /
+  TAM=三层海洋 / 护城河=城堡水沟 / LTV/CAC=渔夫ROI / 估值=房屋评估 /
+  优先清算=救生艇)
+- CLI 闯关进度条:每完成一个模块点亮并解锁下一关,保存进度到
+  `~/.vc-research/progress/{company}.json`
+- CLI 首屏免责声明 banner
+- `docs/glossary.md` — 50+ 创投术语表,附类比
+- `docs/api.md` — 对外 Python/CLI 接口文档
+- `docs/quickstart.md` — 零基础用户 10 分钟上手指南
+- `docs/architecture.md` — 数据流/扩展点/贡献指南
+- `data_sources/base.py` — `DataSource` Protocol,为 Phase 2 统一接口
+- `FixturesSource` / `ITJuziSource` / `CrunchbaseSource` 骨架
+- `DataAggregator` 重构为多源级联,保留向后兼容
+
+### Tests
+- 3 条集成测试:Crunchbase fallback / 稀释累积链 / 无 industry 降级
+- 全量 47/47 通过
 
 ---
 

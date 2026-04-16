@@ -13,6 +13,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
+from ..education.analogy_teacher import explain_with_analogy, list_concepts
 from ..schema import VCReport
 
 
@@ -61,7 +62,11 @@ _ENV = _build_env()
 def render_markdown(report: VCReport) -> str:
     """渲染为 Markdown 字符串."""
     template = _ENV.get_template("template.md.j2")
-    return template.render(**report.model_dump(mode="python"))
+    analogies = {key: explain_with_analogy(key) for key in list_concepts()}
+    return template.render(
+        analogies=analogies,
+        **report.model_dump(mode="python"),
+    )
 
 
 def render_html(report: VCReport) -> str:

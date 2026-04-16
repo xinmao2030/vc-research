@@ -1,9 +1,11 @@
-"""数据聚合器 — 统一封装国内+海外数据源."""
+"""数据聚合器 — 通过 DataSource 协议统一调度国内+海外数据源."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any
+
+from .base import DataSource
 
 
 @dataclass
@@ -24,45 +26,77 @@ class RawCompanyData:
 
 
 class DataAggregator:
-    """调度各数据源并聚合结果.
+    """调度各数据源并合并结果.
 
-    Phase 1: 全部返回 None,走 fixtures 模式 (examples/ 下的静态 JSON)
-    Phase 2: 接入真实 API
+    Phase 1: fixtures (FixturesSource)
+    Phase 2: fixtures fallback + ITJuziSource + CrunchbaseSource
+
+    数据合并规则:
+        - fixtures 命中时一次性填充所有子字段 (与原行为一致)
+        - 真实 API source 按 source.name 填到对应子字段 (itjuzi→raw.itjuzi 等)
+        - 多源同时命中时,后注入的源不覆盖已有的非空字段
     """
 
-    def __init__(self, use_fixtures: bool = True, fixtures_dir: str | None = None):
+    def __init__(
+        self,
+        use_fixtures: bool = True,
+        fixtures_dir: str | None = None,
+        sources: list[DataSource] | None = None,
+    ):
         self.use_fixtures = use_fixtures
         self.fixtures_dir = fixtures_dir
+        self._custom_sources = sources
+        self._sources: list[DataSource] | None = None
+
+    def _build_sources(self) -> list[DataSource]:
+        if self._custom_sources is not None:
+            return self._custom_sources
+        if self.use_fixtures:
+            from .fixtures_source import FixturesSource
+            return [FixturesSource(self.fixtures_dir)]
+        # Phase 2: itjuzi → crunchbase → fixtures fallback
+        from .crunchbase_source import CrunchbaseSource
+        from .fixtures_source import FixturesSource
+        from .itjuzi_source import ITJuziSource
+        return [
+            ITJuziSource(),
+            CrunchbaseSource(),
+            FixturesSource(self.fixtures_dir),  # 最终兜底
+        ]
 
     def fetch(self, company_name: str) -> RawCompanyData:
         data = RawCompanyData(name=company_name)
+        if self._sources is None:
+            self._sources = self._build_sources()
 
-        if self.use_fixtures:
-            self._load_from_fixtures(company_name, data)
-        else:
-            # Phase 2: 并行调用各数据源
-            # data.qichacha = qichacha_client.search(company_name)
-            # data.itjuzi = itjuzi_client.search(company_name)
-            # data.crunchbase = crunchbase_client.search(company_name)
-            raise NotImplementedError(
-                "真实数据源接入在 Phase 2, 当前请使用 use_fixtures=True"
-            )
+        for src in self._sources:
+            payload = src.fetch(company_name)
+            if not payload:
+                continue
+            self._merge(data, src.name, payload)
 
         return data
 
-    def _load_from_fixtures(self, name: str, data: RawCompanyData) -> None:
-        """从 examples/fixtures/{name}.json 加载静态数据."""
-        import json
-        from pathlib import Path
+    @staticmethod
+    def _merge(data: RawCompanyData, source_name: str, payload: dict) -> None:
+        """把单个源的返回合并进 RawCompanyData.
 
-        base = Path(self.fixtures_dir) if self.fixtures_dir else (
-            Path(__file__).resolve().parents[3] / "examples" / "fixtures"
-        )
-        candidate = base / f"{name}.json"
-        if candidate.exists():
-            payload = json.loads(candidate.read_text(encoding="utf-8"))
-            data.qichacha = payload.get("qichacha")
-            data.itjuzi = payload.get("itjuzi")
-            data.crunchbase = payload.get("crunchbase")
-            data.news_items = payload.get("news_items", [])
-            data.sources_hit = payload.get("sources_hit", ["fixtures"])
+        fixtures 返回聚合 dict (含多个子源);API source 返回单源 dict.
+        """
+        if source_name == "fixtures":
+            # fixtures JSON 里直接带着 itjuzi/crunchbase/qichacha 子 key
+            data.qichacha = data.qichacha or payload.get("qichacha")
+            data.itjuzi = data.itjuzi or payload.get("itjuzi")
+            data.crunchbase = data.crunchbase or payload.get("crunchbase")
+            data.news_items = data.news_items or payload.get("news_items", [])
+            hits = payload.get("sources_hit", [source_name])
+            for h in hits:
+                if h not in data.sources_hit:
+                    data.sources_hit.append(h)
+        else:
+            # API source 整个 payload 对应一个子字段
+            slot = getattr(data, source_name, None)
+            if slot is None:
+                setattr(data, source_name, payload)
+                if source_name not in data.sources_hit:
+                    data.sources_hit.append(source_name)

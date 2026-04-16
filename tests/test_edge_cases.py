@@ -238,3 +238,57 @@ def test_industry_affects_valuation() -> None:
     assert ai["arr"] > ecommerce["arr"], "AI 倍数应高于电商"
     assert _multiples_for_industry(None) == {}
     assert _multiples_for_industry("未知赛道") == {}
+
+
+# ─────────────── 9. 集成测试: QA 发现的 3 条未覆盖分支 ────────
+def test_crunchbase_fallback_when_itjuzi_missing(tmp_path) -> None:
+    """多源降级: itjuzi 缺失时,funding 应从 crunchbase 读取轮次 (记录当前优先级行为)."""
+    fixture = tmp_path / "only_cb.json"
+    fixture.write_text(
+        json.dumps(
+            {
+                "crunchbase": {
+                    "industry": "SaaS",
+                    "one_liner": "海外案例",
+                    "region": "us",
+                    "founders": [
+                        {"name": "Jane", "title": "CEO", "background": "MIT"}
+                    ],
+                    "rounds": [
+                        {"stage": "Seed", "amount_usd": 1_000_000},
+                        {"stage": "Series A", "amount_usd": 5_000_000,
+                         "post_money_valuation_usd": 20_000_000},
+                    ],
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    agg = DataAggregator(use_fixtures=True, fixtures_dir=str(tmp_path))
+    raw = agg.fetch("only_cb")
+    funding = analyze_funding(raw)
+    assert len(funding.rounds) == 2
+    assert funding.latest_valuation_usd == Decimal("20000000")
+
+
+def test_dilution_accumulates_across_rounds() -> None:
+    """稀释链: 6 轮累计稀释应 > 单轮稀释且 < 1 (retention 不能为 0)."""
+    raw = DataAggregator(use_fixtures=True).fetch("字节跳动")
+    funding = analyze_funding(raw)
+    assert funding.dilution_estimate is not None
+    # 6 轮按 10-22% 稀释累乘,总稀释应在 50-80% 合理区间
+    assert 0.3 < funding.dilution_estimate < 0.95, (
+        f"6 轮累计稀释 {funding.dilution_estimate:.2%} 超出合理区间"
+    )
+
+
+def test_valuation_degrades_gracefully_with_no_industry() -> None:
+    """行业倍数缺失降级: industry=None 时仍能产出估值 (走 _INDUSTRY_DEFAULT 兜底)."""
+    raw = DataAggregator(use_fixtures=True).fetch("字节跳动")
+    funding = analyze_funding(raw)
+    thesis = analyze_thesis(raw)
+    # 不传 industry 参数
+    v = analyze_valuation(funding, thesis, industry=None)
+    # 字节有 latest_valuation,所以至少"最近一轮锚点"方法能工作
+    assert len(v.methods) >= 1
+    assert v.fair_value_high_usd > 0, "锚点法应兜底产出非零估值"

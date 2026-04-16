@@ -9,6 +9,7 @@ import typer
 from rich.console import Console
 
 from .data_sources import DataAggregator
+from .education.quest_unlock import QuestProgress
 from .modules import (
     analyze_funding,
     analyze_industry,
@@ -45,6 +46,13 @@ def analyze(
 ) -> None:
     """分析一家企业并生成研报."""
     console.rule(f"[bold cyan]分析: {company}[/bold cyan]")
+    console.print(
+        "[dim]⚠️  免责声明: 本工具产出仅供学习研究,不构成投资建议。"
+        "数据可能滞后,重大决策请结合多源验证。[/dim]"
+    )
+
+    quest = QuestProgress.load(company)
+    console.print(f"[magenta]🎮 闯关进度:[/magenta] {quest.status_bar()}")
 
     agg = DataAggregator(
         use_fixtures=True,
@@ -62,38 +70,47 @@ def analyze(
 
     console.print(f"[green]✓[/green] 数据源命中: {', '.join(raw.sources_hit)}")
 
+    def _tick(key: str, label: str, detail: str = "") -> None:
+        tail = f" {detail}" if detail else ""
+        console.print(f"[green]✓[/green] {label}{tail}")
+        unlocked = quest.complete(key)
+        if unlocked:
+            console.print(f"   [dim magenta]{unlocked}[/dim magenta]")
+
     # 运行 7 大模块
     try:
         profile = analyze_profile(raw)
     except InsufficientDataError as e:
         console.print(f"[red]✗[/red] 数据不足,无法生成研报: {e}")
         raise typer.Exit(code=2)
-    console.print("[green]✓[/green] 模块 1: 企业画像")
+    _tick("profile", "模块 1: 企业画像")
 
     funding = analyze_funding(raw)
-    console.print(f"[green]✓[/green] 模块 2: 融资轨迹 ({len(funding.rounds)} 轮)")
+    _tick("funding", "模块 2: 融资轨迹", f"({len(funding.rounds)} 轮)")
 
     thesis = analyze_thesis(raw)
-    console.print("[green]✓[/green] 模块 3: 投资依据")
+    _tick("thesis", "模块 3: 投资依据")
 
     industry = analyze_industry(raw, profile.industry)
-    console.print("[green]✓[/green] 模块 4: 产业趋势")
+    _tick("industry", "模块 4: 产业趋势")
 
     valuation = analyze_valuation(funding, thesis, industry=profile.industry)
-    console.print(
-        f"[green]✓[/green] 模块 5: 估值分析 "
-        f"(公允区间 ${valuation.fair_value_low_usd:,.0f} - ${valuation.fair_value_high_usd:,.0f})"
+    _tick(
+        "valuation",
+        "模块 5: 估值分析",
+        f"(公允区间 ${valuation.fair_value_low_usd:,.0f} - ${valuation.fair_value_high_usd:,.0f})",
     )
 
     risks = analyze_risks(raw, funding, thesis)
-    console.print(
-        f"[green]✓[/green] 模块 6: 风险矩阵 (整体 {risks.overall_level.value})"
-    )
+    _tick("risks", "模块 6: 风险矩阵", f"(整体 {risks.overall_level.value})")
 
     recommendation = analyze_recommendation(thesis, valuation, risks, funding)
-    console.print(
-        f"[green]✓[/green] 模块 7: 投资建议 — [bold]{recommendation.verdict}[/bold]"
+    _tick(
+        "recommendation",
+        "模块 7: 投资建议",
+        f"— [bold]{recommendation.verdict}[/bold]",
     )
+    quest.save()
 
     # LLM 增强 (可选) — 失败时优雅降级到 base 逻辑,不污染 thesis
     if use_llm:
@@ -138,6 +155,7 @@ def analyze(
     md = render_markdown(report)
     output.write_text(md, encoding="utf-8")
     console.rule("[bold green]✓ 研报生成完成[/bold green]")
+    console.print(f"🎮 闯关进度: {quest.status_bar()}")
     console.print(f"📄 Markdown: [cyan]{output}[/cyan]")
 
     if pdf:
