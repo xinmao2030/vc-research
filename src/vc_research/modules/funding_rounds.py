@@ -22,6 +22,7 @@ _DILUTION_PER_ROUND: dict[FundingStage, float] = {
     FundingStage.PRE_IPO: 0.05,
     FundingStage.IPO: 0.15,
     FundingStage.STRATEGIC: 0.05,
+    FundingStage.SECONDARY: 0.00,  # 二级/回购/介绍上市:股权转让,不稀释
 }
 
 

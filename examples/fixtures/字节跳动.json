@@ -90,7 +90,10 @@
       {"date": "2020-09", "event": "甲骨文 + 沃尔玛方案 — 应对美国 TikTok 禁令首个节点"},
       {"date": "2021-05", "event": "张一鸣卸任 CEO,梁汝波接任"},
       {"date": "2023-06", "event": "飞书商业化提速,瞄准中大型企业市场"},
-      {"date": "2024-12", "event": "豆包大模型日调用量超 4 万亿 Tokens,进入 AI 国内第一梯队"}
+      {"date": "2024-04", "event": "PAFACA 法案经美国国会通过,强制字节在 270 天内剥离 TikTok US"},
+      {"date": "2024-04", "event": "Bloomberg 爆二级市场 tender offer 定价隐含估值约 2680 亿美元 (较 2021 高点回撤)"},
+      {"date": "2024-12", "event": "豆包大模型日调用量超 4 万亿 Tokens,进入 AI 国内第一梯队"},
+      {"date": "2026-01-22", "event": "TikTok US 剥离完成 — 组建 TikTok USDS JV (Oracle/Silver Lake/MGX 合计 >80%,ByteDance 保留 19.9%)"}
     ],
     "rounds": [
       {
@@ -203,6 +206,17 @@
         "lead_investors": ["泛大西洋", "红杉", "Sequoia", "General Atlantic"],
         "share_class": "Pre-IPO 可转优先股",
         "use_of_proceeds": "全球合规基础设施 (Project Texas) + AI 投入"
+      },
+      {
+        "stage": "secondary",
+        "announce_date": "2024-04-24",
+        "amount_usd": 5000000000,
+        "pre_money_valuation_usd": 263000000000,
+        "post_money_valuation_usd": 268000000000,
+        "lead_investors": ["字节跳动 (回购)"],
+        "share_class": "员工/早期投资人股权回购",
+        "use_of_proceeds": "员工股权流动性 + 部分早期投资人退出",
+        "notes": "二级市场 tender offer,定价较 2021 Pre-IPO 回撤约 33%;Bloomberg / The Information 均有报道。PAFACA 不确定性下隐含估值下修"
       }
     ],
     "thesis": {

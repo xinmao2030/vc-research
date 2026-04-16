@@ -24,6 +24,7 @@ class FundingStage(str, Enum):
     PRE_IPO = "pre_ipo"
     IPO = "ipo"
     STRATEGIC = "strategic"
+    SECONDARY = "secondary"  # 二级市场 tender offer / 员工回购 / 介绍上市等无募资事件
 
 
 class Region(str, Enum):

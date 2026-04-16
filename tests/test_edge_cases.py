@@ -171,11 +171,11 @@ def test_format_money_en(amount, expected: str) -> None:
 # 固定标杆案例的估值区间,保证未来重构不会意外改变关键数字
 BENCHMARKS = {
     "字节跳动": {
-        "rounds": 6,
-        "latest_valuation_usd": Decimal("180000000000"),
+        "rounds": 7,
+        "latest_valuation_usd": Decimal("268000000000"),
         "verdict": "推荐",
         "overall_risk": "high",  # TikTok 监管风险
-        "stage": FundingStage.PRE_IPO,
+        "stage": FundingStage.SECONDARY,
     },
     "商汤科技": {
         "rounds": 6,
@@ -185,8 +185,8 @@ BENCHMARKS = {
         "stage": FundingStage.IPO,
     },
     "蔚来": {
-        "rounds": 6,
-        "latest_valuation_usd": Decimal("12000000000"),
+        "rounds": 8,
+        "latest_valuation_usd": Decimal("14000000000"),
         "verdict": "推荐",
         "overall_risk": "medium",
         "stage": FundingStage.STRATEGIC,

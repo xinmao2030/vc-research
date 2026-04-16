@@ -67,11 +67,28 @@
         "notes": "合肥战投,起死回生关键一笔"
       },
       {
+        "stage": "secondary",
+        "announce_date": "2022-03-10",
+        "amount_usd": 0,
+        "post_money_valuation_usd": 35000000000,
+        "lead_investors": ["介绍上市"],
+        "notes": "港交所 9866 介绍上市,无募资但改变流动性结构 (之前 2021-03 因 VIE 合规被推迟一年半)"
+      },
+      {
         "stage": "strategic",
-        "announce_date": "2023-12-01",
+        "announce_date": "2023-12-18",
         "amount_usd": 2200000000,
         "post_money_valuation_usd": 12000000000,
-        "lead_investors": ["CYVN Holdings (阿布扎比)"]
+        "lead_investors": ["CYVN Holdings (阿布扎比)"],
+        "notes": "首轮 CYVN 战投 $22 亿,持股约 20%,打开中东/欧洲市场准入"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2024-06-03",
+        "amount_usd": 2200000000,
+        "post_money_valuation_usd": 14000000000,
+        "lead_investors": ["CYVN Holdings (阿布扎比)"],
+        "notes": "CYVN 追加 $22 亿战投,累计持股约 30%,成为最大外部股东"
       }
     ],
     "thesis": {

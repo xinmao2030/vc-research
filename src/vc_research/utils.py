@@ -44,11 +44,16 @@ _STAGE_ALIAS: dict[str, FundingStage] = {
     "preipo": FundingStage.PRE_IPO,
     "ipo": FundingStage.IPO,
     "strategic": FundingStage.STRATEGIC,
+    "secondary": FundingStage.SECONDARY,
+    "tender": FundingStage.SECONDARY,
+    "tender_offer": FundingStage.SECONDARY,
     # 中文
     "种子": FundingStage.SEED,
     "天使": FundingStage.SEED,
     "战略": FundingStage.STRATEGIC,
     "战略投资": FundingStage.STRATEGIC,
+    "二级": FundingStage.SECONDARY,
+    "回购": FundingStage.SECONDARY,
     "上市": FundingStage.IPO,
 }
 

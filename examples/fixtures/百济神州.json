@@ -13,9 +13,9 @@
     "[监管] FDA · BRUKINSA (zanubrutinib) approval (2019-11-14) <https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-zanubrutinib-mantle-cell-lymphoma>"
   ],
   "itjuzi": {
-    "legal_name": "百济神州有限公司 (BeiGene, Ltd.)",
+    "legal_name": "BeOne Medicines, Ltd. (原百济神州 BeiGene, Ltd.;2024-11-14 宣布更名 / 2025-01 Nasdaq 股票代码 BGNE → ONC / 2025-05 主要法律实体迁册至瑞士巴塞尔)",
     "founded_date": "2010-10-28",
-    "headquarters": "北京 / 剑桥 (美国) / 巴塞尔",
+    "headquarters": "巴塞尔 (主要法律实体, 2025-05 起) / 北京 / 剑桥 (美国麻省)",
     "region": "中国",
     "industry": "生物医药",
     "sub_industry": "肿瘤创新药 + 免疫疗法",
@@ -57,10 +57,10 @@
       {
         "stage": "ipo",
         "announce_date": "2016-02-03",
-        "amount_usd": 158000000,
+        "amount_usd": 182000000,
         "post_money_valuation_usd": 800000000,
         "lead_investors": ["Goldman Sachs", "Morgan Stanley"],
-        "notes": "Nasdaq 上市 BGNE,中国创新药出海标志"
+        "notes": "Nasdaq 上市 BGNE,发行价 $24/ADS,含绿鞋募资 $182M (中国创新药出海标志)"
       },
       {
         "stage": "strategic",
@@ -77,6 +77,14 @@
         "post_money_valuation_usd": 11000000000,
         "lead_investors": ["港股 IPO 承销团"],
         "notes": "港交所 06160 二次上市,首家美中双重上市 biotech"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2019-10-31",
+        "amount_usd": 2700000000,
+        "post_money_valuation_usd": 13200000000,
+        "lead_investors": ["Amgen"],
+        "notes": "Amgen 以 27 亿美元认购 20.5% 股权 + 获一个董事席位,全球肿瘤联盟 (Kyprolis / XGEVA / BLINCYTO 等 20 款产品中国商业化权益)"
       },
       {
         "stage": "strategic",
