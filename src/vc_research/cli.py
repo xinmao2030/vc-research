@@ -21,6 +21,8 @@ from .modules import (
     analyze_valuation,
 )
 from .modules.company_profile import InsufficientDataError
+from .modules.valuation import InsufficientValuationError
+from .utils import format_money_cn, format_money_en
 from .report import render_markdown
 from .schema import VCReport
 
@@ -108,11 +110,15 @@ def analyze(
     industry = analyze_industry(raw, profile.industry)
     _tick("industry", "模块 4: 产业趋势")
 
-    valuation = analyze_valuation(funding, thesis, industry=profile.industry)
+    try:
+        valuation = analyze_valuation(funding, thesis, industry=profile.industry)
+    except InsufficientValuationError as e:
+        console.print(f"[red]✗[/red] 估值数据不足: {e}")
+        raise typer.Exit(code=3)
     _tick(
         "valuation",
         "模块 5: 估值分析",
-        f"(公允区间 ${valuation.fair_value_low_usd:,.0f} - ${valuation.fair_value_high_usd:,.0f})",
+        f"(公允区间 {format_money_cn(valuation.fair_value_low_usd)} — {format_money_cn(valuation.fair_value_high_usd)})",
     )
 
     risks = analyze_risks(raw, funding, thesis)
@@ -236,13 +242,7 @@ def history(
     risk_color = {"low": "green", "medium": "yellow", "high": "orange1", "critical": "red"}
 
     def _fmt_usd(v: int | None) -> str:
-        if v is None:
-            return "—"
-        if v >= 1_000_000_000:
-            return f"${v / 1_000_000_000:.1f}B"
-        if v >= 1_000_000:
-            return f"${v / 1_000_000:.1f}M"
-        return f"${v:,}"
+        return format_money_en(v)
 
     table = Table(title=f"📊 研报历史 · 最近 {len(rows)} 条", show_lines=False)
     table.add_column("时间 (UTC)", style="dim", no_wrap=True)

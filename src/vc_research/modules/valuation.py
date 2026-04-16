@@ -13,6 +13,10 @@ from ..schema import (
 )
 
 
+class InsufficientValuationError(ValueError):
+    """估值数据全缺 (无 ARR/GMV/TAM/最近轮次),无法产生有意义公允区间."""
+
+
 def analyze_valuation(
     funding: FundingHistory,
     thesis: InvestmentThesis,
@@ -97,10 +101,25 @@ def analyze_valuation(
         fair_mid = Decimal(mean(mids))
         fair_low = fair_mid * Decimal("0.75")
         fair_high = fair_mid * Decimal("1.25")
+    elif funding.latest_valuation_usd:
+        # 无 ARR/GMV/TAM 但有最新轮次 — 用锚点法单点兜底
+        v = funding.latest_valuation_usd
+        methods.append(
+            ValuationMethod(
+                method="最近一轮估值 (锚点, 唯一可用信号)",
+                valuation_low_usd=v * Decimal("0.8"),
+                valuation_high_usd=v * Decimal("1.2"),
+                assumptions="缺乏财务/市场规模数据,仅用最新 post-money ±20% 作为参考区间",
+            )
+        )
+        fair_low = v * Decimal("0.8")
+        fair_high = v * Decimal("1.2")
     else:
-        # 极端 fallback: 无数据
-        fair_low = Decimal(0)
-        fair_high = Decimal(0)
+        # 🔴 关键数据全缺 — 不静默产出 $0-$0 误导下游 (QA 报告修复)
+        raise InsufficientValuationError(
+            "无 ARR / GMV / TAM / 最近轮次任一估值信号,无法构建公允价值区间。"
+            "请检查 fixture 的 thesis.growth / thesis.market / funding.rounds 数据。"
+        )
 
     current = funding.latest_valuation_usd
     premium = None

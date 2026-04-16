@@ -15,6 +15,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from ..education.analogy_teacher import explain_with_analogy, list_concepts
 from ..schema import VCReport
+from ..utils import format_money_cn, format_money_en
 
 
 # 极小白名单式 HTML 消毒 (MD → HTML 路径兜底; Phase 2+ 换成 nh3)
@@ -66,6 +67,9 @@ def _build_env() -> Environment:
         lstrip_blocks=True,
     )
     env.filters["safe_text"] = _md_escape
+    # v0.1.14: 金额人性化 (设计师 P0 — 新手看不懂 10-13 位数字)
+    env.filters["money_cn"] = format_money_cn
+    env.filters["money_en"] = format_money_en
     return env
 
 

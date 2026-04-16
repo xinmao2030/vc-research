@@ -73,9 +73,9 @@
 
 | 指标 | 数值 |
 |------|------|
-{% if funding.total_raised_usd %}| 累计融资 | ${{ "{:,.0f}".format(funding.total_raised_usd) }} |
+{% if funding.total_raised_usd %}| 累计融资 | {{ funding.total_raised_usd | money_cn }} |
 {% endif %}
-{% if funding.latest_valuation_usd %}| 最新估值 | ${{ "{:,.0f}".format(funding.latest_valuation_usd) }} |
+{% if funding.latest_valuation_usd %}| 最新估值 | {{ funding.latest_valuation_usd | money_cn }} |
 {% endif %}
 {% if funding.valuation_cagr %}| 估值复合增长率 (CAGR) | {{ "%.1f"|format(funding.valuation_cagr * 100) }}% |
 {% endif %}
@@ -87,7 +87,7 @@
 
 | 轮次 | 时间 | 金额 | 投前估值 | 投后估值 | 领投方 |
 |------|------|------|----------|----------|--------|
-{% for r in funding.rounds %}| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}${{ "{:,.0f}".format(r.amount_usd) }}{% else %}—{% endif %} | {% if r.pre_money_valuation_usd %}${{ "{:,.0f}".format(r.pre_money_valuation_usd) }}{% else %}—{% endif %} | {% if r.post_money_valuation_usd %}${{ "{:,.0f}".format(r.post_money_valuation_usd) }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
+{% for r in funding.rounds %}| {{ r.stage.value }} | {{ r.announce_date or "—" }} | {% if r.amount_usd %}{{ r.amount_usd | money_cn }}{% else %}—{% endif %} | {% if r.pre_money_valuation_usd %}{{ r.pre_money_valuation_usd | money_cn }}{% else %}—{% endif %} | {% if r.post_money_valuation_usd %}{{ r.post_money_valuation_usd | money_cn }}{% else %}—{% endif %} | {{ r.lead_investors | join(", ") or "—" }} |
 {% endfor %}
 
 {% set dated_rounds = funding.rounds | selectattr("post_money_valuation_usd") | selectattr("announce_date") | list %}
@@ -111,11 +111,11 @@ xychart-beta
 
 | 项目 | 内容 |
 |------|------|
-{% if r.amount_usd %}| 融资金额 | ${{ "{:,.0f}".format(r.amount_usd) }} |
+{% if r.amount_usd %}| 融资金额 | {{ r.amount_usd | money_cn }} |
 {% endif %}
-{% if r.pre_money_valuation_usd %}| 投前估值 | ${{ "{:,.0f}".format(r.pre_money_valuation_usd) }} |
+{% if r.pre_money_valuation_usd %}| 投前估值 | {{ r.pre_money_valuation_usd | money_cn }} |
 {% endif %}
-{% if r.post_money_valuation_usd %}| 投后估值 | ${{ "{:,.0f}".format(r.post_money_valuation_usd) }} |
+{% if r.post_money_valuation_usd %}| 投后估值 | {{ r.post_money_valuation_usd | money_cn }} |
 {% endif %}
 {% if r.share_class %}| 股权类别 | {{ r.share_class }} |
 {% endif %}
@@ -129,7 +129,7 @@ xychart-beta
 
 | 机构 | 角色 | 类型 | 总部 | 成立 | AUM | 擅长赛道 | 代表案例 | 本轮逻辑 |
 |------|------|------|------|------|-----|----------|----------|----------|
-{% for i in r.investor_details %}| **{{ i.name }}** | {% if i.is_lead %}🎯 领投{% else %}跟投{% endif %} | {{ i.type or "—" }} | {{ i.hq or "—" }} | {{ i.founded_year or "—" }} | {% if i.aum_usd %}${{ "{:,.0f}".format(i.aum_usd) }}{% else %}—{% endif %} | {{ i.sector_focus | join(" · ") or "—" }} | {{ i.notable_portfolio | join(" · ") or "—" }} | {{ i.deal_thesis or "—" }} |
+{% for i in r.investor_details %}| **{{ i.name }}** | {% if i.is_lead %}🎯 领投{% else %}跟投{% endif %} | {{ i.type or "—" }} | {{ i.hq or "—" }} | {{ i.founded_year or "—" }} | {% if i.aum_usd %}{{ i.aum_usd | money_cn }}{% else %}—{% endif %} | {{ i.sector_focus | join(" · ") or "—" }} | {{ i.notable_portfolio | join(" · ") or "—" }} | {{ i.deal_thesis or "—" }} |
 {% endfor %}
 {% endif %}
 {% endif %}
@@ -162,11 +162,11 @@ xychart-beta
 
 | 层级 | 规模 | 说明 |
 |------|------|------|
-{% if thesis.market.tam_usd %}| **TAM** (总可达市场) | ${{ "{:,.0f}".format(thesis.market.tam_usd) }} | 全球/全品类天花板 |
+{% if thesis.market.tam_usd %}| **TAM** (总可达市场) | {{ thesis.market.tam_usd | money_cn }} | 全球/全品类天花板 |
 {% endif %}
-{% if thesis.market.sam_usd %}| **SAM** (可服务市场) | ${{ "{:,.0f}".format(thesis.market.sam_usd) }} | 公司产品能覆盖的部分 |
+{% if thesis.market.sam_usd %}| **SAM** (可服务市场) | {{ thesis.market.sam_usd | money_cn }} | 公司产品能覆盖的部分 |
 {% endif %}
-{% if thesis.market.som_usd %}| **SOM** (可获取市场) | ${{ "{:,.0f}".format(thesis.market.som_usd) }} | 3-5 年内可拿下的份额 |
+{% if thesis.market.som_usd %}| **SOM** (可获取市场) | {{ thesis.market.som_usd | money_cn }} | 3-5 年内可拿下的份额 |
 {% endif %}
 {% if thesis.market.growth_rate %}| 年增速 | {{ "%.1f"|format(thesis.market.growth_rate * 100) }}% | CAGR |
 {% endif %}
@@ -219,9 +219,9 @@ xychart-beta
 {% endif %}
 {% if thesis.unit_economics.payback_months %}| 回本周期 | {{ "%.1f"|format(thesis.unit_economics.payback_months) }} 个月 | {% if thesis.unit_economics.payback_months <= 12 %}✅ 优秀{% elif thesis.unit_economics.payback_months <= 24 %}🟡 合理{% else %}⚠️ 过长{% endif %} |
 {% endif %}
-{% if thesis.unit_economics.cac_usd %}| CAC | ${{ "{:,.0f}".format(thesis.unit_economics.cac_usd) }} | 客户获取成本 |
+{% if thesis.unit_economics.cac_usd %}| CAC | {{ thesis.unit_economics.cac_usd | money_cn }} | 客户获取成本 |
 {% endif %}
-{% if thesis.unit_economics.ltv_usd %}| LTV | ${{ "{:,.0f}".format(thesis.unit_economics.ltv_usd) }} | 客户生命周期价值 |
+{% if thesis.unit_economics.ltv_usd %}| LTV | {{ thesis.unit_economics.ltv_usd | money_cn }} | 客户生命周期价值 |
 {% endif %}
 
 {% if thesis.unit_economics_analysis %}
@@ -234,7 +234,7 @@ xychart-beta
 
 | 指标 | 数值 |
 |------|------|
-{% if thesis.growth.arr_usd %}| ARR (年化经常性收入) | ${{ "{:,.0f}".format(thesis.growth.arr_usd) }} |
+{% if thesis.growth.arr_usd %}| ARR (年化经常性收入) | {{ thesis.growth.arr_usd | money_cn }} |
 {% endif %}
 {% if thesis.growth.yoy_growth %}| 同比增长率 | {{ "%.0f"|format(thesis.growth.yoy_growth * 100) }}% |
 {% endif %}
@@ -242,7 +242,7 @@ xychart-beta
 {% endif %}
 {% if thesis.growth.dau %}| DAU (日活) | {{ "{:,}".format(thesis.growth.dau) }} |
 {% endif %}
-{% if thesis.growth.gmv_usd %}| GMV | ${{ "{:,.0f}".format(thesis.growth.gmv_usd) }} |
+{% if thesis.growth.gmv_usd %}| GMV | {{ thesis.growth.gmv_usd | money_cn }} |
 {% endif %}
 {% if thesis.growth.retention_m12 %}| 12 月留存 | {{ "%.0f"|format(thesis.growth.retention_m12 * 100) }}% |
 {% endif %}
@@ -258,7 +258,7 @@ xychart-beta
 
 | 竞品 | 总部 | 阶段/状态 | 估值 | 市占率 | 威胁等级 | 核心差异 |
 |------|------|-----------|------|--------|:--------:|----------|
-{% for c in thesis.competitors_detailed %}| **{{ c.name }}** | {{ c.hq or "—" }} | {{ c.stage_or_status or "—" }} | {% if c.valuation_usd %}${{ "{:,.0f}".format(c.valuation_usd) }}{% else %}—{% endif %} | {% if c.market_share_pct %}{{ "%.1f"|format(c.market_share_pct * 100) }}%{% else %}—{% endif %} | {% if c.threat_level == "high" %}🔴 高{% elif c.threat_level == "medium" %}🟡 中{% elif c.threat_level == "low" %}🟢 低{% else %}—{% endif %} | {{ c.differentiator or "—" }} |
+{% for c in thesis.competitors_detailed %}| **{{ c.name }}** | {{ c.hq or "—" }} | {{ c.stage_or_status or "—" }} | {% if c.valuation_usd %}{{ c.valuation_usd | money_cn }}{% else %}—{% endif %} | {% if c.market_share_pct %}{{ "%.1f"|format(c.market_share_pct * 100) }}%{% else %}—{% endif %} | {% if c.threat_level == "high" %}🔴 高{% elif c.threat_level == "medium" %}🟡 中{% elif c.threat_level == "low" %}🟢 低{% else %}—{% endif %} | {{ c.differentiator or "—" }} |
 {% endfor %}
 {% elif thesis.competitors %}
 
@@ -307,7 +307,7 @@ xychart-beta
 | 指标 | 数值 |
 |------|------|
 | 赛道 | {{ industry.industry }} |
-{% if industry.funding_total_12m_usd %}| 近 12 月融资总额 | ${{ "{:,.0f}".format(industry.funding_total_12m_usd) }} |
+{% if industry.funding_total_12m_usd %}| 近 12 月融资总额 | {{ industry.funding_total_12m_usd | money_cn }} |
 {% endif %}
 {% if industry.deal_count_12m %}| 近 12 月交易数 | {{ industry.deal_count_12m }} |
 {% endif %}
@@ -321,7 +321,7 @@ xychart-beta
 
 | 子赛道 | 规模 | 年增速 | 备注 |
 |--------|------|--------|------|
-{% for s in industry.sub_segments %}| **{{ s.name }}** | {% if s.size_usd %}${{ "{:,.0f}".format(s.size_usd) }}{% else %}—{% endif %} | {% if s.growth_rate %}{{ "%.1f"|format(s.growth_rate * 100) }}%{% else %}—{% endif %} | {{ s.notes or "—" }} |
+{% for s in industry.sub_segments %}| **{{ s.name }}** | {% if s.size_usd %}{{ s.size_usd | money_cn }}{% else %}—{% endif %} | {% if s.growth_rate %}{{ "%.1f"|format(s.growth_rate * 100) }}%{% else %}—{% endif %} | {{ s.notes or "—" }} |
 {% endfor %}
 {% endif %}
 
@@ -357,7 +357,7 @@ flowchart LR
 
 | 玩家 | 总部 | 阶段 | 估值 | 市占率 | 核心差异 |
 |------|------|------|------|--------|----------|
-{% for p in industry.top_players %}| **{{ p.name }}** | {{ p.hq or "—" }} | {{ p.stage_or_status or "—" }} | {% if p.valuation_usd %}${{ "{:,.0f}".format(p.valuation_usd) }}{% else %}—{% endif %} | {% if p.market_share_pct %}{{ "%.1f"|format(p.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ p.differentiator or "—" }} |
+{% for p in industry.top_players %}| **{{ p.name }}** | {{ p.hq or "—" }} | {{ p.stage_or_status or "—" }} | {% if p.valuation_usd %}{{ p.valuation_usd | money_cn }}{% else %}—{% endif %} | {% if p.market_share_pct %}{{ "%.1f"|format(p.market_share_pct * 100) }}%{% else %}—{% endif %} | {{ p.differentiator or "—" }} |
 {% endfor %}
 {% endif %}
 
@@ -407,9 +407,9 @@ flowchart LR
 
 | 项目 | 数值 |
 |------|------|
-| 公允价值下限 | ${{ "{:,.0f}".format(valuation.fair_value_low_usd) }} |
-| 公允价值上限 | ${{ "{:,.0f}".format(valuation.fair_value_high_usd) }} |
-{% if valuation.current_valuation_usd %}| 当前估值 | ${{ "{:,.0f}".format(valuation.current_valuation_usd) }} |
+| 公允价值下限 | {{ valuation.fair_value_low_usd | money_cn }} |
+| 公允价值上限 | {{ valuation.fair_value_high_usd | money_cn }} |
+{% if valuation.current_valuation_usd %}| 当前估值 | {{ valuation.current_valuation_usd | money_cn }} |
 {% endif %}
 {% if valuation.premium_discount is not none %}| 溢价/折价 | {{ "%.1f"|format(valuation.premium_discount * 100) }}% {% if valuation.premium_discount > 0.3 %}⚠️ 明显溢价{% elif valuation.premium_discount < -0.2 %}💎 明显折价{% else %}✅ 合理{% endif %} |
 {% endif %}
@@ -420,7 +420,7 @@ flowchart LR
 
 | 方法 | 估值下限 | 估值上限 | 关键假设 |
 |------|----------|----------|----------|
-{% for m in valuation.methods %}| **{{ m.method }}** | ${{ "{:,.0f}".format(m.valuation_low_usd) }} | ${{ "{:,.0f}".format(m.valuation_high_usd) }} | {{ m.assumptions }} |
+{% for m in valuation.methods %}| **{{ m.method }}** | {{ m.valuation_low_usd | money_cn }} | {{ m.valuation_high_usd | money_cn }} | {{ m.assumptions }} |
 {% endfor %}
 
 ### 敏感性说明
@@ -437,9 +437,9 @@ flowchart LR
 | 整体风险等级 | **{{ risks.overall_level.value | upper }}** |
 {% if risks.runway_months %}| 现金跑道 | {{ "%.1f"|format(risks.runway_months) }} 个月 |
 {% endif %}
-{% if risks.burn_rate_usd_monthly %}| 月烧钱率 | ${{ "{:,.0f}".format(risks.burn_rate_usd_monthly) }} |
+{% if risks.burn_rate_usd_monthly %}| 月烧钱率 | {{ risks.burn_rate_usd_monthly | money_cn }} |
 {% endif %}
-{% if risks.cash_usd %}| 账上现金 | ${{ "{:,.0f}".format(risks.cash_usd) }} |
+{% if risks.cash_usd %}| 账上现金 | {{ risks.cash_usd | money_cn }} |
 {% endif %}
 
 ### 风险清单
@@ -460,7 +460,7 @@ flowchart LR
 | 项目 | 内容 |
 |------|------|
 | **裁决** | **{{ recommendation.verdict }}** |
-{% if recommendation.target_entry_valuation_usd %}| 建议入场估值 | ≤ ${{ "{:,.0f}".format(recommendation.target_entry_valuation_usd) }} |
+{% if recommendation.target_entry_valuation_usd %}| 建议入场估值 | ≤ {{ recommendation.target_entry_valuation_usd | money_cn }} |
 {% endif %}
 | 核心逻辑 | {{ recommendation.investment_logic }} |
 

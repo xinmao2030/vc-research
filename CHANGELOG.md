@@ -13,6 +13,26 @@
 
 ---
 
+## [0.1.14] - 2026-04-16
+
+### Changed — 新手友好度升级 (Designer P0)
+
+- **金额人性化**: 研报模板 / CLI 进度行全部从 `$9,800,000,000` 改为 `$98.00 亿` (中文) 或 `$9.80B` (英文),共替换 28 处模板格式串
+- `render_markdown` 模板注册 `money_cn` / `money_en` Jinja 过滤器
+- CLI `history` 命令的 `_fmt_usd` 改用 `format_money_en` 复用逻辑
+- 6 份样例研报 `examples/reports/*.md` 全部用新格式重生成
+
+### Added
+- `modules.valuation.InsufficientValuationError` — 无 ARR/GMV/TAM/最新轮次任一估值信号时抛错 (QA 报告 BUG-2),替代此前静默返回 `$0-$0`
+- 无财务/市场规模数据但有最新轮次 → 自动降级用"锚点法 ±20%" 单点兜底 (不再依赖 $0)
+- `docs/live-mode-setup.md` — Ollama + Qwen3 完整配置指南 (安装 / 拉模型 / 缓存 / FAQ)
+- `docs/troubleshooting.md` — 覆盖 10+ 类故障: 安装 / analyze / --llm / --live / PDF / history / SEC / cross_verify
+
+### Fixed
+- CLI analyze 命令在估值失败时 `raise typer.Exit(code=3)` (之前静默继续)
+
+---
+
 ## [0.1.13] - 2026-04-16
 
 ### Security

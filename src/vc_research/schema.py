@@ -415,7 +415,7 @@ class VCReport(BaseModel):
     """完整创投研报 — CLI 输出的核心对象."""
 
     generated_at: date
-    analyst: str = "vc-research v0.1.13"
+    analyst: str = "vc-research v0.1.14"
     profile: CompanyProfile
     funding: FundingHistory
     thesis: InvestmentThesis
