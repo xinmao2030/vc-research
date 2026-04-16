@@ -1,0 +1,176 @@
+{
+  "sources_hit": [
+    "[招股书] 上交所科创板 · 强一半导体(苏州)股份有限公司 第二轮审核问询函回复 2025-10 <https://static.sse.com.cn/stock/disclosure/announcement/c/202510/002051_20251031_6GDH.pdf>",
+    "[招股书] 上交所科创板 · 强一半导体 招股说明书 2025-11-05 <https://static.sse.com.cn/stock/disclosure/announcement/c/202511/002051_20251105_2NLS.pdf>",
+    "[公告] 中财网 · 强一股份 IPO 招股说明书提示性公告 2025-12-24 <https://www.cfi.net.cn/p20251224003170.html>",
+    "[公告] 中国证券网 · 强一股份 688809 披露专区 <https://xinpi.cnstock.com/p/xg/detail/688809>",
+    "[新闻] 证券时报 · 强一半导体启动上市辅导 推动 MEMS 探针卡国产替代 <https://www.stcn.com/article/detail/717424.html>",
+    "[新闻] 证券市场周刊 · 产品打破国外垄断！华为投资的又一家半导体企业启动 IPO (2025-09-15) <https://static.weeklyonstock.com/25/0915/zbf155702.html>",
+    "[深度] 腾讯新闻/知乎 · 强一半导体凭一根针获华为投资，IPO 前夜兄弟公司扛下巨亏 (2025-11-11) <https://news.qq.com/rain/a/20251111A01NJ900>",
+    "[融资聚合] 36Kr PitchHub · 强一半导体 <https://pitchhub.36kr.com/project/1958570332083207>",
+    "[行业] 思瀚产业研究院 · 2025 年探针卡行业结构、发展态势及竞争格局 <http://chinasihan.com/news/cykj/21678.html>",
+    "[行业] 智研咨询 · 2025 年中国半导体探针卡行业发展规模、产业链、竞争格局及发展趋势研判 <https://www.chyxx.com/industry/1217538.html>",
+    "[行业] Yole Développement · 2023 全球半导体探针卡厂商排名(强一位列第 9)",
+    "[官网] Maxone Semiconductor 强一半导体 <https://maxonesemi.com>"
+  ],
+  "itjuzi": {
+    "legal_name": "强一半导体(苏州)股份有限公司 (Maxone Semiconductor (Suzhou) Co., Ltd.)",
+    "founded_date": "2015-08-01",
+    "headquarters": "江苏苏州工业园区东长路88号 S3 幢",
+    "region": "中国",
+    "industry": "半导体设备/材料",
+    "sub_industry": "晶圆测试 - MEMS 探针卡",
+    "business_model": "MEMS 探针卡定制化设计+制造+销售(单次探针卡销售+持续耗材替换+客户定制化NRE),面向 Fabless/Foundry/OSAT",
+    "stage": "ipo",
+    "employee_count": 700,
+    "one_liner": "国内唯一实现 MEMS 探针卡批量产业化的厂商,2023 年位列全球探针卡行业第 9,打破 FormFactor/Technoprobe/MJC 外资垄断的国产替代核心标的",
+    "founders": [
+      {
+        "name": "周明",
+        "title": "创始人/董事长/实际控制人",
+        "background": "1973 年生,华东交通大学机械制造工艺与设备本科;2015-08 于苏州工业园区创立强一半导体,聚焦 MEMS 垂直探针自研,带领公司成为境内唯一量产 MEMS 探针卡厂商",
+        "equity_pct": 0.3118
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "angel",
+        "announce_date": "2020-06-01",
+        "amount_usd": 10000000,
+        "post_money_valuation_usd": 80000000,
+        "lead_investors": ["丰年资本"],
+        "notes": "天使轮,切入 MEMS 垂直探针赛道"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2021-06-01",
+        "amount_usd": 30000000,
+        "post_money_valuation_usd": 150000000,
+        "lead_investors": ["华为哈勃", "元禾璞华"],
+        "notes": "华为哈勃以增资+受让老股约 621.9 万元合计持股 6.4%,完成产业链绑定"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2022-06-01",
+        "amount_usd": 150000000,
+        "post_money_valuation_usd": 450000000,
+        "lead_investors": ["元禾璞华", "基石资本"],
+        "notes": "亿元级融资,加速 3D MEMS 垂直探针卡研发推广(苏州工业园区科技招商中心披露)"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2023-12-01",
+        "amount_usd": 120000000,
+        "post_money_valuation_usd": 700000000,
+        "lead_investors": ["基石资本", "中信建投"],
+        "notes": "IPO 前最后一轮私募,对应估值约 50 亿人民币"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2025-06-01",
+        "amount_usd": 60000000,
+        "post_money_valuation_usd": 900000000,
+        "lead_investors": ["君海创芯", "中信建投", "基石资本", "君桐资本", "国发创投", "融沛资本", "海达投资", "泰达科投"],
+        "notes": "数亿元 D 轮,IPO 冲刺前老股东加持 + 保荐券商旗下基金参投"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2025-12-29",
+        "amount_usd": 380000000,
+        "post_money_valuation_usd": 1530000000,
+        "lead_investors": ["中信建投证券(保荐)"],
+        "notes": "科创板 688809.SH 挂牌,发行价 85.09 元/股,发行 3238.99 万股(25%),募资 27.55 亿元(超募约 12.5 亿),发行后市值约 110 亿元人民币"
+      }
+    ],
+    "thesis": {
+      "team_score": 7,
+      "team_notes": "周明工程师出身、聚焦赛道 10 年,公司核心是垂直探针 know-how 与工艺积累;管理层相对低调,研发团队中博士/硕士占比高,产业资本(华为哈勃+元禾璞华)深度绑定带来客户背书",
+      "market": {
+        "tam_usd": 2987000000,
+        "sam_usd": 357000000,
+        "som_usd": 90000000,
+        "growth_rate": 0.25
+      },
+      "moat": "自主 MEMS 垂直探针工艺+量产能力(国内唯一)+400+ 客户覆盖(长电/通富微电/华虹/盛合晶微/伟测/韦尔/兆易/卓胜微/地平线/摩尔线程等)+华为哈勃产业链绑定+中信建投保荐的科创板稀缺标的",
+      "unit_economics": {
+        "gross_margin": 0.55,
+        "payback_months": 12
+      },
+      "growth": {
+        "arr_usd": 90000000,
+        "yoy_growth": 0.81,
+        "mau": 0,
+        "gmv_usd": 90000000
+      },
+      "competitors": ["FormFactor (美)", "Technoprobe (意)", "MJC 日本电子材料 (日)", "Micronics Japan", "Korea Instrument", "强达电路(国内同行)", "木芯科技(国内同行)"],
+      "bull": [
+        "2024 营收 6.41 亿同比增长 81%,净利润 2.33 亿同比增长 1149%,进入业绩爆发期",
+        "中国探针卡市场 2024 增长 69%(至 3.57 亿美元),国产化率<5%,国产替代空间巨大",
+        "HBM/AI 芯片/先进制程推动 MEMS 探针卡需求,单片测试次数指数级增长",
+        "华为哈勃+元禾璞华持股,绑定海思+长三角产业链;科创板稀缺 MEMS 探针卡独苗",
+        "南通 12 亿募投项目投产后,产能可支撑 20 亿以上营收"
+      ],
+      "bear": [
+        "2024 净利润跳升部分来源于非经常损益和股份支付冲回,可持续性需观察",
+        "IPO 鹰眼预警 19 条(客户集中度、应收账款高企、存货积压、兄弟公司亏损关联交易等)",
+        "与 FormFactor/Technoprobe 在高端 HBM/先进逻辑探针卡仍有技术代差",
+        "半导体周期下行时,晶圆厂 CapEx 砍单直接冲击订单",
+        "兄弟公司/关联方 IPO 前夜巨亏,存在历史资产腾挪与独立性质疑"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 800000000,
+      "deal_count_12m": 35,
+      "gartner_phase": "实质生产爬坡期(MEMS 探针卡国产化从 0 到 1 完成,进入 1 到 10 放量)",
+      "policy_tailwinds": [
+        "大基金三期 3440 亿重点投向半导体设备/材料",
+        "科创板第五套标准对半导体核心卡脖子环节倾斜",
+        "工信部《重点新材料首批次应用示范指导目录》将 MEMS 探针卡列入",
+        "长三角/苏州工业园区配套产业基金"
+      ],
+      "policy_headwinds": [
+        "美国 BIS 对先进制程设备出口管制,间接限制下游晶圆厂扩产",
+        "欧盟《芯片法案》补贴本土企业,挤压中国厂商出海空间",
+        "IPO 审核收紧,科创板财务门槛上移"
+      ],
+      "exit_window": "2025-12-29 科创板挂牌,当前处于解禁前锁定期;二级市场估值依赖 2025/2026 订单兑现",
+      "hot_keywords": ["MEMS 探针卡", "晶圆测试", "国产替代", "华为哈勃", "HBM 测试", "先进封装"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": 450000000
+    },
+    "extra_risks": [
+      {
+        "category": "客户集中度",
+        "description": "前五大客户营收占比较高,长电/通富/华虹若砍单直接冲击业绩",
+        "level": "medium",
+        "mitigation": "客户数扩至 400+,积极开拓设计公司(地平线/摩尔线程/韦尔/卓胜微)分散结构"
+      },
+      {
+        "category": "关联交易/独立性",
+        "description": "IPO 前夜兄弟公司巨亏、历史资产重组复杂,证监会多轮问询聚焦独立性",
+        "level": "high",
+        "mitigation": "第二轮问询函回复已专项披露,保荐人中信建投出具核查意见"
+      },
+      {
+        "category": "技术追赶",
+        "description": "高端 HBM/Advanced Logic 探针卡仍由 FormFactor/Technoprobe 垄断,国产厂商代差 1-2 代",
+        "level": "high",
+        "mitigation": "IPO 募资 12 亿南通项目用于 3D MEMS 垂直探针卡,对标 HBM 应用"
+      },
+      {
+        "category": "周期",
+        "description": "半导体周期下行时晶圆厂 CapEx 砍单,探针卡作为耗材波动放大",
+        "level": "medium",
+        "mitigation": "耗材属性(单张探针卡寿命有限)带来周期性弱化,设计客户拉动新增需求"
+      },
+      {
+        "category": "地缘",
+        "description": "美国出口管制升级可能波及 MEMS 工艺设备/原材料进口",
+        "level": "medium",
+        "mitigation": "供应链国产替代,核心 MEMS 工艺已自主化"
+      }
+    ]
+  }
+}

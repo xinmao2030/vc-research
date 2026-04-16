@@ -22,7 +22,11 @@ from typing import Any
 import httpx
 
 # 中概股公司名 → SEC CIK 映射 (手工维护小表;后续可用 ticker 搜索 API)
+#
+# 当前 6 家标杆(影石/澜起/银诺/比贝特/汉朔/强一)全在 A/H 股,无美股上市,
+# 本映射仅为未来接入美股中概股(蔚来/理想/小鹏/阿里/京东/拼多多)时保留基础设施。
 _COMPANY_TO_CIK: dict[str, str] = {
+    # 旧标杆(保留样例以便回归测试 sec_edgar_source 本身)
     "蔚来": "0001736541",
     "NIO Inc.": "0001736541",
     "NIO": "0001736541",
@@ -30,7 +34,6 @@ _COMPANY_TO_CIK: dict[str, str] = {
     "BeiGene": "0001651308",
     "BeOne Medicines": "0001651308",
     "BeOne": "0001651308",
-    # 未来可扩展:理想/小鹏/阿里/京东/拼多多等
 }
 
 

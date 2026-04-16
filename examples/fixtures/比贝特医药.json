@@ -1,0 +1,203 @@
+{
+  "sources_hit": [
+    "[招股书] 上交所披露 · 广州必贝特医药股份有限公司科创板首次公开发行股票招股说明书(注册稿) 2025-08-07 <https://static.sse.com.cn/stock/disclosure/announcement/c/202508/001274_20250807_7YQ5.pdf>",
+    "[保荐书] 中信证券关于广州必贝特医药科创板上市发行保荐书 2025-08-07 <http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2025/2025-8/2025-08-07/11286448.PDF>",
+    "[公告] 必贝特发行安排及初步询价公告 2025-10-09 <https://stockmc.xueqiu.com/202510/688759_20251009_3RAU.pdf>",
+    "[公告] 必贝特科创板上市公告书提示性公告 2025-10-27 <http://static.cninfo.com.cn/finalpage/2025-10-27/1224737968.PDF>",
+    "[新闻] 腾讯新闻 · 必贝特科创板上市:无营收,半年亏7389万,募资16亿,公司市值140亿 2025-10-28 <https://news.qq.com/rain/a/20251028A03XJI00>",
+    "[新闻] 上海证券报 · 必贝特:专注创新药自主研发 力争成为具有国际竞争力的生物制药企业 2025-10-17 <https://paper.cnstock.com/html/2025-10/17/content_2131964.htm>",
+    "[研报] 华金证券新股覆盖研究:必贝特 2025-10-10 <https://pdf.dfcfw.com/pdf/H3_AP202510111760197081_1.pdf>",
+    "[新闻] 证券时报 · 从必贝特医药IPO发行看中国一类创新药的破晓之路 <https://www.stcn.com/article/detail/3378135.html>",
+    "[新闻] 新浪财经 · 必贝特艰难上市路:商业化产品难产又踩雷天职国际 2024-12-26 <https://finance.sina.com.cn/stock/observe/2024-12-26/doc-ineauqsr1181707.shtml>",
+    "[官网] 广州必贝特医药官网 <http://www.bebettermed.cn/> / <http://www.bebettermed.com/>"
+  ],
+  "itjuzi": {
+    "legal_name": "广州必贝特医药股份有限公司 (Guangzhou BeBetter Medicine Technology Co., Ltd.)",
+    "stock_code": "688759.SH",
+    "short_name": "必贝特-U",
+    "founded_date": "2012-01-19",
+    "headquarters": "广州 (广东省广州市黄埔区/中新广州知识城)",
+    "region": "中国",
+    "industry": "医药",
+    "sub_industry": "小分子创新药 (肿瘤/自免/代谢, HDAC+PI3K/CDK4/6/EGFR)",
+    "business_model": "自主研发 First-in-Class 和临床紧缺创新药,靶向小分子新药授权/销售,肿瘤为核心管线",
+    "stage": "ipo",
+    "employee_count": 154,
+    "one_liner": "科创板第五套标准创新药公司,核心产品 BEBT-908 为全球首创 HDAC/PI3Kα 双靶点抗肿瘤药,已于 2025 年获批上市",
+    "founders": [
+      {
+        "name": "钱长庚",
+        "title": "创始人/董事长/总经理/实控人",
+        "background": "国家重大人才工程特聘专家,美籍华人,30+ 年国际创新药研发经验(曾在美国 Tanabe Research/Pharmacopeia/Jiangsu Hengrui 等),合计控制 43.96% 股份,BEBT-908 共同发明人",
+        "equity_pct": 0.4396
+      },
+      {
+        "name": "蔡雄",
+        "title": "联合创始人/首席科学官",
+        "background": "资深药物化学家,BEBT-908 共同发明人,主导多靶点小分子设计平台",
+        "equity_pct": null
+      },
+      {
+        "name": "熊燕",
+        "title": "副董事长",
+        "background": "资本运作背景,招股期间因多位朋友隐名入股迷局被媒体质疑",
+        "equity_pct": null
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2020-06-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["广州越秀新兴产业二期投资基金", "国科嘉和", "瑞享源基金"],
+        "notes": "A 轮引入越秀产业基金作为重要外部机构股东;具体金额未完全披露"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2021-11-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 600000000,
+        "lead_investors": [
+          "盈科资本",
+          "天士力控股",
+          "朗玛峰创投",
+          "粤民投",
+          "中信证券投资",
+          "凌越资本",
+          "三美投资",
+          "小明投资",
+          "前海贝增",
+          "蚁米基金",
+          "弘陶资本",
+          "东方汇昇",
+          "中广投资",
+          "湘医投基金",
+          "前海长城",
+          "乾道基金",
+          "中科科创",
+          "高瑞资本",
+          "湾区资管",
+          "高信资本"
+        ],
+        "notes": "Pre-IPO / B 轮,投后估值约 38.42 亿元人民币(~6 亿美元),投资机构阵容庞大"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2025-10-28",
+        "amount_usd": 225000000,
+        "post_money_valuation_usd": 1970000000,
+        "lead_investors": ["中信证券 (保荐/主承销)", "国信证券 (联席主承销)"],
+        "notes": "科创板第五套标准上市,发行价 17.78 元/股,发行 9000 万股,募资总额 16 亿元(~2.25 亿美元),发行市值约 140 亿元(~19.7 亿美元),首日收涨 74.41% 首日成交 11.07 亿元"
+      }
+    ],
+    "thesis": {
+      "team_score": 7,
+      "team_notes": "创始人钱长庚为国家重大人才工程专家,具备 30+ 年海外大药企新药研发经验;核心研发团队 116 人,博士 11/硕士 21,研发人员占比 75%+;但委外研发费用占比超 70%,自主产能偏弱,副董事长熊燕存在隐名入股争议",
+      "market": {
+        "tam_usd": 180000000000,
+        "sam_usd": 25000000000,
+        "som_usd": 2000000000,
+        "growth_rate": 0.11
+      },
+      "moat": "全球首创 HDAC/PI3Kα 双靶点平台(BEBT-908);多靶点小分子设计能力;11 款 First-in-Class 候选药物覆盖 19 个适应症,33 个临床批件;科创板第五套标准稀缺标的",
+      "unit_economics": {
+        "gross_margin": null,
+        "payback_months": null
+      },
+      "growth": {
+        "arr_usd": 0,
+        "yoy_growth": null,
+        "mau": null,
+        "gmv_usd": 0
+      },
+      "competitors": [
+        "复星凯瑞 (阿基仑赛 r/r DLBCL)",
+        "药明巨诺 (瑞基奥仑赛)",
+        "恒润达生 (雷尼基奥仑赛)",
+        "罗氏 (格菲妥单抗)",
+        "德琪医药 (塞利尼索)",
+        "瓴路药业/Therapeutics (替朗妥昔单抗)",
+        "辉瑞 (Ibrance/哌柏西利 CDK4/6)",
+        "礼来 (Verzenio/阿贝西利 CDK4/6)",
+        "恒瑞医药 (羟乙磺酸达尔西利 CDK4/6)",
+        "阿斯利康 (奥希替尼 三代 EGFR)",
+        "贝达药业 (贝福替尼)",
+        "翰森制药 (阿美替尼)"
+      ],
+      "bull": [
+        "BEBT-908 为全球首个 HDAC/PI3Kα 双靶点抑制剂,2025-06-30 获 CDE 附条件批准上市(r/r DLBCL 三线及以上),商业化元年启动",
+        "BEBT-209 (CDK4/6) 处于 III 期临床,瞄准晚期乳腺癌,国产 CDK4/6 赛道放量期",
+        "BEBT-109 (泛突变 EGFR) 已获 III 期临床批件,对标奥希替尼,2027 有望获批",
+        "科创板第五套标准重启后首批获批,IPO 募资 16 亿为后续研发投入提供资金",
+        "首日收涨 74.41%,二级市场反馈积极"
+      ],
+      "bear": [
+        "目前无营业收入,2022-2024 连年亏损(1.88/1.73/0.56 亿元),2025H1 再亏 7389 万元",
+        "研发费用中委外研发占比超 70%,核心技术独立性存疑,核心产品部分技术源自授权专利",
+        "BEBT-908 适应症 r/r DLBCL 已有 CAR-T/双抗/ADC 6 款竞品,后线商业化天花板有限",
+        "CDK4/6 和三代 EGFR 赛道红海,国产竞品均已上市,BEBT-209/109 临床差异化证据不足",
+        "实控人钱长庚为美籍,副董事长熊燕朋友圈隐名入股遭监管和媒体质疑,审计机构天职国际被立案",
+        "百亿估值对应零营收,估值消化压力大,解禁后抛压风险高"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 8500000000,
+      "deal_count_12m": 380,
+      "gartner_phase": "期望膨胀期回落至低谷期(小分子创新药),复苏期(双靶点/多特异性)",
+      "policy_tailwinds": [
+        "科创板第五套标准重启,支持未盈利创新药公司上市",
+        "CDE 附条件批准/突破性疗法/优先审评加速通道",
+        "国家医保谈判常态化,创新药纳入医保路径清晰",
+        "《十四五医药工业发展规划》持续支持 First-in-Class"
+      ],
+      "policy_headwinds": [
+        "医保谈判价格压力(First-in-Class 议价空间被压缩)",
+        "带量采购向创新药边界靠近,仿制替代加速",
+        "美籍实控人背景下的中美科技/数据监管风险",
+        "集采与 DRG 支付改革对新药放量节奏形成压制"
+      ],
+      "exit_window": "已 IPO (2025-10-28 科创板),后续看 BEBT-908 销售爬坡 + BEBT-209/109 III 期读数",
+      "hot_keywords": ["First-in-Class", "双靶点", "HDAC", "PI3K", "CDK4/6", "EGFR", "r/r DLBCL", "科创板第五套"]
+    },
+    "financials": {
+      "revenue_usd_ttm": 0,
+      "net_loss_usd_ttm": 8000000,
+      "burn_rate_usd_monthly": 1700000,
+      "cash_usd": 240000000,
+      "notes": "2022/2023/2024 净亏损 1.88/1.73/0.56 亿元人民币,2025H1 亏 7389 万元;无营收;IPO 募资净额 14.91 亿元;现金含 IPO 募资后估算 ~17 亿元人民币"
+    },
+    "extra_risks": [
+      {
+        "category": "商业化",
+        "description": "BEBT-908 为公司唯一获批产品,适应症 r/r DLBCL 后线市场空间有限且面临 CAR-T/双抗 6 款竞品,商业化天花板和放量速度均待验证",
+        "level": "high",
+        "mitigation": "拓展更多适应症(实体瘤、联合用药),推进学术推广网络,寻求 BD 合作出海"
+      },
+      {
+        "category": "研发",
+        "description": "委外研发费用占比 70%+,核心技术部分源自授权专利,自主研发独立性受质疑;BEBT-209/109 面临成熟赛道红海",
+        "level": "high",
+        "mitigation": "加强内部 CMC 和临床团队建设,差异化适应症选择,重点突破一线治疗"
+      },
+      {
+        "category": "治理",
+        "description": "副董事长熊燕多位朋友隐名入股问题,审计机构天职国际被立案,实控人钱长庚美籍身份,公司治理和外部审计独立性存在监管关注",
+        "level": "medium",
+        "mitigation": "更换审计机构,补充信披,规范股权代持清理"
+      },
+      {
+        "category": "财务",
+        "description": "零营收状态下发行市值 140 亿元,估值倍数高,解禁后流通盘扩大对股价压力大",
+        "level": "medium",
+        "mitigation": "加速 BEBT-908 入院和医保谈判,尽早兑现收入"
+      },
+      {
+        "category": "监管",
+        "description": "中美关系与美籍实控人身份叠加,潜在生物医药领域数据/技术出境审查风险",
+        "level": "medium",
+        "mitigation": "保持数据境内合规,减少对美国临床数据和设备依赖"
+      }
+    ]
+  }
+}

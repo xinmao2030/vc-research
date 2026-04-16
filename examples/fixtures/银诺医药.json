@@ -1,0 +1,168 @@
+{
+  "sources_hit": [
+    "[招股书] 港交所披露易 · 广州银诺医药集团 (2591.HK) 2025 年 IPO 招股章程 <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0807/2025080700014_c.pdf>",
+    "[聆讯资料] 港交所披露易 · 银诺医药 PHIP 2025-08-14 <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0814/2025081401623_c.pdf>",
+    "[官网] 广州银诺医药集团 <https://www.innogenpharm.com/>",
+    "[融资聚合] 医药魔方 ByDrug · 银诺医药企业档案 <https://bydrug.pharmcube.com/investgo/company/detail/d4a2aba685c743a60ad5833fb2107e30>",
+    "[融资聚合] 动脉网 VBData · 广州银诺医药集团 <https://www.vbdata.cn/companyDetail/8f140b7ce13ad10b1e9420afd1a69007>",
+    "[新闻] 36Kr · 国产司美格鲁肽刚刚 IPO 了 <https://36kr.com/p/3423475877612932>",
+    "[新闻] SCMP · Innogen shares soar in HK trading debut (2025-08-15) <https://www.scmp.com/business/banking-finance/article/3321922>",
+    "[新闻] Bloomberg · Chinese drugmaker triples in HK's best trading debut (2025-08-15)",
+    "[临床] Diabetologia · SUPER1 Phase IIb/III trial of efsubaglutide alfa <https://link.springer.com/article/10.1007/s00125-025-06593-2>",
+    "[临床] PubMed · Biweekly dosing of efsubaglutide alfa (SUPER2) <https://pubmed.ncbi.nlm.nih.gov/41208635/>",
+    "[流行病学] The Lancet Diabetes & Endocrinology 2025 · Obesity in China <https://www.thelancet.com/journals/landia/article/PIIS2213-8587(25)00357-2/abstract>",
+    "[市场] Grand View Research · China GLP-1 Receptor Agonist Market Outlook 2033"
+  ],
+  "itjuzi": {
+    "legal_name": "广州银诺医药集团股份有限公司 (Guangzhou Innogen Pharmaceutical Group Co., Ltd.)",
+    "founded_date": "2014-12-01",
+    "headquarters": "广州 (生物岛 · 黄埔区)；商业化生产基地在上海临港",
+    "region": "中国",
+    "industry": "医药",
+    "sub_industry": "GLP-1 创新药",
+    "business_model": "18A 生物科技 · 核心产品依苏帕格鲁肽α(怡诺轻)商业化销售 + 在研管线(肥胖/MASH)授权+自营",
+    "stage": "ipo",
+    "employee_count": 180,
+    "one_liner": "亚洲首款原研人源长效 GLP-1 受体激动剂(半衰期 204h)商业化公司,聚焦糖尿病+肥胖+MASH",
+    "founders": [
+      {
+        "name": "王庆华 (Wang Qinghua)",
+        "title": "创始人/董事长/总经理/依苏帕格鲁肽α 发明人",
+        "background": "加拿大籍华人科学家,65 岁;多伦多大学生理系博士后(1999-2002)→助理教授(2001-2007)→副教授(2007-2013) 终身教职;圣迈克尔医院 Li Ka Shing 知识研究所/内分泌代谢科高级科学家(2008-);国家特聘专家,十二五/十三五'重大新药创制'项目首席科学家;2014 年放弃终身教职回国创办银诺,带回十余年 GLP-1 分子工程研究成果",
+        "equity_pct": 0.36
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "pre_a",
+        "announce_date": "2021-03-01",
+        "amount_usd": 33000000,
+        "post_money_valuation_usd": 102000000,
+        "lead_investors": ["中金资本", "广州产投"],
+        "notes": "2.16 亿 RMB Pre-A,投后 6.66 亿 RMB(约 1.02 亿 USD @6.5汇率)"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2022-02-01",
+        "amount_usd": 110000000,
+        "post_money_valuation_usd": 418000000,
+        "lead_investors": ["江阴国调洪泰", "中金资本", "广州产投"],
+        "notes": "7.16 亿 RMB A 轮,投后 27.16 亿 RMB;PreA→A 估值 4 倍抬升"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2023-03-01",
+        "amount_usd": 51000000,
+        "post_money_valuation_usd": 605000000,
+        "lead_investors": ["上海诺临医药", "产业投资方"],
+        "notes": "3.31 亿 RMB B 轮,投后 39.3 亿 RMB"
+      },
+      {
+        "stage": "b_plus",
+        "announce_date": "2024-02-01",
+        "amount_usd": 38000000,
+        "post_money_valuation_usd": 715000000,
+        "lead_investors": ["原有股东跟投"],
+        "notes": "2.5 亿 RMB B+ 轮,投后 46.5 亿 RMB,上市前最后一轮,累计四轮融资 15.58 亿 RMB"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2025-08-15",
+        "amount_usd": 87000000,
+        "post_money_valuation_usd": 3360000000,
+        "lead_investors": ["中信证券 (联席保荐)", "中金公司 (联席保荐)", "基石:骏昇环球 / Ginkgo Fund / 迈富时(2556.HK) / 邓海峰 / 黎慧凤"],
+        "notes": "港股 18A 主板 02591.HK,发行价 18.68 HKD,全球发售 3655.64 万股,募资 6.83 亿 HKD(~$87M);开盘 72 HKD(+285%),收盘 57.25 HKD(+206%),市值约 261.5 亿 HKD(~$33.6B HKD ≈ $4.3B USD 开盘/$3.36B 收盘);新回拨机制第一股;孖展超购 3133 倍,认购 26 万人"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "创始人王庆华多伦多大学终身教授+国家特聘专家,GLP-1 分子工程十余年积累;投资方反馈:董监高团队仅董事长为初创成员,中高层商业化经验相对薄弱;研发驱动 > 销售驱动;35.07% 集中控股保证决策一致性",
+      "market": {
+        "tam_usd": 157500000000,
+        "sam_usd": 6300000000,
+        "som_usd": 500000000,
+        "growth_rate": 0.143
+      },
+      "moat": "亚洲首款+全球第三款原研人源长效 GLP-1 受体激动剂(此前仅诺和诺德/礼来);半衰期 204 小时全球已上市 GLP-1 中最长,支持双周给药(SUPER2 试验 HbA1c -1.45% 双周 vs -1.53% 周);NMPA 2025-01-26 获批 2 型糖尿病;人源序列(非类似肽) 免疫原性潜在优势;1 项核心专利+管线梯队(肥胖/MASH/减重 ENLIGHT 试验)",
+      "unit_economics": {
+        "gross_margin": 0.80,
+        "payback_months": 36
+      },
+      "growth": {
+        "arr_usd": 0,
+        "yoy_growth": 0,
+        "mau": 0,
+        "gmv_usd": 0
+      },
+      "competitors": ["诺和诺德 (Ozempic/Wegovy 司美格鲁肽)", "礼来 (Mounjaro/Zepbound 替尔泊肽)", "信达生物 (玛仕度肽 Mazdutide)", "恒瑞医药 (HRS9531)", "先为达生物 (Ecnoglutide 伊诺格鲁肽)", "华东医药 (利拉鲁肽仿制+自研)", "博瑞医药", "联邦制药"],
+      "bull": [
+        "中国糖尿病患者 1.4 亿 + 超重/肥胖 >50% 成年人,Lancet 2025 预测中国 GLP-1 市场 2033 达 63 亿 USD CAGR 14.3%",
+        "依苏帕格鲁肽α 2025-01 获批并已在上海临港基地准备商业化,IPO 募资 90% 用于临床+商业化上量",
+        "204h 半衰期支持月度/双周剂型,差异化跑道+潜在国际 BD 授权空间",
+        "港交所 IPO 超购 3133 倍+首日 +206% 反映市场对 GLP-1 赛道热情,打开后续定增/权益融资通道"
+      ],
+      "bear": [
+        "2022-2024 累计亏损超 11 亿 RMB,2023 净亏 7.33 亿/2024 前 5 个月亏 9788 万 RMB,2024 年估值较 B+ 轮递表前一度下滑 37%",
+        "单产品依赖风险极高:怡诺轻占全部收入来源,而同赛道司美格鲁肽专利 2026 年起陆续到期,国内仿制药海啸在即",
+        "商业化团队薄弱:董监高仅创始人是初创成员,缺少诺和/礼来级别的代谢病销售操盘手",
+        "与礼来替尔泊肽/诺和司美格鲁肽 SELECT 心血管结局数据相比,银诺缺乏大规模头对头+长期硬终点数据",
+        "IPO 前战投方低价减持信号,PE 对短期商业化兑现能力存疑"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3500000000,
+      "deal_count_12m": 45,
+      "gartner_phase": "过热期顶峰 (全球 GLP-1 减重热潮);中国市场处启动期 → 泡沫期过渡",
+      "policy_tailwinds": [
+        "健康中国 2030 糖尿病/肥胖防治纳入核心指标",
+        "NMPA 加速审评创新药(突破性治疗品种)",
+        "国家医保谈判向原研创新药倾斜",
+        "港交所 18A 未盈利生物科技通道持续开放"
+      ],
+      "policy_headwinds": [
+        "医保集采压价预期(司美格鲁肽 2026+ 进集采概率高)",
+        "GLP-1 电商推广合规收紧(超适应症宣传面临处罚)",
+        "减肥药非治疗用途使用的伦理/监管争议",
+        "FDA/EMA 出海需额外全球 III 期,投入巨大"
+      ],
+      "exit_window": "已 IPO(2025-08-15 港股 02591.HK),6 个月基石+战投锁定期至 2026-02;早期 PE 通过 IPO 退出通道打开",
+      "hot_keywords": ["GLP-1", "减重", "司美格鲁肽", "替尔泊肽", "长效", "MASH", "18A", "人源多肽"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 2500000,
+      "cash_usd": 135000000
+    },
+    "extra_risks": [
+      {
+        "category": "产品",
+        "description": "单产品依赖 — 依苏帕格鲁肽α 占全部潜在收入,若商业化放量不及预期或遭遇司美格鲁肽仿制海啸(2026+),公司现金流承压",
+        "level": "high",
+        "mitigation": "加速肥胖适应症 III 期 ENLIGHT 读出;推进 MASH 适应症拓展;寻求海外 license-out 授权分散单市场风险"
+      },
+      {
+        "category": "竞争",
+        "description": "GLP-1 赛道卷成红海 — 信达玛仕度肽/恒瑞 HRS9531/先为达伊诺格鲁肽/博瑞/华东等十余家国产对手,叠加诺和/礼来品牌护城河",
+        "level": "high",
+        "mitigation": "主打 204h 超长效差异化(月度剂型路径);聚焦中国三四线城市渗透;加强学术推广+真实世界数据积累"
+      },
+      {
+        "category": "商业化",
+        "description": "初创团队偏研发,销售渠道建设+医保准入经验有限,董监高仅创始人为初创成员",
+        "level": "medium",
+        "mitigation": "IPO 后引进 MNC 背景销售/市场准入 VP;与 CSO/连锁药房/互联网医疗合作加速渗透"
+      },
+      {
+        "category": "财务",
+        "description": "累计亏损 >11 亿 RMB,2025 商业化爬坡期烧钱加剧,现金储备需覆盖至少 3 年盈亏平衡",
+        "level": "medium",
+        "mitigation": "IPO 募资 6.1 亿 HKD 净额 + B+ 轮剩余现金 ~9.69 亿 RMB;严控三费;后续可能需增发/BD 首付款补流"
+      },
+      {
+        "category": "监管",
+        "description": "医保集采+超适应症宣传合规风险,FDA 出海需重复大规模 III 期投入",
+        "level": "medium",
+        "mitigation": "合规培训 + 电商监控;出海优先东南亚/中东/拉美等医保体系较友好市场"
+      }
+    ]
+  }
+}

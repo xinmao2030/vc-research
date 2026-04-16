@@ -170,32 +170,46 @@ def test_format_money_en(amount, expected: str) -> None:
 # ─────────────────── 6. 数值正确性断言 ────────────────
 # 固定标杆案例的估值区间,保证未来重构不会意外改变关键数字
 BENCHMARKS = {
-    "字节跳动": {
-        "rounds": 7,
-        "latest_valuation_usd": Decimal("268000000000"),
-        "verdict": "推荐",
-        "overall_risk": "high",  # TikTok 监管风险
-        "stage": FundingStage.SECONDARY,
-    },
-    "商汤科技": {
+    "影石创新": {
         "rounds": 6,
-        "latest_valuation_usd": Decimal("16500000000"),
+        "latest_valuation_usd": Decimal("9800000000"),
         "verdict": "观望",
-        "overall_risk": "critical",  # 实体清单
+        "overall_risk": "high",  # GoPro 337 诉讼 + 海外依赖
         "stage": FundingStage.IPO,
     },
-    "蔚来": {
-        "rounds": 8,
-        "latest_valuation_usd": Decimal("14000000000"),
-        "verdict": "推荐",
-        "overall_risk": "medium",
-        "stage": FundingStage.STRATEGIC,
-    },
-    "小米": {
+    "澜起科技": {
         "rounds": 6,
-        "latest_valuation_usd": Decimal("54000000000"),
+        "latest_valuation_usd": Decimal("28000000000"),
+        "verdict": "观望",
+        "overall_risk": "high",  # 美国制裁传导 + 下游 DRAM 周期
+        "stage": FundingStage.SECONDARY,  # 2026-01 A+H 挂牌
+    },
+    "银诺医药": {
+        "rounds": 5,
+        "latest_valuation_usd": Decimal("3360000000"),
         "verdict": "推荐",
-        "overall_risk": "high",  # 供应链 + 汽车监管
+        "overall_risk": "high",  # GLP-1 红海竞争 + 单品依赖
+        "stage": FundingStage.IPO,
+    },
+    "比贝特医药": {
+        "rounds": 3,
+        "latest_valuation_usd": Decimal("1970000000"),
+        "verdict": "推荐",
+        "overall_risk": "high",  # 管线尚未商业化
+        "stage": FundingStage.IPO,
+    },
+    "汉朔科技": {
+        "rounds": 6,
+        "latest_valuation_usd": Decimal("3920000000"),
+        "verdict": "回避",
+        "overall_risk": "high",  # 海外收入 94% 贸易战风险
+        "stage": FundingStage.IPO,
+    },
+    "强一股份": {
+        "rounds": 6,
+        "latest_valuation_usd": Decimal("1530000000"),
+        "verdict": "回避",
+        "overall_risk": "high",  # 探针卡海外龙头垄断
         "stage": FundingStage.IPO,
     },
 }
@@ -280,10 +294,10 @@ def test_crunchbase_fallback_when_itjuzi_missing(tmp_path) -> None:
 
 def test_dilution_accumulates_across_rounds() -> None:
     """稀释链: 6 轮累计稀释应 > 单轮稀释且 < 1 (retention 不能为 0)."""
-    raw = DataAggregator(use_fixtures=True).fetch("字节跳动")
+    raw = DataAggregator(use_fixtures=True).fetch("影石创新")
     funding = analyze_funding(raw)
     assert funding.dilution_estimate is not None
-    # 6 轮按 10-22% 稀释累乘,总稀释应在 50-80% 合理区间
+    # 6 轮按 10-22% 稀释累乘,总稀释应在 30-80% 合理区间
     assert 0.3 < funding.dilution_estimate < 0.95, (
         f"6 轮累计稀释 {funding.dilution_estimate:.2%} 超出合理区间"
     )
@@ -291,11 +305,9 @@ def test_dilution_accumulates_across_rounds() -> None:
 
 def test_valuation_degrades_gracefully_with_no_industry() -> None:
     """行业倍数缺失降级: industry=None 时仍能产出估值 (走 _INDUSTRY_DEFAULT 兜底)."""
-    raw = DataAggregator(use_fixtures=True).fetch("字节跳动")
+    raw = DataAggregator(use_fixtures=True).fetch("影石创新")
     funding = analyze_funding(raw)
     thesis = analyze_thesis(raw)
-    # 不传 industry 参数
     v = analyze_valuation(funding, thesis, industry=None)
-    # 字节有 latest_valuation,所以至少"最近一轮锚点"方法能工作
     assert len(v.methods) >= 1
     assert v.fair_value_high_usd > 0, "锚点法应兜底产出非零估值"

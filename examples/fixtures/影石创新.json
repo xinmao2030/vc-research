@@ -1,0 +1,174 @@
+{
+  "sources_hit": [
+    "[招股书] 上交所科创板 · 影石创新 (688775.SH) 上市公告书 <http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=688775&id=11171117>",
+    "[招股书] 上交所 · 影石创新首次公开发行股票并在科创板上市招股说明书 <https://www.fxbaogao.com/detail/4884553>",
+    "[新闻] 36Kr · 影石创新科创板上市:市值710亿 IDG 启明 迅雷收获IPO (2025-06-11) <https://www.36kr.com/p/3332076645935619>",
+    "[新闻] 证券时报 · 科创板首位90后敲钟 影石创新上市首日市值破700亿 (2025-06-11) <https://www.stcn.com/article/detail/1967325.html>",
+    "[新闻] 新浪财经 · 影石创新科创板上市 Q1营收13.6亿 (2025-06-11) <https://finance.sina.com.cn/tech/csj/2025-06-11/doc-inezsqme4739051.shtml>",
+    "[百科] Wikipedia · Insta360 (EN) <https://en.wikipedia.org/wiki/Insta360>",
+    "[融资聚合] Crunchbase · Insta360 <https://www.crunchbase.com/organization/insta360>",
+    "[融资聚合] Tracxn · Insta360 Funding and Investors <https://tracxn.com/d/companies/insta360>",
+    "[新闻] 21世纪经济报道 · 影石创新IPO监管离职人员入股始末 (2025-03-03) <https://www.21jingji.com/article/20250303/herald/268277aa3e88eacb2eb5d3ed4f05f6ef.html>",
+    "[新闻] 知产财经 · ITC初裁认定影石Insta360不侵权GoPro (2025-07) <https://www.ipeconomy.cn/yaowen/9590.html>",
+    "[官网] Insta360 <https://www.insta360.com>"
+  ],
+  "itjuzi": {
+    "legal_name": "影石创新科技股份有限公司 (Arashi Vision Inc. / Insta360)",
+    "founded_date": "2015-07-01",
+    "headquarters": "深圳",
+    "region": "中国",
+    "industry": "硬件",
+    "sub_industry": "消费电子 - 全景/运动相机",
+    "business_model": "硬件销售为主(全景相机+运动相机+拇指相机) + 配件/软件订阅 + 海外电商与渠道分销",
+    "stage": "ipo",
+    "employee_count": 4100,
+    "one_liner": "全球全景相机市占率第一的智能影像公司,以消费级 360 度相机和运动相机切入 vlog/极限运动市场",
+    "founders": [
+      {
+        "name": "刘靖康 (JK Liu)",
+        "title": "创始人/董事长/CEO",
+        "background": "1991 年生,广东中山人,南京大学软件学院 2014 届;2012 年破解周鸿祎电话号码/校园网漏洞在校内出名;2014 年获 IDG 资本百万美元天使投资,2015 年 7 月创办影石;34 岁成为科创板首位 90 后上市公司董事长",
+        "equity_pct": 0.276
+      },
+      {
+        "name": "陈永强",
+        "title": "联合创始人/首席行政官",
+        "background": "1991 年生,刘靖康大三在广州'超级课程表'实习时结识的合伙人,持有岚锋平台 5.93%",
+        "equity_pct": 0.02
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "angel",
+        "announce_date": "2015-03-01",
+        "amount_usd": 1000000,
+        "post_money_valuation_usd": 5000000,
+        "lead_investors": ["IDG 资本"],
+        "notes": "IDG 以约 $1M 获 20% 股权,刘靖康在校期间拿到的天使轮"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2015-12-01",
+        "amount_usd": 5000000,
+        "post_money_valuation_usd": 30000000,
+        "lead_investors": ["启明创投", "IDG 资本"],
+        "notes": "Series A,具体金额未披露,按行业惯例估算"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2016-04-13",
+        "amount_usd": 15000000,
+        "post_money_valuation_usd": 100000000,
+        "lead_investors": ["迅雷", "苏宁易购", "Frees Fund 峰瑞资本"],
+        "notes": "迅雷以战略投资者身份入局,同期苏宁 2016-08 追投"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2019-03-19",
+        "amount_usd": 30000000,
+        "post_money_valuation_usd": 300000000,
+        "lead_investors": ["MG Holding", "郎玛峰创投"],
+        "notes": "Crunchbase 披露 C 轮 $30M,公司进入独角兽前夜"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2020-04-21",
+        "amount_usd": 50000000,
+        "post_money_valuation_usd": 1000000000,
+        "lead_investors": ["中信证券", "国投招商", "基石资本", "金石投资", "GAIN Capital"],
+        "notes": "Pre-IPO 轮,首次跨过独角兽门槛;同年 10 月首次申报科创板"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2025-06-11",
+        "amount_usd": 270000000,
+        "post_money_valuation_usd": 9800000000,
+        "lead_investors": ["中信证券 (保荐主承销)"],
+        "notes": "发行价 47.27 元/股,募资 19.38 亿元 (约 $270M),发行 4100 万股;开盘 182 元大涨 285%,上市首日市值超 700 亿元 (~$98 亿);2025-08 市值一度突破 1200 亿元"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "刘靖康是少有的'能写代码+懂硬件+能做海外品牌'的 90 后复合型创始人,核心团队从 2015 年一起走到 IPO 稳定度极高;管理层平均年龄不到 35,研发人员占比 57% 以上",
+      "market": {
+        "tam_usd": 12000000000,
+        "sam_usd": 4000000000,
+        "som_usd": 1000000000,
+        "growth_rate": 0.20
+      },
+      "moat": "全景相机全球市占率第一 (Frost & Sullivan 披露 2023 年约 67%,数据待原文交叉) + 自研防抖/拼接算法 + Leica 联合品牌 + 海外电商与网红营销体系 + 700+ 专利组合 (与 GoPro 对抗的底气)",
+      "unit_economics": {
+        "gross_margin": 0.52,
+        "payback_months": 6
+      },
+      "growth": {
+        "arr_usd": 780000000,
+        "yoy_growth": 0.53,
+        "mau": 10000000,
+        "gmv_usd": 780000000
+      },
+      "competitors": ["GoPro", "大疆 DJI (Osmo 系列)", "理光 Ricoh Theta", "Garmin", "Sony Action Cam"],
+      "bull": [
+        "2024 年营收 55.74 亿元 (约 $780M) 同比 +53%,净利 9.95 亿元连续 3 年盈利,IPO 前已自给自足",
+        "全景相机全球市占率第一,X4/GO 3S/Ace Pro 多产品线覆盖 vlog/运动/VR 全场景",
+        "海外收入占比 76%-80%,北美/欧洲/日本渠道深厚,美元回流 + 天然对冲人民币汇率",
+        "2025-07 ITC 337 调查初裁:GoPro 五项实用专利全部被判不侵权或无效,海外扩张法律风险大幅出清",
+        "NASA 火星直播 + Emmy 奖 + Apple Store 渠道,品牌溢价在全球消费电子里极少见"
+      ],
+      "bear": [
+        "2024 年海外销售占比 80% 叠加对美销售,关税/337/实体清单任一加剧都会重创利润",
+        "大疆 2024 Osmo Pocket 3/Action 5 Pro 强势反攻,运动相机端面临中国对手正面内卷",
+        "Q1 2025 营收 13.55 亿 +40.7% 但运营利润同比 -15%,毛利承压信号需要观察",
+        "2020 年首次申报到 2025 年注册获批耗时 4 年余 (监管离职人员陈斌间接入股问题),治理瑕疵在二级市场会被放大审视",
+        "IPO 前曾多轮老股转让,创始人及机构减持窗口开启后存在供给冲击"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 500000000,
+      "deal_count_12m": 20,
+      "gartner_phase": "增长期 (全景相机+消费级 VR 内容生产);复苏期 (运动相机整体)",
+      "policy_tailwinds": [
+        "科创板对硬科技+出海型企业的通道支持",
+        "深圳对消费电子出海与供应链本地化补贴",
+        "国家鼓励自主品牌出海与跨境电商政策"
+      ],
+      "policy_headwinds": [
+        "美国 337 调查/特朗普 2.0 关税政策对中国消费电子出口压力",
+        "欧盟 CE / GDPR 合规成本持续上升",
+        "A 股减持新规对实控人及机构股东退出的约束"
+      ],
+      "exit_window": "已 IPO (科创板 688775),2025-06-11 上市首日市值 ~$98 亿,锁定期结束后关注大股东减持节奏",
+      "hot_keywords": ["全景相机", "运动相机", "vlog", "出海", "Leica", "AI 影像", "拇指相机"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": 500000000
+    },
+    "extra_risks": [
+      {
+        "category": "地缘/关税",
+        "description": "海外收入占比 76%-80%,其中北美是最大单一市场,受中美关税与出口管制冲击最大",
+        "level": "high",
+        "mitigation": "越南/泰国产能外迁 + 欧日市场结构优化 + 直面 ITC 诉讼并反诉 GoPro 争取对等博弈筹码"
+      },
+      {
+        "category": "竞争",
+        "description": "大疆 Osmo 产品线在运动相机端正面抢夺,GoPro 虽衰仍握有设计专利",
+        "level": "medium",
+        "mitigation": "专注全景+拇指相机差异化赛道,Leica 联合品牌守住高端;加速 AI 剪辑软件生态护城河"
+      },
+      {
+        "category": "治理",
+        "description": "监管离职人员陈斌 2018 年突击入股问题拖累 IPO 4 年,二级市场对信息披露仍存疑虑",
+        "level": "medium",
+        "mitigation": "注册阶段已清理敏感股东,上市后坚持季度合规披露节奏,重塑市场信任"
+      },
+      {
+        "category": "知识产权",
+        "description": "GoPro 六项专利 337 调查剩余一项设计专利初裁侵权,2025-11 终裁结果待定",
+        "level": "medium",
+        "mitigation": "已提交新外观设计方案获 ITC 确认不侵权;同时在江苏高院/深圳中院/长沙中院反诉 GoPro 索赔累计约 1.9 亿元"
+      }
+    ]
+  }
+}

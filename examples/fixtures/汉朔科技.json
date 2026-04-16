@@ -1,0 +1,175 @@
+{
+  "sources_hit": [
+    "[招股书] 深交所创业板 · 汉朔科技 (301275.SZ) 投资风险特别公告 2025-02-27 <https://static.cninfo.com.cn/finalpage/2025-02-27/1222650635.PDF>",
+    "[年报] 汉朔科技 2024 年年度报告摘要 (2025-04-25) <https://file.finance.qq.com/finance/hs/pdf/2025/04/25/1223277393.PDF>",
+    "[官网] Hanshow Technology <https://www.hanshow.com/en/company>",
+    "[新闻] 36Kr · 前华为员工创办的汉朔科技上市 (2025-03-11) <https://36kr.com/p/3201802989675009>",
+    "[新闻] 新浪财经 · 汉朔科技 2024 年营收 44.86 亿 (2025-04-25) <https://finance.sina.com.cn/jjxw/2025-04-25/doc-ineuivrw1429981.shtml>",
+    "[新闻] 证券时报 · 汉朔科技成功上市 <https://www.stcn.com/article/detail/1578178.html>",
+    "[VC 报道] Pencil News · 汉朔科技 B 轮融资 <https://www.pencilnews.cn/p/16577.html>",
+    "[专利/诉讼] iPRdaily · 中法电子价签巨头专利诉讼 <http://m.iprdaily.cn/article_35391.html>",
+    "[专利/诉讼] 腾讯新闻 · 汉朔科技与法国 SES 正式和解 (2025-08-30) <https://news.qq.com/rain/a/20250830A065EV00>",
+    "[年报] VusionGroup (ex SES-imagotag) 2024 FY 营收 €1,011M <https://investor.vusion.com/>",
+    "[市场研究] Mordor Intelligence · ESL Market 2025-2030 <https://www.mordorintelligence.com/industry-reports/electronic-shelf-labels-market>",
+    "[市场研究] MarketsandMarkets · ESL Market USD 2.34B (2024) <https://www.marketsandmarkets.com/Market-Reports/electronic-shelf-label-market-40815676.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "汉朔科技股份有限公司 (Hanshow Technology Co., Ltd.)",
+    "founded_date": "2012-07-01",
+    "headquarters": "浙江嘉兴 (研发与管理中心位于北京)",
+    "region": "中国",
+    "industry": "硬件/IoT",
+    "sub_industry": "电子价签 ESL",
+    "business_model": "ESL 硬件销售 (9,600+ 万片/年) + Stargate IoT/SaaS 云平台订阅 + 门店数字化整体解决方案 (AI 货架/自助结算/边缘屏)",
+    "stage": "ipo",
+    "employee_count": 960,
+    "one_liner": "中国 ESL 龙头、全球市占率前三的门店数字化整体方案商,海外收入占比 94%,是中国 to B 硬件出海代表",
+    "founders": [
+      {
+        "name": "侯世国",
+        "title": "创始人/董事长/总经理",
+        "background": "1975 年生,2000-2007 任华为技术开发代表 (芯片/产品线),2011 海外考察发现 ESL 蓝海,2012 创立汉朔,IPO 前通过北京汉朔 + 汉朔领世/领智/领域合计控制 31.97% 表决权",
+        "equity_pct": 0.3197
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2015-08-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["君联资本"],
+        "notes": "君联资本首次领投,金额未披露;2016-12 A+ 追加辰悦/追远/星通"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2017-12-14",
+        "amount_usd": 18000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["君联资本", "光速光合", "华业天成", "弘章资本"],
+        "notes": "B 轮 1.21 亿元人民币,当时号称占据国内 95% 电子价签市场"
+      },
+      {
+        "stage": "b+",
+        "announce_date": "2019-08-06",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["中金资本", "经纬创投"],
+        "notes": "经纬入局,闻名/安超/资乘/正奇跟投"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2020-10-23",
+        "amount_usd": 37000000,
+        "post_money_valuation_usd": 300000000,
+        "lead_investors": ["朗玛峰创投", "天堂硅谷"],
+        "notes": "C 轮 2.5 亿元人民币,估值 21.2 亿元;青橙/瑞育/志兴安德跟投"
+      },
+      {
+        "stage": "c+",
+        "announce_date": "2021-09-01",
+        "amount_usd": 43000000,
+        "post_money_valuation_usd": 760000000,
+        "lead_investors": ["深创投"],
+        "notes": "2021-09 Pre-IPO 增资 2.8 亿元,估值 54.7 亿元"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2025-03-11",
+        "amount_usd": 162000000,
+        "post_money_valuation_usd": 3920000000,
+        "lead_investors": ["中金公司 (保荐主承销)"],
+        "notes": "深交所创业板 301275.SZ,发行价 27.50 元,发行 4224 万股,募资 11.62 亿元,首日涨 143%,首日收盘市值 282.67 亿元 (≈ $39.2B 人民币口径);用户备注 2024-10-24 主板有误,应为 2025-03-11 创业板"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "侯世国华为 7 年芯片/产品线背景,对硬件 ROI 和海外大客户打法敏感;研发人员 308 人占比 32%,工程师文化 + 多年海外本地化销售团队沉淀;与法国 VusionGroup 多年专利战打成和解,证明有对垒巨头的底气",
+      "market": {
+        "tam_usd": 5420000000,
+        "sam_usd": 2340000000,
+        "som_usd": 800000000,
+        "growth_rate": 0.14
+      },
+      "moat": "ESL 通讯协议自研 (Nordic/Stargate) + 电子纸屏供应链深度绑定 + 欧美沃尔玛/家乐福/Jeronimo Martins 等 Top 100 零售商一半以上的部署经验 + 55,000 门店 70+ 国家的运营数据 + 招股书注册的核心发明专利及 2025 年与 SES 的交叉许可/和解",
+      "unit_economics": {
+        "gross_margin": 0.348,
+        "payback_months": 18
+      },
+      "growth": {
+        "arr_usd": 620000000,
+        "yoy_growth": 0.1884,
+        "mau": null,
+        "gmv_usd": null
+      },
+      "competitors": ["VusionGroup (SES-imagotag,法国,全球第一,€1,011M FY24)", "Pricer (瑞典,全球第二)", "SoluM (韩国三星系)", "E Ink (上游电子纸,合作兼博弈)", "思迅/领邦 (国内腰部)"],
+      "bull": [
+        "海外收入占比 94% + 欧洲占比 53.73%,是为数极少的中国 to B 硬件出海成功样本",
+        "2024 营收 44.86 亿元 (+18.8%) / 净利 7.1 亿元 / 毛利率 34.8% (较上年再升 2.21 pct),规模效应显现",
+        "Stargate IoT 平台 + AI 货架/自助结算/边缘屏扩展产品矩阵,从价签迈向门店数字化整体方案",
+        "2025-08 与 VusionGroup 全球和解,终结专利悬剑,打开北美放量空间",
+        "ESL 全球 TAM 2025→2030 从 $2.0B 增至 $5.4B (Mordor 13.9% CAGR),渗透率仍 <15%"
+      ],
+      "bear": [
+        "境内收入虽 +63.6% 但基数低 (仅 2.64 亿元),国内零售资本开支疲弱制约加速",
+        "汇兑收益 1.15 亿元贡献了近 16% 净利润,欧元/美元波动放大业绩噪声",
+        "9,600 万片终端中 99% 依赖外协加工,电子纸屏卡在 E Ink/DKE 手里",
+        "Jeronimo Martins 为第一大客户,头部客户集中度高,订单周期性强",
+        "VusionGroup 规模仍 3 倍于己 (€1.0B vs ¥4.5B),欧美大客户直面白刃战"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 350000000,
+      "deal_count_12m": 12,
+      "gartner_phase": "实质生产高峰期 (欧美渗透加速);期望膨胀期 (AI 零售/边缘屏)",
+      "policy_tailwinds": [
+        "欧盟 Digital Product Passport 强制披露推动 ESL 替代纸签",
+        "中国 '十四五' 智慧零售/数字化转型支持",
+        "欧美零售商 ESG 报告将纸张减量作为 KPI"
+      ],
+      "policy_headwinds": [
+        "美国关税/实体清单对中国 to B 硬件出海持续施压",
+        "欧盟 CBAM 碳关税对硬件出口成本上移",
+        "境外专利诉讼常态化 (与 SES 虽已和解,其他竞品可能再起)"
+      ],
+      "exit_window": "已 IPO,短期看 2025-2026 海外订单释放节奏 + Stargate SaaS 毛利爬坡",
+      "hot_keywords": ["ESL 电子价签", "门店数字化", "出海", "零售 AIoT", "电子纸"]
+    },
+    "financials": {
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": 360000000
+    },
+    "extra_risks": [
+      {
+        "category": "供应链",
+        "description": "ESL 终端 99% 依赖外协加工,电子纸屏集中在 E Ink/DKE,上游议价弱",
+        "level": "high",
+        "mitigation": "多供应商并行 + 自研 Stargate 基站/协议 + 募资扩建嘉兴产能"
+      },
+      {
+        "category": "法律",
+        "description": "与 VusionGroup 美欧专利诉讼虽 2025-08 已和解,历史产品仍有部分面临美国市场退出的遗留条款",
+        "level": "medium",
+        "mitigation": "核心发明专利自主化 + 设计绕开 + 持续交叉许可谈判"
+      },
+      {
+        "category": "财务",
+        "description": "汇兑损益对净利贡献过大 (2024 年 1.15 亿元),欧元/美元贬值将直接冲击利润率",
+        "level": "medium",
+        "mitigation": "扩大自然对冲 (海外本币采购) + 远期合约锁汇"
+      },
+      {
+        "category": "市场",
+        "description": "客户集中度高,Jeronimo Martins 等 Top 5 客户订单节奏影响季度业绩",
+        "level": "medium",
+        "mitigation": "持续拓展 Walmart US/ 亚马逊鲜食 / 日韩/ 东南亚新客户分散敞口"
+      },
+      {
+        "category": "竞争",
+        "description": "VusionGroup 规模 3 倍于己且在欧美零售根基更深,Pricer/SoluM 紧追,行业价格战风险",
+        "level": "high",
+        "mitigation": "Stargate 平台订阅 + AI 货架增值服务提升单店 ARPU,从硬件卖方转向解决方案商"
+      }
+    ]
+  }
+}

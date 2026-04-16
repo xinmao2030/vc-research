@@ -98,142 +98,116 @@ def _ipo_date(d: dict) -> str:
 
 
 RULES: dict[str, list[VerifyRule]] = {
-    "小米": [
+    "影石创新": [
         VerifyRule(
-            "itjuzi.founded_date",
-            "https://en.wikipedia.org/wiki/Xiaomi",
-            r"Founded[\s\S]{0,200}?(\d{1,2}\s+April\s+2010|April\s+2010)",
+            "itjuzi.founded_date_2015",
+            "https://en.wikipedia.org/wiki/Insta360",
+            r"(2015)",
             _g("itjuzi.founded_date"), kind="date",
         ),
         VerifyRule(
-            "itjuzi.rounds[ipo].announce_date",
-            "https://en.wikipedia.org/wiki/Xiaomi",
-            r"(9\s+July\s+2018|July\s+2018)",
-            _ipo_date, kind="date",
-        ),
-        VerifyRule(
-            "itjuzi.headquarters(北京)",
-            "https://en.wikipedia.org/wiki/Xiaomi",
-            r"(Beijing)",
+            "itjuzi.headquarters(深圳)",
+            "https://en.wikipedia.org/wiki/Insta360",
+            r"(Shenzhen)",
             _g("itjuzi.headquarters"),
         ),
         VerifyRule(
-            "SU7_launch_2024-03-28",
-            "https://en.wikipedia.org/wiki/Xiaomi_SU7",
-            r"(28\s+March\s+2024|March\s+2024)",
-            lambda d: "2024-03-28", kind="date",
-        ),
-        VerifyRule(
-            "雷军_Kingsoft_background",
-            "https://en.wikipedia.org/wiki/Lei_Jun",
-            r"(Kingsoft)",
+            "刘靖康_南大_founder",
+            "https://en.wikipedia.org/wiki/Insta360",
+            r"(Nanjing\s+University|Liu\s+Jingkang|JK\s+Liu)",
             lambda d: next(
-                (f["background"] for f in d["itjuzi"]["founders"] if f["name"] == "雷军"), ""
+                (f["background"] for f in d["itjuzi"]["founders"] if "刘靖康" in f["name"]), ""
             ),
         ),
     ],
-    "蔚来": [
+    "澜起科技": [
         VerifyRule(
-            "itjuzi.rounds[ipo].announce_date",
-            "https://en.wikipedia.org/wiki/Nio_(car_company)",
-            r"(September\s+2018|12\s+September\s+2018)",
-            _ipo_date, kind="date",
-        ),
-        VerifyRule(
-            "itjuzi.founded_date",
-            "https://en.wikipedia.org/wiki/Nio_(car_company)",
-            r"(November\s+2014|2014)",
+            "itjuzi.founded_date_2004",
+            "https://en.wikipedia.org/wiki/Montage_Technology",
+            r"(2004)",
             _g("itjuzi.founded_date"), kind="date",
         ),
         VerifyRule(
-            "换电站数量_2250_level",
-            "https://en.wikipedia.org/wiki/Battery_swapping",
-            r"(\d{3,5}\s+battery\s+swap\s+stations|2\d{3}\s+stations)",
-            lambda d: d["itjuzi"]["thesis"].get("moat", ""),
-        ),
-    ],
-    "百济神州": [
-        VerifyRule(
-            "itjuzi.legal_name→BeOne",
-            "https://en.wikipedia.org/wiki/BeOne_Medicines",
-            r"(BeOne\s+Medicines)",
-            _g("itjuzi.legal_name"),
+            "NASDAQ_IPO_2013-09",
+            "https://en.wikipedia.org/wiki/Montage_Technology",
+            r"(September\s+2013|2013)",
+            lambda d: "2013-09-26", kind="date",
         ),
         VerifyRule(
-            "rebrand_2024-11-14",
-            "https://en.wikipedia.org/wiki/BeOne_Medicines",
-            r"(14\s+November\s+2024|November\s+2024)",
-            lambda d: "2024-11-14", kind="date",
-        ),
-        VerifyRule(
-            "ticker_ONC_2025-01",
-            "https://en.wikipedia.org/wiki/BeOne_Medicines",
-            r"(January\s+2025|ONC)",
-            lambda d: "2025-01 ONC",
-        ),
-        VerifyRule(
-            "Amgen_2019_stake_20.5%",
-            "https://en.wikipedia.org/wiki/BeOne_Medicines",
-            r"(20\.5%|\$2\.7\s*billion)",
-            lambda d: "20.5% / $2.7B",
-        ),
-        VerifyRule(
-            "BRUKINSA_FDA_2019-11",
-            "https://en.wikipedia.org/wiki/Zanubrutinib",
-            r"(November\s+2019)",
-            lambda d: "2019-11", kind="date",
-        ),
-        VerifyRule(
-            "Tislelizumab_FDA_2024-03",
-            "https://en.wikipedia.org/wiki/Tislelizumab",
-            r"(March\s+2024)",
-            lambda d: "2024-03", kind="date",
-        ),
-    ],
-    "商汤科技": [
-        VerifyRule(
-            "汤晓鸥_still_active",
-            "https://en.wikipedia.org/wiki/SenseTime",
-            r"(died.{0,200}|co-founder.{0,200}?died|\bdied\b)",
-            _founder_still_active("汤晓鸥"), kind="bool_alive",
-        ),
-        VerifyRule(
-            "itjuzi.rounds[ipo].announce_date_2021-12-30",
-            "https://en.wikipedia.org/wiki/SenseTime",
-            r"(30\s+December\s+2021|December\s+2021)",
+            "STAR_IPO_2019-07",
+            "https://en.wikipedia.org/wiki/Montage_Technology",
+            r"(July\s+2019|2019)",
             _ipo_date, kind="date",
         ),
         VerifyRule(
-            "OFAC_sanctions_2021-12",
-            "https://en.wikipedia.org/wiki/SenseTime",
-            r"(December\s+2021|10\s+December\s+2021)",
-            lambda d: "2021-12-10 OFAC", kind="date",
+            "DDR_memory_interface_core_business",
+            "https://en.wikipedia.org/wiki/Montage_Technology",
+            r"(memory\s+interface|DDR4|DDR5)",
+            lambda d: d["itjuzi"].get("sub_industry", ""),
         ),
     ],
-    "字节跳动": [
+    "银诺医药": [
         VerifyRule(
-            "张一鸣_still_active",
-            "https://en.wikipedia.org/wiki/Zhang_Yiming",
-            r"(Chairman|chairman|stepped down as CEO)",
-            _founder_still_active("张一鸣"), kind="bool_alive",
+            "HKEX_2591_IPO_2025-08",
+            "https://www.hkexnews.hk/",
+            r"(2591|Innogen)",
+            lambda d: "2591.HK 2025-08-15",
+        ),
+        VerifyRule(
+            "GLP1_category",
+            "https://en.wikipedia.org/wiki/GLP-1_receptor_agonist",
+            r"(GLP-1|glucagon-like\s+peptide-1|ecnoglutide|efsubaglutide)",
+            lambda d: d["itjuzi"].get("sub_industry", ""),
+        ),
+    ],
+    "比贝特医药": [
+        VerifyRule(
+            "钱长庚_founder",
+            "https://www.bebettermed.com/",
+            r"(钱长庚|Qian\s+Changgeng|Bebetter|BeBetter)",
+            lambda d: next(
+                (f["name"] for f in d["itjuzi"]["founders"]), ""
+            ),
+        ),
+        VerifyRule(
+            "HDAC_pipeline",
+            "https://en.wikipedia.org/wiki/Histone_deacetylase_inhibitor",
+            r"(HDAC|histone\s+deacetylase)",
+            lambda d: d["itjuzi"].get("sub_industry", ""),
+        ),
+    ],
+    "汉朔科技": [
+        VerifyRule(
+            "ESL_category",
+            "https://en.wikipedia.org/wiki/Electronic_shelf_label",
+            r"(electronic\s+shelf\s+label|ESL)",
+            lambda d: d["itjuzi"].get("sub_industry", ""),
+        ),
+        VerifyRule(
+            "VusionGroup_competitor",
+            "https://en.wikipedia.org/wiki/VusionGroup",
+            r"(VusionGroup|SES-imagotag)",
+            lambda d: ",".join(d["itjuzi"]["thesis"].get("competitors", [])),
         ),
         VerifyRule(
             "founded_2012",
-            "https://en.wikipedia.org/wiki/ByteDance",
-            r"(March\s+2012|2012)",
+            "https://en.wikipedia.org/wiki/Electronic_shelf_label",
+            r"(Hanshow)",
             _g("itjuzi.founded_date"), kind="date",
         ),
+    ],
+    "强一股份": [
         VerifyRule(
-            "TikTok_Musical.ly_acq_2017-11",
-            "https://en.wikipedia.org/wiki/TikTok",
-            r"(November\s+2017|2017)",
-            lambda d: "2017-11", kind="date",
+            "MEMS_probe_card_category",
+            "https://en.wikipedia.org/wiki/Probe_card",
+            r"(probe\s+card|MEMS|wafer\s+test)",
+            lambda d: d["itjuzi"].get("sub_industry", ""),
         ),
         VerifyRule(
-            "Douyin_launch_2016-09",
-            "https://en.wikipedia.org/wiki/Douyin",
-            r"(September\s+2016|20\s+September\s+2016)",
-            lambda d: "2016-09", kind="date",
+            "FormFactor_competitor",
+            "https://en.wikipedia.org/wiki/FormFactor",
+            r"(FormFactor|probe\s+card)",
+            lambda d: ",".join(d["itjuzi"]["thesis"].get("competitors", [])),
         ),
     ],
 }

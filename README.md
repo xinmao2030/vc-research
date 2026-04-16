@@ -29,7 +29,7 @@
 ## 🏗️ 技术架构
 
 ```
-输入: 企业名称 (e.g. "字节跳动")
+输入: 企业名称 (e.g. "影石创新")
   │
   ▼
 ┌─────────────────────────────────────┐
@@ -63,17 +63,18 @@
 
 ## 🚀 发展路径 (Roadmap)
 
-- **Phase 1** (当前): 建立骨架 + 3家标杆案例（字节早期 / 商汤 / 蔚来）的静态研报模板
-- **Phase 2**: 接入 IT桔子 / Crunchbase API，实现自动化数据拉取
-- **Phase 3**: 集成 Claude 4.6 生成投资逻辑 + 产业趋势雷达
-- **Phase 4**: 个性化（风险偏好 / 赛道标签匹配）+ Web Dashboard
+- **Phase 1** (已完成): 七层分析骨架 + 教育层 + CLI + Markdown/PDF 输出
+- **Phase 2.1** (已完成 v0.1.10-alpha): SEC EDGAR + HKEX symbology + 并行交叉验证工具
+- **Phase 2.2** (进行中): 标杆案例切换至 6 家 2025 新上市代表 — 影石创新 / 澜起科技 / 银诺医药 / 比贝特医药 / 汉朔科技 / 强一股份(v0.1.11)
+- **Phase 3**: Claude 4.6 深度推理 + 向量检索对标
+- **Phase 4**: Next.js Web Dashboard + 个性化(风险偏好 / 赛道标签匹配)
 
 ## 📂 目录结构
 
 ```
 vc-research/
 ├── src/vc_research/
-│   ├── cli.py                # CLI 入口: vc-research analyze "字节跳动"
+│   ├── cli.py                # CLI 入口: vc-research analyze "影石创新"
 │   ├── data_sources/         # 数据采集 (国内+海外)
 │   ├── modules/              # 7 大分析模块
 │   ├── llm/                  # Claude 推理封装
@@ -85,14 +86,29 @@ vc-research/
 └── web/                      # Next.js Dashboard (Phase 4)
 ```
 
+## 📚 标杆案例(v0.1.11)
+
+覆盖 2024-2026 年 **6 家具代表性的 IPO / Pre-IPO 公司**,刻意选取不同行业 + 不同上市地 + 不同估值阶段以训练多角度判断:
+
+| 公司 | 赛道 | 上市 | 代码 | 裁决 | 看点 |
+|------|------|------|------|------|------|
+| 影石创新 (Insta360) | 消费电子 · 全景相机 | 2025-06 科创板 | 688775.SH | 观望 | 全球全景相机份额 67%;GoPro 337 调查胜诉 |
+| 澜起科技 (Montage) | 半导体 · 内存接口芯片 | 2019-07 科创板 + 2026-01 A+H | 688008.SH / 2827.HK | 观望 | DDR5/CXL 全球 Top 3;DRAM 周期依赖 |
+| 银诺医药 (Innogen) | 医药 · GLP-1 长效 | 2025-08 港股 18A | 2591.HK | 推荐 | 依苏帕格鲁肽α 半衰期 204h;首日 +206% |
+| 比贝特医药 (BeBetter) | 医药 · HDAC 小分子 | 2025-10 科创板 | 688759.SH | 推荐 | 双靶点 BEBT-908;Pre-IPO 估值 38 亿元 |
+| 汉朔科技 (Hanshow) | 硬件 · 电子价签 ESL | 2025-03 创业板 | 301275.SZ | 回避 | 沃尔玛/Carrefour 客户;94% 海外收入 |
+| 强一股份 (Maxone) | 半导体 · MEMS 探针卡 | 2025-12 科创板 | 688809.SH | 回避 | 晶圆测试国产替代;Yole 全球第 9 |
+
+每家 fixture 都已通过 `tools/cross_verify.py` 并行交叉校核多源公开信息。研报样本见 `examples/reports/*.md`。
+
 ## 🏃 快速开始
 
 ```bash
 cd ~/vc-research
 python -m venv .venv && source .venv/bin/activate
 pip install -e .
-vc-research analyze "字节跳动" -o report.md
-vc-research list-examples            # 看看已有的标杆案例
+vc-research analyze "影石创新" -o report.md
+vc-research list-examples            # 查看 6 家标杆(影石/澜起/银诺/比贝特/汉朔/强一)
 
 # Web Dashboard (浏览器打开 localhost:8765)
 python web/dashboard.py

@@ -1,0 +1,188 @@
+{
+  "sources_hit": [
+    "[招股书] 上交所科创板 · 澜起科技 首次公开发行股票并在科创板上市招股说明书(注册稿) 2019-06-26 <http://static.sse.com.cn/stock/disclosure/announcement/c/201906/000060_20190626_2VXQ.pdf>",
+    "[年报] 上交所科创板 · 澜起科技 2024 年年度报告 (2025-04-11 披露) <https://star.sse.com.cn/disclosure/listedinfo/announcement/c/new/2025-04-11/688008_20250411_2KIN.pdf>",
+    "[上市公告] 新浪财经 · 澜起科技首次公开发行股票科创板上市公告书 (2019-07-18) <http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=688008&id=5499042>",
+    "[百科] Wikipedia · Montage Technology <https://en.wikipedia.org/wiki/Montage_Technology>",
+    "[百科] 维基百科 · 澜起科技 <https://zh.wikipedia.org/wiki/%E6%BE%9C%E8%B5%B7%E7%A7%91%E6%8A%80>",
+    "[分析师] Yole Group · DRAM Modules & DIMM Chipsets (DDR5) 2023 <https://www.yolegroup.com/product/report/dram-modules-2023/>",
+    "[媒体] 界面新闻 · 芯片独角兽澜起科技的做空往事 <https://www.jiemian.com/article/3321543.html>",
+    "[媒体] 证券时报 · 澜起科技去年净利润同比增长逾 200% DDR5 内存接口芯片需求旺盛 <https://www.stcn.com/article/detail/1654805.html>",
+    "[媒体] 21 世纪经济报道 · 专访澜起科技杨崇和 (2023-12-29) <https://www.21jingji.com/article/20231229/herald/f166023c28b5c4a81c4017c3f70f98b4.html>",
+    "[券商研报] 东莞证券 · 澜起科技 2024 年报 & 25Q1 业绩预告点评 (DDR5 渗透率持续提升) <https://www.hibor.com.cn/repinfodetail_4054828.html>",
+    "[港股] 证券时报 · 澜起科技港股首秀飙涨 (2026-01-09 H 股挂牌) <https://www.stcn.com/article/detail/3635251.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "澜起科技股份有限公司 (Montage Technology Co., Ltd.)",
+    "founded_date": "2004-05-27",
+    "headquarters": "上海张江",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "内存接口芯片 + 高速互连芯片 (DDR4/DDR5 RCD/DB, MRCD/MDB, CXL, PCIe Retimer, MXC)",
+    "business_model": "Fabless IC 设计:向服务器/数据中心内存模组厂商(三星/美光/SK 海力士)销售内存接口芯片;通过内存模组配套模式锁定出货,近年扩展高性能运力芯片(PCIe Retimer, CXL 控制器, MXC)拓展第二曲线",
+    "stage": "ipo",
+    "employee_count": 767,
+    "one_liner": "全球内存接口芯片 Top 3,DDR5 代际领先的服务器'卖水人',AI 算力基建底层供应商",
+    "founders": [
+      {
+        "name": "杨崇和 (Howard Yang)",
+        "title": "创始人/董事长/CEO",
+        "background": "美国俄勒冈州立大学 (Oregon State Univ.) 电子与计算机工程硕博;1990-1994 美国国家半导体 (National Semiconductor) 芯片设计;1994-1996 上海贝岭新产品研发部负责人;1997 创立新涛科技 (NeWave),2001 与 IDT 合并 (中国年度十大并购);2004 共同创立澜起;2010 当选 IEEE Fellow,上海白玉兰荣誉奖;2024 薪酬 ~999 万元",
+        "equity_pct": 0.11
+      },
+      {
+        "name": "Stephen Kuong-Io Tai (戴国熙)",
+        "title": "联合创始人/副董事长",
+        "background": "硅谷资深芯片产业高管,与杨崇和共同创立澜起,长期负责运营与战略",
+        "equity_pct": 0.05
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "strategic",
+        "announce_date": "2006-01-01",
+        "amount_usd": 20000000,
+        "post_money_valuation_usd": 100000000,
+        "lead_investors": ["Intel Capital", "New Enterprise Associates (NEA)", "Columbia Capital", "Pacific Venture Partners"],
+        "notes": "早期多轮战略投资合并记录,Intel 累计持有约 9% 股份,其后陪跑至 2019 科创板 IPO 获 528% 回报"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2013-09-26",
+        "amount_usd": 71000000,
+        "post_money_valuation_usd": 400000000,
+        "lead_investors": ["Deutsche Bank", "Barclays"],
+        "notes": "纳斯达克挂牌 MONT,发行价 $10,募资净额 $46.9M,中国内存芯片第一股赴美"
+      },
+      {
+        "stage": "secondary",
+        "announce_date": "2014-11-20",
+        "amount_usd": 693000000,
+        "post_money_valuation_usd": 693000000,
+        "lead_investors": ["上海浦东科技投资 (浦东科投)", "中国电子投资控股 (CEC)"],
+        "notes": "私有化退市,每股 $22.6,由国资背景的 Montage Technology Global Holdings 完成,管理层+CEC+浦东科投三方持股无单一大股东"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2017-06-01",
+        "amount_usd": 400000000,
+        "post_money_valuation_usd": 2500000000,
+        "lead_investors": ["中国国家集成电路产业投资基金 (大基金)", "元禾璞华", "嘉兴华创"],
+        "notes": "回 A 前的股改战投轮,估值区间保守估计,具体金额见招股书历史沿革"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2019-07-22",
+        "amount_usd": 400000000,
+        "post_money_valuation_usd": 15000000000,
+        "lead_investors": ["中信证券"],
+        "notes": "科创板首批 25 家之一,688008.SH,发行价 24.80 元,募资 ~28 亿元,开盘较发行价涨 268%,首日市值破千亿"
+      },
+      {
+        "stage": "secondary",
+        "announce_date": "2026-01-09",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 28000000000,
+        "lead_investors": ["中金公司", "高盛", "摩根士丹利"],
+        "notes": "港股 A+H 二次上市,首日涨近 50%,市值约 1900 亿港元"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "杨崇和二次创业成功(新涛→IDT 并购+澜起→科创板/港股双 IPO),IEEE Fellow 技术背书深厚;管理层稳定,核心团队 20 年未拆;公司治理采用无实际控制人架构,在中美博弈下形成'全球化持股平衡'智慧",
+      "market": {
+        "tam_usd": 8000000000,
+        "sam_usd": 5000000000,
+        "som_usd": 2500000000,
+        "growth_rate": 0.35
+      },
+      "moat": "DDR5 代际领先 (首家量产 Gen2/Gen3 RCD);JEDEC 标准制定核心成员;与 Intel/三星/美光/SK 海力士 20 年合作绑定;DIMM 芯片组全球 Top 3 (Renesas/Montage/Rambus 合计 95%+);内存接口芯片认证周期 3-5 年形成天然壁垒",
+      "unit_economics": {
+        "gross_margin": 0.58,
+        "payback_months": 0
+      },
+      "growth": {
+        "arr_usd": 500000000,
+        "yoy_growth": 0.59,
+        "mau": 0,
+        "gmv_usd": 0
+      },
+      "competitors": ["Renesas (瑞萨 / 原 IDT)", "Rambus", "Astera Labs (CXL/Retimer 新锐)", "Marvell (高速互连)", "Microchip"],
+      "bull": [
+        "DDR5 渗透率持续提升,2024 年出货首次超越 DDR4,Gen3 RCD 4Q 起放量",
+        "AI 训练/推理推动服务器内存容量激增,单机 DIMM 数量翻倍带动内存接口芯片量价齐升",
+        "CXL 2.0/3.0 生态成型,MXC/Retimer 等运力芯片打开百亿美元新 TAM",
+        "2024 营收 36.39 亿元 (+59.2%),归母净利 14.12 亿元 (+213.1%),毛利率 58.13% 见证定价权",
+        "2026-01 港股 A+H 完成,募资加码 AI 算力互连,全球机构配置提升"
+      ],
+      "bear": [
+        "产品线相对单一,内存接口芯片占营收 80%+,若服务器资本开支放缓周期性风险大",
+        "下游客户集中度高(三星/美光/SK 海力士三家占大头),议价空间被压制",
+        "美国对中国先进制程/EDA 管制若升级,台积电/三星代工路径存潜在风险",
+        "Astera Labs 等美系对手在 CXL/Retimer 赛道主场优势,超大规模云厂商偏好美企",
+        "2022-2023 经历内存行业下行周期,营收从 2021 峰值腰斩后才 2024 反转,证明周期性难消除"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3000000000,
+      "deal_count_12m": 120,
+      "gartner_phase": "生产成熟期 (DDR5 内存接口);期望膨胀期 (CXL/MXC/PCIe Gen6 Retimer)",
+      "policy_tailwinds": [
+        "国家集成电路产业投资基金三期 (大基金三期) 3440 亿元持续加码",
+        "科创板对半导体企业注册制倾斜,港股通+H 股双轨打开国际资金通道",
+        "信创/东数西算/AI 服务器国产化带动国产服务器链需求",
+        "JEDEC 国际标准制定中国席位扩大"
+      ],
+      "policy_headwinds": [
+        "美国 BIS 对先进半导体出口管制,HBM/CXL 相关可能被纳入",
+        "台积电对中国大陆 fabless 的 AI/HPC 芯片流片审查趋严 (7nm 以下)",
+        "中美审计监管 PCAOB 合规压力",
+        "欧盟芯片法案可能对外资芯片限制"
+      ],
+      "exit_window": "已完成 A+H 双 IPO,2026 起进入港股通可期,退出窗口从定向减持转向二级市场流动性释放",
+      "hot_keywords": ["DDR5", "CXL", "AI 服务器", "PCIe Retimer", "内存墙", "A+H", "国产互连"]
+    },
+    "financials": {
+      "revenue_cny_2024": 3639000000,
+      "net_profit_cny_2024": 1412000000,
+      "gross_margin_2024": 0.5813,
+      "rd_expense_cny_2024": 763000000,
+      "rd_ratio_2024": 0.2098,
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": 1200000000,
+      "notes": "2024 营收 36.39 亿元 (+59.2%), 归母净利 14.12 亿元 (+213.1%), 毛利率 58.13%, 研发投入 7.63 亿元占比 20.98%; 现金及等价物约 86 亿元人民币(港股招股书口径含境外现金近 40 亿),以 7.2 汇率折算约 12 亿美元"
+    },
+    "extra_risks": [
+      {
+        "category": "客户集中度",
+        "description": "下游三大内存原厂 (Samsung/Micron/SK Hynix) 合计贡献过半营收,议价与库存节奏高度联动",
+        "level": "high",
+        "mitigation": "扩展 CXL/MXC/Retimer 新品类至 CSP (AWS/Azure/Google) 及 Intel/AMD 平台客户,分散终端"
+      },
+      {
+        "category": "地缘政治",
+        "description": "中美科技脱钩下,美国客户采购比例及先进制程代工可得性双向承压",
+        "level": "high",
+        "mitigation": "无实际控制人架构 + 境外持股 + 港股上市以平衡全球化身份;代工上 TSMC/Samsung/SMIC 多元布局"
+      },
+      {
+        "category": "周期性",
+        "description": "内存半导体 4-5 年库存周期,2022-2023 下行期公司营收腰斩已有前例",
+        "level": "medium",
+        "mitigation": "DDR5 新品类溢价 + AI 服务器逆周期需求 + 互连芯片第二曲线平滑周期波动"
+      },
+      {
+        "category": "技术迭代",
+        "description": "CXL/PCIe Gen6 赛道 Astera Labs 等美系新锐凶猛,若错失代际可能丢失制高点",
+        "level": "medium",
+        "mitigation": "研发投入 2024 年 7.63 亿元 (+11.98%),研发人员占比 74.65%,JEDEC/CXL 联盟核心席位"
+      },
+      {
+        "category": "治理",
+        "description": "无实际控制人架构在控制权争夺或战投减持时可能放大股价波动,Intel 累计套现超 19 亿元已是前车之鉴",
+        "level": "low",
+        "mitigation": "锁定期+减持预披露+管理层持续增持计划,港股上市后流动性更充裕可对冲抛压"
+      }
+    ]
+  }
+}

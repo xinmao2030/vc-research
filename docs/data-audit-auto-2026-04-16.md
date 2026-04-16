@@ -9,50 +9,50 @@
 | 🔴 | 不一致 — 需要修正 |
 | ⚪ | 源抓取失败 / 模式未命中 |
 
-## 商汤科技
+## 强一股份
 
 | 级别 | 字段 | fixture | 权威源 | 源 URL |
 |---|---|---|---|---|
-| ⚪ | `汤晓鸥_still_active` | False | 源中未找到匹配片段 (pattern 可能过严) | [SenseTime](https://en.wikipedia.org/wiki/SenseTime) |
-| 🟢 | `itjuzi.rounds[ipo].announce_date_2021-12-30` | 2021-12-30 | December 2021 | [SenseTime](https://en.wikipedia.org/wiki/SenseTime) |
-| 🟢 | `OFAC_sanctions_2021-12` | 2021-12-10 OFAC | December 2021 | [SenseTime](https://en.wikipedia.org/wiki/SenseTime) |
+| 🔴 | `MEMS_probe_card_category` | 晶圆测试 - MEMS 探针卡 | Probe card | [Probe_card](https://en.wikipedia.org/wiki/Probe_card) |
+| ⚪ | `FormFactor_competitor` | FormFactor (美),Technoprobe (意) | 源抓取失败: lient error '404 Not Found' for u | [FormFactor](https://en.wikipedia.org/wiki/FormFactor) |
 
-## 字节跳动
-
-| 级别 | 字段 | fixture | 权威源 | 源 URL |
-|---|---|---|---|---|
-| 🟢 | `张一鸣_still_active` | True | Chairman | [Zhang_Yiming](https://en.wikipedia.org/wiki/Zhang_Yiming) |
-| 🟡 | `founded_2012` | 2012-03-09 | 2012 | [ByteDance](https://en.wikipedia.org/wiki/ByteDance) |
-| 🟡 | `TikTok_Musical.ly_acq_2017-11` | 2017-11 | 2017 | [TikTok](https://en.wikipedia.org/wiki/TikTok) |
-| 🟡 | `Douyin_launch_2016-09` | 2016-09 | September 2016 | [Douyin](https://en.wikipedia.org/wiki/Douyin) |
-
-## 小米
+## 影石创新
 
 | 级别 | 字段 | fixture | 权威源 | 源 URL |
 |---|---|---|---|---|
-| 🟡 | `itjuzi.founded_date` | 2010-04-06 | April 2010 | [Xiaomi](https://en.wikipedia.org/wiki/Xiaomi) |
-| 🟡 | `itjuzi.rounds[ipo].announce_date` | 2018-07-09 | July 2018 | [Xiaomi](https://en.wikipedia.org/wiki/Xiaomi) |
-| 🟢 | `itjuzi.headquarters(北京)` | 北京 | Beijing | [Xiaomi](https://en.wikipedia.org/wiki/Xiaomi) |
-| 🟡 | `SU7_launch_2024-03-28` | 2024-03-28 | March 2024 | [Xiaomi_SU7](https://en.wikipedia.org/wiki/Xiaomi_SU7) |
-| 🟢 | `雷军_Kingsoft_background` | 武汉大学计算机系,金山软件 1992 加入 / 1998 任 | Kingsoft | [Lei_Jun](https://en.wikipedia.org/wiki/Lei_Jun) |
+| 🟡 | `itjuzi.founded_date_2015` | 2015-07-01 | 2015 | [Insta360](https://en.wikipedia.org/wiki/Insta360) |
+| 🟢 | `itjuzi.headquarters(深圳)` | 深圳 | Shenzhen | [Insta360](https://en.wikipedia.org/wiki/Insta360) |
+| 🔴 | `刘靖康_南大_founder` | 1991 年生,广东中山人,南京大学软件学院 2014 届; | JK Liu | [Insta360](https://en.wikipedia.org/wiki/Insta360) |
 
-## 百济神州
+## 比贝特医药
 
 | 级别 | 字段 | fixture | 权威源 | 源 URL |
 |---|---|---|---|---|
-| 🟢 | `itjuzi.legal_name→BeOne` | BeOne Medicines, Ltd. (原百济神州 B | BeOne Medicines | [BeOne_Medicines](https://en.wikipedia.org/wiki/BeOne_Medicines) |
-| 🟢 | `rebrand_2024-11-14` | 2024-11-14 | 14 November 2024 | [BeOne_Medicines](https://en.wikipedia.org/wiki/BeOne_Medicines) |
-| 🟢 | `ticker_ONC_2025-01` | 2025-01 ONC | OnC | [BeOne_Medicines](https://en.wikipedia.org/wiki/BeOne_Medicines) |
-| 🟢 | `Amgen_2019_stake_20.5%` | 20.5% / $2.7B | 20.5% | [BeOne_Medicines](https://en.wikipedia.org/wiki/BeOne_Medicines) |
-| 🟢 | `BRUKINSA_FDA_2019-11` | 2019-11 | November 2019 | [Zanubrutinib](https://en.wikipedia.org/wiki/Zanubrutinib) |
-| 🟡 | `Tislelizumab_FDA_2024-03` | 2024-03 | March 2024 | [Tislelizumab](https://en.wikipedia.org/wiki/Tislelizumab) |
+| ⚪ | `钱长庚_founder` | 钱长庚 | 源抓取失败: SSL: CERTIFICATE_VERIFY_FAILED] c | [https://www.bebettermed.com/](https://www.bebettermed.com/) |
+| 🔴 | `HDAC_pipeline` | 小分子创新药 (肿瘤/自免/代谢, HDAC+PI3K/CD | Histone deacetylase | [Histone_deacetylase_inhibitor](https://en.wikipedia.org/wiki/Histone_deacetylase_inhibitor) |
 
-## 蔚来
+## 汉朔科技
 
 | 级别 | 字段 | fixture | 权威源 | 源 URL |
 |---|---|---|---|---|
-| 🟡 | `itjuzi.rounds[ipo].announce_date` | 2018-09-12 | September 2018 | [Nio_(car_company)](https://en.wikipedia.org/wiki/Nio_(car_company)) |
-| 🟡 | `itjuzi.founded_date` | 2014-11-25 | 2014 | [Nio_(car_company)](https://en.wikipedia.org/wiki/Nio_(car_company)) |
-| 🔴 | `换电站数量_2250_level` | 换电网络护城河 (2500+ 换电站) + 高端品牌定位 + | 2250 battery swap stations | [Battery_swapping](https://en.wikipedia.org/wiki/Battery_swapping) |
+| 🔴 | `ESL_category` | 电子价签 ESL | Electronic shelf label | [Electronic_shelf_label](https://en.wikipedia.org/wiki/Electronic_shelf_label) |
+| 🟢 | `VusionGroup_competitor` | VusionGroup (SES-imagotag,法国,全 | VusionGroup | [VusionGroup](https://en.wikipedia.org/wiki/VusionGroup) |
+| ⚪ | `founded_2012` | 2012-07-01 | 源中未找到匹配片段 (pattern 可能过严) | [Electronic_shelf_label](https://en.wikipedia.org/wiki/Electronic_shelf_label) |
 
-**小结**: 21 条规则 / 🟢 10 / 🔴 1 / ⚪ 1
+## 澜起科技
+
+| 级别 | 字段 | fixture | 权威源 | 源 URL |
+|---|---|---|---|---|
+| 🟡 | `itjuzi.founded_date_2004` | 2004-05-27 | 2004 | [Montage_Technology](https://en.wikipedia.org/wiki/Montage_Technology) |
+| 🟡 | `NASDAQ_IPO_2013-09` | 2013-09-26 | 2013 | [Montage_Technology](https://en.wikipedia.org/wiki/Montage_Technology) |
+| 🔴 | `STAR_IPO_2019-07` | 2013-09-26 | 2019 | [Montage_Technology](https://en.wikipedia.org/wiki/Montage_Technology) |
+| 🔴 | `DDR_memory_interface_core_business` | 内存接口芯片 + 高速互连芯片 (DDR4/DDR5 RCD | Memory Interface | [Montage_Technology](https://en.wikipedia.org/wiki/Montage_Technology) |
+
+## 银诺医药
+
+| 级别 | 字段 | fixture | 权威源 | 源 URL |
+|---|---|---|---|---|
+| ⚪ | `HKEX_2591_IPO_2025-08` | 2591.HK 2025-08-15 | 源中未找到匹配片段 (pattern 可能过严) | [https://www.hkexnews.hk/](https://www.hkexnews.hk/) |
+| 🟢 | `GLP1_category` | GLP-1 创新药 | GLP-1 | [GLP-1_receptor_agonist](https://en.wikipedia.org/wiki/GLP-1_receptor_agonist) |
+
+**小结**: 16 条规则 / 🟢 3 / 🔴 6 / ⚪ 4

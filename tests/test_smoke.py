@@ -1,4 +1,4 @@
-"""烟雾测试 — 确保 3 个标杆案例都能跑通."""
+"""烟雾测试 — 确保 6 个标杆案例都能跑通."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from vc_research.report import render_markdown
 from vc_research.schema import VCReport
 
 
-CASES = ["字节跳动", "商汤科技", "蔚来", "小米"]
+CASES = ["影石创新", "澜起科技", "银诺医药", "比贝特医药", "汉朔科技", "强一股份"]
 
 
 @pytest.mark.parametrize("company", CASES)
@@ -64,7 +64,7 @@ def test_pipeline(company: str) -> None:
 def test_education_layer() -> None:
     from vc_research.education import QuestProgress, explain_with_analogy
 
-    progress = QuestProgress(company="字节跳动")
+    progress = QuestProgress(company="影石创新")
     assert "profile" in progress.unlocked
     assert "funding" not in progress.unlocked
 
