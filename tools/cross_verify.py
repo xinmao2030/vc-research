@@ -44,6 +44,11 @@ class VerifyRule:
     pattern: str                            # 提取值的正则 (group 1 = 值)
     fixture_getter: Callable[[dict], str]   # 从 fixture 取值
     normalize: Callable[[str], str] = str.strip
+    # 语义类型:决定 _compare 的比对策略
+    # - "date": 抽取年月日数字对齐
+    # - "text": 子串或 token 匹配
+    # - "bool_alive": fixture "True"/"False" 对源里"died"/"Chairman/CEO"的反推
+    kind: str = "text"
 
 
 @dataclass
@@ -76,65 +81,159 @@ def _g(path: str) -> Callable[[dict], str]:
     return _get
 
 
+def _founder_still_active(name: str) -> Callable[[dict], str]:
+    def _f(d: dict) -> str:
+        for f in d["itjuzi"]["founders"]:
+            if f["name"] == name:
+                return str(f.get("still_active", True))
+        return "True"
+    return _f
+
+
+def _ipo_date(d: dict) -> str:
+    for r in d["itjuzi"]["rounds"]:
+        if r["stage"] == "ipo":
+            return r["announce_date"]
+    return ""
+
+
 RULES: dict[str, list[VerifyRule]] = {
     "小米": [
         VerifyRule(
-            field="itjuzi.founded_date",
-            url="https://en.wikipedia.org/wiki/Xiaomi",
-            pattern=r"Founded[\s\S]{0,200}?(\d{1,2}\s+April\s+2010|April\s+2010)",
-            fixture_getter=_g("itjuzi.founded_date"),
+            "itjuzi.founded_date",
+            "https://en.wikipedia.org/wiki/Xiaomi",
+            r"Founded[\s\S]{0,200}?(\d{1,2}\s+April\s+2010|April\s+2010)",
+            _g("itjuzi.founded_date"), kind="date",
         ),
         VerifyRule(
-            field="itjuzi.rounds[ipo].announce_date",
-            url="https://en.wikipedia.org/wiki/Xiaomi",
-            pattern=r"(9\s+July\s+2018|July\s+2018)",
-            fixture_getter=lambda d: next(
-                (r["announce_date"] for r in d["itjuzi"]["rounds"] if r["stage"] == "ipo"), ""
+            "itjuzi.rounds[ipo].announce_date",
+            "https://en.wikipedia.org/wiki/Xiaomi",
+            r"(9\s+July\s+2018|July\s+2018)",
+            _ipo_date, kind="date",
+        ),
+        VerifyRule(
+            "itjuzi.headquarters(北京)",
+            "https://en.wikipedia.org/wiki/Xiaomi",
+            r"(Beijing)",
+            _g("itjuzi.headquarters"),
+        ),
+        VerifyRule(
+            "SU7_launch_2024-03-28",
+            "https://en.wikipedia.org/wiki/Xiaomi_SU7",
+            r"(28\s+March\s+2024|March\s+2024)",
+            lambda d: "2024-03-28", kind="date",
+        ),
+        VerifyRule(
+            "雷军_Kingsoft_background",
+            "https://en.wikipedia.org/wiki/Lei_Jun",
+            r"(Kingsoft)",
+            lambda d: next(
+                (f["background"] for f in d["itjuzi"]["founders"] if f["name"] == "雷军"), ""
             ),
         ),
     ],
     "蔚来": [
         VerifyRule(
-            field="itjuzi.rounds[ipo].announce_date",
-            url="https://en.wikipedia.org/wiki/Nio_(car_company)",
-            pattern=r"(September\s+2018|12\s+September\s+2018)",
-            fixture_getter=lambda d: next(
-                (r["announce_date"] for r in d["itjuzi"]["rounds"] if r["stage"] == "ipo"), ""
-            ),
+            "itjuzi.rounds[ipo].announce_date",
+            "https://en.wikipedia.org/wiki/Nio_(car_company)",
+            r"(September\s+2018|12\s+September\s+2018)",
+            _ipo_date, kind="date",
+        ),
+        VerifyRule(
+            "itjuzi.founded_date",
+            "https://en.wikipedia.org/wiki/Nio_(car_company)",
+            r"(November\s+2014|2014)",
+            _g("itjuzi.founded_date"), kind="date",
+        ),
+        VerifyRule(
+            "换电站数量_2250_level",
+            "https://en.wikipedia.org/wiki/Battery_swapping",
+            r"(\d{3,5}\s+battery\s+swap\s+stations|2\d{3}\s+stations)",
+            lambda d: d["itjuzi"]["thesis"].get("moat", ""),
         ),
     ],
     "百济神州": [
         VerifyRule(
-            field="itjuzi.legal_name",
-            url="https://en.wikipedia.org/wiki/BeOne_Medicines",
-            pattern=r"(BeOne\s+Medicines)",
-            fixture_getter=_g("itjuzi.legal_name"),
+            "itjuzi.legal_name→BeOne",
+            "https://en.wikipedia.org/wiki/BeOne_Medicines",
+            r"(BeOne\s+Medicines)",
+            _g("itjuzi.legal_name"),
+        ),
+        VerifyRule(
+            "rebrand_2024-11-14",
+            "https://en.wikipedia.org/wiki/BeOne_Medicines",
+            r"(14\s+November\s+2024|November\s+2024)",
+            lambda d: "2024-11-14", kind="date",
+        ),
+        VerifyRule(
+            "ticker_ONC_2025-01",
+            "https://en.wikipedia.org/wiki/BeOne_Medicines",
+            r"(January\s+2025|ONC)",
+            lambda d: "2025-01 ONC",
+        ),
+        VerifyRule(
+            "Amgen_2019_stake_20.5%",
+            "https://en.wikipedia.org/wiki/BeOne_Medicines",
+            r"(20\.5%|\$2\.7\s*billion)",
+            lambda d: "20.5% / $2.7B",
+        ),
+        VerifyRule(
+            "BRUKINSA_FDA_2019-11",
+            "https://en.wikipedia.org/wiki/Zanubrutinib",
+            r"(November\s+2019)",
+            lambda d: "2019-11", kind="date",
+        ),
+        VerifyRule(
+            "Tislelizumab_FDA_2024-03",
+            "https://en.wikipedia.org/wiki/Tislelizumab",
+            r"(March\s+2024)",
+            lambda d: "2024-03", kind="date",
         ),
     ],
     "商汤科技": [
         VerifyRule(
-            field="汤晓鸥_still_active",
-            url="https://en.wikipedia.org/wiki/SenseTime",
-            pattern=r"(died.{0,100}December\s+2023|Tang Xiao\'?ou.{0,200}died)",
-            fixture_getter=lambda d: str(
-                next(
-                    (f.get("still_active", True) for f in d["itjuzi"]["founders"] if f["name"] == "汤晓鸥"),
-                    True,
-                )
-            ),
+            "汤晓鸥_still_active",
+            "https://en.wikipedia.org/wiki/SenseTime",
+            r"(died.{0,200}|co-founder.{0,200}?died|\bdied\b)",
+            _founder_still_active("汤晓鸥"), kind="bool_alive",
+        ),
+        VerifyRule(
+            "itjuzi.rounds[ipo].announce_date_2021-12-30",
+            "https://en.wikipedia.org/wiki/SenseTime",
+            r"(30\s+December\s+2021|December\s+2021)",
+            _ipo_date, kind="date",
+        ),
+        VerifyRule(
+            "OFAC_sanctions_2021-12",
+            "https://en.wikipedia.org/wiki/SenseTime",
+            r"(December\s+2021|10\s+December\s+2021)",
+            lambda d: "2021-12-10 OFAC", kind="date",
         ),
     ],
     "字节跳动": [
         VerifyRule(
-            field="张一鸣_still_active",
-            url="https://en.wikipedia.org/wiki/Zhang_Yiming",
-            pattern=r"(Chairman|chairman)",
-            fixture_getter=lambda d: str(
-                next(
-                    (f.get("still_active", True) for f in d["itjuzi"]["founders"] if f["name"] == "张一鸣"),
-                    True,
-                )
-            ),
+            "张一鸣_still_active",
+            "https://en.wikipedia.org/wiki/Zhang_Yiming",
+            r"(Chairman|chairman|stepped down as CEO)",
+            _founder_still_active("张一鸣"), kind="bool_alive",
+        ),
+        VerifyRule(
+            "founded_2012",
+            "https://en.wikipedia.org/wiki/ByteDance",
+            r"(March\s+2012|2012)",
+            _g("itjuzi.founded_date"), kind="date",
+        ),
+        VerifyRule(
+            "TikTok_Musical.ly_acq_2017-11",
+            "https://en.wikipedia.org/wiki/TikTok",
+            r"(November\s+2017|2017)",
+            lambda d: "2017-11", kind="date",
+        ),
+        VerifyRule(
+            "Douyin_launch_2016-09",
+            "https://en.wikipedia.org/wiki/Douyin",
+            r"(September\s+2016|20\s+September\s+2016)",
+            lambda d: "2016-09", kind="date",
         ),
     ],
 }
@@ -184,24 +283,105 @@ async def verify_company(company: str, rules: list[VerifyRule]) -> list[VerifyRe
             )
             continue
         src_val = m.group(1).strip()
-        level, note = _compare(rule.field, fx_val, src_val)
+        level, note = _compare(rule.field, fx_val, src_val, rule.kind)
         results.append(VerifyResult(company, rule.field, fx_val, src_val, rule.url, level, note))
     return results
 
 
-def _compare(field: str, fx: str, src: str) -> tuple[str, str]:
-    """简化比对:子串包含 / 大小写忽略."""
+_MONTHS = {
+    "january": "01", "february": "02", "march": "03", "april": "04",
+    "may": "05", "june": "06", "july": "07", "august": "08",
+    "september": "09", "october": "10", "november": "11", "december": "12",
+}
+
+
+def _normalize_date_tokens(s: str) -> set[str]:
+    """从 '9 July 2018' / '2018-07-09' 统一抽出 {年, 月, 日} 数字集."""
+    out: set[str] = set()
+    # 英文月份 → 数字
+    low = s.lower()
+    for name, num in _MONTHS.items():
+        if name in low:
+            out.add(num)
+    # 所有数字
+    for tok in re.findall(r"\d+", s):
+        # 年 4 位 / 月日 1-2 位 都保留
+        out.add(tok.lstrip("0") or "0")
+    return out
+
+
+def _compare(field: str, fx: str, src: str, kind: str = "text") -> tuple[str, str]:
+    """按 kind 选择比对策略."""
     fx_norm = fx.lower()
     src_norm = src.lower()
+
+    if kind == "bool_alive":
+        # fixture 说 True (还活/在任) vs 源里是否有"died/deceased/late"
+        dead_signals = ("died", "deceased", "late ", "passed away", "辞世", "去世")
+        is_dead_in_source = any(sig in src_norm for sig in dead_signals)
+        fx_alive = fx_norm in ("true", "1", "yes")
+        if is_dead_in_source and not fx_alive:
+            return "🟢", "源确认已故 + fixture still_active=false ✓"
+        if not is_dead_in_source and fx_alive:
+            return "🟢", "源确认在任 + fixture still_active=true ✓"
+        return "🔴", f"状态不符:fixture alive={fx_alive}, 源 dead_signal={is_dead_in_source}"
+
+    if kind == "date":
+        fx_tokens = _normalize_date_tokens(fx)
+        src_tokens = _normalize_date_tokens(src)
+        # 找年份 (4 位) 和月份
+        fx_year = {t for t in fx_tokens if len(t) == 4}
+        src_year = {t for t in src_tokens if len(t) == 4}
+        if fx_year & src_year:
+            # 月也对 → 🟢
+            fx_month = {t for t in fx_tokens if len(t) <= 2}
+            src_month = {t for t in src_tokens if len(t) <= 2}
+            if fx_month & src_month:
+                return "🟢", ""
+            return "🟡", f"年对但月可能不同 (fx={fx_tokens} src={src_tokens})"
+        return "🔴", f"年不符 fx_year={fx_year} src_year={src_year}"
+
+    # kind == "text" 默认:子串 + 中英对照别名 (两侧都必须有对应的字/词)
     if src_norm in fx_norm or fx_norm in src_norm:
         return "🟢", ""
-    # 日期字段:提取数字比对
-    if "date" in field:
-        fx_digits = re.findall(r"\d+", fx)
-        src_digits = re.findall(r"\d+", src)
-        if set(fx_digits) & set(src_digits):
-            return "🟡", "部分数字一致 (月/年匹配但日不同)"
+    for cn, en in _CN_EN_ALIASES.items():
+        en_lower = en.lower()
+        # 正向:源里的英文 + fixture 里的中文同时命中
+        if en_lower in src_norm and cn in fx:
+            return "🟢", f"中英对照命中 ({cn} ↔ {en})"
+        # 反向:源里的中文 + fixture 里的英文同时命中
+        if cn in src and en_lower in fx_norm:
+            return "🟢", f"中英对照命中 ({cn} ↔ {en})"
     return "🔴", f"fixture='{fx[:40]}' vs 源='{src[:40]}'"
+
+
+_CN_EN_ALIASES: dict[str, str] = {
+    # 地名
+    "北京": "Beijing",
+    "上海": "Shanghai",
+    "深圳": "Shenzhen",
+    "杭州": "Hangzhou",
+    "广州": "Guangzhou",
+    "香港": "Hong Kong",
+    "合肥": "Hefei",
+    "巴塞尔": "Basel",
+    # 公司
+    "金山软件": "Kingsoft",
+    "腾讯": "Tencent",
+    "阿里巴巴": "Alibaba",
+    "百度": "Baidu",
+    "字节跳动": "ByteDance",
+    "小米": "Xiaomi",
+    "蔚来": "NIO",
+    "百济神州": "BeiGene",
+    "商汤": "SenseTime",
+    # 机构
+    "美国证券交易委员会": "SEC",
+    "港交所": "HKEX",
+    "纳斯达克": "NASDAQ",
+    "纽交所": "NYSE",
+    "科创板": "STAR",
+}
 
 
 def render_audit(results: list[VerifyResult]) -> str:
