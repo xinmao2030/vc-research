@@ -1,5 +1,15 @@
 {
-  "sources_hit": ["itjuzi(模拟)", "crunchbase(模拟)", "公开新闻"],
+  "sources_hit": [
+    "[融资聚合] IT桔子 · 字节跳动企业档案 <https://www.itjuzi.com/company/1069>",
+    "[融资聚合] Crunchbase · ByteDance profile <https://www.crunchbase.com/organization/bytedance>",
+    "[工商] 国家企业信用信息公示系统 · 北京字节跳动科技有限公司 <https://www.gsxt.gov.cn>",
+    "[新闻] Bloomberg · ByteDance tender offer implies ~$300B valuation (2024-04-24)",
+    "[新闻] The Information · ByteDance topic hub <https://www.theinformation.com/topics/bytedance>",
+    "[新闻] Financial Times · ByteDance FY2023 revenue ≈ $120B (2024-02-28)",
+    "[监管] 美国国会 · PAFACA 法案 (Protecting Americans from Foreign Adversary Controlled Applications Act, 2024-04-24)",
+    "[分析师] Arete Research · 全球短视频广告格局 2024 Q4",
+    "[官网] 字节跳动官网 <https://www.bytedance.com/zh/>"
+  ],
   "itjuzi": {
     "legal_name": "北京字节跳动科技有限公司",
     "founded_date": "2012-03-09",

@@ -1,5 +1,15 @@
 {
-  "sources_hit": ["itjuzi(模拟)", "招股书", "年报"],
+  "sources_hit": [
+    "[招股书] SEC EDGAR · NIO Inc. F-1 (2018-08-13) <https://www.sec.gov/Archives/edgar/data/1736541/000119312518245883/d624833df1.htm>",
+    "[年报] SEC EDGAR · NIO 20-F FY2023 <https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001736541&type=20-F>",
+    "[招股书] 港交所披露易 · 蔚来 (9866.HK) 2022 年介绍上市文件 <https://www1.hkexnews.hk/listedco/listconews/sehk/2022/0228/2022022800031_c.pdf>",
+    "[IR] NIO Investor Relations <https://ir.nio.com>",
+    "[融资聚合] IT桔子 · 蔚来企业档案 <https://www.itjuzi.com/company/70148>",
+    "[融资聚合] Crunchbase · NIO <https://www.crunchbase.com/organization/nio>",
+    "[政府公告] 合肥市政府 · 2020 年 70 亿战投协议新闻稿 <https://www.hefei.gov.cn>",
+    "[新闻] 路透社 · CYVN Holdings 22 亿美元战投 (2023-12-18) <https://www.reuters.com/business/autos-transportation/chinas-nio-sell-22-bln-stake-abu-dhabi-backed-cyvn-2023-12-18/>",
+    "[官网] 蔚来官网 <https://www.nio.com/about>"
+  ],
   "itjuzi": {
     "legal_name": "蔚来汽车 (NIO Inc.)",
     "founded_date": "2014-11-25",

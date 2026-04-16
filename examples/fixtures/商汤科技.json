@@ -1,5 +1,15 @@
 {
-  "sources_hit": ["itjuzi(模拟)", "招股书", "公开新闻"],
+  "sources_hit": [
+    "[招股书] 港交所披露易 · 商汤-W (0020.HK) 2021 年 IPO 招股章程 <https://www1.hkexnews.hk/listedco/listconews/sehk/2021/1205/2021120500034_c.pdf>",
+    "[年报] 港交所披露易 · 商汤集团 2023 年年度报告 <https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032601243_c.pdf>",
+    "[IR] 商汤集团投资者关系 <https://www.sensetime.com/cn/investor>",
+    "[融资聚合] IT桔子 · 商汤企业档案 <https://www.itjuzi.com/company/43020>",
+    "[融资聚合] Crunchbase · SenseTime <https://www.crunchbase.com/organization/sensetime>",
+    "[监管] 美国财政部 OFAC · 2021-12-10 非 SDN 中国军事工业复合体投资黑名单 <https://ofac.treasury.gov/recent-actions/20211210>",
+    "[新闻] 路透社 · SenseTime delays IPO over US sanctions (2021-12-13) <https://www.reuters.com/markets/asia/chinas-sensetime-delays-hk-ipo-after-us-sanctions-2021-12-13/>",
+    "[新闻] 南华早报 · 汤晓鸥辞世讣告 (2023-12-16) <https://www.scmp.com/tech/tech-trends/article/3245046>",
+    "[官网] 商汤科技官网 <https://www.sensetime.com>"
+  ],
   "itjuzi": {
     "legal_name": "商汤集团股份有限公司 (SenseTime Group Inc.)",
     "founded_date": "2014-11-14",
@@ -15,7 +25,8 @@
       {
         "name": "汤晓鸥",
         "title": "创始人 (已故)",
-        "background": "港中文多媒体实验室主任,CV 领域学术领袖,2023 年 12 月辞世"
+        "background": "港中文多媒体实验室主任,CV 领域学术领袖,2023 年 12 月辞世",
+        "still_active": false
       },
       {
         "name": "徐立",

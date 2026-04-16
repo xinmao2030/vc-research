@@ -1,5 +1,17 @@
 {
-  "sources_hit": ["itjuzi(模拟)", "crunchbase(模拟)", "Nasdaq/港交所披露"],
+  "sources_hit": [
+    "[招股书] SEC EDGAR · BeiGene F-1 (2016 Nasdaq IPO) <https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001651308&type=F-1>",
+    "[招股书] 港交所披露易 · 百济神州-B (6160.HK) 2018 年招股章程 <https://www1.hkexnews.hk/listedco/listconews/sehk/2018/0725/ltn20180725005_c.pdf>",
+    "[招股书] 上交所科创板 · 百济神州 (688235.SH) 2021 年招股说明书 <https://static.sse.com.cn/stock/information/c/202112/fe9c3f85fd4b4b9fa0a85f4d05e6d7a8.pdf>",
+    "[年报] SEC EDGAR · BeiGene 10-K FY2023 <https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001651308&type=10-K>",
+    "[IR] BeiGene Investor Relations <https://ir.beigene.com>",
+    "[融资聚合] Crunchbase · BeiGene <https://www.crunchbase.com/organization/beigene>",
+    "[融资聚合] IT桔子 · 百济神州企业档案 <https://www.itjuzi.com/company/19619>",
+    "[合作披露] Amgen / BeiGene 全球肿瘤联盟新闻稿 (2019-10-31) <https://www.amgen.com/newsroom/press-releases/2019/10/amgen-and-beigene-announce-global-strategic-oncology-collaboration>",
+    "[合作披露] Novartis / BeiGene 替雷利珠单抗授权终止公告 (2023-09-18)",
+    "[监管] NMPA 百泽安 (替雷利珠单抗) 获批公告 (2019-12-27) <https://www.nmpa.gov.cn>",
+    "[监管] FDA · BRUKINSA (zanubrutinib) approval (2019-11-14) <https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-zanubrutinib-mantle-cell-lymphoma>"
+  ],
   "itjuzi": {
     "legal_name": "百济神州有限公司 (BeiGene, Ltd.)",
     "founded_date": "2010-10-28",
@@ -21,7 +33,7 @@
       {
         "name": "John V. Oyler",
         "title": "联合创始人/CEO",
-        "background": "Telarus 前 CEO / Genta 前高管,商业化与资本运作经验丰富",
+        "background": "BioDuro 创始人 / Genta 前执行副总裁 / 普林斯顿物理 + 麦肯锡背景,商业化与资本运作经验丰富",
         "equity_pct": 0.04
       }
     ],
@@ -72,7 +84,15 @@
         "amount_usd": 2080000000,
         "post_money_valuation_usd": 27000000000,
         "lead_investors": ["Baker Bros", "高瓴", "贝莱德"],
-        "notes": "注册制后 A 股科创板上市 688235,全球首家三地上市 biotech"
+        "notes": "注册制前 20.8 亿美元定向增发 (PIPE),高瓴+贝莱德领投"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2021-12-15",
+        "amount_usd": 3500000000,
+        "post_money_valuation_usd": 35000000000,
+        "lead_investors": ["中金公司", "高盛高华", "摩根大通"],
+        "notes": "A 股科创板上市 688235,全球首家三地上市 (美股+港股+A股) biotech"
       }
     ],
     "thesis": {

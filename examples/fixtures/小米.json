@@ -1,5 +1,14 @@
 {
-  "sources_hit": ["itjuzi(模拟)", "crunchbase(模拟)", "港交所披露易"],
+  "sources_hit": [
+    "[招股书] 港交所披露易 · 小米集团-W (1810.HK) 2018 年 IPO 招股章程 <https://www1.hkexnews.hk/listedco/listconews/sehk/2018/0625/ltn20180625006_c.pdf>",
+    "[年报] 港交所披露易 · 小米集团 2023 年年度报告 <https://www.hkexnews.hk/listedco/listconews/sehk/2024/0423/2024042300867_c.pdf>",
+    "[IR] 小米集团投资者关系 <https://ir.mi.com>",
+    "[融资聚合] IT桔子 · 小米企业档案 <https://www.itjuzi.com/company/4>",
+    "[融资聚合] Crunchbase · Xiaomi <https://www.crunchbase.com/organization/xiaomi>",
+    "[分析师] IDC / Canalys 季度手机出货量报告",
+    "[新闻] 36Kr · 小米 SU7 发布会实录 (2024-03-28) <https://36kr.com/p/2692706867636361>",
+    "[官网] 小米集团官网 <https://www.mi.com/about>"
+  ],
   "itjuzi": {
     "legal_name": "小米集团 (Xiaomi Corp.)",
     "founded_date": "2010-04-06",
