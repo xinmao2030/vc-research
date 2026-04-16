@@ -16,16 +16,20 @@ from ..schema import (
 def analyze_valuation(
     funding: FundingHistory,
     thesis: InvestmentThesis,
+    industry: str | None = None,
     comparable_multiples: dict[str, float] | None = None,
 ) -> Valuation:
     """用 4 种方法交叉估值,返回公允价值区间.
 
     Args:
-        comparable_multiples: {"revenue": 15.0, "arr": 20.0, "gmv": 2.5}
-                              赛道级同业估值倍数,Phase 2 从数据库拉取
+        industry: 企业所在赛道 (from CompanyProfile.industry),用于查表匹配估值倍数
+        comparable_multiples: 显式传入则覆盖查表结果
+                             {"revenue": 15.0, "arr": 20.0, "gmv": 2.5}
     """
     methods: list[ValuationMethod] = []
-    mults = comparable_multiples or _default_multiples(thesis)
+    mults = {**_INDUSTRY_DEFAULT, **_multiples_for_industry(industry)}
+    if comparable_multiples:
+        mults.update(comparable_multiples)
 
     # 方法 1: 可比公司法 (P/Revenue or P/ARR)
     arr = thesis.growth.arr_usd
@@ -119,8 +123,52 @@ def analyze_valuation(
     )
 
 
-def _default_multiples(thesis: InvestmentThesis) -> dict[str, float]:
-    """根据行业选择默认估值倍数 (粗略,Phase 2 替换为赛道级动态数据)."""
-    ind = thesis.competitors  # 用竞争对手作为 proxy
-    # 默认 SaaS 倍数
-    return {"revenue": 10.0, "arr": 15.0, "gmv": 2.0}
+def _multiples_for_industry(industry: str | None) -> dict[str, float]:
+    """根据行业返回典型估值倍数.
+
+    数据来源: 2024-2025 年 CB Insights / Bessemer Cloud Index / 同花顺行业数据
+    (粗略近似值, Phase 2 替换为动态抓取的赛道中位数)
+    """
+    if not industry:
+        return {}
+    key = industry.lower()
+    for ind_key, mults in _INDUSTRY_MULTIPLES.items():
+        if ind_key in key:
+            return mults
+    return {}
+
+
+# 默认倍数 (fallback, 早期 SaaS)
+_INDUSTRY_DEFAULT: dict[str, float] = {
+    "revenue": 10.0,
+    "arr": 15.0,
+    "gmv": 2.0,
+}
+
+# 行业倍数表 (关键字匹配 industry 字段)
+_INDUSTRY_MULTIPLES: dict[str, dict[str, float]] = {
+    "saas": {"revenue": 12.0, "arr": 18.0, "gmv": 2.0},
+    "企业服务": {"revenue": 10.0, "arr": 15.0, "gmv": 2.0},
+    "ai": {"revenue": 15.0, "arr": 25.0, "gmv": 3.0},
+    "人工智能": {"revenue": 15.0, "arr": 25.0, "gmv": 3.0},
+    "大模型": {"revenue": 20.0, "arr": 30.0, "gmv": 3.0},
+    "电商": {"revenue": 3.0, "arr": 5.0, "gmv": 1.2},
+    "零售": {"revenue": 2.5, "arr": 4.0, "gmv": 0.8},
+    "新能源": {"revenue": 4.0, "arr": 6.0, "gmv": 1.5},
+    "新能源汽车": {"revenue": 3.5, "arr": 5.0, "gmv": 1.5},
+    "半导体": {"revenue": 8.0, "arr": 12.0, "gmv": 2.5},
+    "生物医药": {"revenue": 12.0, "arr": 20.0, "gmv": 3.0},
+    "医疗": {"revenue": 8.0, "arr": 12.0, "gmv": 2.0},
+    "fintech": {"revenue": 8.0, "arr": 12.0, "gmv": 2.0},
+    "金融科技": {"revenue": 8.0, "arr": 12.0, "gmv": 2.0},
+    "内容平台": {"revenue": 6.0, "arr": 10.0, "gmv": 1.5},
+    "互联网": {"revenue": 5.0, "arr": 8.0, "gmv": 1.5},
+    "社交": {"revenue": 8.0, "arr": 12.0, "gmv": 2.0},
+    "游戏": {"revenue": 5.0, "arr": 8.0, "gmv": 1.8},
+    "教育": {"revenue": 4.0, "arr": 6.0, "gmv": 1.2},
+    "物流": {"revenue": 2.0, "arr": 3.0, "gmv": 0.8},
+    "硬件": {"revenue": 3.0, "arr": 5.0, "gmv": 1.0},
+    "消费": {"revenue": 3.5, "arr": 5.0, "gmv": 1.2},
+    "chip": {"revenue": 8.0, "arr": 12.0, "gmv": 2.5},
+    "cleantech": {"revenue": 5.0, "arr": 8.0, "gmv": 1.5},
+}

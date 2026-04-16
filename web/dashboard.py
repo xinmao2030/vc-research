@@ -19,6 +19,8 @@ from urllib.parse import unquote
 
 import markdown
 
+from vc_research.report.renderer import _sanitize_html
+
 REPORTS_DIR = Path(__file__).resolve().parent.parent / "examples" / "reports"
 
 STYLE = """
@@ -133,6 +135,7 @@ def _report(name: str) -> tuple[bytes, int]:
         return _page("404", "<h1>研报不存在</h1>"), 404
     md_text = path.read_text(encoding="utf-8")
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code"])
+    html_body = _sanitize_html(html_body)
     return _page(name, html_body), 200
 
 

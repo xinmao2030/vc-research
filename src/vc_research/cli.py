@@ -18,6 +18,7 @@ from .modules import (
     analyze_thesis,
     analyze_valuation,
 )
+from .modules.company_profile import InsufficientDataError
 from .report import render_markdown
 from .schema import VCReport
 
@@ -62,7 +63,11 @@ def analyze(
     console.print(f"[green]✓[/green] 数据源命中: {', '.join(raw.sources_hit)}")
 
     # 运行 7 大模块
-    profile = analyze_profile(raw)
+    try:
+        profile = analyze_profile(raw)
+    except InsufficientDataError as e:
+        console.print(f"[red]✗[/red] 数据不足,无法生成研报: {e}")
+        raise typer.Exit(code=2)
     console.print("[green]✓[/green] 模块 1: 企业画像")
 
     funding = analyze_funding(raw)
@@ -74,7 +79,7 @@ def analyze(
     industry = analyze_industry(raw, profile.industry)
     console.print("[green]✓[/green] 模块 4: 产业趋势")
 
-    valuation = analyze_valuation(funding, thesis)
+    valuation = analyze_valuation(funding, thesis, industry=profile.industry)
     console.print(
         f"[green]✓[/green] 模块 5: 估值分析 "
         f"(公允区间 ${valuation.fair_value_low_usd:,.0f} - ${valuation.fair_value_high_usd:,.0f})"
@@ -90,11 +95,11 @@ def analyze(
         f"[green]✓[/green] 模块 7: 投资建议 — [bold]{recommendation.verdict}[/bold]"
     )
 
-    # LLM 增强 (可选)
+    # LLM 增强 (可选) — 失败时优雅降级到 base 逻辑,不污染 thesis
     if use_llm:
         console.print("[cyan]🤖 Claude Opus 4.6 推理增强...[/cyan]")
         try:
-            from .llm import ClaudeAnalyzer
+            from .llm import ClaudeAnalyzer, LLMEnhancementError
 
             analyzer = ClaudeAnalyzer()
             enhanced = analyzer.enhance_thesis(
@@ -102,17 +107,20 @@ def analyze(
                 funding.model_dump(mode="python"),
                 thesis.growth.model_dump(mode="python"),
             )
-            if "moat" in enhanced:
-                thesis.moat = enhanced["moat"]
-            if "bull" in enhanced:
-                thesis.key_bull_points = enhanced["bull"]
-            if "bear" in enhanced:
-                thesis.key_bear_points = enhanced["bear"]
-            if "team_notes" in enhanced:
-                thesis.team_notes = enhanced["team_notes"]
+            # 合并 — Pydantic 保证字段类型正确,直接赋值即可
+            if enhanced.moat:
+                thesis.moat = enhanced.moat
+            if enhanced.bull:
+                thesis.key_bull_points = enhanced.bull
+            if enhanced.bear:
+                thesis.key_bear_points = enhanced.bear
+            if enhanced.team_notes:
+                thesis.team_notes = enhanced.team_notes
             console.print("[green]✓[/green] LLM 增强完成")
+        except LLMEnhancementError as e:
+            console.print(f"[yellow]⚠️  LLM 增强失败,已降级到 base 逻辑: {e}[/yellow]")
         except Exception as e:
-            console.print(f"[yellow]⚠️  LLM 增强失败: {e}[/yellow]")
+            console.print(f"[yellow]⚠️  LLM 推理异常: {type(e).__name__}: {e}[/yellow]")
 
     # 汇总报告
     report = VCReport(

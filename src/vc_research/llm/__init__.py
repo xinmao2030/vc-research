@@ -1,5 +1,5 @@
 """LLM 推理层 — Claude Opus 4.6 封装."""
 
-from .claude_analyzer import ClaudeAnalyzer
+from .claude_analyzer import ClaudeAnalyzer, EnhancedThesis, LLMEnhancementError
 
-__all__ = ["ClaudeAnalyzer"]
+__all__ = ["ClaudeAnalyzer", "EnhancedThesis", "LLMEnhancementError"]

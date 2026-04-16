@@ -12,6 +12,7 @@ from ..schema import (
     RiskLevel,
     RiskMatrix,
 )
+from ..utils import to_decimal
 
 
 def analyze_risks(
@@ -20,10 +21,10 @@ def analyze_risks(
     thesis: InvestmentThesis,
 ) -> RiskMatrix:
     src = raw.itjuzi or raw.crunchbase or {}
-    fin = src.get("financials", {})
+    fin = src.get("financials") or {}
 
-    burn = _d(fin.get("burn_rate_usd_monthly"))
-    cash = _d(fin.get("cash_usd"))
+    burn = to_decimal(fin.get("burn_rate_usd_monthly"))
+    cash = to_decimal(fin.get("cash_usd"))
     runway = None
     if burn and cash and burn > 0:
         runway = float(cash / burn)
@@ -97,12 +98,16 @@ def analyze_risks(
         )
 
     # 外部明示的额外风险
-    for extra in src.get("extra_risks", []):
+    for extra in src.get("extra_risks") or []:
+        try:
+            lvl = RiskLevel(extra.get("level", "medium"))
+        except ValueError:
+            lvl = RiskLevel.MEDIUM
         risks.append(
             Risk(
-                category=extra.get("category", "其他"),
-                description=extra.get("description", ""),
-                level=RiskLevel(extra.get("level", "medium")),
+                category=extra.get("category") or "其他",
+                description=extra.get("description") or "",
+                level=lvl,
                 mitigation=extra.get("mitigation"),
             )
         )
@@ -116,15 +121,6 @@ def analyze_risks(
         risks=risks,
         overall_level=overall,
     )
-
-
-def _d(v) -> Decimal | None:
-    if v is None:
-        return None
-    try:
-        return Decimal(str(v))
-    except (ValueError, ArithmeticError):
-        return None
 
 
 def _overall_level(risks: list[Risk]) -> RiskLevel:

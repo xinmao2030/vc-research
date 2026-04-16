@@ -89,9 +89,49 @@ vc-research/
 
 ```bash
 cd ~/vc-research
-python -m pip install -e .
-vc-research analyze "字节跳动" --stage early --output report.md
+python -m venv .venv && source .venv/bin/activate
+pip install -e .
+vc-research analyze "字节跳动" -o report.md
+vc-research list-examples            # 看看已有的标杆案例
+
+# Web Dashboard (浏览器打开 localhost:8765)
+python web/dashboard.py
 ```
+
+## 🛠️ 系统依赖
+
+**macOS** (仅当使用 `--pdf` 选项时需要 weasyprint 的系统库):
+```bash
+brew install pango cairo glib gdk-pixbuf libffi
+```
+若未安装,`--pdf` 会优雅降级为 HTML 输出,不会崩溃。
+
+**Linux** (Debian/Ubuntu):
+```bash
+sudo apt-get install libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libffi-dev
+```
+
+## 🔑 环境变量
+
+```bash
+cp .env.example .env
+# 编辑填入 ANTHROPIC_API_KEY (使用 --llm 时必需)
+```
+
+## 🧪 运行测试
+
+```bash
+pytest tests/ -v
+```
+
+## ❓ 常见问题
+
+| 问题 | 解决 |
+|------|------|
+| `--pdf` 报 `libgobject` 缺失 | 参考上方"系统依赖"章节安装 pango/cairo |
+| `ANTHROPIC_API_KEY` 未设置 | 去掉 `--llm` 标志或设置 env 变量 |
+| 公司名不在 fixtures | 当前需手动创建 `examples/fixtures/{名字}.json`,Phase 2 将自动接入真实数据源 |
+| 研报金额是 10 位数字看不懂 | 后续会人性化显示 (`$180B` / `¥1800 亿`) |
 
 ## 📜 设计原则
 

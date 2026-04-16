@@ -6,13 +6,31 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from typing import Any
+
+from pydantic import BaseModel, Field, ValidationError
 
 try:
     from anthropic import Anthropic
 except ImportError:  # 允许在未安装 SDK 时导入模块
     Anthropic = None  # type: ignore
+
+logger = logging.getLogger(__name__)
+
+
+class EnhancedThesis(BaseModel):
+    """Claude enhance_thesis 返回值的 schema 校验."""
+
+    moat: str = Field(default="", max_length=2000)
+    bull: list[str] = Field(default_factory=list, max_length=10)
+    bear: list[str] = Field(default_factory=list, max_length=10)
+    team_notes: str = Field(default="", max_length=2000)
+
+
+class LLMEnhancementError(RuntimeError):
+    """LLM 增强失败 — 调用方应降级到 base 逻辑."""
 
 
 MODEL_ID = "claude-opus-4-6"
@@ -53,8 +71,16 @@ class ClaudeAnalyzer:
         company_profile: dict[str, Any],
         funding: dict[str, Any],
         growth: dict[str, Any],
-    ) -> dict[str, Any]:
-        """让 Claude 补充 bull/bear 论点与护城河描述."""
+    ) -> EnhancedThesis:
+        """让 Claude 补充 bull/bear 论点与护城河描述.
+
+        Returns:
+            EnhancedThesis: 经过 Pydantic 校验的结果 (保证字段类型正确)
+
+        Raises:
+            LLMEnhancementError: API 调用失败 / JSON 解析失败 / schema 不符 —
+                                 调用方应降级到 base 逻辑 (不污染 thesis)
+        """
         user_msg = (
             f"## 公司画像\n```json\n{json.dumps(company_profile, ensure_ascii=False, indent=2, default=str)}\n```\n\n"
             f"## 融资轨迹\n```json\n{json.dumps(funding, ensure_ascii=False, indent=2, default=str)}\n```\n\n"
@@ -63,27 +89,40 @@ class ClaudeAnalyzer:
             '{"moat": "...", "bull": ["..."], "bear": ["..."], "team_notes": "..."}'
         )
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=2048,
-            system=[
-                {
-                    "type": "text",
-                    "text": SYSTEM_PROMPT,
-                    "cache_control": {"type": "ephemeral"},
-                },
-                {
-                    "type": "text",
-                    "text": f"## 行业知识库\n{self.industry_knowledge}",
-                    "cache_control": {"type": "ephemeral"},
-                },
-            ],
-            messages=[{"role": "user", "content": user_msg}],
-        )
-        text = "".join(
-            block.text for block in response.content if block.type == "text"
-        )
-        return _extract_json(text)
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=2048,
+                system=[
+                    {
+                        "type": "text",
+                        "text": SYSTEM_PROMPT,
+                        "cache_control": {"type": "ephemeral"},
+                    },
+                    {
+                        "type": "text",
+                        "text": f"## 行业知识库\n{self.industry_knowledge}",
+                        "cache_control": {"type": "ephemeral"},
+                    },
+                ],
+                messages=[{"role": "user", "content": user_msg}],
+            )
+        except Exception as e:
+            raise LLMEnhancementError(f"Claude API 调用失败: {e}") from e
+
+        text = "".join(b.text for b in response.content if b.type == "text")
+
+        try:
+            raw = _extract_json(text)
+        except (json.JSONDecodeError, ValueError) as e:
+            logger.warning("LLM 返回无法解析为 JSON: %s", text[:200])
+            raise LLMEnhancementError(f"Claude 返回非合法 JSON: {e}") from e
+
+        try:
+            return EnhancedThesis.model_validate(raw)
+        except ValidationError as e:
+            logger.warning("LLM 返回 JSON 不符合 schema: %s", raw)
+            raise LLMEnhancementError(f"Claude 返回 schema 不符: {e}") from e
 
     def narrative_recommendation(self, report_json: dict[str, Any]) -> str:
         """给出一段面向零基础读者的投资逻辑叙事 (800-1200 字)."""
