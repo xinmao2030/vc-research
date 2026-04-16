@@ -13,6 +13,33 @@
 
 ---
 
+## [0.1.9] - 2026-04-16
+
+### Added — 并行交叉验证工具 + 第二轮广度扩展
+
+- **`tools/cross_verify.py`**: httpx.AsyncClient 并行抓 Wikipedia/官网多源,
+  按公司定义的规则表正则匹配 fixture 字段,输出
+  `docs/data-audit-auto-YYYY-MM-DD.md`,分级 🟢 🟡 🔴 ⚪
+  - 单公司验证:`uv run python tools/cross_verify.py --company 小米`
+  - 全量:`uv run python tools/cross_verify.py`
+  - 6 规则并行 1 秒出报告,支持扩展到 50+ 规则仍 <10s
+- **fixture 第二轮深化** (基于并行 WebFetch 15+ 源):
+  - 字节跳动:张一鸣 `still_active: false → true`(仍任 Chairman + >50%
+    投票权),补 Forbes 2025-05 身价 $65.5B / 2024 中国首富
+  - 小米:雷军背景补金山 1992-2007 轨迹 + joyo.com 卖 Amazon 细节 +
+    Forbes 2025-05 身价 $42.6B;SU7 补 2024 交付 139,487 辆
+  - 百济神州:BRUKINSA 5 项 FDA 适应症时间线 / Tislelizumab FDA 2024-03
+    EMA 2023-09 / 2024 全球销售 $13 亿写入 sources_hit
+
+### Memory
+- 新增 `feedback_vc_research_always_crossverify.md`:
+  vc-research 数据任务默认第一步并行交叉验证,不等用户问
+
+### Tests
+- 49/49 全绿
+
+---
+
 ## [0.1.8] - 2026-04-16
 
 ### Changed — 数据源可信度清理: 替换假占位 + 修正标杆数据

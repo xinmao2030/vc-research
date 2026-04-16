@@ -25,10 +25,11 @@
     "founders": [
       {
         "name": "张一鸣",
-        "title": "创始人",
-        "background": "南开大学软件工程,酷讯/九九房技术背景,以推荐算法起家",
+        "title": "创始人/董事长",
+        "background": "南开大学软件工程,酷讯/九九房技术背景,以推荐算法起家;2021-05 卸任 CEO 但仍任董事长,持 >50% 投票权 (双层股权);Forbes 2025-05 身价 $65.5B,一度成为 2024 中国首富",
         "equity_pct": 0.22,
-        "still_active": false,
+        "still_active": true,
+        "current_role": "董事长 (控股 >50% 投票权)",
         "current_role": "2021 年卸任 CEO,现聚焦技术与长期战略,仍是最大个人股东"
       },
       {
