@@ -13,6 +13,21 @@
 
 ---
 
+## [0.1.4] - 2026-04-15
+
+### Added — Dashboard 教育体验升级
+- Dashboard 首页改为实时从 fixtures 构建研报卡片,不再依赖
+  `examples/reports/` 预生成 md,打开即看 4 家标杆全貌
+- 卡片元信息:赛道 badge + 裁决 badge (色)+ 风险等级 badge (色)+
+  轮次+最新估值+一句话描述
+- **术语 hover 提示** (设计师 P2):TAM/SAM/SOM/LTV/CAC/ARR/CAGR/
+  护城河/稀释/跑道/优先清算权 等 24 个核心术语在研报正文中自动
+  包 `<abbr title="类比解释">`,鼠标悬停即显示,无需 JS
+- `/glossary` 路由渲染完整术语表
+- 暗色模式 abbr 下划线+虚线样式优化
+
+---
+
 ## [0.1.3] - 2026-04-15
 
 ### Added — Phase 2 接入准备完成
