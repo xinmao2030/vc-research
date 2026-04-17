@@ -27,7 +27,7 @@ from .report import render_markdown
 from .schema import VCReport
 
 app = typer.Typer(
-    help="VC Research — 创投企业投资分析系统",
+    help="VC Research — 一级市场创投分析系统（评估未上市 / Pre-IPO 企业）",
     no_args_is_help=True,
 )
 console = Console()
