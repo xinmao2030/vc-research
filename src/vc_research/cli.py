@@ -124,7 +124,7 @@ def analyze(
     risks = analyze_risks(raw, funding, thesis)
     _tick("risks", "模块 6: 风险矩阵", f"(整体 {risks.overall_level.value})")
 
-    recommendation = analyze_recommendation(thesis, valuation, risks, funding)
+    recommendation = analyze_recommendation(thesis, valuation, risks, funding, profile)
     _tick(
         "recommendation",
         "模块 7: 投资建议",

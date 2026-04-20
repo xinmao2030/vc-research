@@ -297,7 +297,7 @@ def _build_report(name: str, *, from_search: bool = False) -> VCReport | None:
     industry = analyze_industry(raw, profile.industry)
     valuation = analyze_valuation(funding, thesis, industry=profile.industry)
     risks = analyze_risks(raw, funding, thesis)
-    rec = analyze_recommendation(thesis, valuation, risks, funding)
+    rec = analyze_recommendation(thesis, valuation, risks, funding, profile)
 
     report = VCReport(
         generated_at=date.today(),

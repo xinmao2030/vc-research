@@ -256,7 +256,7 @@ def test_benchmark_numerics(name: str, expected: dict) -> None:
     thesis = analyze_thesis(raw)
     valuation = analyze_valuation(funding, thesis, industry=profile.industry)
     risks = analyze_risks(raw, funding, thesis)
-    rec = analyze_recommendation(thesis, valuation, risks, funding)
+    rec = analyze_recommendation(thesis, valuation, risks, funding, profile)
 
     assert len(funding.rounds) == expected["rounds"], f"{name} 轮次数"
     assert funding.latest_valuation_usd == expected["latest_valuation_usd"], f"{name} 最新估值"
@@ -463,5 +463,5 @@ class TestVerdictVCTerminology:
         thesis = analyze_thesis(raw)
         valuation = analyze_valuation(funding, thesis, industry=p.industry)
         risks = analyze_risks(raw, funding, thesis)
-        rec = analyze_recommendation(thesis, valuation, risks, funding)
+        rec = analyze_recommendation(thesis, valuation, risks, funding, p)
         assert rec.verdict in ("强烈参投", "参投", "观望", "回避")
