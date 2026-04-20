@@ -342,6 +342,23 @@ else
 fi
 
 # ──────────────────────────────────────────────────────────────
+# 创建桌面 App (双击打开 Dashboard)
+# ──────────────────────────────────────────────────────────────
+echo ""
+info "创建 VC Research.app（桌面快捷方式）..."
+
+if [[ -f "$INSTALL_DIR/installer/create_app.sh" ]]; then
+    bash "$INSTALL_DIR/installer/create_app.sh" "$INSTALL_DIR"
+    success "VC Research.app 已放置到桌面和 ~/Applications"
+    success "双击桌面图标即可打开 Dashboard"
+elif [[ -n "$SOURCE_DIR" && -f "$SOURCE_DIR/installer/create_app.sh" ]]; then
+    bash "$SOURCE_DIR/installer/create_app.sh" "$INSTALL_DIR"
+    success "VC Research.app 已放置到桌面和 ~/Applications"
+else
+    warn "未找到 create_app.sh，跳过桌面 App 创建"
+fi
+
+# ──────────────────────────────────────────────────────────────
 # 完成
 # ──────────────────────────────────────────────────────────────
 echo ""
@@ -355,17 +372,16 @@ cat << 'DONE'
 DONE
 echo -e "${NC}"
 
-echo -e "  ${BOLD}使用方法:${NC}"
+echo -e "  ${BOLD}打开方式:${NC}"
 echo ""
-echo -e "  ${CYAN}# 方式 1: 用快捷命令（重新打开终端后生效）${NC}"
-echo -e "  vcr analyze \"影石创新\"              # 分析标杆企业"
-echo -e "  vcr analyze \"字节跳动\" --live       # 分析任意企业"
-echo -e "  vcr list-examples                    # 查看标杆案例列表"
-echo -e "  vcr-dashboard                        # 打开 Web 界面"
+echo -e "  🖱️  ${BOLD}双击桌面「VC Research」图标${NC} → 自动打开 Dashboard"
 echo ""
-echo -e "  ${CYAN}# 方式 2: 手动激活${NC}"
-echo -e "  source ~/vc-research/activate.sh"
-echo -e "  vc-research analyze \"银诺医药\" --pdf"
+echo -e "  ${BOLD}终端命令（可选）:${NC}"
+echo ""
+echo -e "  ${CYAN}vcr analyze \"影石创新\"${NC}              # 分析标杆企业"
+echo -e "  ${CYAN}vcr analyze \"字节跳动\" --live${NC}       # AI 分析任意企业"
+echo -e "  ${CYAN}vcr list-examples${NC}                    # 查看标杆案例"
+echo -e "  ${CYAN}vcr-dashboard${NC}                        # 终端启动 Dashboard"
 echo ""
 echo -e "  ${BOLD}6 家内置标杆企业（秒出报告,无需联网）:${NC}"
 echo -e "  影石创新 | 澜起科技 | 银诺医药 | 比贝特医药 | 汉朔科技 | 强一股份"
@@ -373,6 +389,14 @@ echo ""
 echo -e "  ${BOLD}任意企业（需 Ollama 运行,首次约 2 分钟）:${NC}"
 echo -e "  vcr analyze \"企业名\" --live"
 echo ""
-echo -e "  ${DIM}Ollama 会在 Mac 启动时自动运行。如需手动启动: ollama serve${NC}"
+echo -e "  ${DIM}Ollama 在 Mac 启动时自动运行。如需手动: ollama serve${NC}"
 echo ""
+
+# 安装完成后自动打开 Dashboard
+echo -e "  ${BOLD}正在打开 Dashboard...${NC}"
+source "$VENV_DIR/bin/activate"
+python "$INSTALL_DIR/web/dashboard.py" &>/dev/null &
+sleep 2
+open "http://localhost:8765" 2>/dev/null || true
+
 read -rp "  按回车关闭本窗口..."
