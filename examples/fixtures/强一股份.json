@@ -140,6 +140,120 @@
       "burn_rate_usd_monthly": 0,
       "cash_usd": 450000000
     },
+    "products": [
+      {
+        "name": "2D MEMS探针卡",
+        "category": "MEMS探针卡",
+        "description": "面向非存储领域的高端探针卡产品，适用于SoC、CPU、GPU、PMIC等中高端芯片的晶圆级测试，装针数量大、耐电流高、测试寿命长、测试间距小",
+        "specs": {"probe_type": "MEMS垂直探针", "min_pitch": "35μm", "max_pin_count": "100000+", "frequency": "DC-6GHz", "touchdown_life": "2M+"},
+        "launched": "2020",
+        "image_url": null,
+        "revenue_contribution": 0.8837
+      },
+      {
+        "name": "2.5D MEMS探针卡",
+        "category": "MEMS探针卡",
+        "description": "面向存储芯片领域的新一代探针卡，覆盖HBM、DRAM、NAND Flash、NOR Flash等存储芯片的晶圆级测试，支持多DUT并行测试",
+        "specs": {"probe_type": "MEMS垂直探针", "min_pitch": "40μm", "application": "HBM/DRAM/NAND/NOR", "parallel_dut": "16-64"},
+        "launched": "2023",
+        "image_url": null,
+        "revenue_contribution": 0.04
+      },
+      {
+        "name": "悬臂探针卡",
+        "category": "非MEMS探针卡",
+        "description": "传统技术路线探针卡，面向成熟制程芯片（模拟IC、功率器件等）的晶圆测试，成本较低、交付周期短，2024年全球悬臂探针卡销售额排名第四",
+        "specs": {"probe_type": "悬臂式探针", "min_pitch": "60μm", "application": "模拟IC/功率器件/成熟制程"},
+        "launched": "2015",
+        "image_url": null,
+        "revenue_contribution": 0.0825
+      },
+      {
+        "name": "薄膜探针卡",
+        "category": "MEMS探针卡",
+        "description": "面向高频射频芯片测试的超高频探针卡，最高测试频率达67GHz，适用于5G/毫米波/WiFi等射频芯片的晶圆级测试",
+        "specs": {"probe_type": "薄膜探针", "max_frequency": "67GHz", "application": "RF/5G/mmWave/WiFi"},
+        "launched": "2022",
+        "image_url": null,
+        "revenue_contribution": 0.02
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "盛合晶微半导体(合肥)",
+        "type": "封装测试厂(OSAT)",
+        "cooperation_since": "2021",
+        "cooperation_detail": "为其提供2D MEMS探针卡及悬臂探针卡产品，用于晶圆级芯片测试服务；2022-2024年连续为第二大客户",
+        "result": "2024年度销售额超1.4亿元人民币，年增长近100%",
+        "annual_value_usd": 19500000
+      },
+      {
+        "name": "华虹集团(华虹半导体)",
+        "type": "晶圆代工厂(Foundry)",
+        "cooperation_since": "2020",
+        "cooperation_detail": "为华虹提供2D MEMS探针卡及悬臂探针卡，覆盖功率器件、模拟IC、MCU等成熟制程芯片测试需求",
+        "result": "稳定大客户关系，支撑华虹无锡/上海产线量产测试",
+        "annual_value_usd": 12000000
+      },
+      {
+        "name": "长电科技(JCET)",
+        "type": "封装测试厂(OSAT)",
+        "cooperation_since": "2019",
+        "cooperation_detail": "为全球第三大封测厂提供多类型探针卡产品，覆盖先进封装及传统封测产线的晶圆测试需求",
+        "result": "长期合作客户，助力长电科技国产化替代进程",
+        "annual_value_usd": 8000000
+      },
+      {
+        "name": "中芯集成(宁波)",
+        "type": "晶圆代工厂(Foundry)",
+        "cooperation_since": "2020",
+        "cooperation_detail": "中芯国际下属特色工艺平台，为其提供MEMS探针卡用于IGBT、MOSFET等功率器件及模拟IC晶圆测试",
+        "result": "报告期内为前五大客户之一，销售金额持续增长",
+        "annual_value_usd": 10000000
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2015-08",
+        "event": "强一半导体(苏州)股份有限公司成立，聚焦半导体探针卡研发制造",
+        "impact": "从悬臂探针卡起步，开启国产探针卡创业之路"
+      },
+      {
+        "date": "2020-10",
+        "event": "完成天使轮融资(丰年资本领投)，启动MEMS垂直探针卡自主研发",
+        "impact": "获得首轮机构资金支持，切入高端MEMS探针卡赛道"
+      },
+      {
+        "date": "2021-06",
+        "event": "华为哈勃入股(A轮)，完成产业链战略绑定",
+        "impact": "获华为生态背书，打通华为海思及其下游封测链客户资源"
+      },
+      {
+        "date": "2022-01",
+        "event": "获授国家级专精特新'小巨人'企业称号",
+        "impact": "国家层面认证核心技术实力，享受政策及税收优惠"
+      },
+      {
+        "date": "2023-12",
+        "event": "Yole全球半导体探针卡厂商排名第9，成为唯一进入前十的境内企业",
+        "impact": "标志国产MEMS探针卡从0到1的突破，获得全球行业认可"
+      },
+      {
+        "date": "2024-12",
+        "event": "全年营收6.41亿元(同比+81%)，净利润2.33亿元(同比+1149%)，进入业绩爆发期",
+        "impact": "验证MEMS探针卡国产替代的商业化放量能力"
+      },
+      {
+        "date": "2025-06",
+        "event": "完成D轮数亿元融资(君海创芯/中信建投等)，科创板IPO申请获受理",
+        "impact": "IPO冲刺前最后一轮融资，估值达约65亿人民币"
+      },
+      {
+        "date": "2025-12",
+        "event": "科创板上市(688809.SH)，发行价85.09元，募资27.55亿元，为科创板第600家上市企业",
+        "impact": "成为'半导体探针卡第一股'，上市首日涨超165%，市值突破110亿元"
+      }
+    ],
     "extra_risks": [
       {
         "category": "客户集中度",

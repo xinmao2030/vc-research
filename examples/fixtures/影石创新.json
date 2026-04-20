@@ -140,6 +140,180 @@
       "exit_window": "已 IPO (科创板 688775),2025-06-11 上市首日市值 ~$98 亿,锁定期结束后关注大股东减持节奏",
       "hot_keywords": ["全景相机", "运动相机", "vlog", "出海", "Leica", "AI 影像", "拇指相机"]
     },
+    "products": [
+      {
+        "name": "Insta360 X4",
+        "category": "360度全景相机",
+        "description": "旗舰级8K 360度全景运动相机，搭载5nm AI芯片，支持隐形自拍杆效果，可拍摄后自由选择画面角度进行'后期构图'",
+        "specs": {
+          "sensor": "1/2英寸 CMOS × 2",
+          "max_resolution_video": "8K/30fps 360°; 4K/100fps 慢动作",
+          "max_resolution_photo": "72MP 360° (AI降噪)",
+          "processor": "5nm AI芯片",
+          "battery": "2290mAh, 135分钟续航 (5.7K30fps)",
+          "waterproof": "裸机防水10米 (33ft)",
+          "display": "2.5英寸 Corning Gorilla Glass 触摸屏",
+          "dimensions": "123.4 × 46 × 37.6 mm",
+          "weight": "203g"
+        },
+        "launched": "2024-04",
+        "image_url": "https://www.insta360.com/product/insta360-x4",
+        "revenue_contribution": 0.35
+      },
+      {
+        "name": "Insta360 Ace Pro 2",
+        "category": "运动相机",
+        "description": "与徕卡联合设计的旗舰运动相机，搭载1/1.3英寸大底传感器和双AI芯片，直接对标GoPro Hero系列，主打极限运动和低光拍摄",
+        "specs": {
+          "sensor": "1/1.3英寸 8K CMOS, 13.5档动态范围, 2.4μm等效像素",
+          "lens": "Leica SUMMARIT, f/2.6, 157° FOV",
+          "max_resolution_video": "8K/30fps; 4K/60fps; Active HDR",
+          "max_resolution_photo": "50MP (8192×6144)",
+          "processor": "双芯片: Pro Imaging Chip + 5nm AI Chip",
+          "battery": "1800mAh, 100分钟续航",
+          "waterproof": "裸机防水12米 (39ft), 耐寒-20°C",
+          "display": "2.5英寸翻转触摸屏",
+          "dimensions": "71.9 × 52.2 × 38 mm",
+          "weight": "177.2g"
+        },
+        "launched": "2024-10",
+        "image_url": "https://www.insta360.com/product/insta360-ace-pro2",
+        "revenue_contribution": 0.25
+      },
+      {
+        "name": "Insta360 GO 3S",
+        "category": "拇指相机",
+        "description": "全球最小的4K运动相机，仅拇指大小，磁吸佩戴，搭配Action Pod充电仓可翻转预览，主打日常Vlog和第一视角创作",
+        "specs": {
+          "sensor": "1/2.3英寸 CMOS",
+          "max_resolution_video": "4K/30fps; 2.7K/50fps",
+          "max_resolution_photo": "12MP",
+          "battery": "相机本体310mAh; Action Pod 1270mAh",
+          "waterproof": "裸机防水10米 (IPX8)",
+          "display": "Action Pod 2.2英寸翻转触摸屏",
+          "dimensions": "相机本体 25.6 × 54.4 × 24.8 mm",
+          "weight": "相机本体 39.1g; 含Action Pod 96.3g"
+        },
+        "launched": "2024-06",
+        "image_url": "https://www.insta360.com/product/insta360-go3s",
+        "revenue_contribution": 0.15
+      },
+      {
+        "name": "Insta360 Flow 2 Pro",
+        "category": "AI手机稳定器",
+        "description": "AI驱动的三轴手机云台，内置AI追踪、自动构图、延时摄影等功能，折叠便携设计，主打手机短视频创作者",
+        "specs": {
+          "stabilization": "三轴机械防抖 + AI追踪",
+          "max_payload": "300g",
+          "battery": "3000mAh, 12小时续航",
+          "features": "AI追踪, 全景拍摄, 延时, 手势控制, 内置三脚架+自拍杆",
+          "dimensions": "折叠态 162 × 79 × 36 mm",
+          "weight": "369g"
+        },
+        "launched": "2024-09",
+        "image_url": "https://www.insta360.com/product/insta360-flow2pro",
+        "revenue_contribution": 0.08
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "Apple",
+        "type": "零售渠道合作伙伴",
+        "cooperation_since": "2017",
+        "cooperation_detail": "Insta360是首个也是唯一进入全球Apple Store实体店销售的360度相机品牌，产品长期在Apple.com及线下门店展示销售",
+        "result": "显著提升品牌溢价和全球消费者信任度，Apple Store渠道贡献约10%的北美零售额",
+        "annual_value_usd": 50000000
+      },
+      {
+        "name": "NASA (美国国家航空航天局)",
+        "type": "政府/科研机构客户",
+        "cooperation_since": "2018",
+        "cooperation_detail": "NASA使用Insta360 Pro/Pro 2进行火星任务沉浸式直播，包括2018年InSight火星着陆任务控制中心直播和2021年毅力号火星车着陆直播，该项目获得艾美奖",
+        "result": "获得Technical Emmy Award，极大提升品牌在专业领域和全球消费者中的认知度",
+        "annual_value_usd": 2000000
+      },
+      {
+        "name": "Leica (徕卡)",
+        "type": "战略技术合作伙伴",
+        "cooperation_since": "2020",
+        "cooperation_detail": "与徕卡联合设计镜头光学系统，从ONE R 1-Inch Edition开始深度合作，Ace Pro系列全线搭载Leica SUMMARIT认证镜头",
+        "result": "Leica联名使产品在高端运动相机市场建立差异化定位，Ace Pro系列毛利率高于均值5-8个百分点",
+        "annual_value_usd": 0
+      },
+      {
+        "name": "全球极限运动/Vlog KOL社群",
+        "type": "C端核心用户群/内容营销网络",
+        "cooperation_since": "2016",
+        "cooperation_detail": "建立全球数千名签约KOL的内容创作者网络，覆盖YouTube/TikTok/Instagram，通过用户生成内容(UGC)驱动产品营销",
+        "result": "YouTube品牌相关视频累计播放超50亿次，社交媒体营销ROI远超行业平均，获客成本持续下降",
+        "annual_value_usd": 0
+      },
+      {
+        "name": "Matterport / 企业虚拟导览客户",
+        "type": "B2B企业解决方案",
+        "cooperation_since": "2019",
+        "cooperation_detail": "与Matterport等虚拟导览平台深度集成，为房地产、零售、工业巡检提供360度数字孪生采集方案；美的集团等制造业客户用于空调安装文档记录",
+        "result": "企业解决方案业务年增速超60%，成为消费级之外的第二增长曲线",
+        "annual_value_usd": 30000000
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2015-07",
+        "event": "刘靖康在深圳创办影石创新科技股份有限公司，获IDG资本百万美元天使投资",
+        "impact": "公司正式成立，确立全景相机技术方向"
+      },
+      {
+        "date": "2016-01",
+        "event": "发布首款消费级全景相机Insta360 Nano，可直接插入iPhone拍摄360度视频",
+        "impact": "首款产品上市即爆款，在Kickstarter众筹超额完成，验证消费级全景相机市场需求"
+      },
+      {
+        "date": "2017-08",
+        "event": "Insta360 ONE发布，首创'子弹时间'拍摄模式，成为首个进入Apple Store的360相机品牌",
+        "impact": "确立技术创新+苹果渠道的品牌高端定位，全球出货量突破百万级"
+      },
+      {
+        "date": "2018-10",
+        "event": "NASA使用Insta360 Pro 2对InSight火星着陆进行全球VR直播，该项目后获Technical Emmy Award",
+        "impact": "获得艾美奖认证的专业级品牌背书，Pro系列打入政府/企业/影视高端市场"
+      },
+      {
+        "date": "2019-03",
+        "event": "完成C轮3000万美元融资，全球全景相机市占率升至第一",
+        "impact": "巩固全球市占率领先地位(Frost & Sullivan数据约67%)，为产品线扩张提供弹药"
+      },
+      {
+        "date": "2020-01",
+        "event": "发布Insta360 ONE R模块化运动相机，首次与Leica联合设计1英寸传感器模块",
+        "impact": "开创模块化相机形态，与徕卡建立长期战略合作，正式进入运动相机市场与GoPro正面竞争"
+      },
+      {
+        "date": "2020-10",
+        "event": "首次向上交所科创板递交IPO申请",
+        "impact": "启动上市进程，后因监管离职人员入股等合规问题经历4年审核周期"
+      },
+      {
+        "date": "2022-09",
+        "event": "发布Insta360 X3，全景相机产品线升级至5.7K+；同期GO 2拇指相机开辟全新品类",
+        "impact": "多产品线矩阵成型(全景+运动+拇指+稳定器)，年营收突破30亿元"
+      },
+      {
+        "date": "2024-04",
+        "event": "发布Insta360 X4(首款8K 360相机)，全年营收达55.74亿元(约$780M)同比+53%",
+        "impact": "8K技术代际领先确立，全年净利润9.95亿元实现连续3年盈利，IPO财务条件全面达标"
+      },
+      {
+        "date": "2025-06",
+        "event": "影石创新正式在上交所科创板挂牌上市(688775.SH)，发行价47.27元，上市首日市值突破700亿元",
+        "impact": "成为科创板首位90后创始人敲钟的公司，刘靖康身家超百亿成最年轻科创板实控人；募资约19.38亿元用于研发和全球化"
+      },
+      {
+        "date": "2025-07",
+        "event": "ITC 337调查初裁：GoPro五项实用专利全部被判不侵权或无效，影石海外扩张法律风险大幅出清",
+        "impact": "消除美国市场最大法律障碍，北美销售可持续增长，同时影石在国内法院反诉GoPro索赔1.9亿元"
+      }
+    ],
     "financials": {
       "burn_rate_usd_monthly": 0,
       "cash_usd": 500000000

@@ -135,6 +135,168 @@
       "exit_window": "已 IPO,短期看 2025-2026 海外订单释放节奏 + Stargate SaaS 毛利爬坡",
       "hot_keywords": ["ESL 电子价签", "门店数字化", "出海", "零售 AIoT", "电子纸"]
     },
+    "products": [
+      {
+        "name": "Nebular",
+        "category": "电子纸电子价签 (E-paper ESL)",
+        "description": "新一代旗舰电子价签，搭载汉朔自研ESL专用芯片，一体化设计完全封装柔性离子电池，超低功耗，内置7色LED灯和NFC功能",
+        "specs": {
+          "display": "电子纸 (1.54\"~11.6\" 多尺寸)",
+          "battery_life_years": 15,
+          "ip_rating": "IP68",
+          "communication": "2.4GHz Stargate 自研协议 (双向通信)",
+          "colors": "黑白红/黑白黄/四色",
+          "led": "7色LED指示灯",
+          "nfc": true
+        },
+        "launched": "2021",
+        "image_url": "https://www.hanshow.com/en/nebular",
+        "revenue_contribution": 0.45
+      },
+      {
+        "name": "Stellar Pro",
+        "category": "电子纸电子价签 (E-paper ESL)",
+        "description": "经典系列升级版，实时同步产品信息、价格、产地及促销详情，多尺寸覆盖全零售场景，性价比突出",
+        "specs": {
+          "display": "电子纸 (1.54\"~10.2\" 多尺寸)",
+          "battery_life_years": 10,
+          "ip_rating": "IP65",
+          "communication": "2.4GHz 私有协议 (双向通信)",
+          "colors": "黑白红/多色",
+          "resolution_4_2_inch": "400x300",
+          "lens_hardness": "3H"
+        },
+        "launched": "2019",
+        "image_url": "https://www.hanshow.com/en/stellar-pro",
+        "revenue_contribution": 0.30
+      },
+      {
+        "name": "Lumina Aqua",
+        "category": "LCD电子价签",
+        "description": "全彩IPS LCD电子价签，支持即时刷新和视频播放，IP65防水防尘，专为生鲜零售场景设计",
+        "specs": {
+          "display": "全彩IPS LCD (多尺寸含7\")",
+          "lifespan_hours": 30000,
+          "ip_rating": "IP65",
+          "communication": "Wi-Fi",
+          "lens": "2.5D玻璃镜片",
+          "refresh": "即时刷新",
+          "video_support": true,
+          "installation": "悬挂/立式/侧装"
+        },
+        "launched": "2021",
+        "image_url": "https://www.hanshow.com/en/lumina-aqua",
+        "revenue_contribution": 0.08
+      },
+      {
+        "name": "Polaris Pro",
+        "category": "多彩电子纸电子价签 (Multi-color E-paper ESL)",
+        "description": "高屏占比多彩电子纸价签，创新多彩显示技术带来非凡视觉体验，2024年快速放量",
+        "specs": {
+          "display": "多彩电子纸 (高屏占比)",
+          "colors": "四色/多彩",
+          "communication": "2.4GHz Stargate协议",
+          "design": "高屏占比窄边框"
+        },
+        "launched": "2023",
+        "image_url": "https://www.hanshow.com/en/polaris-pro",
+        "revenue_contribution": 0.10
+      },
+      {
+        "name": "All-Star AIoT 平台 (Stargate)",
+        "category": "IoT/SaaS云平台",
+        "description": "门店一站式数字化运营平台，支持定价变价、库存管理、拣货定位、全场景营销、智能支付、AI客流分析和缺货监测等功能",
+        "specs": {
+          "functions": ["定价变价", "库存管理", "拣货定位", "全场景营销", "AI客流分析", "缺货监测", "设备管理"],
+          "integration": "支持系统集成及第三方应用二次开发",
+          "deployment": "云端+边缘"
+        },
+        "launched": "2020",
+        "image_url": "https://www.hanshow.com/zh-cn/solutions/category/all-star-cloud",
+        "revenue_contribution": 0.07
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "Jeronimo Martins",
+        "type": "零售 (超市/便利店)",
+        "cooperation_since": "2017",
+        "cooperation_detail": "葡萄牙/波兰/哥伦比亚旗下 Pingo Doce、Biedronka 等品牌门店大规模部署 Nebular 系列电子价签，为汉朔第一大客户",
+        "result": "覆盖数千家门店，持续扩展中；贡献汉朔单一客户最大营收份额",
+        "annual_value_usd": 80000000
+      },
+      {
+        "name": "ALDI SOUTH Group",
+        "type": "零售 (折扣超市)",
+        "cooperation_since": "2022",
+        "cooperation_detail": "ALDI SOUTH 选择汉朔作为独家战略 ESL 供应商，部署 Nebular 系列电子价签，已覆盖 100+ 门店并持续扩展至全球门店网络",
+        "result": "独家合作伙伴关系，门店运营效率显著提升，持续向更多国家推广",
+        "annual_value_usd": 50000000
+      },
+      {
+        "name": "Walmart (China)",
+        "type": "零售 (大卖场/会员店)",
+        "cooperation_since": "2016",
+        "cooperation_detail": "沃尔玛中国门店部署汉朔 ESL 产品及数字化门店解决方案，2018年授予汉朔'年度优秀供应商'称号",
+        "result": "沃尔玛中国门店数字化标杆项目，验证大型商超场景下 ESL 方案可行性",
+        "annual_value_usd": 15000000
+      },
+      {
+        "name": "Carrefour",
+        "type": "零售 (大卖场)",
+        "cooperation_since": "2015",
+        "cooperation_detail": "家乐福欧洲及亚洲门店部署汉朔电子价签系统，涵盖多国多业态门店",
+        "result": "长期合作伙伴，覆盖多个国家市场的门店数字化升级",
+        "annual_value_usd": 30000000
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2012-07",
+        "event": "侯世国(前华为)在浙江嘉兴创立汉朔科技，专注电子价签研发",
+        "impact": "国内首批专业ESL厂商，切入全球零售数字化蓝海"
+      },
+      {
+        "date": "2013-06",
+        "event": "开发出第一代商用电子价签产品并获得天使轮2200万元融资",
+        "impact": "产品从0到1，验证技术可行性"
+      },
+      {
+        "date": "2017-12",
+        "event": "完成B轮1.21亿元融资 (君联资本/光速光合/华业天成/弘章资本)，当时占据国内95%电子价签市场",
+        "impact": "资金支撑海外扩张，在法国/德国相继设立子公司"
+      },
+      {
+        "date": "2019-08",
+        "event": "阿姆斯特丹设立欧洲中心，完成B+轮融资 (中金/经纬)",
+        "impact": "欧洲本地化运营体系成型，加速攻克欧洲零售巨头"
+      },
+      {
+        "date": "2021-09",
+        "event": "完成Pre-IPO增资2.8亿元 (深创投领投)，估值54.7亿元；同年在美国设立子公司",
+        "impact": "全球三大市场 (欧洲/北美/亚太) 布局完成"
+      },
+      {
+        "date": "2022-06",
+        "event": "ALDI SOUTH Group宣布选择汉朔为独家ESL战略供应商",
+        "impact": "拿下全球顶级折扣零售商独家合约，品牌背书显著提升"
+      },
+      {
+        "date": "2024-04",
+        "event": "2023年营收37.75亿元 (+32%)，净利润6.78亿元；全球ESL市场份额约28%，排名前三",
+        "impact": "规模效应显现，盈利能力大幅提升，证明商业模式可持续性"
+      },
+      {
+        "date": "2025-03",
+        "event": "深交所创业板上市 (301275.SZ)，发行价27.50元，募资11.62亿元，首日涨143%",
+        "impact": "首日市值超282亿元，成为A股'门店数字化第一股'，IPO资金用于扩产能及研发"
+      },
+      {
+        "date": "2025-08",
+        "event": "与VusionGroup (前SES-imagotag) 达成全球专利和解及交叉许可协议",
+        "impact": "终结多年专利诉讼悬剑，扫清北美市场放量障碍"
+      }
+    ],
     "financials": {
       "burn_rate_usd_monthly": 0,
       "cash_usd": 360000000

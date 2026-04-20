@@ -80,14 +80,22 @@ def analyze_profile(raw: RawCompanyData) -> CompanyProfile:
             if p.strip():
                 products_simple.append(p.strip())
         elif isinstance(p, dict):
+            raw_specs = p.get("specs") or {}
+            if not isinstance(raw_specs, dict):
+                raw_specs = {}
+            specs_str = {str(k): str(v) for k, v in raw_specs.items()}
+            raw_launched = p.get("launched")
+            if not isinstance(raw_launched, str):
+                raw_launched = str(raw_launched) if raw_launched is not None and raw_launched is not True and raw_launched is not False else None
+            raw_rc = p.get("revenue_contribution")
             products_detailed.append(Product(
                 name=p.get("name", "未命名"),
                 category=p.get("category"),
                 description=p.get("description", ""),
-                specs=p.get("specs") or {},
-                launched=p.get("launched"),
+                specs=specs_str,
+                launched=raw_launched,
                 image_url=p.get("image_url"),
-                revenue_contribution=p.get("revenue_contribution"),
+                revenue_contribution=str(raw_rc) if raw_rc is not None else None,
             ))
             products_simple.append(p.get("name", "未命名"))
 

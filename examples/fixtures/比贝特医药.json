@@ -198,6 +198,155 @@
         "level": "medium",
         "mitigation": "保持数据境内合规,减少对美国临床数据和设备依赖"
       }
+    ],
+    "products": [
+      {
+        "name": "BEBT-908 (贝特琳/注射用盐酸伊吡诺司他)",
+        "category": "小分子创新药 (HDAC/PI3Kα双靶点抑制剂)",
+        "description": "全球首创(First-in-Class)HDAC/PI3Kα双靶点抑制剂,用于至少接受过两线系统治疗的复发或难治性弥漫大B细胞淋巴瘤(r/r DLBCL)成人患者。2025年6月获NMPA附条件批准上市,同步启动III期确证性临床(联合利妥昔单抗 vs 标准化疗)",
+        "specs": {
+          "target": "HDAC + PI3Kα",
+          "indication": "r/r DLBCL (三线及以上)",
+          "administration": "静脉注射",
+          "phase": "已上市 (附条件批准) + III期确证性试验进行中",
+          "ORR_pivotal": "46.8%"
+        },
+        "launched": true,
+        "image_url": null,
+        "revenue_contribution": 1.0
+      },
+      {
+        "name": "BEBT-209",
+        "category": "小分子创新药 (CDK4高选择性CDK4/6抑制剂)",
+        "description": "CDK4高选择性CDK4/6抑制剂,主要适应症为HR+/HER2-晚期乳腺癌二线治疗(联合氟维司群),已进入III期临床;同时开展联合卡铂/吉西他滨治疗晚期三阴性乳腺癌(TNBC)的II期临床",
+        "specs": {
+          "target": "CDK4/6 (CDK4高选择性)",
+          "indication": "HR+/HER2-晚期乳腺癌; 三阴性乳腺癌",
+          "administration": "口服",
+          "phase": "III期 (乳腺癌二线); II期 (TNBC)",
+          "expected_approval": "2027"
+        },
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      },
+      {
+        "name": "BEBT-109",
+        "category": "小分子创新药 (泛EGFR突变抑制剂)",
+        "description": "泛EGFR突变抑制剂,针对EGFR 20号外显子插入突变非小细胞肺癌(NSCLC),已获III期临床批件(二线治疗),同时开展联合化疗一线治疗EGFR 20ins NSCLC的II期临床",
+        "specs": {
+          "target": "EGFR (泛突变,含20号外显子插入突变)",
+          "indication": "EGFR 20ins NSCLC",
+          "administration": "口服",
+          "phase": "III期 (二线); II期 (一线联合化疗)",
+          "expected_approval": "2027"
+        },
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      },
+      {
+        "name": "BEBT-260 / BEBT-305 / BEBT-503 / BEBT-607 / BEBT-808",
+        "category": "小分子创新药 (多靶点早期管线)",
+        "description": "5款处于I期临床试验阶段的First-in-Class候选药物,覆盖肿瘤、自身免疫及代谢疾病等多个治疗领域,合计获得30+临床批件覆盖19个适应症",
+        "specs": {
+          "phase": "I期临床",
+          "pipeline_count": 5,
+          "therapeutic_areas": ["肿瘤", "自身免疫", "代谢疾病"]
+        },
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "PharmaEngine (台湾智擎生技)",
+        "type": "BD合作伙伴/License-out",
+        "cooperation_since": "2013-01",
+        "cooperation_detail": "合作研发协议:必贝特负责发现和优化肿瘤靶点新化学实体至IND阶段,PharmaEngine获得中国以外全球独家开发和商业化权利,必贝特保留中国(含港澳)权利",
+        "result": "早期合作奠定公司多靶点小分子设计平台基础",
+        "annual_value_usd": null
+      },
+      {
+        "name": "合全药业 (药明康德子公司/WuXi STA)",
+        "type": "CMO/原料药生产合作",
+        "cooperation_since": "2020",
+        "cooperation_detail": "BEBT-908原料药委托生产,确保上市首年产能充分满足患者用药需求;同时为其他管线提供CMC服务",
+        "result": "支撑BEBT-908商业化供应链,保障GMP合规生产",
+        "annual_value_usd": 3000000
+      },
+      {
+        "name": "广东星昊药业",
+        "type": "CMO/制剂生产合作",
+        "cooperation_since": "2022",
+        "cooperation_detail": "BEBT-908注射剂制剂委托生产,配合商业化放量需求",
+        "result": "制剂产能保障,满足上市后市场供应",
+        "annual_value_usd": 2000000
+      },
+      {
+        "name": "昭衍新药 (Joinn Laboratories)",
+        "type": "CRO/临床前研究合作",
+        "cooperation_since": "2016",
+        "cooperation_detail": "为BEBT-908等核心管线提供临床前安全性评价和毒理学研究服务",
+        "result": "助力BEBT-908顺利完成IND申报和临床前研究",
+        "annual_value_usd": 1500000
+      },
+      {
+        "name": "中国医学科学院肿瘤医院",
+        "type": "临床试验研究中心/PI单位",
+        "cooperation_since": "2019",
+        "cooperation_detail": "BEBT-908关键注册临床试验(II期)及III期确证性试验的牵头研究单位,多中心随机对照开放性试验",
+        "result": "支撑BEBT-908获得附条件批准上市的关键临床数据",
+        "annual_value_usd": null
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2012-01",
+        "event": "广州必贝特医药股份有限公司成立,创始人钱长庚从美国回国创业",
+        "impact": "公司创立,聚焦多靶点小分子创新药研发"
+      },
+      {
+        "date": "2013-01",
+        "event": "与台湾PharmaEngine签署合作研发协议,开展肿瘤靶点新化学实体联合开发",
+        "impact": "首个国际BD合作,验证多靶点药物设计平台能力"
+      },
+      {
+        "date": "2018-08",
+        "event": "BEBT-908获得中国首个临床试验批件(IND),启动I期临床",
+        "impact": "核心产品进入临床阶段,验证First-in-Class双靶点概念"
+      },
+      {
+        "date": "2020-06",
+        "event": "完成A轮融资,引入广州越秀产业基金、国科嘉和等机构投资者",
+        "impact": "获得外部机构资金支持,加速管线临床推进"
+      },
+      {
+        "date": "2021-11",
+        "event": "完成Pre-IPO轮融资,投后估值约38亿元人民币(~6亿美元),盈科资本/天士力等20家机构参投",
+        "impact": "大额融资保障多管线并行推进,估值大幅跃升"
+      },
+      {
+        "date": "2022-06",
+        "event": "科创板IPO申请获上交所正式受理",
+        "impact": "启动上市进程,成为科创板第五套标准申请企业"
+      },
+      {
+        "date": "2024-11",
+        "event": "BEBT-908 III期确证性临床试验启动(联合利妥昔单抗 vs 标准化疗治疗r/r DLBCL)",
+        "impact": "为附条件批准后的完全批准积累确证性证据"
+      },
+      {
+        "date": "2025-06",
+        "event": "BEBT-908(贝特琳)获NMPA附条件批准上市,适应症为r/r DLBCL三线及以上治疗",
+        "impact": "公司从零营收进入商业化元年,全球首个HDAC/PI3Kα双靶点药物获批"
+      },
+      {
+        "date": "2025-10",
+        "event": "科创板正式挂牌上市(688759.SH),发行价17.78元,募资16亿元,首日涨幅74.41%",
+        "impact": "募资14.91亿元净额保障后续研发投入,上市市值约140亿元"
+      }
     ]
   }
 }

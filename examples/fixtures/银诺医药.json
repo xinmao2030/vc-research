@@ -128,6 +128,144 @@
       "exit_window": "已 IPO(2025-08-15 港股 02591.HK),6 个月基石+战投锁定期至 2026-02;早期 PE 通过 IPO 退出通道打开",
       "hot_keywords": ["GLP-1", "减重", "司美格鲁肽", "替尔泊肽", "长效", "MASH", "18A", "人源多肽"]
     },
+    "products": [
+      {
+        "name": "依苏帕格鲁肽α注射液 (怡诺轻® / Efsubaglutide Alfa)",
+        "category": "GLP-1受体激动剂 · 2型糖尿病",
+        "description": "人源超长效GLP-1受体激动剂，半衰期204小时（全球已上市GLP-1中最长），每周一次皮下注射。SUPER1试验3mg组HbA1c降2.15%，SUPER2联合二甲双胍24周HbA1c降1.60%、体重降2.74kg。",
+        "specs": "预填充注射笔，1mg/3mg剂量规格，每周一次皮下注射",
+        "launched": true,
+        "image_url": null,
+        "revenue_contribution": 1.0
+      },
+      {
+        "name": "依苏帕格鲁肽α (肥胖/超重适应症 · ENLIGHT研究)",
+        "category": "GLP-1受体激动剂 · 肥胖/超重",
+        "description": "ENLIGHT IIb/III期临床试验，2025年3月启动。IIb期已达主要终点，20mg QW剂量组体重较基线降幅10.58%。预计2026Q4完成III期。",
+        "specs": "预填充注射笔，10mg/20mg剂量规格，每周一次皮下注射",
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      },
+      {
+        "name": "依苏帕格鲁肽α (MASH适应症)",
+        "category": "GLP-1受体激动剂 · 代谢功能障碍相关性脂肪性肝炎",
+        "description": "针对MASH(原NASH)的IIa期临床试验，计划2026年在美国和中国启动多中心试验。已获FDA及NMPA IND批准。",
+        "specs": "剂量方案待定",
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      },
+      {
+        "name": "YN014 (阿尔茨海默病)",
+        "category": "脑靶向多肽 · 神经退行性疾病",
+        "description": "靶向大脑特异性靶点的创新多肽，用于阿尔茨海默病治疗，计划2026年提交IND申请。",
+        "specs": "临床前阶段",
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      },
+      {
+        "name": "YN401 (1型糖尿病)",
+        "category": "β细胞靶向多肽 · 1型糖尿病",
+        "description": "靶向β细胞特异性靶点的创新候选药物，用于1型糖尿病治疗，计划2025-2026年提交IND申请。",
+        "specs": "临床前阶段",
+        "launched": false,
+        "image_url": null,
+        "revenue_contribution": 0
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "迈富时 (Marketforce, 2556.HK)",
+        "type": "战略合作伙伴 / AI数字化赋能",
+        "cooperation_since": "2025",
+        "cooperation_detail": "AI-Agentforce智能体中台战略合作，赋能银诺医药全链路数字化升级（医药营销+患者管理）；同时为IPO基石投资者",
+        "result": "IPO基石投资+商业化数字基建",
+        "annual_value_usd": null
+      },
+      {
+        "name": "澳门特别行政区药物监督管理局",
+        "type": "海外监管注册 / BLA获批",
+        "cooperation_since": "2025",
+        "cooperation_detail": "2025年6月依苏帕格鲁肽α在澳门获BLA批准上市，成为海外商业化首站",
+        "result": "大中华区全覆盖，为东南亚/拉美注册提供参照",
+        "annual_value_usd": null
+      },
+      {
+        "name": "东南亚合作方 (国家未披露)",
+        "type": "海外注册/商业化合作伙伴",
+        "cooperation_since": "2025",
+        "cooperation_detail": "2025年6月向东南亚某国提交BLA申请，计划2025下半年向拉美某国提交BLA申请，推进国际商业化",
+        "result": "海外市场拓展中",
+        "annual_value_usd": null
+      },
+      {
+        "name": "中信证券 / 中金公司",
+        "type": "联席保荐人 / 资本市场合作",
+        "cooperation_since": "2025",
+        "cooperation_detail": "担任港股18A IPO联席保荐人，协助募资6.83亿港元，后续提供持续资本市场服务",
+        "result": "成功上市，首日涨206%，市值超260亿港元",
+        "annual_value_usd": null
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2014-12",
+        "event": "公司成立，创始人王庆华放弃多伦多大学终身教职回国创业",
+        "impact": "将十余年GLP-1分子工程研究成果产业化"
+      },
+      {
+        "date": "2021-03",
+        "event": "完成Pre-A轮融资2.16亿元人民币（中金资本、广州产投领投）",
+        "impact": "首轮机构融资，投后估值6.66亿元"
+      },
+      {
+        "date": "2023-11",
+        "event": "SUPER1 IIb/III期试验结果在CDS 2023首发，3mg组HbA1c降2.15%",
+        "impact": "确证依苏帕格鲁肽α降糖疗效，为NDA申报提供关键数据"
+      },
+      {
+        "date": "2024-09",
+        "event": "SUPER2联合二甲双胍试验数据在EASD 2024公布，HbA1c降1.60%+减重2.74kg",
+        "impact": "验证联合用药方案有效性，拓宽临床使用场景"
+      },
+      {
+        "date": "2025-01",
+        "event": "依苏帕格鲁肽α（怡诺轻®）获NMPA批准上市，用于成人2型糖尿病",
+        "impact": "亚洲首款+全球第三款原研人源长效GLP-1RA上市，银诺进入商业化阶段"
+      },
+      {
+        "date": "2025-02",
+        "event": "怡诺轻®正式商业化销售启动",
+        "impact": "从零收入跨越到营收阶段，2025H1收入5640万元"
+      },
+      {
+        "date": "2025-03",
+        "event": "肥胖/超重适应症ENLIGHT IIb/III期临床试验启动",
+        "impact": "拓展减重适应症，打开千亿级肥胖市场"
+      },
+      {
+        "date": "2025-06",
+        "event": "依苏帕格鲁肽α在澳门获BLA批准；同月向东南亚某国提交BLA申请",
+        "impact": "开启国际化注册路径，海外商业化破冰"
+      },
+      {
+        "date": "2025-08",
+        "event": "港交所18A主板上市(02591.HK)，发行价18.68港元，首日涨206%，募资6.83亿港元",
+        "impact": "打开资本市场融资通道，孖展超购3133倍，26万人认购"
+      },
+      {
+        "date": "2025-08",
+        "event": "肥胖适应症澳洲II期临床试验首例患者入组",
+        "impact": "获取海外人群临床数据，为全球注册铺路"
+      },
+      {
+        "date": "2025-12",
+        "event": "ENLIGHT IIb期达主要终点，20mg QW组体重降幅10.58%",
+        "impact": "减重数据优异，为III期推进和肥胖适应症NDA奠定基础"
+      }
+    ],
     "financials": {
       "burn_rate_usd_monthly": 2500000,
       "cash_usd": 135000000
