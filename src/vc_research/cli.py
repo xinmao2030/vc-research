@@ -238,7 +238,7 @@ def history(
         console.print(f"[yellow]{hint}。先运行 `vc-research analyze <公司名>` 生成一份。[/yellow]")
         return
 
-    verdict_color = {"推荐": "green", "观望": "yellow", "回避": "red"}
+    verdict_color = {"强烈参投": "bold green", "参投": "green", "观望": "yellow", "回避": "red"}
     risk_color = {"low": "green", "medium": "yellow", "high": "orange1", "critical": "red"}
 
     def _fmt_usd(v: int | None) -> str:

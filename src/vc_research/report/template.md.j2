@@ -2,6 +2,9 @@
 
 > **生成时间**: {{ generated_at }}　|　**分析师**: {{ analyst }}
 > **一句话概括**: {{ profile.one_liner }}
+{% if is_llm_generated %}
+> ⚠️ **数据可信度提示**: 本研报由本地 LLM 推断生成,标注"(推断)"的数据未经交叉验证。融资金额/估值/团队履历等关键数字请独立核实后再作决策依据。
+{% endif %}
 
 ---
 
@@ -38,8 +41,30 @@
 {% endfor %}
 {% endif %}
 
-{% if profile.products %}
+{% if profile.products_detailed %}
 ### 核心产品 / 业务线
+
+{% for p in profile.products_detailed %}
+#### {{ loop.index }}. {{ p.name }}{% if p.category %} `{{ p.category }}`{% endif %}
+
+{{ p.description }}
+
+{% if p.specs %}
+| 参数 | 值 |
+|------|-----|
+{% for k, v in p.specs.items() %}| {{ k }} | {{ v }} |
+{% endfor %}
+{% endif %}
+
+{% if p.image_url %}![{{ p.name }}]({{ p.image_url }}){% endif %}
+
+| 上线时间 | 营收占比 |
+|----------|----------|
+| {{ p.launched or "—" }} | {{ p.revenue_contribution or "—" }} |
+
+{% endfor %}
+{% elif profile.products %}
+### 核心产品 / 业��线
 
 | # | 产品 / 业务 |
 |---|-------------|
@@ -47,7 +72,20 @@
 {% endfor %}
 {% endif %}
 
-{% if profile.key_customers %}
+{% if profile.customer_cases %}
+### ��志性客户 / 合作案例
+
+{% for c in profile.customer_cases %}
+#### {{ loop.index }}. {{ c.name }}{% if c.type %} `{{ c.type }}`{% endif %}{% if c.cooperation_since %} · 合作始于 {{ c.cooperation_since }}{% endif %}
+
+**合作内容**: {{ c.cooperation_detail or "—" }}
+
+**合作成果**: {{ c.result or "—" }}
+
+{% if c.annual_value_usd %}**年度合作价值**: {{ c.annual_value_usd | money_cn }}{% endif %}
+
+{% endfor %}
+{% elif profile.key_customers %}
 ### 标志性客户 / 用户群体
 
 | # | 客户 / 群体 |
@@ -59,9 +97,9 @@
 {% if profile.milestones %}
 ### 关键里程碑
 
-| 时间 | 事件 |
-|------|------|
-{% for m in profile.milestones %}| {{ m.date or "—" }} | {{ m.event }} |
+| 时间 | 事件 | 影响 |
+|------|------|------|
+{% for m in profile.milestones %}| {{ m.date or "—" }} | {{ m.event }} | {{ m.impact or "—" }} |
 {% endfor %}
 {% endif %}
 

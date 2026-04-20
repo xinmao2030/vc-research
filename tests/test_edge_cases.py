@@ -220,14 +220,14 @@ BENCHMARKS = {
     "银诺医药": {
         "rounds": 5,
         "latest_valuation_usd": Decimal("3360000000"),
-        "verdict": "推荐",
+        "verdict": "参投",
         "overall_risk": "high",  # GLP-1 红海竞争 + 单品依赖
         "stage": FundingStage.IPO,
     },
     "比贝特医药": {
         "rounds": 3,
         "latest_valuation_usd": Decimal("1970000000"),
-        "verdict": "推荐",
+        "verdict": "参投",
         "overall_risk": "high",  # 管线尚未商业化
         "stage": FundingStage.IPO,
     },
@@ -344,3 +344,124 @@ def test_valuation_degrades_gracefully_with_no_industry() -> None:
     v = analyze_valuation(funding, thesis, industry=None)
     assert len(v.methods) >= 1
     assert v.fair_value_high_usd > 0, "锚点法应兜底产出非零估值"
+
+
+# ────────────────────────────────────────────────────────────
+# P3: 新 schema 类型 (Product / CustomerCase / Milestone.impact)
+# ────────────────────────────────────────────────────────────
+
+class TestProductSchema:
+    def test_product_full(self):
+        from vc_research.schema import Product
+
+        p = Product(
+            name="E-ARM 300",
+            category="硬件",
+            description="六轴协作机器人",
+            specs={"负载": "30kg", "精度": "±0.02mm"},
+            launched="2022-09",
+            image_url="https://example.com/img.jpg",
+            revenue_contribution="60%",
+        )
+        assert p.name == "E-ARM 300"
+        assert p.specs["负载"] == "30kg"
+
+    def test_product_minimal(self):
+        from vc_research.schema import Product
+
+        p = Product(name="X")
+        assert p.description == ""
+        assert p.specs == {}
+        assert p.image_url is None
+
+
+class TestCustomerCaseSchema:
+    def test_customer_case_full(self):
+        from vc_research.schema import CustomerCase
+
+        c = CustomerCase(
+            name="富士康",
+            type="企业",
+            cooperation_since="2021",
+            cooperation_detail="部署 200 台机器人",
+            result="效率提升 40%",
+            annual_value_usd=Decimal("5000000"),
+        )
+        assert c.name == "富士康"
+        assert c.annual_value_usd == Decimal("5000000")
+
+    def test_customer_case_minimal(self):
+        from vc_research.schema import CustomerCase
+
+        c = CustomerCase(name="Test")
+        assert c.cooperation_detail == ""
+        assert c.annual_value_usd is None
+
+
+class TestMilestoneImpact:
+    def test_milestone_with_impact(self):
+        from vc_research.schema import Milestone
+
+        m = Milestone(date="2024-02", event="FlexCell Pro 发布", impact="确立平台优势")
+        assert m.impact == "确立平台优势"
+
+    def test_milestone_without_impact(self):
+        from vc_research.schema import Milestone
+
+        m = Milestone(event="产品发布")
+        assert m.impact is None
+
+
+class TestProfileNewFields:
+    """验证 analyze_profile 能同时解析新格式(dict)和旧格式(str)的 products/customers."""
+
+    def test_old_fixture_still_works(self):
+        """旧 fixture (无 products 字段) 正常解析,新字段为空列表."""
+        raw = DataAggregator(use_fixtures=True).fetch("影石创新")
+        p = analyze_profile(raw)
+        # 旧 fixture 没有 products 字段,新字段应为空列表
+        assert isinstance(p.products, list)
+        assert isinstance(p.products_detailed, list)
+        assert isinstance(p.customer_cases, list)
+
+    def test_dict_products_parsed(self):
+        """dict 格式的 products 被解析到 products_detailed."""
+        from vc_research.data_sources import RawCompanyData
+
+        raw = RawCompanyData(name="Test")
+        raw.itjuzi = {
+            "industry": "AI",
+            "one_liner": "Test",
+            "business_model": "SaaS",
+            "stage": "a",
+            "region": "cn",
+            "products": [
+                {"name": "Prod1", "category": "SaaS", "description": "Desc"},
+            ],
+            "key_customers": [
+                {"name": "Cust1", "type": "企业", "cooperation_detail": "合作"},
+            ],
+            "milestones": [
+                {"date": "2024", "event": "发布", "impact": "里程碑"},
+            ],
+        }
+        p = analyze_profile(raw)
+        assert len(p.products_detailed) == 1
+        assert p.products_detailed[0].name == "Prod1"
+        assert len(p.customer_cases) == 1
+        assert p.customer_cases[0].cooperation_detail == "合作"
+        assert p.milestones[0].impact == "里程碑"
+
+
+class TestVerdictVCTerminology:
+    """验证 verdict 使用 VC 语境措辞."""
+
+    def test_verdict_values(self):
+        raw = DataAggregator(use_fixtures=True).fetch("银诺医药")
+        p = analyze_profile(raw)
+        funding = analyze_funding(raw)
+        thesis = analyze_thesis(raw)
+        valuation = analyze_valuation(funding, thesis, industry=p.industry)
+        risks = analyze_risks(raw, funding, thesis)
+        rec = analyze_recommendation(thesis, valuation, risks, funding)
+        assert rec.verdict in ("强烈参投", "参投", "观望", "回避")

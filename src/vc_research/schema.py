@@ -69,11 +69,39 @@ class Executive(BaseModel):
     background: str = Field(default="", description="学历 / 过往履历 / 关键成就")
 
 
+class Product(BaseModel):
+    """核心产品/业务线详情."""
+
+    name: str
+    category: Optional[str] = Field(default=None, description="硬件/软件/SaaS/平台")
+    description: str = Field(default="", description="3-5 句详细介绍")
+    specs: dict[str, str] = Field(default_factory=dict, description="关键技术参数")
+    launched: Optional[str] = Field(default=None, description="上线时间 YYYY-MM")
+    image_url: Optional[str] = None
+    revenue_contribution: Optional[str] = Field(
+        default=None, description="占总收入比例估算"
+    )
+
+
+class CustomerCase(BaseModel):
+    """标志性客户/用户群案例."""
+
+    name: str
+    type: Optional[str] = Field(default=None, description="企业/政府/消费者")
+    cooperation_since: Optional[str] = Field(default=None, description="合作起始年")
+    cooperation_detail: str = Field(
+        default="", description="合作背景、项目内容、规模"
+    )
+    result: str = Field(default="", description="合作成果与进展")
+    annual_value_usd: Optional[Decimal] = None
+
+
 class Milestone(BaseModel):
     """关键里程碑 — 产品发布/融资外的事件、认证、出海、重大客户等。"""
 
     date: Optional[str] = Field(default=None, description="YYYY-MM 或 YYYY")
-    event: str = Field(description="一句话描述")
+    event: str = Field(description="事件详述")
+    impact: Optional[str] = Field(default=None, description="对公司发展的意义")
 
 
 class CompanyProfile(BaseModel):
@@ -92,11 +120,17 @@ class CompanyProfile(BaseModel):
     )
     employee_count: Optional[int] = None
     one_liner: str = Field(description="一句话讲清楚公司在做什么")
+    products_detailed: list[Product] = Field(
+        default_factory=list, description="核心产品/业务线详情"
+    )
     products: list[str] = Field(
-        default_factory=list, description="核心产品/业务线"
+        default_factory=list, description="核心产品名称列表(向后兼容)"
+    )
+    customer_cases: list[CustomerCase] = Field(
+        default_factory=list, description="标志性客户合作案例"
     )
     key_customers: list[str] = Field(
-        default_factory=list, description="标志性客户 / 核心用户群体描述"
+        default_factory=list, description="标志性客户名称列表(向后兼容)"
     )
     milestones: list[Milestone] = Field(
         default_factory=list, description="关键非融资里程碑"
@@ -415,7 +449,7 @@ class VCReport(BaseModel):
     """完整创投研报 — CLI 输出的核心对象."""
 
     generated_at: date
-    analyst: str = "vc-research v0.1.15"
+    analyst: str = "vc-research v0.1.16"
     profile: CompanyProfile
     funding: FundingHistory
     thesis: InvestmentThesis

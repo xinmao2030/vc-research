@@ -9,9 +9,10 @@ from __future__ import annotations
 
 import argparse
 import html
+import json as _json
 import re
 import webbrowser
-from datetime import date
+from datetime import date, datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import unquote
@@ -158,8 +159,8 @@ STYLE = """
     display: inline-block; padding: 2px 8px; border-radius: 12px;
     font-size: .75em; font-weight: 500;
   }
-  .badge.verdict-推荐 { background: #d1f4dd; color: #065f32; }
-  .badge.verdict-强烈推荐 { background: #34d058; color: #fff; }
+  .badge.verdict-参投 { background: #d1f4dd; color: #065f32; }
+  .badge.verdict-强烈参投 { background: #34d058; color: #fff; }
   .badge.verdict-观望 { background: #fff5b1; color: #735c0f; }
   .badge.verdict-回避 { background: #ffeef0; color: #86181d; }
   .badge.risk-low { background: #d1f4dd; color: #065f32; }
@@ -249,11 +250,35 @@ def _page(title: str, body: str) -> bytes:
     return html_text.encode("utf-8")
 
 
+# ──────────────────────────── 搜索历史 (磁盘持久化) ────────────────────────
+_SEARCH_HISTORY_FILE = Path.home() / ".vc-research" / "search_history.json"
+
+
+def _load_search_history() -> list[dict]:
+    """读取搜索历史,返回 [{name, timestamp}, ...] 按时间倒序."""
+    if not _SEARCH_HISTORY_FILE.exists():
+        return []
+    try:
+        entries = _json.loads(_SEARCH_HISTORY_FILE.read_text("utf-8"))
+        return sorted(entries, key=lambda e: e.get("timestamp", ""), reverse=True)
+    except (ValueError, OSError):
+        return []
+
+
+def _record_search(name: str) -> None:
+    """记录一次搜索(去重:同名只保留最新一条)."""
+    history = _load_search_history()
+    history = [e for e in history if e.get("name") != name]
+    history.insert(0, {"name": name, "timestamp": datetime.utcnow().isoformat(timespec="seconds")})
+    _SEARCH_HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    _SEARCH_HISTORY_FILE.write_text(_json.dumps(history, ensure_ascii=False, indent=2), "utf-8")
+
+
 # ──────────────────────────── 研报生成 (内存) ────────────────────────────
 _REPORT_CACHE: dict[str, VCReport] = {}
 
 
-def _build_report(name: str) -> VCReport | None:
+def _build_report(name: str, *, from_search: bool = False) -> VCReport | None:
     """从 fixtures 实时构建 VCReport,带进程内缓存."""
     if name in _REPORT_CACHE:
         return _REPORT_CACHE[name]
@@ -286,7 +311,69 @@ def _build_report(name: str) -> VCReport | None:
         data_sources=raw.sources_hit,
     )
     _REPORT_CACHE[name] = report
+    if from_search:
+        _record_search(name)
     return report
+
+
+# ──────────────────────────── 搜索历史卡片 ────────────────────────────
+def _render_search_history_section() -> str:
+    """渲染搜索记录卡片栏,样式与标杆案例一致."""
+    fixture_names = {p.stem for p in FIXTURES_DIR.glob("*.json")}
+    history = _load_search_history()
+    # 排除标杆 fixture 公司
+    history = [e for e in history if e["name"] not in fixture_names]
+    if not history:
+        return ""
+
+    cards = []
+    for entry in history:
+        name = entry["name"]
+        ts = entry.get("timestamp", "")[:16].replace("T", " ")
+        report = _REPORT_CACHE.get(name)
+        if report:
+            verdict = report.recommendation.verdict
+            risk = report.risks.overall_level.value
+            industry_str = report.profile.industry
+            one_liner = report.profile.one_liner[:50]
+            rounds_n = len(report.funding.rounds)
+            valuation_h = report.funding.latest_valuation_usd
+            val_text = f"${int(valuation_h):,}" if valuation_h else "估值未披露"
+            cards.append(
+                f"""<div class="card">
+  <a class="title" href="/report/{html.escape(name)}">🔍 {html.escape(name)}</a>
+  <div class="meta">{html.escape(one_liner)}…</div>
+  <div class="meta">📈 {rounds_n} 轮 · 最新估值 {val_text}</div>
+  <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
+  <div class="badges">
+    <span class="badge industry">{html.escape(industry_str)}</span>
+    <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
+    <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
+    <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
+  </div>
+</div>"""
+            )
+        else:
+            # 报告不在内存缓存中(服务重启后),显示简化卡片
+            cards.append(
+                f"""<div class="card">
+  <a class="title" href="/report/{html.escape(name)}?from=search">🔍 {html.escape(name)}</a>
+  <div class="meta" style="color:#8b949e">点击重新生成研报 (需 1-2 分钟)</div>
+  <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
+  <div class="badges">
+    <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
+  </div>
+</div>"""
+            )
+
+    grid = f"<div class='grid'>{''.join(cards)}</div>"
+    return f"""
+<h2>🔍 搜索记录 ({len(cards)})</h2>
+<p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
+  通过搜索框生成的研报记录,数据由本地 Qwen3 推断,仅供参考。
+</p>
+{grid}
+"""
 
 
 # ──────────────────────────── 路由 handlers ────────────────────────────
@@ -355,6 +442,8 @@ def _index() -> bytes:
 <p style="color:#6a737d;font-size:.9em;margin-top:2em">
   💡 点击任意案例查看完整研报,关键术语悬停即显示类比解释。
 </p>
+
+{_render_search_history_section()}
 
 <div class="disclaimer" style="margin-top:2.5em">
   ⚠️ <b>免责声明</b>:本系统所有研报仅供学习研究,<b>不构成投资建议</b>。
@@ -428,8 +517,8 @@ def _about() -> bytes:
     return _page("关于", body)
 
 
-def _report(name: str) -> tuple[bytes, int]:
-    report = _build_report(name)
+def _report(name: str, *, from_search: bool = False) -> tuple[bytes, int]:
+    report = _build_report(name, from_search=from_search)
     if report is None:
         available = sorted(p.stem for p in FIXTURES_DIR.glob("*.json"))
         links = " · ".join(
@@ -438,14 +527,17 @@ def _report(name: str) -> tuple[bytes, int]:
         body = f"""
 <h1>🤷 {html.escape(name)} · 生成失败</h1>
 <div class="disclaimer">
-  本地大模型 (Qwen3) 未能产出结构化数据 —— 可能是模型服务未运行,
-  或返回格式异常。请检查:
-  <ol>
-    <li><code>ollama serve</code> 是否在运行 (<code>curl localhost:11434/api/tags</code> 应返回模型列表)</li>
-    <li><code>ollama list</code> 是否有 <code>qwen3:32b</code></li>
-    <li>查看 dashboard 进程日志 <code>/tmp/vc-dashboard.log</code></li>
-  </ol>
+  <b>最常见原因: 模型冷启动超时</b> — Qwen3:32b (20GB) 首次加载需 60-90 秒,
+  浏览器可能提前断开连接。<b>请直接刷新本页重试</b>,第二次通常秒返回。
 </div>
+<details style="margin:1em 0">
+  <summary style="cursor:pointer;color:#0366d6">排查清单(点击展开)</summary>
+  <ol style="margin-top:.5em">
+    <li><code>ollama serve</code> 是否在运行 → 终端执行 <code>curl localhost:11434/api/tags</code></li>
+    <li><code>ollama list</code> 是否有 <code>qwen3:32b</code> → 没有则 <code>ollama pull qwen3:32b</code></li>
+    <li>预热模型(避免冷启动) → <code>curl localhost:11434/api/generate -d '{{"model":"qwen3:32b","prompt":"hello","stream":false}}'</code></li>
+  </ol>
+</details>
 <h2>已收录的标杆案例(可直接查看)</h2>
 <p>{links}</p>
 <p><a href="/">← 返回首页</a></p>
@@ -477,13 +569,16 @@ class Handler(BaseHTTPRequestHandler):
             from urllib.parse import parse_qs, urlparse, quote
             q = parse_qs(urlparse(raw_path).query).get("q", [""])[0].strip()
             if q:
-                redirect_to = f"/report/{quote(q)}"
+                redirect_to = f"/report/{quote(q)}?from=search"
                 body, status = b"", 302
             else:
                 body, status = _page("404", "<h1>请输入公司名</h1>"), 400
         elif path.startswith("/report/"):
-            name = path[len("/report/") :]
-            body, status = _report(name)
+            from urllib.parse import parse_qs, urlparse
+            parsed = urlparse(raw_path)
+            name = unquote(parsed.path[len("/report/"):])
+            is_search = parse_qs(parsed.query).get("from", [""])[0] == "search"
+            body, status = _report(name, from_search=is_search)
         else:
             body, status = _page("404", "<h1>404</h1>"), 404
 

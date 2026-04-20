@@ -1,6 +1,6 @@
 """Ollama 本地 LLM 研究员 — 任意公司名 → Qwen3 生成结构化 RawCompanyData.
 
-无需外部 API key。默认连 http://localhost:11434,模型 qwen3:32b。
+无需外部 API key。默认连 http://localhost:11434,模型 qwen3:8b (可通过 OLLAMA_MODEL 环境变量切换)。
 
 产出物直接 routing 到 raw.itjuzi,模块无需改动。
 """
@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 
 
 DEFAULT_URL = "http://localhost:11434"
-DEFAULT_MODEL = "qwen3:32b"
-DEFAULT_TIMEOUT_S = 180
+DEFAULT_MODEL = "qwen3:8b"
+DEFAULT_TIMEOUT_S = 300
 DEFAULT_CACHE_DIR = Path.home() / ".vc-research" / "llm_cache"
 DEFAULT_CACHE_TTL_DAYS = 30
 
@@ -50,30 +50,56 @@ _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company
   "one_liner": "一句话概括公司,**不能为 null**",
   "website": "公司官网或主要产品站点 URL",
   "founders": [
-    {{"name": "姓名", "title": "CEO", "background": "教育/过往履历/关键成就",
-      "equity_pct": 0.15, "still_active": true, "current_role": null}}
+    {{"name": "姓名", "title": "CEO",
+      "background": "籍贯xx省xx市 | 本科xx大学xx专业(YYYY届) | 硕士/博士xx大学xx方向(YYYY) | 曾任xx公司xx职位(YYYY-YYYY),主导了xx项目 | YYYY年创办本公司,核心成就:xxx",
+      "equity_pct": 0.15, "still_active": true, "current_role": null}},
+    {{"name": "联创姓名", "title": "CTO",
+      "background": "籍贯xx | 本科清华大学计算机(2005) | 博士MIT EECS(2010) | 曾任Google高级工程师(2010-2015) | 曾任xx公司技术VP(2015-2019) | 2019年加入,主导核心技术架构",
+      "equity_pct": 0.10, "still_active": true, "current_role": null}}
   ],
   "executives": [
-    {{"name": "姓名", "title": "CTO / COO / CFO 等", "joined": "YYYY",
-      "background": "上一家公司/学历/代表成就"}}
+    {{"name": "姓名", "title": "CFO", "joined": "YYYY",
+      "background": "籍贯xx | 本科xx大学金融(YYYY) | MBA沃顿商学院(YYYY) | 曾任xx投行MD(YYYY-YYYY) | 曾任xx公司CFO(YYYY-YYYY) | 主导完成x轮融资共$xM"}}
   ],
-  "products": ["核心产品1", "核心产品2"],
-  "key_customers": ["标志性客户或用户群体1", "...2"],
+  "products": [
+    {{"name": "产品名称", "category": "硬件/软件/SaaS/平台",
+      "description": "3-5句话详细介绍:产品定位、核心功能、技术规格/参数、应用场景、与竞品差异",
+      "specs": {{"关键参数1": "值", "关键参数2": "值"}},
+      "launched": "YYYY-MM",
+      "image_url": "产品官网图片URL(若无则 null)",
+      "revenue_contribution": "占总收入比例估算,如 60%"}}
+  ],
+  "key_customers": [
+    {{"name": "客户/用户群名称", "type": "企业/政府/消费者",
+      "cooperation_since": "YYYY",
+      "cooperation_detail": "2-3句话:合作背景、具体项目内容、采购/部署规模",
+      "result": "合作成果:降本xx%/产能提升xx%/覆盖xx用户/续约情况",
+      "annual_value_usd": null}}
+  ],
   "milestones": [
-    {{"date": "YYYY", "event": "关键非融资里程碑,如产品上线/出海/重大合作"}}
+    {{"date": "YYYY-MM", "event": "关键事件详述(1-2句):产品发布/出海/重大合作/资质认证/专利/奖项等",
+      "impact": "对公司发展的意义"}}
   ],
   "rounds": [
     {{"stage": "angel", "announce_date": "YYYY-MM-DD", "amount_usd": 2000000,
       "pre_money_valuation_usd": 8000000, "post_money_valuation_usd": 10000000,
-      "lead_investors": ["机构"], "participants": ["机构A","机构B"],
+      "lead_investors": ["领投机构"], "participants": ["跟投A","跟投B"],
       "share_class": "普通股 / A 轮优先股",
       "use_of_proceeds": "产品研发 / 市场扩张 / 出海",
       "notes": "备注",
       "investor_details": [
-        {{"name": "机构名", "type": "VC", "hq": "北京", "aum_usd": 1000000000,
+        {{"name": "领投机构", "type": "VC", "hq": "北京", "aum_usd": 1000000000,
           "founded_year": 2010, "sector_focus": ["AI","医疗"],
           "notable_portfolio": ["明星项目1","明星项目2"],
-          "deal_thesis": "本轮为什么投的一句话逻辑", "is_lead": true}}
+          "deal_thesis": "本轮为什么投的一句话逻辑", "is_lead": true}},
+        {{"name": "跟投A", "type": "PE", "hq": "上海", "aum_usd": 5000000000,
+          "founded_year": 2005, "sector_focus": ["医疗","消费"],
+          "notable_portfolio": ["代表项目1","代表项目2"],
+          "deal_thesis": "跟投逻辑:协同/赛道布局/创始人背景", "is_lead": false}},
+        {{"name": "跟投B", "type": "CVC", "hq": "深圳", "aum_usd": 3000000000,
+          "founded_year": 2015, "sector_focus": ["硬件","新能源"],
+          "notable_portfolio": ["已投项目1"],
+          "deal_thesis": "产业协同/供应链整合", "is_lead": false}}
       ]}}
   ],
   "thesis": {{
@@ -148,8 +174,36 @@ _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company
 
 硬性要求:
 - 所有金额统一用美元(数字,不带单位)。
+- **founders 和 executives 的 background 必须包含完整履历**,用 " | " 分隔,依次写:
+  籍贯(省市) | 本科学校+专业(毕业年) | 硕士/博士学校+方向(毕业年,若有) | 每段职业经历:公司+职位(起止年)+核心贡献 | 创业经历/加入本公司的时间和角色。
+  不了解的信息基于赛道和职位合理推断,在末尾标注"(部分信息基于赛道推断)"。
+  founders 至少列出 2 人(CEO + 联创/CTO);executives 至少列出 3 人(CFO/COO/CTO/首席科学家等)。
 - moat_analysis 7 个维度必须全部出现;确实无此优势就填 score=0、evidence=""。
-- investor_details 至少覆盖领投方;若不了解具体机构档案,仍要给出合理推断并在 deal_thesis 里标注"(推断)"。
+- **rounds 是本报告最重要的部分**:
+  - 至少输出 3 轮融资(天使轮/Pre-A/A轮/B轮/C轮...),即使不确定具体信息也要基于赛道和阶段合理推断。
+  - 每轮必须填写: stage, announce_date, amount_usd, pre_money_valuation_usd, post_money_valuation_usd, lead_investors, participants。
+  - 每轮的 investor_details 必须包含**所有投资方**(领投+跟投)的完整档案,每家机构都要填: name/type(VC/PE/CVC/天使/战投/政府基金)/hq/aum_usd/founded_year/sector_focus(≥2个)/notable_portfolio(≥2个已投项目)/deal_thesis(本轮投资逻辑,1-2句)/is_lead。不了解的机构基于名字和类型合理推断,在 deal_thesis 标注"(推断)"。
+  - share_class 和 use_of_proceeds 每轮必填。
+  - 推断的数据在 notes 里标注"(基于赛道典型值推断)"。
+- **products 必须详细**:
+  - 至少列出 2-3 个核心产品/业务线。
+  - 每个产品的 description 至少 3 句话,涵盖:核心功能、技术规格/参数(如精度/速度/分辨率等)、目标客户、与竞品差异。
+  - specs 字典列出关键技术参数(如负载/精度/速度/续航/尺寸)。
+  - image_url 填产品官网图片链接,无法确认则填 null。
+- **key_customers 必须具体**:
+  - 至少列出 3 个标志性客户或用户群。
+  - cooperation_detail 必须写清:什么时候开始合作、具体项目内容、采购/部署规模。
+  - result 写明合作成果和进展:效率提升/成本节省/规模扩展/续约情况。
+- **milestones 必须覆盖至 2025-2026 年最新事件**:
+  - 至少 5 个关键里程碑,从成立到最近。
+  - 每条都要有 impact 说明对公司发展的意义。
+- **thesis(投资依据)必须结合企业自身真实情况**:
+  - team_analysis 引用具体创始人经历和团队组合优势。
+  - market_analysis 引用具体市场数据(TAM 来源、渗透率、增速)。
+  - moat_analysis 7 维度的 evidence 必须引用该企业的具体产品/技术/客户/专利,不能泛泛而谈。
+  - unit_economics_analysis 引用具体毛利率/客单价/回收周期。
+  - bull_detailed 和 bear_detailed 的 evidence 列举具体数据点和事实。
+  - competitors_detailed 至少 3 家,每家写清估值/市场份额/与本公司的核心差异。
 - sub_segments 至少 3 条(大赛道切成可投资细分)。
 - growth_drivers / barriers_to_entry 各至少 3 条。"""
 
@@ -158,7 +212,7 @@ class OllamaResearcher:
     """用本地 Ollama 运行的大模型做"任意公司结构化抽取"。"""
 
     name = "itjuzi"  # 路由目标: payload 填入 raw.itjuzi,复用现有分析模块
-    provenance = "ollama/qwen3:32b"
+    provenance = "ollama/qwen3:8b"
 
     def __init__(
         self,
@@ -199,6 +253,7 @@ class OllamaResearcher:
         if not data.get("industry") and not data.get("one_liner"):
             logger.info("Ollama 对 %s 返回空壳,视作未命中", company_name)
             return None
+        self._backfill_investor_details(data)
         self._save_cache(company_name, data)
         return data
 
@@ -243,6 +298,42 @@ class OllamaResearcher:
             )
         except OSError as e:
             logger.warning("写缓存失败 %s: %s", company, e)
+
+    # ──────────────────────────── post-processing ────────────────────
+    @staticmethod
+    def _backfill_investor_details(data: dict[str, Any]) -> None:
+        """确保每轮融资的 investor_details 至少包含 lead_investors."""
+        for r in data.get("rounds", []):
+            details = r.get("investor_details") or []
+            detail_names = {d.get("name", "").lower() for d in details}
+            # 从 lead_investors 回填缺失的 investor_details
+            for inv in r.get("lead_investors", []):
+                if inv.lower() not in detail_names:
+                    details.append({
+                        "name": inv,
+                        "type": "VC",
+                        "hq": "",
+                        "aum_usd": None,
+                        "sector_focus": [],
+                        "notable_portfolio": [],
+                        "deal_thesis": "(数据待补充)",
+                        "is_lead": True,
+                    })
+            # 从 participants 回填
+            for inv in r.get("participants", []):
+                if inv.lower() not in detail_names:
+                    details.append({
+                        "name": inv,
+                        "type": "VC",
+                        "hq": "",
+                        "aum_usd": None,
+                        "sector_focus": [],
+                        "notable_portfolio": [],
+                        "deal_thesis": "(数据待补充)",
+                        "is_lead": False,
+                    })
+                    detail_names.add(inv.lower())
+            r["investor_details"] = details
 
     # ──────────────────────────── internals ────────────────────────────
     def _call_ollama(self, prompt: str) -> str | None:

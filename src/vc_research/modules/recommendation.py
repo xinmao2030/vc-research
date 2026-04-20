@@ -101,9 +101,9 @@ def analyze_recommendation(
 
 def _verdict_from_score(score: float) -> str:
     if score >= 70:
-        return "强烈推荐"
+        return "强烈参投"
     if score >= 55:
-        return "推荐"
+        return "参投"
     if score >= 40:
         return "观望"
     return "回避"

@@ -3,8 +3,21 @@
 from __future__ import annotations
 
 from ..data_sources import RawCompanyData
-from ..schema import CompanyProfile, Executive, Founder, Milestone, Region
+from decimal import Decimal, InvalidOperation
+
+from ..schema import (
+    CompanyProfile, CustomerCase, Executive, Founder, Milestone, Product, Region,
+)
 from ..utils import parse_date, parse_funding_stage
+
+
+def _safe_decimal(val: object) -> Decimal | None:
+    if val is None:
+        return None
+    try:
+        return Decimal(str(val))
+    except (InvalidOperation, ValueError):
+        return None
 
 
 class InsufficientDataError(ValueError):
@@ -52,10 +65,50 @@ def analyze_profile(raw: RawCompanyData) -> CompanyProfile:
         Milestone(
             date=m.get("date"),
             event=(m.get("event") or "").strip(),
+            impact=m.get("impact"),
         )
         for m in (src.get("milestones") or [])
         if (m.get("event") or "").strip()
     ]
+
+    # 产品详情: 新格式 list[dict] 或旧���式 list[str]
+    raw_products = src.get("products") or []
+    products_simple: list[str] = []
+    products_detailed: list[Product] = []
+    for p in raw_products:
+        if isinstance(p, str):
+            if p.strip():
+                products_simple.append(p.strip())
+        elif isinstance(p, dict):
+            products_detailed.append(Product(
+                name=p.get("name", "未命名"),
+                category=p.get("category"),
+                description=p.get("description", ""),
+                specs=p.get("specs") or {},
+                launched=p.get("launched"),
+                image_url=p.get("image_url"),
+                revenue_contribution=p.get("revenue_contribution"),
+            ))
+            products_simple.append(p.get("name", "未命名"))
+
+    # 客户案例: 新格式 list[dict] 或旧格式 list[str]
+    raw_customers = src.get("key_customers") or []
+    customers_simple: list[str] = []
+    customer_cases: list[CustomerCase] = []
+    for c in raw_customers:
+        if isinstance(c, str):
+            if c.strip():
+                customers_simple.append(c.strip())
+        elif isinstance(c, dict):
+            customer_cases.append(CustomerCase(
+                name=c.get("name", "未知"),
+                type=c.get("type"),
+                cooperation_since=c.get("cooperation_since"),
+                cooperation_detail=c.get("cooperation_detail", ""),
+                result=c.get("result", ""),
+                annual_value_usd=_safe_decimal(c.get("annual_value_usd")),
+            ))
+            customers_simple.append(c.get("name", "未知"))
 
     region = _infer_region(src.get("region") or src.get("country"))
     stage = parse_funding_stage(src.get("stage"))
@@ -74,8 +127,10 @@ def analyze_profile(raw: RawCompanyData) -> CompanyProfile:
         executives=executives,
         employee_count=src.get("employee_count"),
         one_liner=src.get("one_liner") or f"{raw.name} — 商业模式待研究",
-        products=[p for p in (src.get("products") or []) if p],
-        key_customers=[c for c in (src.get("key_customers") or []) if c],
+        products_detailed=products_detailed,
+        products=products_simple,
+        customer_cases=customer_cases,
+        key_customers=customers_simple,
         milestones=milestones,
         website=src.get("website"),
     )
