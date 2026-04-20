@@ -52,10 +52,11 @@ rsync -a \
 
 success "源码打包完成 ($(du -sh "$SRC_DIR" | cut -f1))"
 
-# ── 复制安装器 ──
-info "复制安装器..."
+# ── 复制安装器 + 文档 ──
+info "复制安装器和文档..."
 cp "$PROJECT_DIR/installer/安装 VC Research.command" "$BUILD_DIR/"
 cp "$PROJECT_DIR/installer/README.txt" "$BUILD_DIR/"
+cp "$PROJECT_DIR/installer/安装指南.md" "$BUILD_DIR/"
 chmod +x "$BUILD_DIR/安装 VC Research.command"
 
 # ── 创建 .background 图标说明 (纯文本替代) ──
