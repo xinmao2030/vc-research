@@ -107,29 +107,68 @@ vc-research/
 
 ## 🏃 快速开始
 
+### 一键安装 (macOS)
+
 ```bash
+# 方式 1: 克隆后本地运行
+git clone https://github.com/xinmao2030/vc-research.git
+bash vc-research/install.sh
+
+# 方式 2: 已有项目目录
 cd ~/vc-research
-python -m venv .venv && source .venv/bin/activate
-pip install -e .
-vc-research analyze "影石创新" -o report.md
-vc-research list-examples            # 查看 6 家标杆(影石/澜起/银诺/比贝特/汉朔/强一)
-
-# Web Dashboard (浏览器打开 localhost:8765)
-python web/dashboard.py
+bash install.sh
 ```
 
-## 🛠️ 系统依赖
+安装脚本会自动完成：Xcode CLT → Homebrew → Python 3.10+ → 系统依赖 → 虚拟环境 → Ollama + Qwen3 模型。全程引导，无需手动配置。
 
-**macOS** (仅当使用 `--pdf` 选项时需要 weasyprint 的系统库):
+### 安装完成后
+
 ```bash
-brew install pango cairo glib gdk-pixbuf libffi
+# 激活环境
+source ~/vc-research/activate.sh
+
+# 分析标杆企业 (秒出,无需网络)
+vc-research analyze "影石创新" -o report.md
+vc-research list-examples
+
+# 搜索任意企业 (需 Ollama 运行)
+vc-research analyze "字节跳动" --live -o report.md
+
+# Web Dashboard (浏览器自动打开 localhost:8765)
+python ~/vc-research/web/dashboard.py
+
+# 生成 PDF 研报
+vc-research analyze "银诺医药" --pdf
 ```
-若未安装,`--pdf` 会优雅降级为 HTML 输出,不会崩溃。
+
+### 手动安装
+
+<details>
+<summary>如果一键脚本不适用,点击展开手动步骤</summary>
+
+```bash
+# 1. 系统依赖 (PDF 渲染用,可选)
+brew install pango cairo glib gdk-pixbuf libffi
+
+# 2. Python 环境
+cd ~/vc-research
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .
+
+# 3. Ollama (任意企业分析用,可选)
+brew install ollama
+ollama serve &
+ollama pull qwen3:8b
+
+# 4. 验证
+vc-research analyze "影石创新" -o report.md
+```
 
 **Linux** (Debian/Ubuntu):
 ```bash
 sudo apt-get install libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libffi-dev
 ```
+</details>
 
 ## 🔑 环境变量
 
@@ -138,9 +177,16 @@ cp .env.example .env
 # 编辑填入 ANTHROPIC_API_KEY (使用 --llm 时必需)
 ```
 
+| 变量 | 用途 | 默认值 | 必须? |
+|------|------|--------|-------|
+| `ANTHROPIC_API_KEY` | Claude 推理增强 | — | 仅 `--llm` 时 |
+| `OLLAMA_MODEL` | 本地模型切换 | `qwen3:8b` | 否 |
+| `OLLAMA_URL` | Ollama 服务地址 | `http://localhost:11434` | 否 |
+
 ## 🧪 运行测试
 
 ```bash
+source ~/vc-research/activate.sh
 pytest tests/ -v
 ```
 
@@ -148,10 +194,12 @@ pytest tests/ -v
 
 | 问题 | 解决 |
 |------|------|
-| `--pdf` 报 `libgobject` 缺失 | 参考上方"系统依赖"章节安装 pango/cairo |
-| `ANTHROPIC_API_KEY` 未设置 | 去掉 `--llm` 标志或设置 env 变量 |
-| 公司名不在 fixtures | 当前需手动创建 `examples/fixtures/{名字}.json`,Phase 2 将自动接入真实数据源 |
-| 研报金额是 10 位数字看不懂 | 后续会人性化显示 (`$180B` / `¥1800 亿`) |
+| `--pdf` 报 `libgobject` 缺失 | `brew install pango cairo glib gdk-pixbuf libffi` |
+| `ANTHROPIC_API_KEY` 未设置 | 去掉 `--llm` 标志或在 `.env` 中设置 |
+| `--live` 报连接超时 | 确认 Ollama 运行中: `ollama serve &` |
+| 搜索企业很慢 (>2分钟) | 首次推理需模型冷启动,后续有 30 天缓存 |
+| `externally-managed-environment` | 使用虚拟环境: `source activate.sh` |
+| Apple Silicon 装包失败 | 确保用 Homebrew 版 Python,非系统自带 |
 
 ## 📜 设计原则
 
