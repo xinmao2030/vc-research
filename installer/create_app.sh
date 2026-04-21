@@ -19,18 +19,15 @@ on run
     set logFile to "/tmp/vc-research-dashboard.log"
     set brewPath to "/opt/homebrew/bin:/usr/local/bin"
 
-    -- 如果 Dashboard 已经运行，直接打开浏览器
+    -- 杀掉旧 Dashboard 进程(确保加载最新代码)
     try
-        set httpCode to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8765 2>/dev/null || echo 000"
-        if httpCode is "200" then
-            open location "http://localhost:8765"
-            return
-        end if
+        do shell script "lsof -ti:8800 2>/dev/null | xargs kill 2>/dev/null; true"
+        delay 1
     end try
 
-    -- 启动 Ollama
+    -- 启动 Ollama (如果没在运行)
     try
-        do shell script "export PATH=" & quoted form of brewPath & ":\$PATH; curl -s --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1 || (ollama serve >/dev/null 2>&1 &); true"
+        do shell script "export PATH=" & quoted form of brewPath & ":\$PATH; curl -s --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1 || (ollama serve >/dev/null 2>&1 &); sleep 3; true"
     end try
 
     -- 启动 Dashboard
@@ -46,7 +43,7 @@ on run
     repeat 20 times
         delay 0.5
         try
-            set chk to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8765 2>/dev/null || echo 000"
+            set chk to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8800 2>/dev/null || echo 000"
             if chk is "200" then
                 set dashReady to true
                 exit repeat
@@ -54,10 +51,10 @@ on run
         end try
     end repeat
 
-    open location "http://localhost:8765"
+    open location "http://localhost:8800"
 
     if dashReady then
-        display notification "Dashboard running at localhost:8765" with title "VC Research"
+        display notification "Dashboard running at localhost:8800" with title "VC Research"
     end if
 end run
 APPLESCRIPT_DONE
@@ -130,6 +127,9 @@ if ls "$ICON_DIR"/icon_*.png &>/dev/null; then
 fi
 rm -rf "$ICON_DIR"
 
+# ── 重新签名（PlistBuddy/图标修改会破坏 osacompile 的 adhoc 签名）──
+codesign --force --sign - "$DESKTOP_APP" 2>/dev/null || true
+
 # ── 移除 macOS 隔离标记（防止"已损坏"弹窗）──
 xattr -cr "$DESKTOP_APP" 2>/dev/null || true
 
@@ -137,6 +137,7 @@ xattr -cr "$DESKTOP_APP" 2>/dev/null || true
 mkdir -p "$HOME/Applications"
 rm -rf "$HOME/Applications/${APP_NAME}.app"
 cp -R "$DESKTOP_APP" "$HOME/Applications/${APP_NAME}.app"
+codesign --force --sign - "$HOME/Applications/${APP_NAME}.app" 2>/dev/null || true
 xattr -cr "$HOME/Applications/${APP_NAME}.app" 2>/dev/null || true
 
 echo "✓ ${APP_NAME}.app 已创建:"

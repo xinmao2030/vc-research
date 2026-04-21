@@ -134,7 +134,7 @@ vc-research list-examples
 # 搜索任意企业 (需 Ollama 运行)
 vc-research analyze "字节跳动" --live -o report.md
 
-# Web Dashboard (浏览器自动打开 localhost:8765)
+# Web Dashboard (浏览器自动打开 localhost:8800)
 python ~/vc-research/web/dashboard.py
 
 # 生成 PDF 研报

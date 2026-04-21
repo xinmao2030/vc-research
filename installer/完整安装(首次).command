@@ -392,11 +392,9 @@ echo ""
 echo -e "  ${DIM}Ollama 在 Mac 启动时自动运行。如需手动: ollama serve${NC}"
 echo ""
 
-# 安装完成后自动打开 Dashboard
-echo -e "  ${BOLD}正在打开 Dashboard...${NC}"
-source "$VENV_DIR/bin/activate"
-python "$INSTALL_DIR/web/dashboard.py" &>/dev/null &
+# 启动 Dashboard — 通过桌面 App 启动
+echo -e "  ${BOLD}正在启动 VC Research...${NC}"
+open "$HOME/Desktop/VC Research.app" 2>/dev/null || open "$HOME/Applications/VC Research.app" 2>/dev/null || true
 sleep 2
-open "http://localhost:8765" 2>/dev/null || true
 
 read -rp "  按回车关闭本窗口..."

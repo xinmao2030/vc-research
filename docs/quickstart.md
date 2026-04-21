@@ -102,7 +102,7 @@ vc-research analyze "银诺医药" -o 银诺.md --llm
 
 ```bash
 python web/dashboard.py
-# 浏览器访问 http://localhost:8765
+# 浏览器访问 http://localhost:8800
 ```
 
 ---

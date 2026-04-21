@@ -88,7 +88,7 @@ class DataAggregator:
             chain.append(OllamaResearcher())
         return chain
 
-    def fetch(self, company_name: str) -> RawCompanyData:
+    def fetch(self, company_name: str, *, hints: dict[str, str] | None = None) -> RawCompanyData:
         data = RawCompanyData(name=company_name)
         if self._sources is None:
             self._sources = self._build_sources()
@@ -97,7 +97,12 @@ class DataAggregator:
             # 已有命中就短路,省掉本地 LLM 的 30-60 秒
             if not data.is_empty():
                 break
-            payload = src.fetch(company_name)
+            # OllamaResearcher 支持 hints 参数(股票代码提示)
+            from .ollama_researcher import OllamaResearcher
+            if hints and isinstance(src, OllamaResearcher):
+                payload = src.fetch(company_name, hints=hints)
+            else:
+                payload = src.fetch(company_name)
             if not payload:
                 continue
             self._merge(data, src.name, payload)

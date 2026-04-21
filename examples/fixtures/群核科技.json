@@ -1,0 +1,250 @@
+{
+  "sources_hit": [
+    "[招股书] 港交所 · 群核科技 (00068.HK) 招股章程 <https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0410/2026041000068.pdf>",
+    "[新闻] 36Kr · 杭州六小龙首个IPO：群核科技港股上市首日暴涨144% (2026-04-17) <https://www.36kr.com/>",
+    "[新闻] 证券时报 · 酷家乐母公司群核科技港交所上市 市值超130亿港元 (2026-04-17) <https://www.stcn.com/>",
+    "[融资聚合] IT桔子 · 群核科技融资历程 <https://www.itjuzi.com/company/21647>",
+    "[融资聚合] Crunchbase · Manycore Tech (Kujiale) <https://www.crunchbase.com/organization/kujiale>",
+    "[新闻] 新浪财经 · 群核科技上市次日股价翻倍 市值突破600亿港元 (2026-04-18) <https://finance.sina.com.cn/>",
+    "[官网] 酷家乐 <https://www.kujiale.com>"
+  ],
+  "itjuzi": {
+    "legal_name": "杭州群核信息技术有限公司 (Manycore Tech Inc.)",
+    "founded_date": "2011-11-09",
+    "headquarters": "杭州",
+    "region": "cn",
+    "industry": "信息技术",
+    "sub_industry": "空间设计SaaS / 空间智能",
+    "business_model": "订阅制SaaS（订阅收入占比96.9%）",
+    "stage": "post-ipo",
+    "employee_count": null,
+    "one_liner": "中国最大空间设计SaaS平台，酷家乐/Coohom品牌，\"杭州六小龙\"首个IPO",
+    "founders": [
+      {
+        "name": "黄晓煌 (Victor Huang)",
+        "title": "创始人/董事长",
+        "background": "浙大计算机本科(2007) → UIUC计算机硕士(2010) → NVIDIA (CUDA开发) → 2011年创办群核科技",
+        "equity_pct": 0.25
+      },
+      {
+        "name": "陈航",
+        "title": "联合创始人/CEO",
+        "background": "浙大计算机本科(2007) → UIUC计算机硕士(2010) → 2011年联合创业",
+        "equity_pct": null
+      },
+      {
+        "name": "朱皓",
+        "title": "联合创始人/CTO",
+        "background": "清华计算机本科(2007) → UIUC计算机硕士(2009) → 微软 → Amazon → 2011年联合创业",
+        "equity_pct": null
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "angel",
+        "announce_date": "2013-01-01",
+        "amount_usd": 500000,
+        "post_money_valuation_usd": 3000000,
+        "lead_investors": ["线性资本"],
+        "notes": "天使轮，数百万人民币"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2013-05-01",
+        "amount_usd": 3000000,
+        "post_money_valuation_usd": 11000000,
+        "lead_investors": ["IDG资本"],
+        "notes": "A轮，数百万美元"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2014-05-01",
+        "amount_usd": 10000000,
+        "post_money_valuation_usd": 50000000,
+        "lead_investors": ["IDG资本"],
+        "notes": "B轮，经纬创投、云启资本跟投"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2016-01-01",
+        "amount_usd": 30000000,
+        "post_money_valuation_usd": 200000000,
+        "lead_investors": ["GGV纪源资本"],
+        "notes": "C轮，数千万美元"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2018-01-01",
+        "amount_usd": 100000000,
+        "post_money_valuation_usd": 600000000,
+        "lead_investors": ["顺为资本"],
+        "notes": "D轮1亿美元"
+      },
+      {
+        "stage": "d+",
+        "announce_date": "2019-01-01",
+        "amount_usd": 100000000,
+        "post_money_valuation_usd": 1000000000,
+        "lead_investors": [],
+        "notes": "D+轮，超1亿美元，估值达10亿美元成为独角兽"
+      },
+      {
+        "stage": "e",
+        "announce_date": "2020-10-01",
+        "amount_usd": 82000000,
+        "post_money_valuation_usd": 1600000000,
+        "lead_investors": ["Coatue Management"],
+        "notes": "E轮，高瓴资本、GGV纪源资本、顺为资本跟投"
+      },
+      {
+        "stage": "ipo",
+        "announce_date": "2026-04-17",
+        "amount_usd": 157000000,
+        "post_money_valuation_usd": 1700000000,
+        "lead_investors": [],
+        "notes": "港交所主板 00068.HK，发行价HK$7.62/股，募资约HK$12.27亿(~$157M)；上市首日收盘HK$18.60(+144%)市值约HK$130亿；次日收盘HK$37.44市值HK$636亿"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "三位创始人均为UIUC计算机硕士(浙大/清华本科)，黄晓煌有NVIDIA CUDA经验，团队技术背景极强且2011年创业至今高度稳定；2024年营收7.55亿元，2025年营收8.20亿元(+8.6%)，毛利率82.2%，2025年调整后净利润+5700万(首次扭亏为盈)；企业客户4.74万家，个人付费用户41.6万",
+      "market": {
+        "tam_usd": 15000000000,
+        "sam_usd": 5000000000,
+        "som_usd": 800000000,
+        "growth_rate": 0.15
+      },
+      "moat": "中国空间设计SaaS市占率23.2%(第一) + 订阅收入占比96.9%的高粘性商业模式 + 3D云渲染/AI空间智能核心技术壁垒 + 4.74万企业客户网络效应 + 海外版Coohom覆盖200+国家",
+      "unit_economics": {
+        "gross_margin": 0.822,
+        "payback_months": null
+      },
+      "growth": {
+        "arr_usd": 113000000,
+        "yoy_growth": 0.086,
+        "mau": null,
+        "gmv_usd": null
+      },
+      "competitors": ["三维家", "打扮家", "爱福窝"],
+      "bull": [
+        "中国空间设计SaaS市占率23.2%稳居第一，订阅收入占比96.9%收入质量极高",
+        "2025年首次扭亏为盈(调整后净利+5700万)，毛利率82.2%展现SaaS平台盈利潜力",
+        "Physical AI/空间智能引擎面向工业制造场景，打开TAM天花板",
+        "Coohom海外版覆盖200+国家，国际化收入增长空间巨大",
+        "IPO后股价暴涨(2日内+391%)反映市场对空间智能赛道的极度看好"
+      ],
+      "bear": [
+        "2025年营收增速仅8.6%，相比前期高增长明显放缓",
+        "家居/室内设计行业高度依赖房地产周期，中国房地产持续低迷影响下游需求",
+        "IPO后股价2日涨391%，估值泡沫风险极高，PE倍数远超SaaS同行",
+        "三维家等竞对在垂直场景持续追赶，免费/低价策略可能侵蚀订阅定价能力",
+        "海外扩张面临Autodesk、SketchUp等国际巨头在成熟市场的竞争"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 300000000,
+      "deal_count_12m": 15,
+      "gartner_phase": "增长期 (空间设计SaaS / 空间智能)",
+      "policy_tailwinds": [
+        "\"杭州六小龙\"政策扶持，杭州市对AI/SaaS企业上市的专项支持",
+        "国家推进建筑信息化(BIM)和数字孪生政策",
+        "港交所对科技企业上市的制度优化(18C章等)"
+      ],
+      "policy_headwinds": [
+        "中国房地产行业持续调控，下游家居装修需求承压",
+        "数据跨境传输监管趋严，影响Coohom海外业务数据合规成本",
+        "AI监管政策不确定性，生成式AI合规要求提升"
+      ],
+      "exit_window": "已IPO (港交所主板 00068.HK)，2026-04-17上市，次日市值HK$636亿；关注锁定期后大股东减持节奏",
+      "hot_keywords": ["空间智能", "Physical AI", "3D云设计", "数字孪生", "SaaS", "杭州六小龙", "酷家乐"]
+    },
+    "products": [
+      {
+        "name": "酷家乐 (Kujiale)",
+        "category": "SaaS平台",
+        "description": "中国最大3D云设计平台，面向家居/室内设计行业，提供3D渲染/全屋设计/VR看房等功能。中国空间设计市占率23.2%（第一），企业客户4.74万家",
+        "launched": "2013",
+        "image_url": "https://www.kujiale.com",
+        "revenue_contribution": 0.75
+      },
+      {
+        "name": "Coohom",
+        "category": "SaaS平台",
+        "description": "酷家乐海外版，覆盖200+国家，面向全球家居设计师和企业客户",
+        "launched": "2018",
+        "image_url": "https://www.coohom.com",
+        "revenue_contribution": 0.15
+      },
+      {
+        "name": "空间智能引擎",
+        "category": "AI平台",
+        "description": "Physical AI / 空间模拟与数字孪生能力，面向工业/制造场景",
+        "launched": "2024",
+        "image_url": null,
+        "revenue_contribution": 0.10
+      }
+    ],
+    "key_customers": [],
+    "milestones": [
+      {
+        "date": "2011-11",
+        "event": "黄晓煌、陈航、朱皓在杭州创办群核科技",
+        "impact": "三位UIUC计算机硕士联合创业，确立3D云设计技术方向"
+      },
+      {
+        "date": "2013",
+        "event": "酷家乐平台正式上线，获线性资本天使轮+IDG资本A轮投资",
+        "impact": "产品落地并获得顶级VC认可，进入快速发展期"
+      },
+      {
+        "date": "2018",
+        "event": "D轮融资1亿美元(顺为资本领投)，启动Coohom海外版",
+        "impact": "融资规模跃升，正式开启国际化战略"
+      },
+      {
+        "date": "2019",
+        "event": "D+轮融资后估值达10亿美元，成为独角兽",
+        "impact": "跨过独角兽门槛，成为中国SaaS领域头部企业"
+      },
+      {
+        "date": "2020-10",
+        "event": "E轮融资$82M，Coatue领投，高瓴/GGV/顺为跟投",
+        "impact": "获得全球顶级投资人背书，估值达$16亿"
+      },
+      {
+        "date": "2025",
+        "event": "全年营收8.20亿元，调整后净利润+5700万，首次扭亏为盈",
+        "impact": "商业模式验证，SaaS平台规模效应显现"
+      },
+      {
+        "date": "2026-04-17",
+        "event": "港交所主板上市(00068.HK)，成为\"杭州六小龙\"首个IPO",
+        "impact": "发行价HK$7.62，上市首日涨144%，次日涨391%至HK$37.44，市值HK$636亿"
+      }
+    ],
+    "financials": {
+      "burn_rate_usd_monthly": 0,
+      "cash_usd": null
+    },
+    "extra_risks": [
+      {
+        "category": "行业周期",
+        "description": "核心收入依赖家居/室内设计行业，高度关联中国房地产周期，地产持续低迷将抑制下游需求",
+        "level": "high",
+        "mitigation": "拓展工业/制造/商业空间等非住宅场景 + Coohom海外收入对冲国内周期"
+      },
+      {
+        "category": "估值泡沫",
+        "description": "IPO后2日股价暴涨391%，市值HK$636亿对应营收仅¥8.2亿，PS倍数极高",
+        "level": "high",
+        "mitigation": "关注锁定期后供给压力，短期内估值消化需要业绩持续高增长支撑"
+      },
+      {
+        "category": "竞争",
+        "description": "国内三维家等追赶，海外面临Autodesk/SketchUp等成熟产品竞争",
+        "level": "medium",
+        "mitigation": "深耕企业客户生态+AI空间智能差异化+订阅粘性(96.9%订阅占比)"
+      }
+    ]
+  }
+}

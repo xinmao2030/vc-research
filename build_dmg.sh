@@ -47,17 +47,22 @@ rsync -a \
     --exclude='.claude' \
     --exclude='node_modules' \
     --exclude='.DS_Store' \
-    --exclude='installer' \
+    --exclude='installer/完整安装(首次).command' \
+    --exclude='installer/快速安装(已有依赖).command' \
+    --exclude='installer/README.txt' \
+    --exclude='installer/安装指南.md' \
     "$PROJECT_DIR/" "$SRC_DIR/"
 
 success "源码打包完成 ($(du -sh "$SRC_DIR" | cut -f1))"
 
 # ── 复制安装器 + 文档 ──
 info "复制安装器和文档..."
-cp "$PROJECT_DIR/installer/安装 VC Research.command" "$BUILD_DIR/"
+cp "$PROJECT_DIR/installer/完整安装(首次).command" "$BUILD_DIR/"
+cp "$PROJECT_DIR/installer/快速安装(已有依赖).command" "$BUILD_DIR/"
 cp "$PROJECT_DIR/installer/README.txt" "$BUILD_DIR/"
 cp "$PROJECT_DIR/installer/安装指南.md" "$BUILD_DIR/"
-chmod +x "$BUILD_DIR/安装 VC Research.command"
+chmod +x "$BUILD_DIR/完整安装(首次).command"
+chmod +x "$BUILD_DIR/快速安装(已有依赖).command"
 
 # ── 创建 .background 图标说明 (纯文本替代) ──
 # 创建一个简短的 DS_Store 提示

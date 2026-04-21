@@ -39,14 +39,12 @@ curl -fsSL https://ollama.com/install.sh | sh
 ## 2. 拉取模型
 
 ```bash
-ollama pull qwen3:32b
+ollama pull qwen3:8b
 ```
 
-- 模型体积约 20 GB
-- 首次拉取 5-15 分钟(取决于网速)
+- 模型体积约 5 GB
+- 首次拉取 3-10 分钟(取决于网速)
 - 后续冷启动仅读本地文件,<5 秒
-
-> 💡 如果磁盘空间紧张,可以试 `qwen3:14b`(约 9 GB),准确度会降一档。
 
 ---
 
@@ -61,7 +59,7 @@ ollama serve
 **验证**:
 ```bash
 curl http://localhost:11434/api/tags
-# 应该返回 {"models": [{"name": "qwen3:32b", ...}]}
+# 应该返回 {"models": [{"name": "qwen3:8b", ...}]}
 ```
 
 ---
@@ -76,7 +74,7 @@ vc-research analyze "某家非标杆公司" --live -o 某.md
 ```
 🤖 Live 模式:未命中 fixtures 将用本地 Qwen3 推断 (首次约 60-120 秒,结果会缓存 30 天)
 ────── 分析: 某家非标杆公司 ──────
-✓ 数据源命中: Ollama · qwen3:32b (LLM 推断, 30 天缓存)
+✓ 数据源命中: Ollama · qwen3:8b (LLM 推断, 30 天缓存)
 ✓ 模块 1: 企业画像
 ...
 ```
@@ -103,7 +101,7 @@ vc-research analyze "某家非标杆公司" --live -o 某.md
 | 现象 | 原因 | 解决 |
 |---|---|---|
 | `connection refused http://localhost:11434` | Ollama 没启 | `ollama serve` |
-| `model not found: qwen3:32b` | 模型没拉 | `ollama pull qwen3:32b` |
+| `model not found: qwen3:8b` | 模型没拉 | `ollama pull qwen3:8b` |
 | 推断 > 5 分钟还没出 | 模型太大 / CPU 太慢 | 切 `qwen3:14b` 或小模型 |
 | 推断出的估值明显失真 | LLM 幻觉 | 建议仍走 fixture 补录,或等 Phase 2 真实 API |
 | 想用其他模型 (llama3 等) | 需改代码 | 见 `src/vc_research/data_sources/ollama_researcher.py` `MODEL = ...` |

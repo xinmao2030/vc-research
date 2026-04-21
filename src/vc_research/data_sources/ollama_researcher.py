@@ -20,6 +20,59 @@ from urllib import request as urlrequest
 logger = logging.getLogger(__name__)
 
 
+def parse_search_input(raw: str) -> tuple[str, dict[str, str]]:
+    """解析搜索输入,提取公司名和附加提示(股票代码/交易所).
+
+    支持格式:
+      "群核科技 港股00068"     → ("群核科技", {"stock_code": "00068", "exchange": "港股"})
+      "群核科技 HK:00068"     → ("群核科技", {"stock_code": "00068", "exchange": "HK"})
+      "群核科技 SH:688xxx"    → ("群核科技", {"stock_code": "688xxx", "exchange": "SH"})
+      "群核科技 00068.HK"     → ("群核科技", {"stock_code": "00068", "exchange": "HK"})
+      "群核科技"              → ("群核科技", {})
+    """
+    raw = raw.strip()
+    hints: dict[str, str] = {}
+
+    # Pattern 1: "XX:NNNNNN" 如 HK:00068, SH:688001, SZ:300001
+    m = re.search(r'\b([A-Za-z]{2,6})[:\uff1a](\d{4,6})\b', raw)
+    if m:
+        hints["exchange"] = m.group(1).upper()
+        hints["stock_code"] = m.group(2)
+        company = raw[:m.start()].strip() or raw[m.end():].strip()
+        return company, hints
+
+    # Pattern 2: "NNNNNN.XX" 如 00068.HK, 688001.SH
+    m = re.search(r'\b(\d{4,6})\.([A-Za-z]{2,6})\b', raw)
+    if m:
+        hints["stock_code"] = m.group(1)
+        hints["exchange"] = m.group(2).upper()
+        company = raw[:m.start()].strip() or raw[m.end():].strip()
+        return company, hints
+
+    # Pattern 3: 中文交易所 + 代码 如 "港股00068", "A股688001", "沪市688001", "深市300001"
+    m = re.search(r'(港股|美股|A股|沪市|深市|科创板|创业板|北交所|港交所|纳斯达克|纽交所)(\d{4,6})', raw)
+    if m:
+        exchange_map = {
+            "港股": "HK", "港交所": "HK",
+            "美股": "US", "纳斯达克": "NASDAQ", "纽交所": "NYSE",
+            "A股": "CN", "沪市": "SH", "深市": "SZ",
+            "科创板": "SH", "创业板": "SZ", "北交所": "BJ",
+        }
+        hints["exchange"] = exchange_map.get(m.group(1), m.group(1))
+        hints["stock_code"] = m.group(2)
+        company = raw[:m.start()].strip() or raw[m.end():].strip()
+        return company, hints
+
+    # Pattern 4: 尾部独立数字代码 如 "群核科技 00068"
+    m = re.search(r'\s+(\d{4,6})\s*$', raw)
+    if m:
+        hints["stock_code"] = m.group(1)
+        company = raw[:m.start()].strip()
+        return company, hints
+
+    return raw, hints
+
+
 DEFAULT_URL = "http://localhost:11434"
 DEFAULT_MODEL = "qwen3:8b"
 DEFAULT_TIMEOUT_S = 300
@@ -27,7 +80,7 @@ DEFAULT_CACHE_DIR = Path.home() / ".vc-research" / "llm_cache"
 DEFAULT_CACHE_TTL_DAYS = 30
 
 _PROMPT_TEMPLATE = """你是一位资深创投分析师。请为公司 "{company}" 产出一份结构化 JSON 深度研报。
-
+{stock_hint}
 分析步骤:
 1. 从公司中文名推断赛道。例如 "糖吉医疗"→糖尿病管理/医疗器械、
    "云鲸科技"→智能家电、"黑芝麻智能"→自动驾驶芯片。
@@ -236,13 +289,39 @@ class OllamaResearcher:
         else:
             self.cache_ttl_days = DEFAULT_CACHE_TTL_DAYS
 
-    def fetch(self, company_name: str) -> dict[str, Any] | None:
+    _SAFE_EXCHANGE = re.compile(r'^[A-Z]{2,10}$')
+    _SAFE_CODE = re.compile(r'^\d{4,6}$')
+
+    def fetch(self, company_name: str, *, hints: dict[str, str] | None = None) -> dict[str, Any] | None:
+        # 输入清洗: 限长 + 去除可能的 prompt 注入字符
+        company_name = re.sub(r'[\n\r"\\]', '', company_name)[:80].strip()
+        if not company_name:
+            logger.warning("空公司名,跳过 LLM 调用")
+            return None
+
         cached = self._load_cache(company_name)
         if cached is not None:
             logger.info("LLM cache hit: %s", company_name)
             return cached
 
-        user_prompt = _PROMPT_TEMPLATE.format(company=company_name) + "\n/no_think"
+        # 构建股票代码提示,帮助 LLM 准确定位公司 (严格校验防止注入)
+        stock_hint = ""
+        if hints:
+            parts = []
+            ex = hints.get("exchange", "")
+            code = hints.get("stock_code", "")
+            if ex and self._SAFE_EXCHANGE.match(ex):
+                parts.append(f"交易所: {ex}")
+            if code and self._SAFE_CODE.match(code):
+                parts.append(f"股票代码: {code}")
+            if parts:
+                stock_hint = (
+                    "\n⚠️ 重要提示: 该公司的上市/股票信息为 "
+                    + ", ".join(parts)
+                    + "。请严格基于此股票代码对应的公司进行分析,不要混淆同名公司。\n"
+                )
+
+        user_prompt = _PROMPT_TEMPLATE.format(company=company_name, stock_hint=stock_hint) + "\n/no_think"
         raw = self._call_ollama(user_prompt)
         if not raw:
             return None

@@ -82,10 +82,10 @@ export ANTHROPIC_API_KEY=sk-ant-xxx   # 或直接 export
 ollama serve  # 保持在一个终端里
 ```
 
-### `model not found: qwen3:32b`
+### `model not found: qwen3:8b`
 
 ```bash
-ollama pull qwen3:32b
+ollama pull qwen3:8b
 ```
 
 详细配置见 [`live-mode-setup.md`](./live-mode-setup.md)。

@@ -1,7 +1,7 @@
 """增强版 Dashboard — 从 fixtures 实时生成研报 + 术语 hover + 术语表页.
 
 Run:
-    python web/dashboard.py                    # localhost:8765
+    python web/dashboard.py                    # localhost:8800
     python web/dashboard.py --port 9000
 """
 
@@ -11,6 +11,7 @@ import argparse
 import html
 import json as _json
 import re
+import threading
 import webbrowser
 from datetime import date, datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -21,6 +22,7 @@ import markdown
 
 from vc_research.data_sources import DataAggregator
 from vc_research.data_sources.ollama_researcher import DEFAULT_CACHE_DIR as LLM_CACHE_DIR
+from vc_research.data_sources.ollama_researcher import parse_search_input
 from vc_research.modules import (
     analyze_funding,
     analyze_industry,
@@ -276,16 +278,36 @@ def _record_search(name: str) -> None:
 
 # ──────────────────────────── 研报生成 (内存) ────────────────────────────
 _REPORT_CACHE: dict[str, VCReport] = {}
+# 异步生成: "pending" | "running" | "done" | "error"
+_BUILD_STATUS: dict[str, str] = {}
+_BUILD_ERROR: dict[str, str] = {}
+_BUILD_START: dict[str, float] = {}  # 开始时间
+_BUILD_LOCK = threading.Lock()
+_BUILD_TIMEOUT_S = 300  # 5 分钟超时
 
 
-def _build_report(name: str, *, from_search: bool = False) -> VCReport | None:
-    """从 fixtures 实时构建 VCReport,带进程内缓存."""
-    if name in _REPORT_CACHE:
-        return _REPORT_CACHE[name]
+def _check_ollama() -> tuple[bool, str]:
+    """检查 Ollama 是否可用,返回 (ok, message)."""
+    import urllib.request as urlreq
+    import urllib.error as urlerr
+    try:
+        with urlreq.urlopen("http://localhost:11434/api/tags", timeout=3) as resp:
+            data = _json.loads(resp.read().decode())
+            models = [m["name"] for m in data.get("models", [])]
+            if any("qwen3" in m for m in models):
+                return True, f"Ollama 正常, 已安装模型: {', '.join(models)}"
+            return False, f"Ollama 运行中但未安装 qwen3:8b。已有模型: {', '.join(models) or '无'}。请运行: ollama pull qwen3:8b"
+    except urlerr.URLError:
+        return False, "Ollama 未运行。请先在终端执行: ollama serve"
+    except Exception as e:
+        return False, f"Ollama 检查失败: {e}"
 
+
+def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str, str] | None = None) -> VCReport | None:
+    """从 fixtures 实时构建 VCReport (同步, 可能耗时很长)."""
     raw = DataAggregator(
         use_fixtures=True, enable_llm_research=True
-    ).fetch(name)
+    ).fetch(name, hints=hints)
     if raw.is_empty():
         return None
     try:
@@ -314,6 +336,104 @@ def _build_report(name: str, *, from_search: bool = False) -> VCReport | None:
     if from_search:
         _record_search(name)
     return report
+
+
+def _build_report_bg(name: str, from_search: bool = False, hints: dict[str, str] | None = None) -> None:
+    """后台线程: 构建研报并更新状态."""
+    import time as _time
+    try:
+        _BUILD_STATUS[name] = "running"
+        _BUILD_START[name] = _time.time()
+        report = _build_report_sync(name, from_search=from_search, hints=hints)
+        if report is None:
+            _BUILD_STATUS[name] = "error"
+            _BUILD_ERROR[name] = "Ollama 返回空结果 — 模型可能未正确加载,或公司名无法识别"
+        else:
+            _BUILD_STATUS[name] = "done"
+    except Exception as e:
+        _BUILD_STATUS[name] = "error"
+        _BUILD_ERROR[name] = str(e)
+
+
+def _build_report(name: str, *, from_search: bool = False, hints: dict[str, str] | None = None) -> VCReport | None:
+    """带缓存的入口. 标杆案例同步返回, 搜索新公司异步生成."""
+    import time as _time
+
+    if name in _REPORT_CACHE:
+        return _REPORT_CACHE[name]
+
+    # 标杆案例有 fixture, 同步秒出
+    fixture_names = {p.stem for p in FIXTURES_DIR.glob("*.json")}
+    if name in fixture_names:
+        return _build_report_sync(name, from_search=from_search)
+
+    # 超时检查: 如果后台线程跑了超过 5 分钟还没完, 标记为失败
+    start = _BUILD_START.get(name, 0)
+    if _BUILD_STATUS.get(name) == "running" and start > 0:
+        if _time.time() - start > _BUILD_TIMEOUT_S:
+            _BUILD_STATUS[name] = "error"
+            _BUILD_ERROR[name] = f"生成超时 (>{_BUILD_TIMEOUT_S}秒)。Ollama 可能未运行或模型未安装。"
+
+    # 非标杆: 先检查 Ollama, 再触发后台构建
+    with _BUILD_LOCK:
+        status = _BUILD_STATUS.get(name)
+        if status not in ("running", "done", "error"):
+            # 预检查 Ollama
+            ok, msg = _check_ollama()
+            if not ok:
+                _BUILD_STATUS[name] = "error"
+                _BUILD_ERROR[name] = msg
+            else:
+                _BUILD_STATUS[name] = "pending"
+                t = threading.Thread(
+                    target=_build_report_bg, args=(name, from_search, hints), daemon=True
+                )
+                t.start()
+    return None
+
+
+def _loading_page(name: str) -> bytes:
+    """返回自动刷新的 loading 页面."""
+    status = _BUILD_STATUS.get(name, "pending")
+    error = _BUILD_ERROR.get(name, "")
+
+    if status == "error":
+        body = f"""
+<h1>🤷 {html.escape(name)} · 生成失败</h1>
+<div class="disclaimer">
+  <b>错误:</b> {html.escape(error)}
+</div>
+<details style="margin:1em 0">
+  <summary style="cursor:pointer;color:#0366d6">排查清单(点击展开)</summary>
+  <ol style="margin-top:.5em">
+    <li><code>ollama serve</code> 是否在运行 → 终端执行 <code>curl localhost:11434/api/tags</code></li>
+    <li><code>ollama list</code> 是否有 <code>qwen3:8b</code> → 没有则 <code>ollama pull qwen3:8b</code></li>
+    <li>预热模型 → <code>curl localhost:11434/api/generate -d '{{"model":"qwen3:8b","prompt":"hello","stream":false}}'</code></li>
+  </ol>
+</details>
+<p><a href="/report/{html.escape(name)}?from=search&retry=1">🔄 重试</a> · <a href="/">← 返回首页</a></p>
+"""
+        return _page(f"{name} · 生成失败", body)
+
+    # running / pending — 显示 loading, 3 秒自动刷新
+    import time as _time
+    elapsed = int(_time.time() - _BUILD_START.get(name, _time.time()))
+    elapsed_text = f"已等待 {elapsed} 秒" if elapsed > 0 else "正在启动..."
+    body = f"""
+<h1>🔍 {html.escape(name)} · 研报生成中...</h1>
+<div style="text-align:center;padding:3em 0">
+  <div style="font-size:3em;animation:spin 1.5s linear infinite">⏳</div>
+  <p style="margin-top:1em;font-size:1.1em;color:#8b949e">
+    Qwen3:8b 正在分析「{html.escape(name)}」，首次约 1-2 分钟...
+  </p>
+  <p style="color:#58a6ff;font-size:1em;font-weight:bold">{elapsed_text}</p>
+  <p style="color:#6a737d;font-size:.9em">页面每 3 秒自动刷新，请勿关闭</p>
+</div>
+<style>@keyframes spin {{ from {{ transform: rotate(0deg) }} to {{ transform: rotate(360deg) }} }}</style>
+<script>setTimeout(function(){{ location.reload() }}, 3000);</script>
+<p style="text-align:center"><a href="/">← 返回首页</a></p>
+"""
+    return _page(f"{name} · 生成中", body)
 
 
 # ──────────────────────────── 搜索历史卡片 ────────────────────────────
@@ -422,7 +542,7 @@ def _index() -> bytes:
 <h2>🔎 查任意公司</h2>
 <form action="/search" method="get" style="display:flex;gap:.5em;margin:1em 0;max-width:520px"
       onsubmit="document.getElementById('spinner').style.display='block'">
-  <input type="text" name="q" placeholder="输入公司中文名 (如:糖吉医疗、字节跳动)" required
+  <input type="text" name="q" placeholder="公司名 + 股票代码 (如: 群核科技 港股00068、字节跳动)" required
          style="flex:1;padding:.6em .8em;border:1px solid #d0d7de;border-radius:6px;font-size:1em">
   <button type="submit"
          style="padding:.6em 1.2em;background:#0969da;color:#fff;border:0;border-radius:6px;font-size:1em;cursor:pointer">
@@ -433,8 +553,8 @@ def _index() -> bytes:
   ⏳ 本地 Qwen3 推断中,预计 60-120 秒。请耐心等待,勿关闭页面。
 </div>
 <p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
-  <b>标杆案例</b> (下方)秒开;<b>其他公司</b>由本地 Qwen3 32B 实时推断(1-2 分钟),
-  研报顶部会明确标注"LLM 推断,需交叉核实"。
+  <b>标杆案例</b> (下方)秒开;<b>其他公司</b>由本地 Qwen3 8B 实时推断(1-2 分钟)。
+  <b>提示:</b> 输入时可附加股票代码避免同名混淆,如「群核科技 港股00068」「蔚来 HK:09866」。
 </p>
 
 <h2>🗂️ 标杆案例 ({len(cards)})</h2>
@@ -517,32 +637,30 @@ def _about() -> bytes:
     return _page("关于", body)
 
 
-def _report(name: str, *, from_search: bool = False) -> tuple[bytes, int]:
-    report = _build_report(name, from_search=from_search)
+def _report(name: str, *, from_search: bool = False, retry: bool = False, hints: dict[str, str] | None = None) -> tuple[bytes, int]:
+    # 重试时清除旧的错误状态
+    if retry and name in _BUILD_STATUS:
+        _BUILD_STATUS.pop(name, None)
+        _BUILD_ERROR.pop(name, None)
+
+    report = _build_report(name, from_search=from_search, hints=hints)
     if report is None:
+        # 非标杆公司: 后台正在生成, 显示 loading 页面
+        status = _BUILD_STATUS.get(name)
+        if status in ("pending", "running", "error"):
+            return _loading_page(name), 200
+        # 标杆公司但数据不足
         available = sorted(p.stem for p in FIXTURES_DIR.glob("*.json"))
         links = " · ".join(
             f'<a href="/report/{html.escape(a)}">{html.escape(a)}</a>' for a in available
         )
         body = f"""
-<h1>🤷 {html.escape(name)} · 生成失败</h1>
-<div class="disclaimer">
-  <b>最常见原因: 模型冷启动超时</b> — Qwen3:32b (20GB) 首次加载需 60-90 秒,
-  浏览器可能提前断开连接。<b>请直接刷新本页重试</b>,第二次通常秒返回。
-</div>
-<details style="margin:1em 0">
-  <summary style="cursor:pointer;color:#0366d6">排查清单(点击展开)</summary>
-  <ol style="margin-top:.5em">
-    <li><code>ollama serve</code> 是否在运行 → 终端执行 <code>curl localhost:11434/api/tags</code></li>
-    <li><code>ollama list</code> 是否有 <code>qwen3:32b</code> → 没有则 <code>ollama pull qwen3:32b</code></li>
-    <li>预热模型(避免冷启动) → <code>curl localhost:11434/api/generate -d '{{"model":"qwen3:32b","prompt":"hello","stream":false}}'</code></li>
-  </ol>
-</details>
+<h1>🤷 {html.escape(name)} · 数据不足</h1>
 <h2>已收录的标杆案例(可直接查看)</h2>
 <p>{links}</p>
 <p><a href="/">← 返回首页</a></p>
 """
-        return _page(f"{name} · 生成失败", body), 404
+        return _page(f"{name} · 数据不足", body), 404
     md_text = render_markdown(report)
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code"])
     html_body = _sanitize_html(html_body)
@@ -566,19 +684,38 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/clear-cache":
             body, status = _clear_cache(), 200
         elif path.startswith("/search"):
-            from urllib.parse import parse_qs, urlparse, quote
+            from urllib.parse import parse_qs, urlparse, quote, urlencode
             q = parse_qs(urlparse(raw_path).query).get("q", [""])[0].strip()
-            if q:
-                redirect_to = f"/report/{quote(q)}?from=search"
-                body, status = b"", 302
+            if not q:
+                body, status = _page("搜索", "<h1>请输入公司名</h1>"), 400
             else:
-                body, status = _page("404", "<h1>请输入公司名</h1>"), 400
+                company, hints = parse_search_input(q)
+                if not company:
+                    body, status = _page("搜索", "<h1>请输入公司名(不能只有股票代码)</h1><p><a href='/'>← 返回首页</a></p>"), 400
+                else:
+                    params: dict[str, str] = {"from": "search"}
+                    if hints.get("exchange"):
+                        params["exchange"] = hints["exchange"]
+                    if hints.get("stock_code"):
+                        params["stock_code"] = hints["stock_code"]
+                    redirect_to = f"/report/{quote(company)}?{urlencode(params)}"
+                    body, status = b"", 302
         elif path.startswith("/report/"):
             from urllib.parse import parse_qs, urlparse
             parsed = urlparse(raw_path)
             name = unquote(parsed.path[len("/report/"):])
-            is_search = parse_qs(parsed.query).get("from", [""])[0] == "search"
-            body, status = _report(name, from_search=is_search)
+            qs = parse_qs(parsed.query)
+            is_search = qs.get("from", [""])[0] == "search"
+            is_retry = qs.get("retry", [""])[0] == "1"
+            # 从 URL 参数恢复 hints (仅允许安全格式)
+            hints = {}
+            ex = qs.get("exchange", [""])[0].upper()[:10]
+            code = qs.get("stock_code", [""])[0][:6]
+            if ex and re.fullmatch(r'[A-Z]{2,10}', ex):
+                hints["exchange"] = ex
+            if code and re.fullmatch(r'\d{4,6}', code):
+                hints["stock_code"] = code
+            body, status = _report(name, from_search=is_search, retry=is_retry, hints=hints or None)
         else:
             body, status = _page("404", "<h1>404</h1>"), 404
 
@@ -596,7 +733,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--port", type=int, default=8800)
     parser.add_argument("--no-browser", action="store_true")
     args = parser.parse_args()
 
@@ -607,7 +744,8 @@ def main() -> None:
     if not args.no_browser:
         webbrowser.open(url)
 
-    server = HTTPServer(("127.0.0.1", args.port), Handler)
+    from http.server import ThreadingHTTPServer
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
