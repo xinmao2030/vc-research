@@ -267,9 +267,13 @@ if command -v ollama &>/dev/null; then
     OLLAMA_INSTALLED=true
 else
     info "正在安装 Ollama..."
-    brew install ollama
-    success "Ollama 安装完成"
-    OLLAMA_INSTALLED=true
+    if brew install ollama; then
+        success "Ollama 安装完成"
+        OLLAMA_INSTALLED=true
+    else
+        warn "Ollama 安装失败，已跳过。标杆案例仍可正常使用。"
+        warn "日后手动安装: brew install ollama"
+    fi
 fi
 
 if $OLLAMA_INSTALLED; then
@@ -294,17 +298,22 @@ if $OLLAMA_INSTALLED; then
         info "正在下载 $OLLAMA_MODEL 模型（约 5GB）..."
         info "首次下载需要一些时间，请耐心等待..."
         echo ""
-        ollama pull "$OLLAMA_MODEL"
-        echo ""
-        success "$OLLAMA_MODEL 模型下载完成"
+        if ollama pull "$OLLAMA_MODEL"; then
+            echo ""
+            success "$OLLAMA_MODEL 模型下��完成"
+            # 预热模型（减少首次使用时的冷启动时间）
+            info "预热模型（约 10 秒）..."
+            curl -s http://localhost:11434/api/generate \
+                -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"hi\",\"stream\":false}" \
+                -o /dev/null --max-time 30 2>/dev/null || true
+            success "模型预热完成"
+        else
+            echo ""
+            warn "模型下载失败（网络问题），已跳过。"
+            warn "标杆案例（6家）可正常使用，无需模型。"
+            warn "日后手动下载: ollama pull $OLLAMA_MODEL"
+        fi
     fi
-
-    # 预热模型（减少首次使用时的冷启动时间）
-    info "预热模型（约 10 秒）..."
-    curl -s http://localhost:11434/api/generate \
-        -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"hi\",\"stream\":false}" \
-        -o /dev/null --max-time 30 2>/dev/null || true
-    success "模型预热完成"
 fi
 
 # ──────────────────────────────────────────────────────────────
