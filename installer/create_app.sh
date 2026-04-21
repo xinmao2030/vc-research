@@ -130,10 +130,14 @@ if ls "$ICON_DIR"/icon_*.png &>/dev/null; then
 fi
 rm -rf "$ICON_DIR"
 
+# ── 移除 macOS 隔离标记（防止"已损坏"弹窗）──
+xattr -cr "$DESKTOP_APP" 2>/dev/null || true
+
 # ── 复制到 ~/Applications ──
 mkdir -p "$HOME/Applications"
 rm -rf "$HOME/Applications/${APP_NAME}.app"
 cp -R "$DESKTOP_APP" "$HOME/Applications/${APP_NAME}.app"
+xattr -cr "$HOME/Applications/${APP_NAME}.app" 2>/dev/null || true
 
 echo "✓ ${APP_NAME}.app 已创建:"
 echo "  • $DESKTOP_APP"
