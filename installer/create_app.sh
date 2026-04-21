@@ -1,160 +1,140 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────
-# 生成 "VC Research.app" macOS 应用 — 双击打开 Dashboard
-# 由安装器自动调用，也可手动运行: bash create_app.sh
+# 生成 "VC Research.app" — 原生 AppleScript 应用
+# 双击打开 Dashboard (自动启动 Ollama + 浏览器)
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 
 INSTALL_DIR="${1:-$HOME/vc-research}"
-APP_DIR="$HOME/Applications/VC Research.app"
+APP_NAME="VC Research"
+DESKTOP_APP="$HOME/Desktop/${APP_NAME}.app"
+TMPSCRIPT="/tmp/vc-research-app.applescript"
 
-# 也放一份到桌面
-DESKTOP_APP="$HOME/Desktop/VC Research.app"
+# ── 写 AppleScript 到临时文件 ──
+cat > "$TMPSCRIPT" << APPLESCRIPT_DONE
+on run
+    set installDir to "${INSTALL_DIR}"
+    set venvPython to installDir & "/.venv/bin/python"
+    set dashboardPy to installDir & "/web/dashboard.py"
+    set logFile to "/tmp/vc-research-dashboard.log"
+    set brewPath to "/opt/homebrew/bin:/usr/local/bin"
 
-# ── 构建 .app 目录结构 ──
-create_app() {
-    local target="$1"
-    rm -rf "$target"
-    mkdir -p "$target/Contents/MacOS"
-    mkdir -p "$target/Contents/Resources"
+    -- 如果 Dashboard 已经运行，直接打开浏览器
+    try
+        set httpCode to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8765 2>/dev/null || echo 000"
+        if httpCode is "200" then
+            open location "http://localhost:8765"
+            return
+        end if
+    end try
 
-    # ── 启动脚本 ──
-    cat > "$target/Contents/MacOS/launch" << LAUNCH_EOF
-#!/usr/bin/env bash
-# VC Research Dashboard Launcher
-export PATH="/opt/homebrew/bin:/usr/local/bin:\$PATH"
+    -- 启动 Ollama
+    try
+        do shell script "export PATH=" & quoted form of brewPath & ":\$PATH; curl -s --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1 || (ollama serve >/dev/null 2>&1 &); true"
+    end try
 
-INSTALL_DIR="$INSTALL_DIR"
-VENV_DIR="\$INSTALL_DIR/.venv"
-LOG_FILE="/tmp/vc-research-dashboard.log"
+    -- 启动 Dashboard
+    try
+        do shell script quoted form of venvPython & " " & quoted form of dashboardPy & " > " & quoted form of logFile & " 2>&1 &"
+    on error errMsg
+        display alert "VC Research" message "Dashboard failed: " & errMsg as critical
+        return
+    end try
 
-# 确保 Ollama 运行
-if command -v ollama &>/dev/null; then
-    if ! curl -s http://localhost:11434/api/tags &>/dev/null 2>&1; then
-        ollama serve &>/dev/null &
-        sleep 2
-    fi
-fi
+    -- 等待就绪
+    set dashReady to false
+    repeat 20 times
+        delay 0.5
+        try
+            set chk to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8765 2>/dev/null || echo 000"
+            if chk is "200" then
+                set dashReady to true
+                exit repeat
+            end if
+        end try
+    end repeat
 
-# 激活虚拟环境并启动 Dashboard
-if [[ -f "\$VENV_DIR/bin/activate" ]]; then
-    source "\$VENV_DIR/bin/activate"
-    python "\$INSTALL_DIR/web/dashboard.py" > "\$LOG_FILE" 2>&1 &
-    DASHBOARD_PID=\$!
+    open location "http://localhost:8765"
 
-    # 等待服务启动
-    for i in \$(seq 1 10); do
-        if curl -s http://localhost:8765 &>/dev/null 2>&1; then
-            break
-        fi
-        sleep 0.5
-    done
+    if dashReady then
+        display notification "Dashboard running at localhost:8765" with title "VC Research"
+    end if
+end run
+APPLESCRIPT_DONE
 
-    # 打开浏览器
-    open "http://localhost:8765"
+# ── 编译为 .app ──
+rm -rf "$DESKTOP_APP"
+osacompile -o "$DESKTOP_APP" "$TMPSCRIPT"
+rm -f "$TMPSCRIPT"
 
-    # 显示通知
-    osascript -e 'display notification "Dashboard 已在浏览器中打开\nhttp://localhost:8765" with title "VC Research" subtitle "创投分析系统已启动"' 2>/dev/null || true
+# ── 修改 Info.plist ──
+PLIST="$DESKTOP_APP/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleName '${APP_NAME}'" "$PLIST" 2>/dev/null || true
+/usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string '${APP_NAME}'" "$PLIST" 2>/dev/null || true
+/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier 'com.xinmao.vc-research'" "$PLIST" 2>/dev/null || true
 
-    # 等待 Dashboard 进程结束
-    wait \$DASHBOARD_PID 2>/dev/null || true
-else
-    osascript -e 'display alert "VC Research 未安装" message "请先运行安装程序:\n双击 安装 VC Research.command" as critical' 2>/dev/null
-fi
-LAUNCH_EOF
-    chmod +x "$target/Contents/MacOS/launch"
+# ── 生成图标 ──
+ICON_DIR="/tmp/vc-research-icon.iconset"
+rm -rf "$ICON_DIR"
+mkdir -p "$ICON_DIR"
 
-    # ── Info.plist ──
-    cat > "$target/Contents/Info.plist" << 'PLIST_EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key>
-    <string>launch</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.xinmao.vc-research</string>
-    <key>CFBundleName</key>
-    <string>VC Research</string>
-    <key>CFBundleDisplayName</key>
-    <string>VC Research</string>
-    <key>CFBundleVersion</key>
-    <string>0.1.16</string>
-    <key>CFBundleShortVersionString</key>
-    <string>0.1.16</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleIconFile</key>
-    <string>AppIcon</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>12.0</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>LSUIElement</key>
-    <false/>
-    <key>NSHumanReadableCopyright</key>
-    <string>VC Research - 创投企业投资分析系统</string>
-</dict>
-</plist>
-PLIST_EOF
-
-    # ── 生成应用图标 (使用 macOS 内置工具生成简单图标) ──
-    # 用 Python 生成一个简单的 PNG 图标，再转成 icns
-    local ICON_DIR="/tmp/vc-research-icon.iconset"
-    rm -rf "$ICON_DIR"
-    mkdir -p "$ICON_DIR"
-
-    # 尝试用 Python + PIL 生成图标
-    python3 - "$ICON_DIR" << 'ICON_PYTHON' 2>/dev/null || true
-import sys, os
+"$INSTALL_DIR/.venv/bin/python" - "$ICON_DIR" << 'ICON_PY' 2>/dev/null || true
+import sys, os, struct, zlib
+iconset = sys.argv[1]
 try:
     from PIL import Image, ImageDraw, ImageFont
-    iconset = sys.argv[1]
-    sizes = [16,32,64,128,256,512]
-    for s in sizes:
-        img = Image.new('RGBA', (s, s), (30, 58, 138, 255))
-        draw = ImageDraw.Draw(img)
-        # 白色圆角矩形背景
-        margin = s // 8
-        draw.rounded_rectangle([margin, margin, s-margin, s-margin],
-                               radius=s//6, fill=(255,255,255,240))
-        # 绘制 "VC" 文字
-        font_size = s // 3
-        try:
-            font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", font_size)
-        except:
-            font = ImageFont.load_default()
-        bbox = draw.textbbox((0,0), "VC", font=font)
-        tw, th = bbox[2]-bbox[0], bbox[3]-bbox[1]
-        draw.text(((s-tw)//2, (s-th)//2 - s//10), "VC", fill=(30,58,138,255), font=font)
-        # 小号 R
-        small_size = s // 5
-        try:
-            sfont = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", small_size)
-        except:
-            sfont = font
-        draw.text(((s-small_size//2)//2, s//2 + s//10), "R", fill=(59,130,246,255), font=sfont)
-        img.save(os.path.join(iconset, f"icon_{s}x{s}.png"))
-        img2 = img.resize((s*2, s*2), Image.LANCZOS)
-        img2.save(os.path.join(iconset, f"icon_{s}x{s}@2x.png"))
-    print("icon generated")
+    HAS_PIL = True
 except ImportError:
-    print("PIL not available, skip icon")
-ICON_PYTHON
+    HAS_PIL = False
 
-    # 转换为 icns
-    if [[ -f "$ICON_DIR/icon_256x256.png" ]]; then
-        iconutil -c icns "$ICON_DIR" -o "$target/Contents/Resources/AppIcon.icns" 2>/dev/null || true
-    fi
-    rm -rf "$ICON_DIR"
-}
+def make_solid_png(w, h, r, g, b):
+    raw = b''
+    for _ in range(h):
+        raw += b'\x00' + bytes([r, g, b, 255]) * w
+    compressed = zlib.compress(raw)
+    def chunk(ctype, data):
+        c = ctype + data
+        return struct.pack('>I', len(data)) + c + struct.pack('>I', zlib.crc32(c) & 0xffffffff)
+    return b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', w, h, 8, 6, 0, 0, 0)) + chunk(b'IDAT', compressed) + chunk(b'IEND', b'')
 
-# ── 创建应用 ──
+for s in [16, 32, 128, 256, 512]:
+    if HAS_PIL:
+        img = Image.new('RGBA', (s, s), (0, 0, 0, 0))
+        draw = ImageDraw.Draw(img)
+        m = max(s // 10, 1)
+        draw.rounded_rectangle([m, m, s - m, s - m], radius=s // 5, fill=(37, 99, 235, 255))
+        fs = s * 4 // 10
+        try: font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", fs)
+        except: font = ImageFont.load_default()
+        bbox = draw.textbbox((0, 0), "VCR", font=font)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        draw.text(((s - tw) // 2, (s - th) // 2 - s // 12), "VCR", fill=(255, 255, 255, 255), font=font)
+        fs2 = s // 7
+        try: font2 = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", fs2)
+        except: font2 = font
+        bbox2 = draw.textbbox((0, 0), "Research", font=font2)
+        draw.text(((s - bbox2[2] + bbox2[0]) // 2, (s - th) // 2 + th - s // 16), "Research", fill=(191, 219, 254, 255), font=font2)
+        img.save(os.path.join(iconset, f"icon_{s}x{s}.png"))
+        img.resize((s * 2, s * 2), Image.LANCZOS).save(os.path.join(iconset, f"icon_{s}x{s}@2x.png"))
+    else:
+        for scale, suffix in [(1, ""), (2, "@2x")]:
+            sz = s * scale
+            with open(os.path.join(iconset, f"icon_{s}x{s}{suffix}.png"), 'wb') as f:
+                f.write(make_solid_png(sz, sz, 37, 99, 235))
+print("ok")
+ICON_PY
+
+if ls "$ICON_DIR"/icon_*.png &>/dev/null; then
+    iconutil -c icns "$ICON_DIR" -o "$DESKTOP_APP/Contents/Resources/applet.icns" 2>/dev/null && \
+        echo "✓ 图标已生成" || true
+fi
+rm -rf "$ICON_DIR"
+
+# ── 复制到 ~/Applications ──
 mkdir -p "$HOME/Applications"
-create_app "$APP_DIR"
-create_app "$DESKTOP_APP"
+rm -rf "$HOME/Applications/${APP_NAME}.app"
+cp -R "$DESKTOP_APP" "$HOME/Applications/${APP_NAME}.app"
 
-echo "✓ VC Research.app 已创建:"
-echo "  • $APP_DIR"
+echo "✓ ${APP_NAME}.app 已创建:"
 echo "  • $DESKTOP_APP"
-echo "  双击即可打开 Dashboard (浏览器自动跳转)"
+echo "  • $HOME/Applications/${APP_NAME}.app"
