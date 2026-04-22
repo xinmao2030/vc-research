@@ -1,0 +1,166 @@
+{
+  "sources_hit": [
+    "[新闻] 新浪科技 · 机器视觉领军企业「博视像元」获近亿元天使轮融资，兴旺投资与朗玛峰联合领投 (2022-07-06) <https://finance.sina.com.cn/tech/2022-07-06/doc-imizirav2178918.shtml?finpagefr=p_114>",
+    "[新闻] 新浪科技 · 机器视觉领军企业「博视像元」再获近5000万天使加轮融资 (2023-02-16) <https://finance.sina.com.cn/tech/roll/2023-02-16/doc-imyfvwvx2215333.shtml>",
+    "[新闻] 仪器信息网 · 机器视觉企业博视像元获超亿元A轮融资，加速中国关键零部件崛起 (2024-08-21) <https://www.instrument.com.cn/news/20240821/737230.shtml>",
+    "[新闻] 阿里云创新中心 · 机器视觉企业「博视像元」完成1.3亿元A轮融资 (2024-08-21) <https://startup.aliyun.com/info/1087318.html>",
+    "[新闻] 阿里云创新中心 · 机器视觉领军企业「博视像元」获近亿元天使轮融资 (2022-07) <https://startup.aliyun.com/info/1014016.html>",
+    "[新闻] 北航投资 · 机器视觉领军企业「博视像元」获北航投资等超亿元A轮融资 (2024-08-21) <http://www.beihangtou.com/newsinfo/7508517.html>",
+    "[新闻] 腾讯新闻 · 突发！北京杀出超级独角兽：一把融了1.3亿，中国第一，成立仅两年 (2024-08-26) <https://news.qq.com/rain/a/20240826A060T100>",
+    "[融资聚合] Crunchbase · BoPixel Series A (2024-08-21) <https://www.crunchbase.com/funding_round/bopixel-series-a--43f39f09>",
+    "[融资聚合] Crunchbase · BoPixel Company Profile <https://www.crunchbase.com/organization/bopixel>",
+    "[官网] 博视像元官网 <https://bopixel.com>",
+    "[行业] 前瞻产业研究院 · 预见2024：中国机器视觉市场规模及发展前景 (2024-04-24) <https://bg.qianzhan.com/trends/detail/506/240424-106db964.html>",
+    "[行业] MarketsandMarkets · Machine Vision Market Size, Share & Trends 2025-2030 <https://www.marketsandmarkets.com/Market-Reports/industrial-machine-vision-market-234246734.html>",
+    "[行业] 前瞻网 · 洞察2024：中国机器视觉行业竞争格局及市场份额 (2024-07-12) <https://www.qianzhan.com/analyst/detail/220/240712-8742f806.html>",
+    "[新闻] 机器视觉网 · 博视像元获得超亿投资，加速中国关键零部件崛起 <https://www.china-vision.org/news-detail/224994.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京博视像元科技有限公司 (BoPixel Technology)",
+    "founded_date": "2022-03-01",
+    "headquarters": "北京",
+    "region": "中国",
+    "industry": "硬件/机器视觉",
+    "sub_industry": "工业相机 - 高性能机器视觉核心部件",
+    "business_model": "B2B硬件销售为主：高性能工业相机（2D/3D/TDI/智能相机/DLP投影）直销至半导体、新能源、消费电子、汽车等行业头部客户",
+    "stage": "a",
+    "employee_count": 120,
+    "one_liner": "国内领先的高性能机器视觉核心部件供应商，依托中日双研发团队打造TDI/CoaXPress/3D结构光相机，主攻半导体检测国产替代",
+    "founders": [
+      {
+        "name": "朱江兵",
+        "title": "创始人/CEO",
+        "background": "机器视觉行业资深从业者，曾供职于中日机器视觉核心部件龙头企业，深耕高端工业相机研发与市场多年；拥有在日本横滨工作经历，推动建立中日双研发体系；具备全球顶级半导体客户资源网络",
+        "equity_pct": null
+      }
+    ],
+    "products": [
+      {
+        "name": "TDI线阵相机",
+        "description": "时间延迟积分(TDI)线阵相机，面向半导体前道晶圆检测，拥有业界最高速度和性能，可突破进口垄断；支持DUV波段",
+        "revenue_pct": 35
+      },
+      {
+        "name": "CoaXPress高速相机",
+        "description": "全球最小CXP12高速相机，业界最高速180 Gbps传输相机，面向半导体封装及高速检测场景",
+        "revenue_pct": 25
+      },
+      {
+        "name": "结构光3D相机",
+        "description": "DLP工业投影与结构光3D智能相机，用于半导体封装检测、电子元器件3D测量，打破日系企业在该细分领域垄断",
+        "revenue_pct": 20
+      },
+      {
+        "name": "高端2D工业相机",
+        "description": "首款国产量产4百万像素Pixel Shift相机，高像素移位相机打破国际垄断，面向消费电子、汽车、新能源等检测",
+        "revenue_pct": 12
+      },
+      {
+        "name": "SWIR短波红外线阵相机",
+        "description": "2K SWIR短波红外线阵相机，用于半导体、锂电、食品等特殊波段检测",
+        "revenue_pct": 8
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "天使轮",
+        "announce_date": "2022-07-06",
+        "amount_usd": 14800000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["兴旺投资 (Xingwang Investment)", "朗玛峰创投 (Langmafeng Ventures)"],
+        "notes": "跟投方：北工大科创、海南融智；财务顾问：启晨资本。资金用于高性能工业相机产品研发、生产及市场开拓。成立当年即完成。约人民币近亿元，按2022年7月汇率折算。"
+      },
+      {
+        "stage": "天使加轮",
+        "announce_date": "2023-02-16",
+        "amount_usd": 7200000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["英掘资本 (Yingju Capital)", "朝晖资本 (Zhaohui Capital)"],
+        "notes": "近5000万人民币天使加轮，成立不足一年时间累计两轮天使融资合计约1.5亿人民币；重点布局半导体前道及锂电高端相机品类。"
+      },
+      {
+        "stage": "A轮",
+        "announce_date": "2024-08-21",
+        "amount_usd": 18200000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["中芯聚源 (CXIC Capital)", "北京5G产业基金", "谨孚投资 (Jinfu Investment)", "北航投资 (Beihang Investment)"],
+        "notes": "1.3亿人民币A轮，老股东朗玛峰跟投；国资背景机构（北京市国有资本背景）为主力投资方，战略意义显著；资金用于产品研发、产能扩充和全球市场拓展。成立仅2年完成。"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "创始人朱江兵深耕中日机器视觉行业多年，具备稀缺的跨国研发管理经验与全球顶级客户资源；核心研发团队40余人，来自中日龙头企业，技术密度高；中日双研发中心布局独特，能吸收日系精密制造Know-how并实现国内量产。短板在于公开信息中创始团队仅见单人，团队深度信息披露不足。",
+      "market": {
+        "tam_usd": 16000000000,
+        "sam_usd": 3000000000,
+        "som_usd": 300000000,
+        "growth_rate": 0.13
+      },
+      "moat": "专利壁垒（硬件设计/高速传输/底层算法/光学设计多维专利布局）+ 中日双中心技术护城河 + 率先完成半导体前道TDI/CXP国产量产验证带来的客户认证壁垒（半导体客户验证周期长达12-24个月，切换成本极高）+ 全球30+顶级半导体客户背书的品牌效应",
+      "unit_economics": {
+        "gross_margin": 0.45
+      },
+      "growth": {
+        "arr_usd": null,
+        "yoy_growth": null
+      },
+      "competitors": [
+        "Basler AG（德国，全球工业相机龙头，2D相机市场份额第一）",
+        "Teledyne DALSA（加拿大，TDI相机全球领导者）",
+        "Sony Semiconductor（日本，图像传感器+工业相机）",
+        "Cognex（美国，机器视觉系统集成龙头）",
+        "KEYENCE 基恩士（日本，智能相机+系统解决方案）",
+        "海康机器人 HIKROBOT（中国，工业相机国内规模最大）",
+        "大华华睿科技（中国，海康竞品）",
+        "奥普特 OPT（中国，A股上市机器视觉部件商）",
+        "大恒图像 IMAVISION（中国，国资背景工业相机）",
+        "图漾科技（中国，3D结构光相机初创，已融资至C轮）"
+      ],
+      "bull": [
+        "半导体检测国产替代刚需：美国出口管制倒逼中国芯片厂扩大国产设备采购比例，TDI/高速相机是晶圆检测关键部件，博视像元已完成前道客户导入验证",
+        "中日双中心构建差异化壁垒：在精密光学和高速传输领域，日本研发资源稀缺；博视像元率先整合中日研发能力，相当于站在日系巨头肩上做国产化",
+        "成立2年即打入全球30+顶级半导体客户，交付近万台，商业化速度验证产品竞争力",
+        "资方结构优质：中芯聚源（中芯国际产业基金）、北航投资、5G产业基金等国家队资本背书，可带来战略资源导入（中芯国际客户资源+高校技术合作）",
+        "下游应用场景多元（半导体/新能源/消费电子/汽车），景气周期互补，抗单一行业周期波动能力强",
+        "机器视觉行业高成长性：全球市场CAGR约13%，中国市场受工业自动化和智能制造政策驱动，预计2029年超1000亿元人民币"
+      ],
+      "bear": [
+        "竞争格局激烈：Basler、Teledyne DALSA等外资巨头在TDI/高速相机领域有数十年积累，技术和品牌护城河深；海康机器人体量是博视像元的百倍以上",
+        "半导体客户验证周期长（12-24个月），收入爬坡慢；客户过度集中于少数半导体头部厂商可能形成议价风险",
+        "公司成立仅约两年获A轮，尚处于规模化前期，财务数据透明度低，盈利能力和单位经济模型未经公开验证",
+        "硬件制造依赖图像传感器等核心元器件，主要供应商为索尼/安森美等日美企业，供应链存在被卡脖子风险",
+        "中国机器视觉市场2024年出现小幅同比下滑（-1.97%），行业内卷加剧，价格战压力持续",
+        "创始团队对外披露信息有限，团队宽度和梯队建设情况尚不明朗，存在关键人才风险"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 450000000,
+      "deal_count_12m": 35,
+      "gartner_phase": "Peak of Inflated Expectations",
+      "policy_tailwinds": [
+        "《十四五数字经济发展规划》明确机器视觉为重点推进技术，2021年出台",
+        "工业和信息化部《智能制造发展规划(2021-2025)》支持高端传感器和机器视觉核心部件国产化",
+        "美国出口管制升级倒逼国内芯片制造商提升国产设备和部件采购比例，半导体检测相机受益直接",
+        "北京市、广东省、江苏省等多省市专项支持机器视觉核心部件国产替代，提供研发补贴和首台套奖励",
+        "国家大基金（中芯聚源）等产业资本主动布局，政策与资本双轮驱动"
+      ],
+      "policy_headwinds": [
+        "半导体行业景气周期波动大，2023-2024年半导体下行周期压制资本开支，客户采购预算收缩",
+        "核心图像传感器（索尼/安森美）受中美贸易摩擦潜在影响，供应链安全存在不确定性",
+        "出口管制可能限制部分高性能相机对特定地区（如俄罗斯、伊朗）的出口，影响海外市场拓展"
+      ],
+      "exit_window": "3-5年内具备科创板上市条件（对标奥普特、天准科技等先例）；若半导体景气回升叠加国产替代加速，Pre-IPO估值有望在2026-2027年形成",
+      "hot_keywords": [
+        "机器视觉国产替代",
+        "半导体前道检测",
+        "TDI线阵相机",
+        "CoaXPress高速传输",
+        "3D结构光检测",
+        "工业AI视觉",
+        "中日技术协同",
+        "新能源电池检测",
+        "智能制造核心部件"
+      ]
+    }
+  }
+}

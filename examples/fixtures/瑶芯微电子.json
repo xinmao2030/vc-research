@@ -1,0 +1,169 @@
+{
+  "sources_hit": [
+    "[媒体] 财联社: 瑶芯微电子赴港IPO，聚焦汽车以及AI领域的芯片小巨人 <https://m.cls.cn/detail/2331443>",
+    "[媒体] 36氪: 瑶芯微项目信息 <https://pitchhub.36kr.com/project/2011629324322568>",
+    "[媒体] 猎云网: 瑶芯微完成数亿元产业轮融资 <https://lieyunpro.com/archives/490803>",
+    "[媒体] 上海证券报: 瑶芯微李鑫做国际一流半导体公司 <https://paper.cnstock.com/html/2025-06/21/content_2083881.htm>",
+    "[媒体] 电子工程专辑: MEMS和功率器件厂商瑶芯微完成数亿元产业轮融资 <https://www.eet-china.com/mp/a268680.html>",
+    "[媒体] 新浪财经: 瑶芯微从科创孵化器跑出来的第三代半导体小巨人 <https://finance.sina.com.cn/stock/relnews/cn/2024-08-15/doc-incithka1612771.shtml>",
+    "[媒体] 网易: 4年6轮融资，专精特新小巨人瑶芯微又获数亿元融资 <https://www.163.com/dy/article/IK53VBI30511DLVT.html>",
+    "[媒体] 东方财富: 瑶芯微电子赴港IPO <https://finance.eastmoney.com/a/202604013691396624.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "瑶芯微电子科技（上海）有限公司",
+    "founded_date": "2019-10-01",
+    "headquarters": "上海张江",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "功率半导体 / MEMS麦克风芯片",
+    "business_model": "虚拟IDM(Fab-lite)模式，与国内头部晶圆厂深度协同，设计+制造功率器件(SiC MOSFET/IGBT)及MEMS麦克风芯片，面向汽车、AI数据中心、智能终端三大市场",
+    "stage": "pre_ipo",
+    "employee_count": 400,
+    "one_liner": "国内首发8英寸碳化硅MOSFET量产的功率半导体+MEMS双赛道企业，MEMS麦克风全球市占率第三(16.8%)，专精特新小巨人，已递表港交所",
+    "founders": [
+      {
+        "name": "郭亮良",
+        "title": "董事长/联合创始人",
+        "background": "半导体行业资深从业者；主导公司战略方向与产业链合作布局"
+      },
+      {
+        "name": "李鑫",
+        "title": "董事/联合创始人",
+        "background": "2019年加入瑶芯微为初创团队核心成员；曾在芯联集成(芯联科技前身)工作；负责SiC功率器件产品线；推动与头部晶圆厂深度协同"
+      },
+      {
+        "name": "王青松",
+        "title": "联合创始人",
+        "background": "公司联合创始人之一"
+      },
+      {
+        "name": "陈开宇",
+        "title": "联合创始人",
+        "background": "公司联合创始人之一"
+      }
+    ],
+    "products": [
+      {
+        "name": "SiC MOSFET / IGBT功率器件",
+        "description": "碳化硅MOSFET(国内首发8英寸量产)、硅基IGBT等功率半导体器件，应用于新能源汽车OBC/电驱、光伏逆变器、AI数据中心电源",
+        "revenue_pct": 0.55
+      },
+      {
+        "name": "MEMS麦克风芯片",
+        "description": "MEMS硅麦克风芯片，全球市占率16.8%位列第三，广泛应用于TWS耳机、智能手机、智能音箱、汽车座舱等",
+        "revenue_pct": 0.40
+      },
+      {
+        "name": "信号链芯片",
+        "description": "模拟信号链相关产品，作为功率器件和MEMS产品线的补充",
+        "revenue_pct": 0.05
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2020-12-01",
+        "amount_usd": null,
+        "lead_investors": ["中科创星", "云泽资本"],
+        "notes": "A轮融资"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2022-06-01",
+        "amount_usd": null,
+        "lead_investors": ["朗玛峰创投", "同创伟业"],
+        "participants": ["上海国盛集团", "张江集团", "张江高科"],
+        "notes": "B轮融资，引入国资背景投资方"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2023-06-01",
+        "amount_usd": null,
+        "lead_investors": ["上汽集团", "北汽集团", "吉利控股"],
+        "participants": ["宁德时代", "美的集团", "三花集团", "万向集团", "欧陆通"],
+        "notes": "C轮融资，多家产业链龙头企业集中入股"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2024-05-01",
+        "amount_usd": null,
+        "lead_investors": [],
+        "notes": "C+轮融资完成"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2025-03-01",
+        "amount_usd": null,
+        "lead_investors": ["尚颀资本", "晨道资本"],
+        "participants": ["芯联资本", "碧鸿投资", "三花弘道", "万向一二三"],
+        "notes": "产业轮融资数亿元，4年内完成6轮融资"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2026-04-01",
+        "amount_usd": null,
+        "lead_investors": [],
+        "notes": "正式递交港交所上市申请，保荐人华泰国际及招商证券国际"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "4位联合创始人在功率半导体和MEMS领域拥有深厚行业经验；李鑫来自芯联集成，与晶圆厂关系密切；团队成功在4年内完成6轮融资并获得上汽、北汽、吉利、宁德时代等产业巨头集中背书",
+      "market": {
+        "tam_usd": 45000000000,
+        "sam_usd": 10000000000,
+        "som_usd": 800000000,
+        "growth_rate": 0.15
+      },
+      "moat": "国内首发8英寸SiC MOSFET量产，技术领先同行1-2年；MEMS麦克风全球市占率第三(16.8%)，规模效应显著；虚拟IDM模式与头部晶圆厂深度绑定，产能有保障；上汽/北汽/吉利/宁德时代四大产业巨头入股，客户即股东",
+      "unit_economics": {
+        "gross_margin": 0.30
+      },
+      "growth": {
+        "arr_usd": 76000000,
+        "yoy_growth": 0.41
+      },
+      "competitors": [
+        "英飞凌(Infineon，全球功率半导体龙头)",
+        "意法半导体(ST，SiC领先)",
+        "斯达半导(A股上市，国内IGBT龙头)",
+        "时代电气(A股上市，SiC+IGBT)",
+        "楼氏电子(Knowles，MEMS麦克风全球第一)",
+        "歌尔微(MEMS麦克风国内龙头)"
+      ],
+      "bull": [
+        "功率半导体+MEMS双赛道布局，风险分散且协同效应明显",
+        "SiC MOSFET受益新能源汽车800V高压平台趋势，需求爆发",
+        "MEMS麦克风全球市占率已达16.8%，规模效应持续放大",
+        "2025年营收5.41亿元同比增长41.3%，增速加快",
+        "上汽/宁德时代等产业巨头既是股东又是客户，订单有保障",
+        "专精特新小巨人认定，享受税收优惠和政策扶持"
+      ],
+      "bear": [
+        "2025年仍亏损2.07亿元，持续烧钱未盈利",
+        "功率器件国内非IDM市场排名第六，市占率仅0.3%，规模尚小",
+        "英飞凌/ST等国际巨头在SiC领域具有压倒性领先优势",
+        "港股半导体估值偏低，IPO定价和流动性存在不确定性",
+        "中美芯片脱钩影响设备采购和下游出口",
+        "MEMS麦克风市场增速放缓，TWS耳机渗透率接近天花板"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3500000000,
+      "deal_count_12m": 80,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "国家大基金三期重点投向功率半导体和第三代半导体",
+        "新能源汽车渗透率突破50%带动SiC器件需求爆发",
+        "专精特新小巨人企业享受税收+融资+政采多重政策支持"
+      ],
+      "policy_headwinds": [
+        "美国对华半导体设备出口管制持续升级",
+        "SiC衬底和外延设备部分依赖进口",
+        "行业产能过剩风险逐步显现，价格竞争加剧"
+      ],
+      "exit_window": "2026年港交所IPO(已递表，保荐人华泰国际+招商证券国际)",
+      "hot_keywords": ["碳化硅SiC", "功率半导体", "MEMS麦克风", "第三代半导体", "车规芯片", "虚拟IDM", "专精特新", "港股IPO"]
+    }
+  }
+}

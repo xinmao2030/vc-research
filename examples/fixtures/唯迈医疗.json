@@ -1,0 +1,135 @@
+{
+  "sources_hit": [
+    "[媒体] 36氪 唯迈医疗D轮融资首发 <https://36kr.com/p/1191513058413061>",
+    "[媒体] 36氪 唯迈医疗C+轮高瓴创投独家投资 <https://36kr.com/p/874442076767492>",
+    "[媒体] 动脉网 唯迈医疗C轮融资首发 <https://www.vbdata.cn/44607>",
+    "[媒体] 新浪财经 ETcath200商业化新时代 <https://finance.sina.com.cn/stock/stockzmt/2025-12-30/doc-inheqixk7175779.shtml>",
+    "[媒体] 新浪财经 ETcath200获批全国首款京籍介入机器人 <https://finance.sina.com.cn/jjxw/2025-03-25/doc-ineqvepe0235452.shtml>",
+    "[媒体] 北京经开区官网 唯迈医疗小巨人 <https://kfqgw.beijing.gov.cn/zwgkkfq/ztzl/ztkfq/lqzx/zxxx/202303/t20230308_4233876.html>",
+    "[媒体] 界面新闻 血管介入手术机器人百亿赛道 <https://www.jiemian.com/article/7128953.html>",
+    "[媒体] 前瞻研究院 2025年中国血管介入手术机器人行业分析 <https://finance.sina.com.cn/roll/2025-08-15/doc-infkzwzi2958307.shtml>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京唯迈医疗科技股份有限公司",
+    "founded_date": "2014-01-01",
+    "headquarters": "北京亦庄",
+    "region": "中国",
+    "industry": "医疗器械",
+    "sub_industry": "介入诊疗设备 / 手术机器人",
+    "business_model": "研发+生产+销售高端介入影像设备(DSA系列)及介入手术机器人，构建'眼手脑'一体介入全流程管理平台，向医院直销为主",
+    "stage": "d",
+    "employee_count": 300,
+    "one_liner": "专注介入诊疗全流程管理，以国产DSA为基石延伸至全球首个获批'眼手脑'一体血管介入手术机器人ETcath200，打破进口垄断",
+    "founders": [
+      {
+        "name": "杨贺",
+        "title": "联合创始人/CEO",
+        "background": "曾任GE医疗介入影像设备研发与工程管理多年；后进入民营医疗企业担任管理职务；2014年联合创办唯迈医疗，主导从DSA国产替代向介入机器人延伸的战略"
+      }
+    ],
+    "products": [
+      {
+        "name": "极光DSA(落地式智能平板DSA)",
+        "description": "国产高端DSA代表产品，2020年获CE+NMPA认证，打破GE/飞利浦/西门子长期垄断",
+        "revenue_pct": 0.55
+      },
+      {
+        "name": "移动血管造影机(中C)",
+        "description": "适用于复合手术室及灵活移动的介入场景",
+        "revenue_pct": 0.25
+      },
+      {
+        "name": "ETcath200 介入手术机器人",
+        "description": "全球首个'眼-手-脑'一体血管介入手术机器人，2025年3月获NMPA批准(绿色通道首批)，国内第二家PCI手术机器人，临床手术成功率100%",
+        "revenue_pct": 0.08
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2016-01-01",
+        "amount_usd": 2000000,
+        "lead_investors": ["华盖资本", "分享投资"],
+        "notes": "早期轮次，北极光创投、约印医疗基金参与"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2019-10-21",
+        "amount_usd": 4200000,
+        "lead_investors": ["鲁信创投"],
+        "participants": ["无锡金投", "动平衡投资", "倚锋资本"],
+        "notes": "数千万元人民币C轮"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2020-09-10",
+        "amount_usd": 14700000,
+        "lead_investors": ["高瓴创投"],
+        "notes": "C+轮1亿元人民币，高瓴创投独家投资"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2021-04-22",
+        "amount_usd": 46300000,
+        "lead_investors": ["清池资本"],
+        "participants": ["苏州隆门创投", "朗玛峰创投", "鲁信创投"],
+        "notes": "超3亿元人民币D轮，用于DSA海内外推广及介入机器人临床加速"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "CEO杨贺具有GE医疗技术背景+民企管理经验，战略眼光清晰；公司获评国家级专精特新'小巨人'企业；成功吸引高瓴、清池等顶级机构",
+      "market": {
+        "tam_usd": 8000000000,
+        "sam_usd": 2000000000,
+        "som_usd": 300000000,
+        "growth_rate": 0.90
+      },
+      "moat": "ETcath200是国内首款绿色通道获批的创新介入机器人，与自研DSA原生智能融合；全栈自研'眼+手+脑'平台无法被单点竞品复制；参与制定YY/T 1994-2025国家行业标准",
+      "unit_economics": {
+        "gross_margin": 0.45
+      },
+      "growth": {
+        "yoy_growth": null
+      },
+      "competitors": [
+        "微创机器人 R-ONE(港股上市，国内第一家PCI机器人获批)",
+        "润迈德医疗 Flash Robot",
+        "Corindus(史赛克旗下，CorPath GRX系统)",
+        "东软医疗、联影医疗、万东医疗(DSA赛道竞争)"
+      ],
+      "bull": [
+        "ETcath200是全球首个'眼手脑'一体获批介入机器人，NMPA绿色通道背书",
+        "国家政策强力推动医疗设备国产替代，政府采购国产优先",
+        "中国血管介入手术机器人市场2022-2030年CAGR预计超90%",
+        "DSA装机基数提供客户粘性与数据资产，机器人与DSA原生融合构成生态壁垒",
+        "中国心脑血管疾病患病人口超3亿，每年PCI手术量超130万例"
+      ],
+      "bear": [
+        "D轮(2021年)至今超4年无新公开融资，资金持续性需关注",
+        "国内DSA市场飞利浦/西门子/GE合计占据约82-91%份额",
+        "手术机器人商业化路径漫长，微创R-ONE累计装机仅约100台",
+        "介入机器人客单价高(数百万元)，医院采购周期长，尚无医保路径",
+        "ETcath200商业化刚起步(2025年3月获批)，收入兑现需2-3年"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 180000000,
+      "deal_count_12m": 12,
+      "gartner_phase": "Peak of Inflated Expectations(血管介入机器人)",
+      "policy_tailwinds": [
+        "十四五规划将高端医疗装备国产化列为国家战略",
+        "政府采购国产产品享20%价格扣除优惠(2024年新规)",
+        "国家创新医疗器械特别审批程序(绿色通道)缩短审批周期",
+        "千县工程推动县级医院介入中心建设"
+      ],
+      "policy_headwinds": [
+        "医疗反腐持续推进，高值器械采购决策周期拉长",
+        "手术机器人暂未纳入医保",
+        "中美科技脱钩影响精密零部件供应链"
+      ],
+      "exit_window": "预计2027-2029年科创板/港股IPO，需待ETcath200商业化收入达标；战略并购亦为可能路径",
+      "hot_keywords": ["血管介入手术机器人", "DSA国产替代", "眼手脑一体", "力反馈介入", "PCI机器人", "专精特新小巨人"]
+    }
+  }
+}

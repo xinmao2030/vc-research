@@ -1,0 +1,134 @@
+{
+  "sources_hit": [
+    "[媒体] 证券时报: 阶跃星辰完成B轮融资，基座大模型呈现南北两强 <https://www.stcn.com/article/detail/1464249.html>",
+    "[媒体] 证券时报: 阶跃星辰获超50亿元人民币B+轮融资 <https://www.stcn.com/article/detail/3612291.html>",
+    "[媒体] 新浪财经: 大模型六小虎之一阶跃星辰B+融资超50亿 <https://finance.sina.com.cn/roll/2026-01-26/doc-inhiqxfe0741554.shtml>",
+    "[媒体] 腾讯新闻: AI六小虎成员阶跃星辰获数亿美元B轮融资 <https://news.qq.com/rain/a/20241223A02WTC00>",
+    "[媒体] 量子位: 阶跃星辰再融数亿美元 <https://www.qbitai.com/2024/12/235732.html>",
+    "[媒体] 36氪: 大模型独角兽阶跃星辰完成数亿美元B轮融资 <https://eu.36kr.com/zh/p/3090736042736004>",
+    "[媒体] InfoQ: 阶跃星辰发布新一代基模Step 3 <https://www.infoq.cn/article/9ishp2ykyqs7auwsd9if>",
+    "[媒体] 虎嗅: 阶跃星辰考虑赴港IPO募资5亿美元 <https://m.huxiu.com/article/4837584.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "上海阶跃星辰智能科技有限公司 (StepFun)",
+    "founded_date": "2023-04-01",
+    "headquarters": "上海徐汇",
+    "region": "中国",
+    "industry": "人工智能",
+    "sub_industry": "基座大模型 / AGI",
+    "business_model": "研发基座大模型(Step系列)，通过API服务、模型授权、行业解决方案变现；C端布局超级应用；B端提供模型定制与部署服务",
+    "stage": "b",
+    "employee_count": 300,
+    "one_liner": "AI六小虎之一，由微软全球前副总裁姜大昕创立，Step系列大模型跻身国内第一梯队，B+轮超50亿元创中国大模型单笔融资纪录",
+    "founders": [
+      {
+        "name": "姜大昕",
+        "title": "创始人/CEO",
+        "background": "上海交通大学本科+硕士；卡内基梅隆大学(CMU)博士；微软全球副总裁，负责搜索与AI核心技术；IEEE 2025 Fellow(唯一入选的中国大模型创业者)；2023年4月创立阶跃星辰"
+      }
+    ],
+    "products": [
+      {
+        "name": "Step-3 基座大模型",
+        "description": "最新一代万亿参数级基座模型，支持多模态(文本/图像/视频/音频)，在国产芯片上推理效率最高达DeepSeek的3倍",
+        "revenue_pct": 0.40
+      },
+      {
+        "name": "Step-2/Step-1 系列模型",
+        "description": "不同规模的基座模型家族，覆盖从轻量级到旗舰级需求，提供API服务",
+        "revenue_pct": 0.35
+      },
+      {
+        "name": "超级应用(C端产品)",
+        "description": "面向消费者的AI助手应用，涵盖对话、创作、推理等能力，布局C端用户增长",
+        "revenue_pct": 0.25
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2023-10-01",
+        "amount_usd": 100000000,
+        "lead_investors": ["腾讯投资", "五源资本", "启明创投"],
+        "notes": "A轮融资数亿元人民币，成立半年即获顶级机构投资"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2024-12-23",
+        "amount_usd": 300000000,
+        "post_money_valuation_usd": 2800000000,
+        "lead_investors": ["上海国有资本投资有限公司"],
+        "participants": ["腾讯投资", "五源资本", "启明创投"],
+        "notes": "B轮数亿美元，估值突破200亿元人民币"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2026-01-26",
+        "amount_usd": 700000000,
+        "lead_investors": ["上海国投先导基金", "国寿股权", "浦东创投"],
+        "participants": ["徐汇资本", "无锡梁溪基金", "厦门国贸", "华勤技术", "腾讯", "启明创投", "五源资本"],
+        "notes": "B+轮超50亿元人民币，创过去12个月中国大模型赛道单笔最高融资纪录"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "创始人姜大昕是微软全球前副总裁、CMU博士、IEEE Fellow，在搜索与AI领域拥有20+年顶级研究与工程经验；团队汇聚微软、Google、字节等AI头部企业核心骨干；成立不到3年已跻身国内大模型第一梯队",
+      "market": {
+        "tam_usd": 100000000000,
+        "sam_usd": 20000000000,
+        "som_usd": 1500000000,
+        "growth_rate": 0.45
+      },
+      "moat": "Step-3在国产芯片上推理效率领先(达DeepSeek 3倍)；基座模型+超级应用双轮驱动；上海国资深度绑定提供算力+政策支持；'南北两强'格局中的南方代表(北方为DeepSeek/智谱)",
+      "unit_economics": {
+        "gross_margin": null
+      },
+      "growth": {
+        "arr_usd": null,
+        "yoy_growth": null
+      },
+      "competitors": [
+        "DeepSeek(深度求索，当前国内大模型最受关注)",
+        "智谱AI(清华系，D+轮30亿元)",
+        "百川智能(王小川创立)",
+        "MiniMax(已港股上市)",
+        "月之暗面(Moonshot AI/Kimi)",
+        "零一万物(李开复创立)",
+        "OpenAI / Google / Anthropic(国际竞争)"
+      ],
+      "bull": [
+        "B+轮超50亿元创纪录融资，资本市场给予最高认可",
+        "Step-3在国产芯片推理效率领先，契合国产算力替代趋势",
+        "冲刺2025年全年营收10亿元目标，商业化节奏加速",
+        "上海国资多轮领投，算力+政策+资本三重保障",
+        "中国大模型市场2025年预计超千亿元，渗透率快速提升",
+        "考虑赴港IPO募资5亿美元，退出路径清晰"
+      ],
+      "bear": [
+        "大模型赛道竞争白热化，DeepSeek开源模式颠覆定价逻辑",
+        "尚未公布具体收入和盈利数据，商业化验证不足",
+        "算力成本极高，持续烧钱压力大",
+        "中美AI竞争加剧，高端芯片采购受限",
+        "六小虎格局可能加速整合，非头部玩家面临淘汰",
+        "C端超级应用尚未跑出现象级产品"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 15000000000,
+      "deal_count_12m": 200,
+      "gartner_phase": "Peak of Inflated Expectations",
+      "policy_tailwinds": [
+        "国务院发布《新一代人工智能发展规划》持续推进",
+        "上海市出台大模型专项支持政策，提供算力补贴",
+        "国产算力(华为昇腾、海光等)生态加速成熟"
+      ],
+      "policy_headwinds": [
+        "美国对华AI芯片出口管制持续升级",
+        "数据安全法/个人信息保护法限制训练数据获取",
+        "大模型监管趋严，生成式AI备案审批流程复杂"
+      ],
+      "exit_window": "2026-2027年港股IPO(据报道考虑募资5亿美元)；MiniMax已先行上市",
+      "hot_keywords": ["基座大模型", "AI六小虎", "AGI", "多模态", "国产算力", "端到端", "超级应用", "港股IPO"]
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "sources_hit": [
+    "[媒体] 新浪财经: 3年半亏损超7亿元，德风科技带伤冲击港股IPO <https://finance.sina.com.cn/roll/2025-12-26/doc-inhecmrf8027548.shtml>",
+    "[媒体] OFweek: 德风科技以AIoT破局工业数字化，2025上半年收入增38.9% <https://m.ofweek.com/im/2025-11/ART-201900-8100-30674645.html>",
+    "[媒体] 新浪财经: 德风科技转战港交所IPO背后：客户结构致应收账款高企 <https://finance.sina.com.cn/jjxw/2025-12-02/doc-infzmpnw2003968.shtml>",
+    "[媒体] 创新工场: 德风科技完成A轮8000万融资 <https://www.chuangxin.com/blog/a-8000>",
+    "[媒体] 36氪: 德风科技获近2亿元A+轮融资 <https://36kr.com/p/931384389322629>",
+    "[媒体] 创头条: 德风科技完成5亿元B轮融资 <https://www.ctoutiao.com/2891910.html>",
+    "[媒体] 36氪: 德风新征程冲刺港股IPO <https://36kr.com/p/3650477305536898>",
+    "[媒体] 瑞财经: 德风科技IPO前战投原价清仓 <https://m.rccaijing.com/news-7400020840425387267.html>",
+    "[媒体] DoNews: 前IBM员工带德风科技冲刺IPO <https://www.donews.com/article/detail/5145/93093.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京德风新征程科技股份有限公司",
+    "founded_date": "2015-01-01",
+    "headquarters": "北京",
+    "region": "中国",
+    "industry": "工业软件",
+    "sub_industry": "AIoT工业互联网 / 工业数字化",
+    "business_model": "为能源、制造及混合行业提供AI赋能的工业物联网(AIoT)生产优化软件解决方案，按项目制交付，客户以国企为主(收入占比超70%)",
+    "stage": "pre_ipo",
+    "employee_count": 400,
+    "one_liner": "中国第五大独立专业AIoT服务提供商，以AIoT破局能源及工业数字化，港交所IPO进行中但3年半累计亏损超7亿元",
+    "founders": [
+      {
+        "name": "王清杰",
+        "title": "创始人/董事长/CEO",
+        "background": "曾任杭州新世纪电子高级副总裁；IBM相关工作经历；2015年与前同事滕学军联合创办德风科技；推动公司从工业互联网向AIoT转型"
+      },
+      {
+        "name": "滕学军",
+        "title": "联合创始人",
+        "background": "与王清杰同为杭州新世纪电子前同事，共同创立德风科技"
+      }
+    ],
+    "products": [
+      {
+        "name": "AIoT能效优化平台",
+        "description": "面向电力、石化等能源行业的智能物联网平台，实现能效提升、设备预测维护、安全生产管理",
+        "revenue_pct": 0.55
+      },
+      {
+        "name": "工业数字化解决方案",
+        "description": "面向制造业的数字化转型整体解决方案，涵盖产线智能化、质量管控、供应链协同",
+        "revenue_pct": 0.30
+      },
+      {
+        "name": "可持续发展与碳管理",
+        "description": "双碳目标下的碳排放监测、能耗管理及ESG报告生成系统",
+        "revenue_pct": 0.15
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2019-08-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 17000000,
+        "notes": "Pre-A轮，投后估值约1.2亿元人民币"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2020-06-22",
+        "amount_usd": 11300000,
+        "lead_investors": ["招商局创投", "创新工场"],
+        "participants": ["云启资本"],
+        "notes": "A轮融资8000万元人民币"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2020-10-20",
+        "amount_usd": 28200000,
+        "lead_investors": ["创新工场"],
+        "participants": ["普华资本", "国科嘉和", "招商局创投", "云启资本"],
+        "notes": "A+轮近2亿元人民币，成立5年已实现连续盈利"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2021-04-01",
+        "amount_usd": 70400000,
+        "lead_investors": ["中金传化", "交银国际", "深创投", "越秀产业基金"],
+        "participants": ["招商致远", "清控招商", "云启资本", "屹唐红土基金"],
+        "notes": "B轮融资5亿元人民币"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2022-03-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 330000000,
+        "lead_investors": ["金石投资"],
+        "participants": ["朗玛峰创投", "方正和生", "典实资本"],
+        "notes": "C轮数亿元人民币，投后估值约23.5亿元(较Pre-A增长18.6倍)"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2025-11-21",
+        "amount_usd": null,
+        "lead_investors": [],
+        "notes": "向港交所递交上市申请；此前曾与中金公司签订科创板辅导协议(2023.10)后于2024.10终止转战港股"
+      }
+    ],
+    "thesis": {
+      "team_score": 7,
+      "team_notes": "创始人王清杰有大型企业管理经验+IBM技术背景；吸引了创新工场、招商局创投等顶级机构；但IPO前裁员577人、战投原价清仓引发治理疑虑",
+      "market": {
+        "tam_usd": 25000000000,
+        "sam_usd": 5000000000,
+        "som_usd": 400000000,
+        "growth_rate": 0.18
+      },
+      "moat": "能源行业第三大独立AIoT服务提供商(市占率9.9%)；深度绑定国家电网等大型国企客户，项目切换成本高；5轮融资累计6.56亿元构建的技术+团队壁垒",
+      "unit_economics": {
+        "gross_margin": 0.38
+      },
+      "growth": {
+        "arr_usd": 74000000,
+        "yoy_growth": 0.30
+      },
+      "competitors": [
+        "树根互联(三一集团旗下，工业互联网平台)",
+        "研华科技(台湾，全球工业IoT领导者)",
+        "PTC(美国，工业物联网+PLM)",
+        "用友网络(A股上市，企业数字化)",
+        "朗坤智慧(深交所上市，工业互联网)"
+      ],
+      "bull": [
+        "中国工业数字化/AIoT市场规模超千亿且增速18%+",
+        "深度绑定国企客户，收入稳定性强，国家新基建政策持续利好",
+        "2025上半年收入同比增长38.9%，增速加快",
+        "AIoT+双碳主题契合国家战略方向",
+        "港股上市若成功可获国际资本关注"
+      ],
+      "bear": [
+        "3年半(2022-2025H1)累计亏损超7亿元，盈利路径不明确",
+        "应收账款周转天数高达653天，现金流压力极大",
+        "70%+收入来自国企，付款周期长、回款慢",
+        "IPO前战投原价清仓+裁员577人，信号负面",
+        "此前科创板IPO辅导终止，转战港股不确定性高",
+        "市场份额仅1.8%，竞争格局高度分散"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 800000000,
+      "deal_count_12m": 35,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "新基建政策持续推动工业互联网基础设施建设",
+        "双碳目标倒逼能源企业数字化升级",
+        "国资委推动央企数字化转型专项行动"
+      ],
+      "policy_headwinds": [
+        "国企采购流程冗长，项目交付周期拉长",
+        "工业软件赛道投资热度降温，一级市场估值承压",
+        "港股IPO窗口不确定，审批趋严"
+      ],
+      "exit_window": "2025-2026年港交所IPO进行中(已递表)；此前科创板路径已终止",
+      "hot_keywords": ["AIoT", "工业互联网", "工业数字化", "智能制造", "能效优化", "双碳", "国企数字化"]
+    }
+  }
+}

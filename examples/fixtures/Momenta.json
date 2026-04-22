@@ -1,0 +1,187 @@
+{
+  "sources_hit": [
+    "[媒体] CNBC: Chinese driverless tech startup Momenta raising funds at ~$6B valuation <https://www.cnbc.com/2025/09/26/chinese-driverless-firm-momenta-raising-funds-at-6-billion-valuation.html>",
+    "[百科] Wikipedia: Momenta autonomous driving company <https://en.wikipedia.org/wiki/Momenta>",
+    "[媒体] TechCrunch: Momenta raises $500M (Nov 2021) <https://techcrunch.com/2021/11/05/momenta-500-million/>",
+    "[官网] Momenta Series C1 $500M (March 2021) <https://www.momenta.ai/en/article/67.html>",
+    "[媒体] CnEVPost: Momenta confidentially files Hong Kong IPO (March 2026) <https://cnevpost.com/2026/03/05/momenta-confidentially-files-hk-ipo/>",
+    "[媒体] S&P Global: Momenta IPO application at $14B valuation <https://autotechinsight.spglobal.com/news/5287386/>",
+    "[媒体] Uber IR: Uber and Momenta strategic agreement for robotaxi <https://investor.uber.com/news-events/news/press-release-details/2025/>",
+    "[媒体] Grab: Momenta + Grab strategic partnership (Dec 2025) <https://investors.grab.com/news-and-events/news-details/2025/>",
+    "[融资] Tracxn: Momenta 2026 company profile <https://tracxn.com/d/companies/momenta/>",
+    "[媒体] 36Kr: Momenta secretly filed for HK IPO <https://eu.36kr.com/en/p/3579117937245316>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京初速度科技有限公司 (Beijing Momenta Technology Co., Ltd.)",
+    "founded_date": "2016-09-01",
+    "headquarters": "北京海淀",
+    "region": "中国",
+    "industry": "自动驾驶",
+    "sub_industry": "智能驾驶软件 / ADAS / Robotaxi",
+    "business_model": "B2B SaaS+战略授权：向OEM出售量产ADAS软件授权(Mpilot)，同步研发L4 Robotaxi平台(MSD)以AMaaS模式商业化；'两条腿'战略形成现金流与长期期权双重收益",
+    "stage": "pre_ipo",
+    "employee_count": 601,
+    "one_liner": "用'飞轮'数据引擎驱动自动驾驶算法持续迭代，以量产ADAS养活L4研发，目标成为全球头部自动驾驶大脑供应商",
+    "founders": [
+      {
+        "name": "曹旭东",
+        "title": "创始人/CEO",
+        "background": "清华大学机械工程学士(2008)；微软亚洲研究院研究员；商汤科技研发执行副总裁；计算机视觉与深度学习专家"
+      },
+      {
+        "name": "任少卿",
+        "title": "联合创始人/首席科学家(后加入蔚来)",
+        "background": "微软亚洲研究院研究员；Faster R-CNN论文一作(NeurIPS时间验证奖)；Momenta早期算法架构奠基人"
+      },
+      {
+        "name": "孙刚",
+        "title": "联合创始人/VP Mpilot研发",
+        "background": "南开大学软件工程学士；中国科学院博士；负责量产智能驾驶Mpilot产品线"
+      }
+    ],
+    "products": [
+      {
+        "name": "Mpilot (量产智能驾驶)",
+        "description": "面向OEM的L2/L2+量产ADAS方案，涵盖高速NOA、城市NOA、自动泊车；累计交付超70万套，Urban NOA市占率超60%；客户含丰田、奔驰、宝马、大众、比亚迪等",
+        "revenue_pct": 0.85
+      },
+      {
+        "name": "MSD (Momenta Self-Driving / Robotaxi)",
+        "description": "面向L4全自动驾驶的Robotaxi方案；与Uber合作计划2026年欧洲部署；与Grab合作推进东南亚市场",
+        "revenue_pct": 0.10
+      },
+      {
+        "name": "Flywheel 数据飞轮平台",
+        "description": "核心数据引擎，量产车辆回传海量真实场景数据驱动算法自动迭代，形成飞轮效应护城河",
+        "revenue_pct": 0.05
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2016-11-14",
+        "amount_usd": 5000000,
+        "lead_investors": ["蓝湖资本"],
+        "participants": ["创新工场", "真格基金"],
+        "notes": "种子轮"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2017-05-01",
+        "amount_usd": null,
+        "lead_investors": ["顺为资本"],
+        "notes": "Series A1，金额未披露"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2017-07-01",
+        "amount_usd": 46000000,
+        "lead_investors": ["蔚来资本", "戴姆勒/奔驰"],
+        "participants": ["顺为资本", "创新工场"],
+        "notes": "Series B1，奔驰成为首家投资中国自动驾驶初创的德系车企"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2018-10-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 1000000000,
+        "lead_investors": ["华盖资本(Cathay Capital)"],
+        "participants": ["GGV Capital"],
+        "notes": "Series B2，融资总额超$2亿，估值突破$10亿成为独角兽"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2021-03-19",
+        "amount_usd": 500000000,
+        "lead_investors": ["上汽集团", "丰田汽车", "博世", "淡马锡", "云锋基金"],
+        "participants": ["奔驰", "GGV", "顺为资本", "腾讯"],
+        "notes": "Series C1，当年中国自动驾驶最大融资"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2021-09-01",
+        "amount_usd": 300000000,
+        "lead_investors": ["通用汽车"],
+        "notes": "Series C2，通用战略投资$3亿"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2021-11-04",
+        "amount_usd": 200000000,
+        "notes": "Series C+，C轮总融资超$10亿，中国自动驾驶史上最大单轮融资"
+      },
+      {
+        "stage": "e_plus",
+        "announce_date": "2025-07-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 6000000000,
+        "notes": "后续轮次完成后估值达$60亿；历史累计融资超89亿元人民币"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2026-03-05",
+        "amount_usd": 1000000000,
+        "post_money_valuation_usd": 14000000000,
+        "lead_investors": ["中金公司", "德意志银行"],
+        "notes": "港交所IPO机密申请，目标融资$10亿+，IPO后目标估值$140亿"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "中国自动驾驶界最强学术+工业背景组合：CEO曹旭东来自微软亚研院+商汤，联创任少卿是Faster R-CNN一作。九年创业专注单一赛道，战略清晰，执行力强。主要风险：任少卿已离职加入蔚来",
+      "market": {
+        "tam_usd": 54000000000,
+        "sam_usd": 12000000000,
+        "som_usd": 2500000000,
+        "growth_rate": 0.128
+      },
+      "moat": "数据飞轮护城河：量产规模越大→真实场景数据越多→算法迭代越快→技术领先→赢更多OEM定点→规模更大。170+车型定点、70+在产、交付70万套，Urban NOA市占率超60%。丰田、通用、奔驰、宝马深度战略绑定，切换成本极高",
+      "unit_economics": {
+        "gross_margin": null
+      },
+      "growth": {},
+      "competitors": [
+        "华为智能汽车解决方案(华为ADS)",
+        "Mobileye",
+        "大疆车载",
+        "地平线机器人(港股上市)",
+        "文远知行(美股上市)",
+        "小马智行(美股上市)",
+        "百度Apollo"
+      ],
+      "bull": [
+        "Urban NOA市占率超60%，量产数据飞轮已形成，竞争壁垒随交付量指数级加深",
+        "丰田、通用、奔驰、宝马等全球顶级OEM战略投资+深度定点，锁定长期收入",
+        "两条腿战略兼顾短期现金流(ADAS授权)与长期期权(Robotaxi AMaaS)，抗周期能力优于纯L4玩家",
+        "L3/L4政策加速落地，中国监管窗口期红利明显",
+        "Uber+Grab战略合作打通欧洲+东南亚国际市场",
+        "HK IPO目标估值$140亿，退出窗口清晰"
+      ],
+      "bear": [
+        "华为ADS强势进入，凭借鸿蒙生态+销售网络正面竞争，高端OEM客户存在流失风险",
+        "大疆车载等低价竞争者压缩利润空间",
+        "营收、毛利率等核心财务数据未公开，估值锚定困难",
+        "关键联创任少卿已离职(现任蔚来VP)",
+        "中美科技脱钩影响国际OEM合作及芯片采购",
+        "L4 Robotaxi商业化路径漫长，盈亏平衡时间表不明确"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3200000000,
+      "deal_count_12m": 45,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "工信部首次批准L3级乘用车商业化生产准入(2025年)",
+        "北京、上海、武汉、深圳相继开放Robotaxi无人化试点",
+        "新能源汽车渗透率超50%，智能化升级需求同步高速增长"
+      ],
+      "policy_headwinds": [
+        "美国出口管制限制高端GPU芯片采购",
+        "L3/L4事故责任认定法律框架尚不完善",
+        "ADAS智能化竞争导致OEM要求供应商持续降价"
+      ],
+      "exit_window": "2026年港股IPO目标(已机密递表)，目标估值$140亿",
+      "hot_keywords": ["端到端自动驾驶", "城市NOA", "数据飞轮", "Robotaxi", "L3量产", "智驾大模型", "港股IPO"]
+    }
+  }
+}

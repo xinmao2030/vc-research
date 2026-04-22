@@ -1,0 +1,164 @@
+{
+  "sources_hit": [
+    "[媒体] 36氪首发: 糖吉医疗完成近亿元C轮融资 <https://36kr.com/p/3153353327467016>",
+    "[媒体] 36氪首发: 糖吉医疗完成近亿元B轮融资 <https://36kr.com/p/1786067427135104>",
+    "[媒体] OFweek医疗: 糖吉医疗获5500万元融资 <https://m.ofweek.com/medical/2021-05/ART-12005-1111-30497552.html>",
+    "[媒体] 东方财富: 核心产品商业化初启账上现金仅剩3000万 <https://finance.eastmoney.com/a/202602273657097263.html>",
+    "[媒体] 东方财富: 营收暴增555%毛利率近80% <https://caifuhao.eastmoney.com/news/20260227083655547611420>",
+    "[媒体] 新浪财经: 糖吉医疗递表港交所 <https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-02-09/doc-inhmfuky5173233.shtml>",
+    "[媒体] 凤凰网: 糖吉医疗负债率超136%冲刺港股 <https://finance.ifeng.com/c/8qd3930DI5P>",
+    "[招股书] 港交所招股书(申请版) <https://www.hkexnews.hk/app/sehk/2026/108188/documents/sehk26020901130_c.pdf>",
+    "[媒体] 新浪财经: 全球首个肠道介入减重创新三类医疗器械获批上市 <https://finance.sina.cn/stock/med/2024-01-20/detail-inaectxk0476933.d.html>",
+    "[媒体] 动脉网: 糖吉医疗左玉星医生创业系列 <https://www.vbdata.cn/53730>",
+    "[官网] 糖吉医疗 <https://www.tangjimed.com/>"
+  ],
+  "itjuzi": {
+    "legal_name": "杭州糖吉医疗科技股份有限公司",
+    "founded_date": "2016-08-11",
+    "headquarters": "杭州",
+    "region": "中国",
+    "industry": "医疗器械",
+    "sub_industry": "代谢疾病微创介入器械",
+    "business_model": "创新三类医疗器械研发+销售，核心产品胃转流支架系统(GBS)按套装出售给医院，单套定价3.66-3.91万元；兼具疾病管理SaaS平台",
+    "stage": "pre_ipo",
+    "employee_count": 80,
+    "one_liner": "全球首创胃转流支架系统(GBS)，通过内镜微创置入十二指肠实现减少吸收减重，已获中国NMPA创新三类注册证及美国FDA突破性器械认定",
+    "founders": [
+      {
+        "name": "左玉星",
+        "title": "董事长/执行董事/CEO",
+        "background": "包头医学院预防医学学士(1995)；香港大学管理心理学研究生；曾任包头市九原区医院消化内科医生及预防保健科科长(1995-2001)；后从事医疗器械销售逾15年；第一代胃转流支架系统发明人",
+        "equity_pct": 0.36
+      }
+    ],
+    "products": [
+      {
+        "name": "胃转流支架系统 (GBS)",
+        "description": "全球首创、中国唯一获批的肠道介入减重创新III类医疗器械。镍钛合金骨架+套管，经内镜置入十二指肠及空肠上段，隔离食糜与胆汁/胰液减少糖脂吸收。置入10-15分钟，留置3个月。2024年1月获NMPA注册证，4月商业化",
+        "revenue_pct": 0.95
+      },
+      {
+        "name": "GBS-SH (脂肪肝/MASH适应症)",
+        "description": "针对代谢功能障碍相关脂肪性肝炎(MASH)的在研产品，已获FDA突破性器械认定，处于临床试验阶段",
+        "revenue_pct": 0
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2017-01-01",
+        "amount_usd": 700000,
+        "post_money_valuation_usd": 6900000,
+        "lead_investors": ["朗玛峰创投"],
+        "notes": "投后估值约5050万元人民币"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2019-01-01",
+        "amount_usd": 2900000,
+        "post_money_valuation_usd": 20600000,
+        "lead_investors": ["鼎心资本"],
+        "notes": "投后估值约1.5亿元人民币"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2021-05-11",
+        "amount_usd": 8500000,
+        "post_money_valuation_usd": 62500000,
+        "lead_investors": ["BV百度风投"],
+        "participants": ["朗玛峰创投", "鼎心资本"],
+        "notes": "A+轮，融资5500万元人民币，投后估值约4.55亿元"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2022-06-16",
+        "amount_usd": 13700000,
+        "post_money_valuation_usd": 96000000,
+        "lead_investors": ["深圳拓金创业投资基金", "无锡国联新创"],
+        "participants": ["新毅投资", "成都光华梧桐"],
+        "notes": "融资近亿元人民币"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2023-06-01",
+        "amount_usd": 8200000,
+        "post_money_valuation_usd": 126000000,
+        "lead_investors": ["比邻星投资"],
+        "notes": "B+轮，投后估值约9.2亿元人民币"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2025-02-05",
+        "amount_usd": 13700000,
+        "post_money_valuation_usd": 164000000,
+        "lead_investors": ["朗玛峰创投", "衢州绿石基金"],
+        "notes": "融资近亿元人民币，用于国内外市场推广、注册临床及产线建设"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2025-11-01",
+        "amount_usd": 6900000,
+        "post_money_valuation_usd": 181000000,
+        "lead_investors": ["杭州高新(国资)"],
+        "notes": "C+轮，杭州高新以5000万元人民币入股，投后估值13.2亿元，IPO前战略引入"
+      }
+    ],
+    "thesis": {
+      "team_score": 7,
+      "team_notes": "创始人左玉星兼具7年临床医生背景和15年以上医疗器械商业化经验，是第一代GBS发明人；高管团队来自跨国医疗器械公司；顾问阵容覆盖消化内镜及糖尿病学权威。弱点：IPO前5名董事辞任引发治理疑虑",
+      "market": {
+        "tam_usd": 12000000000,
+        "sam_usd": 2500000000,
+        "som_usd": 300000000,
+        "growth_rate": 0.15
+      },
+      "moat": "全球唯一获批的肠道介入减重三类器械(NMPA)+FDA突破性器械认定双重监管壁垒；60+项专利保护；先发进入300+家医院形成的医生培训网络；'减少吸收'机制与GLP-1药物差异化定位",
+      "unit_economics": {
+        "gross_margin": 0.79
+      },
+      "growth": {
+        "arr_usd": 3900000,
+        "yoy_growth": 5.55
+      },
+      "competitors": [
+        "GLP-1药物(司美格鲁肽/诺和诺德、利拉鲁肽/华东医药)",
+        "外科减重手术(袖状胃切除术、胃旁路术)",
+        "胃内球囊(Allurion Elipse、波士顿科学Orbera365)",
+        "至善医疗Spheria可吞咽降解胃内球囊"
+      ],
+      "bull": [
+        "全球首创且唯一获批的肠道介入减重器械，竞品需数年才能追上注册壁垒",
+        "2025年前三季度GBS手术量同比增长超15倍(94例→1419例)，商业化斜率极陡",
+        "毛利率达79%，器械高毛利模式一旦规模放量可快速转正",
+        "中国2.5亿+肥胖人口中手术渗透率不足0.1%，巨大增量空间",
+        "GBS-SH获FDA突破性器械认定，打开全球MASH市场(逾1亿患者)",
+        "港股18A上市后资金将加速国际注册及适应症拓展"
+      ],
+      "bear": [
+        "现金仅剩约3000万元，按当前烧钱速度仅够维持约6个月，IPO延迟则资金断裂",
+        "负债率超136%，资产结构极度脆弱",
+        "GLP-1减重药价格持续下降，患者首选药物而非器械的趋势明确",
+        "商业化仅1年，累计2500例手术，远期并发症数据不足",
+        "IPO前5名董事辞任，公司治理结构存疑",
+        "单次治疗费用3.66-3.91万元，医保未覆盖，患者自付压力大"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 85000000,
+      "deal_count_12m": 18,
+      "gartner_phase": "早期主流 (Early Mainstream)",
+      "policy_tailwinds": [
+        "2024年国家卫健委将肥胖症纳入慢病管理重点",
+        "NMPA创新医疗器械特别审查通道(绿色通道)加速审批",
+        "国家'全民体重管理年'行动计划提升肥胖症治疗意识"
+      ],
+      "policy_headwinds": [
+        "医保尚未覆盖GBS治疗，完全自费限制患者基数",
+        "港股18A监管趋严增加合规成本",
+        "国家集采政策可能未来压缩高值耗材价格空间"
+      ],
+      "exit_window": "2026年港股主板IPO进程中(已递表18A通道)，预计2026H2上市；备选战略并购(美敦力、波士顿科学等有减重器械布局需求)",
+      "hot_keywords": ["GLP-1替代器械", "肠道介入减重", "代谢手术微创化", "MASH治疗", "内镜减重", "FDA突破性认定", "港股18A"]
+    }
+  }
+}

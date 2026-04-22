@@ -1,0 +1,151 @@
+{
+  "sources_hit": [
+    "[官网] 艾利特机器人官网 <https://www.elibot.com/>",
+    "[媒体] 36氪首发: 艾利特机器人完成数亿元C1轮融资 <https://36kr.com/p/1648367519524227>",
+    "[媒体] 新浪科技: 打造平台级协作机器人，艾利特完成数亿元C1轮融资 <https://finance.sina.com.cn/tech/2022-03-12/doc-imcwiwss5592611.shtml>",
+    "[媒体] 阿里云创新中心: 艾利特机器人2亿元B1轮融资 <https://startup.aliyun.com/info/102391.html>",
+    "[官网] 艾利特机器人完成6亿元D+轮融资 <https://www.elibot.com/tideflow/C1S8hNaY.html>",
+    "[官网] 国产协作机器人如何突围？艾利特6亿融资背后的技术密码 <https://www.elibot.com/tideflow/yOFsuKSo.html>",
+    "[媒体] 苏州工业园区: 艾利特机器人完成6亿元D+轮融资加速全球战略落地 <https://www.sipac.gov.cn/kjzszx/jqhd/202603/b5bbcb080f674eeabf75e8ad5b360d1e.shtml>",
+    "[媒体] 朗玛峰: 艾利特机器人获超亿元战略投资 <https://bydrug.pharmcube.com/news/detail/a61681b290be4781136effb7cf780847>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京艾利特科技有限公司 (ELITE Robot)",
+    "founded_date": "2016-09-01",
+    "headquarters": "北京/苏州",
+    "region": "中国",
+    "industry": "机器人",
+    "sub_industry": "协作机器人 / 复合机器人 / 具身智能",
+    "business_model": "研发+生产+销售平台级协作机器人(cobot)及复合机器人，面向汽车、3C、半导体、新能源等行业提供柔性自动化解决方案，国内直销+全球渠道分销",
+    "stage": "d",
+    "employee_count": 500,
+    "one_liner": "北航机器人所基因的协作机器人领军企业，以'一脑多形'战略布局具身智能，D+轮融资6亿元加速全球化",
+    "founders": [
+      {
+        "name": "曹宇男",
+        "title": "董事长/CEO",
+        "background": "北京航空航天大学机器人研究所博士；师从王田苗教授(中国机器人领域权威)；深耕协作机器人核心技术10+年；推动艾利特从实验室技术走向产业化"
+      }
+    ],
+    "products": [
+      {
+        "name": "EC系列协作机器人",
+        "description": "6轴协作机器人，负载3-30kg，覆盖焊接、搬运、装配、打磨等工业场景，支持力控拖拽示教，通过CE/CR/SEMI S2认证",
+        "revenue_pct": 0.55
+      },
+      {
+        "name": "复合机器人",
+        "description": "协作臂+AMR移动底盘融合的复合机器人，面向半导体晶圆搬运、物流分拣等场景，近年业务增长最快",
+        "revenue_pct": 0.30
+      },
+      {
+        "name": "具身智能平台",
+        "description": "'一脑多形'架构，统一AI大脑驱动不同形态机器人(协作臂、复合机器人、人形机器人)，面向具身智能未来布局",
+        "revenue_pct": 0.15
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2019-06-01",
+        "amount_usd": null,
+        "lead_investors": ["索为资本"],
+        "notes": "A轮融资，具体金额未披露"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2020-12-01",
+        "amount_usd": 28000000,
+        "lead_investors": ["联想创投", "张江科投"],
+        "participants": ["中关村启航资本", "东方证券资本", "村资本", "前海鹏晨"],
+        "notes": "B1轮融资2亿元人民币"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2021-09-01",
+        "amount_usd": null,
+        "lead_investors": ["中金甲子"],
+        "notes": "B2轮融资"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2022-01-01",
+        "amount_usd": 42000000,
+        "lead_investors": ["达晨财智", "尚珹投资"],
+        "participants": ["坤言资本"],
+        "notes": "C1轮数亿元人民币，深蓝资本担任独家财务顾问"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2023-06-01",
+        "amount_usd": 14000000,
+        "lead_investors": ["朗玛峰创投"],
+        "notes": "超亿元战略投资"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2026-03-01",
+        "amount_usd": 83000000,
+        "lead_investors": ["AIDC产业链CVC基金", "LHCP", "达晨财智"],
+        "participants": ["元禾控股", "园丰资本", "郑州具身智能产业基金"],
+        "notes": "D+轮融资6亿元人民币，加速一脑多形战略和全球化布局"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "创始人曹宇男为北航机器人所博士、王田苗教授门生，技术底蕴深厚；团队全部来自北航机器人所，学术+工程能力兼备；成功吸引联想、中金、达晨等顶级机构多轮跟投",
+      "market": {
+        "tam_usd": 12000000000,
+        "sam_usd": 4000000000,
+        "som_usd": 600000000,
+        "growth_rate": 0.25
+      },
+      "moat": "北航机器人所技术传承+10年协作机器人工程化积累；'一脑多形'架构统一AI大脑适配多种形态机器人；3000台大订单验证规模化交付能力；在半导体晶圆搬运等高壁垒场景建立先发优势",
+      "unit_economics": {
+        "gross_margin": 0.42
+      },
+      "growth": {
+        "yoy_growth": 1.50
+      },
+      "competitors": [
+        "优傲机器人(Universal Robots，全球协作机器人鼻祖)",
+        "遨博智能(中国协作机器人出货量第一梯队)",
+        "节卡机器人(获软银愿景基金投资)",
+        "法奥机器人(Flexiv，自适应机器人)",
+        "大族机器人",
+        "珞石机器人"
+      ],
+      "bull": [
+        "D+轮6亿元融资验证资本市场对具身智能赛道的高度认可",
+        "复合机器人业务高速增长，在半导体、新能源等高端场景占据先机",
+        "'一脑多形'战略完美卡位具身智能风口，从协作机器人自然延伸",
+        "国内外收入同步高速增长，全球化布局进展顺利",
+        "中国制造业自动化渗透率仅约8%，远低于日韩(30%+)，增量空间巨大"
+      ],
+      "bear": [
+        "协作机器人赛道极度拥挤，国内超30家企业参与竞争",
+        "优傲等国际品牌在高端市场仍占主导，品牌溢价明显",
+        "具身智能商业化路径尚不清晰，短期难以贡献收入",
+        "协作机器人单价持续下降，行业进入价格战阶段",
+        "多轮融资后估值较高，IPO定价压力不小"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 5000000000,
+      "deal_count_12m": 120,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "十四五机器人产业发展规划明确支持协作机器人研发",
+        "具身智能被列入国家人工智能重点研发方向",
+        "制造业转型升级+'机器换人'持续推动自动化渗透率提升"
+      ],
+      "policy_headwinds": [
+        "机器人核心零部件(减速器、伺服电机)部分依赖进口",
+        "行业标准尚不完善，不同品牌互操作性差",
+        "具身智能概念炒作过热，部分投资存在泡沫风险"
+      ],
+      "exit_window": "预计2027-2028年科创板或港股IPO；战略并购亦为可能路径(ABB、发那科等国际巨头有收购国内协作机器人意愿)",
+      "hot_keywords": ["协作机器人", "具身智能", "一脑多形", "复合机器人", "人形机器人", "柔性制造", "半导体自动化"]
+    }
+  }
+}

@@ -15,12 +15,25 @@ from ..schema import (
 from ..utils import to_decimal
 
 
+def _to_str(val: object) -> str | None:
+    """LLM 可能返回 list/dict 给 str 字段,安全转换."""
+    if val is None:
+        return None
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        return "；".join(str(x) for x in val if x)
+    return str(val)
+
+
 def analyze_risks(
     raw: RawCompanyData,
     funding: FundingHistory,
     thesis: InvestmentThesis,
 ) -> RiskMatrix:
     src = raw.itjuzi or raw.crunchbase or {}
+    if not isinstance(src, dict):
+        src = {}
     fin = src.get("financials") or {}
 
     burn = to_decimal(fin.get("burn_rate_usd_monthly"))
@@ -105,10 +118,10 @@ def analyze_risks(
             lvl = RiskLevel.MEDIUM
         risks.append(
             Risk(
-                category=extra.get("category") or "其他",
-                description=extra.get("description") or "",
+                category=_to_str(extra.get("category")) or "其他",
+                description=_to_str(extra.get("description")) or "",
                 level=lvl,
-                mitigation=extra.get("mitigation"),
+                mitigation=_to_str(extra.get("mitigation")),
             )
         )
 

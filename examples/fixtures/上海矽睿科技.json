@@ -1,0 +1,139 @@
+{
+  "sources_hit": [
+    "[官网] 矽睿科技官网 <https://www.qstcorp.com>",
+    "[媒体] 财联社: 矽睿科技拟科创板上市，曾刷新国内MEMS领域最大单笔融资 <https://www.cls.cn/detail/799514>",
+    "[媒体] 新浪财经: 矽睿科技借壳安车检测曲线上市 <https://finance.sina.com.cn/stock/newstock/2025-08-07/doc-infkcmra5983328.shtml>",
+    "[媒体] 36氪: 矽睿科技项目信息 <https://pitchhub.36kr.com/project/1679662761366272>",
+    "[官网] 矽睿科技完成3.5亿B+轮融资 <https://www.qstcorp.com/news/60>",
+    "[媒体] 前瞻网: 2025年MEMS惯性传感器行业分析 <https://www.qianzhan.com/analyst/detail/220/250207-938d62de.html>",
+    "[媒体] 36氪: A股罕见IPO公司谋控上市公司 <https://36kr.com/p/3419636089818761>"
+  ],
+  "itjuzi": {
+    "legal_name": "上海矽睿科技股份有限公司 (QST Corporation)",
+    "founded_date": "2012-08-01",
+    "headquarters": "上海浦东",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "MEMS传感器 / 惯性导航",
+    "business_model": "Fabless模式设计MEMS传感器芯片(六轴IMU、加速度计、磁传感器、环境传感器)及汽车/IoT智能模组，向下游消费电子、汽车、工业客户销售",
+    "stage": "pre_ipo",
+    "employee_count": 350,
+    "one_liner": "国内MEMS传感器领军企业，六轴IMU在无人机等领域市占率领先，两度筹备IPO未果后通过收购安车检测谋求曲线上市",
+    "founders": [
+      {
+        "name": "谢志峰",
+        "title": "创始人/董事长",
+        "background": "美国加州大学伯克利分校博士；曾任中芯国际副总裁；半导体行业30+年经验；推动矽睿从IP授权转向自主MEMS芯片设计"
+      },
+      {
+        "name": "孙臻",
+        "title": "联合创始人/CEO",
+        "background": "负责公司整体运营与战略执行；推动六轴IMU在消费电子及无人机领域大规模出货"
+      }
+    ],
+    "products": [
+      {
+        "name": "六轴IMU (QMI系列)",
+        "description": "六轴惯性测量单元，集成三轴加速度计+三轴陀螺仪，广泛应用于无人机、机器人、AR/VR、汽车ADAS等场景，国内出货量领先",
+        "revenue_pct": 0.45
+      },
+      {
+        "name": "加速度计/磁传感器",
+        "description": "三轴加速度计及地磁传感器，应用于手机、可穿戴设备、IoT终端，与博世、ST等国际巨头竞争",
+        "revenue_pct": 0.30
+      },
+      {
+        "name": "汽车及工业传感器模组",
+        "description": "面向汽车电子(TPMS、ADAS)及工业IoT的高可靠性传感器模组",
+        "revenue_pct": 0.25
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "a",
+        "announce_date": "2014-05-01",
+        "amount_usd": null,
+        "lead_investors": ["联想创投"],
+        "notes": "A轮融资，具体金额未披露"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2018-06-01",
+        "amount_usd": 30000000,
+        "lead_investors": ["上海联和投资", "武岳峰资本"],
+        "participants": ["国投创业", "超越摩尔基金"],
+        "notes": "B轮数千万美元，曾创国内MEMS领域最大单笔融资纪录"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2020-04-01",
+        "amount_usd": 50000000,
+        "lead_investors": ["华登国际", "君联资本"],
+        "participants": ["九鼎投资", "润成集团", "临港创投"],
+        "notes": "B+轮融资3.5亿元人民币"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2025-08-07",
+        "amount_usd": null,
+        "post_money_valuation_usd": 830000000,
+        "lead_investors": [],
+        "notes": "通过收购安车检测6.43%股权+13.57%表决权委托谋求借壳上市，矽睿估值约60亿元人民币"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "创始人谢志峰为中芯国际前副总裁、UC Berkeley博士，半导体行业经验深厚；团队技术底蕴扎实，成功实现六轴IMU量产，但两度IPO未果反映资本市场对其盈利能力的疑虑",
+      "market": {
+        "tam_usd": 18000000000,
+        "sam_usd": 5000000000,
+        "som_usd": 500000000,
+        "growth_rate": 0.12
+      },
+      "moat": "国内少数掌握六轴IMU全自研能力的Fabless企业；在无人机领域市占率高，与大疆等头部客户深度绑定；MEMS工艺know-how和校准算法积累构成技术壁垒",
+      "unit_economics": {
+        "gross_margin": 0.40
+      },
+      "growth": {},
+      "competitors": [
+        "博世(Bosch Sensortec，全球MEMS龙头)",
+        "意法半导体(ST)",
+        "TDK/InvenSense",
+        "士兰微(国内MEMS IDM)",
+        "敏芯股份(科创板上市)",
+        "美新半导体(纳斯达克退市后回归)"
+      ],
+      "bull": [
+        "六轴IMU在无人机、机器人、AR/VR等新兴场景放量，国产替代趋势明确",
+        "MEMS传感器市场2025年全球超180亿美元，中国占比约30%且增速领先",
+        "借壳安车检测若成功可快速获得资本市场融资渠道",
+        "汽车ADAS和自动驾驶需求激增，车规级IMU单车价值量显著提升",
+        "国家大力支持半导体国产化，MEMS传感器为关键卡脖子环节"
+      ],
+      "bear": [
+        "两度筹备IPO未果，盈利能力未经公开验证",
+        "借壳安车检测(连续亏损标的)存在整合风险",
+        "博世、ST等国际巨头在消费级MEMS领域价格战激烈",
+        "MEMS传感器产品周期长，车规级认证需2-3年",
+        "国内士兰微、敏芯等竞品也在加速追赶六轴IMU"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 2500000000,
+      "deal_count_12m": 60,
+      "gartner_phase": "Early Mainstream",
+      "policy_tailwinds": [
+        "国家集成电路产业投资基金(大基金)持续加码MEMS领域",
+        "汽车芯片国产化率要求提升至25%以上(2025年目标)",
+        "十四五规划将智能传感器列为重点发展方向"
+      ],
+      "policy_headwinds": [
+        "高端MEMS制造设备依赖进口，受出口管制影响",
+        "消费电子市场周期性波动影响MEMS出货量",
+        "借壳上市审批流程不确定性"
+      ],
+      "exit_window": "2025-2026年借壳安车检测曲线上市(已启动股权收购+表决权委托)；此前曾计划科创板IPO",
+      "hot_keywords": ["MEMS传感器", "六轴IMU", "国产替代", "无人机传感器", "车规级IMU", "借壳上市"]
+    }
+  }
+}

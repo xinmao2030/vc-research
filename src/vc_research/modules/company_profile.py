@@ -11,6 +11,17 @@ from ..schema import (
 from ..utils import parse_date, parse_funding_stage
 
 
+def _to_str(val: object) -> str | None:
+    """LLM 可能返回 list/dict 给 str 字段,安全转换."""
+    if val is None:
+        return None
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        return "；".join(str(x) for x in val if x)
+    return str(val)
+
+
 def _safe_decimal(val: object) -> Decimal | None:
     if val is None:
         return None
@@ -38,6 +49,8 @@ def analyze_profile(raw: RawCompanyData) -> CompanyProfile:
         )
 
     src = raw.itjuzi or raw.qichacha or raw.crunchbase or {}
+    if not isinstance(src, dict):
+        raise InsufficientDataError(f"{raw.name} 数据格式异常 (非 dict),可能 LLM 输出解析失败")
 
     founders = [
         Founder(
@@ -127,14 +140,14 @@ def analyze_profile(raw: RawCompanyData) -> CompanyProfile:
         founded_date=parse_date(src.get("founded_date")),
         headquarters=src.get("headquarters"),
         region=region,
-        industry=src.get("industry") or "未分类",
-        sub_industry=src.get("sub_industry"),
-        business_model=src.get("business_model") or "待补充",
+        industry=_to_str(src.get("industry")) or "未分类",
+        sub_industry=_to_str(src.get("sub_industry")),
+        business_model=_to_str(src.get("business_model")) or "待补充",
         stage=stage,
         founders=founders,
         executives=executives,
         employee_count=src.get("employee_count"),
-        one_liner=src.get("one_liner") or f"{raw.name} — 商业模式待研究",
+        one_liner=_to_str(src.get("one_liner")) or f"{raw.name} — 商业模式待研究",
         products_detailed=products_detailed,
         products=products_simple,
         customer_cases=customer_cases,

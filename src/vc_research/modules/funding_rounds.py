@@ -10,6 +10,17 @@ from ..schema import FundingHistory, FundingRound, FundingStage, Investor
 from ..utils import parse_date, parse_funding_stage, to_decimal
 
 
+def _to_str(val: object) -> str | None:
+    """LLM 可能返回 list/dict 给 str 字段,安全转换."""
+    if val is None:
+        return None
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        return "；".join(str(x) for x in val if x)
+    return str(val)
+
+
 # 稀释假设 (参考 AngelList / CB Insights 公开数据)
 _DILUTION_PER_ROUND: dict[FundingStage, float] = {
     FundingStage.PRE_SEED: 0.10,
@@ -33,6 +44,8 @@ def analyze_funding(raw: RawCompanyData) -> FundingHistory:
         IT桔子 (国内最全) > Crunchbase (海外) > 企查查 (工商变更推断)
     """
     src = raw.itjuzi or raw.crunchbase or {}
+    if not isinstance(src, dict):
+        src = {}
     rounds_raw = src.get("rounds") or []
 
     rounds: list[FundingRound] = []
@@ -46,7 +59,7 @@ def analyze_funding(raw: RawCompanyData) -> FundingHistory:
                 founded_year=i.get("founded_year"),
                 sector_focus=i.get("sector_focus") or [],
                 notable_portfolio=i.get("notable_portfolio") or [],
-                deal_thesis=i.get("deal_thesis"),
+                deal_thesis=_to_str(i.get("deal_thesis")),
                 is_lead=bool(i.get("is_lead", False)),
             )
             for i in (r.get("investor_details") or [])
@@ -62,9 +75,9 @@ def analyze_funding(raw: RawCompanyData) -> FundingHistory:
                 lead_investors=r.get("lead_investors") or [],
                 participants=r.get("participants") or [],
                 investor_details=investor_details,
-                share_class=r.get("share_class"),
-                use_of_proceeds=r.get("use_of_proceeds"),
-                notes=r.get("notes"),
+                share_class=_to_str(r.get("share_class")),
+                use_of_proceeds=_to_str(r.get("use_of_proceeds")),
+                notes=_to_str(r.get("notes")),
             )
         )
 

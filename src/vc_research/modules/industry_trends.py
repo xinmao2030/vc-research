@@ -7,12 +7,25 @@ from ..schema import Competitor, IndustryTrend, SubSegment, ValueChain
 from ..utils import to_decimal
 
 
+def _to_str(val: object) -> str | None:
+    """LLM 可能返回 list/dict 给 str 字段,安全转换."""
+    if val is None:
+        return None
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        return "；".join(str(x) for x in val if x)
+    return str(val)
+
+
 def analyze_industry(raw: RawCompanyData, industry: str) -> IndustryTrend:
     """聚合赛道级数据.
 
     TODO Phase 2: 接入清科/艾瑞/CB Insights 的赛道级聚合 API。
     """
     src = raw.itjuzi or raw.crunchbase or {}
+    if not isinstance(src, dict):
+        src = {}
     ind_raw = src.get("industry_data") or {}
 
     sub_segments = [
@@ -53,10 +66,10 @@ def analyze_industry(raw: RawCompanyData, industry: str) -> IndustryTrend:
         industry=industry,
         funding_total_12m_usd=to_decimal(ind_raw.get("funding_total_12m_usd")),
         deal_count_12m=ind_raw.get("deal_count_12m"),
-        gartner_phase=ind_raw.get("gartner_phase") or "待定位",
+        gartner_phase=_to_str(ind_raw.get("gartner_phase")) or "待定位",
         policy_tailwinds=ind_raw.get("policy_tailwinds") or [],
         policy_headwinds=ind_raw.get("policy_headwinds") or [],
-        exit_window=ind_raw.get("exit_window") or "窗口情况待评估",
+        exit_window=_to_str(ind_raw.get("exit_window")) or "窗口情况待评估",
         hot_keywords=ind_raw.get("hot_keywords") or [],
         sub_segments=sub_segments,
         value_chain=value_chain,

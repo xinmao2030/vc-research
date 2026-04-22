@@ -27,12 +27,25 @@ _MOAT_DIMS = (
 )
 
 
+def _to_str(val: object) -> str | None:
+    """LLM 可能返回 list/dict 给 str 字段,安全转换."""
+    if val is None:
+        return None
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        return "；".join(str(x) for x in val if x)
+    return str(val)
+
+
 def analyze_thesis(raw: RawCompanyData) -> InvestmentThesis:
     """构建投资逻辑.
 
     注意: 当前仅提取结构化数据,真正的 bull/bear 推理交给 LLM 层增强。
     """
     src = raw.itjuzi or raw.crunchbase or {}
+    if not isinstance(src, dict):
+        src = {}
     thesis_raw = src.get("thesis") or {}
 
     market_raw = thesis_raw.get("market") or {}
@@ -83,16 +96,16 @@ def analyze_thesis(raw: RawCompanyData) -> InvestmentThesis:
 
     return InvestmentThesis(
         team_score=thesis_raw.get("team_score", 6),
-        team_notes=thesis_raw.get("team_notes") or "团队背景待调研",
-        team_analysis=thesis_raw.get("team_analysis"),
+        team_notes=_to_str(thesis_raw.get("team_notes")) or "团队背景待调研",
+        team_analysis=_to_str(thesis_raw.get("team_analysis")),
         market=market,
-        market_analysis=thesis_raw.get("market_analysis"),
-        moat=thesis_raw.get("moat") or "待识别",
+        market_analysis=_to_str(thesis_raw.get("market_analysis")),
+        moat=_to_str(thesis_raw.get("moat")) or "待识别",
         moat_analysis=moat_analysis,
         unit_economics=unit_econ,
-        unit_economics_analysis=thesis_raw.get("unit_economics_analysis"),
+        unit_economics_analysis=_to_str(thesis_raw.get("unit_economics_analysis")),
         growth=growth,
-        growth_analysis=thesis_raw.get("growth_analysis"),
+        growth_analysis=_to_str(thesis_raw.get("growth_analysis")),
         competitors=thesis_raw.get("competitors") or [],
         competitors_detailed=competitors_detailed,
         key_bull_points=thesis_raw.get("bull") or [],

@@ -1,0 +1,164 @@
+{
+  "sources_hit": [
+    "[媒体] 36氪首发D轮融资报道 <https://36kr.com/p/1109415629482247>",
+    "[媒体] 澎湃新闻 IPO递表报道 <https://www.thepaper.cn/newsDetail_forward_30890829>",
+    "[媒体] 新浪财经 IPO报道 <https://finance.sina.com.cn/stock/stockzmt/2025-05-27/doc-inexyrui1705297.shtml>",
+    "[媒体] 格隆汇 核药市场规模2024 <https://m.gelonghui.com/p/2004964>",
+    "[媒体] ByDrug 先通医药深度解析 <https://bydrug.pharmcube.com/news/detail/62ea1bde26a5cf7cb12f0f5fed4af8eb>",
+    "[媒体] ByDrug 超11亿元融资报道 <https://bydrug.pharmcube.com/news/detail/c19a6d8044feb29112c89dc0f681aa1b>",
+    "[媒体] 启明创投官网 D轮公告 <https://www.qimingvc.com/cn/news/启明星-启明创投投资企业先通医药d轮融资32亿元人民币>",
+    "[官网] Sinotau <https://www.sinotau.com/en/>",
+    "[媒体] Bamboo Works: Sinotau HK IPO analysis <https://thebambooworks.com/sinotau-aims-to-become-hong-kongs-first-nuclear-medicine-stock/>"
+  ],
+  "itjuzi": {
+    "legal_name": "北京先通国际医药科技股份有限公司 (Sinotau Pharmaceutical Group)",
+    "founded_date": "2005-03-01",
+    "headquarters": "北京",
+    "region": "中国",
+    "industry": "医疗健康",
+    "sub_industry": "创新放射性药物 / 核医学诊疗",
+    "business_model": "创新放射性药物(核药)研发、生产及商业化；覆盖肿瘤、阿尔茨海默病、心血管疾病的诊疗一体化RDC平台；兼顾in-license引进与自主研发",
+    "stage": "pre_ipo",
+    "employee_count": 400,
+    "one_liner": "中国创新放射性药物(核药)领军企业，首家获批创新核药的国内公司，布局肿瘤/神经退行/心血管全疾病域RDC诊疗一体化平台",
+    "founders": [
+      {
+        "name": "徐新盛",
+        "title": "董事会主席/创始人",
+        "background": "沈阳药科大学药物分析专业本科；约30年医药行业经验；1995-2005年从事医药销售；2005年创立先通药业；2014年赴美谈判获Navidea核药Lymphoseek中国权益，奠定创新核药路径",
+        "equity_pct": 0.27
+      },
+      {
+        "name": "唐艳旻",
+        "title": "联合CEO/执行董事",
+        "background": "沈阳药科大学英语药学专业本科；长江商学院EMBA；1996-2002年葛兰素史克(中国)营销经理；2016年加入先通医药",
+        "equity_pct": 0.03
+      }
+    ],
+    "products": [
+      {
+        "name": "欧韦宁® 氟[18F]贝他苯注射液",
+        "description": "中国首款获NMPA批准的Aβ-PET显像剂(2023年9月获批)，用于阿尔茨海默病早期精准诊断，已进入商业化",
+        "revenue_pct": 0.85
+      },
+      {
+        "name": "XTR008 (68Ga-FAPI肿瘤靶向诊断)",
+        "description": "成纤维细胞活化蛋白靶向PET显像剂，针对多种实体瘤，临床研究阶段",
+        "revenue_pct": 0
+      },
+      {
+        "name": "XTR004 (177Lu-PSMA前列腺癌治疗)",
+        "description": "PSMA靶向放射性核素偶联治疗药物，用于转移性去势抵抗性前列腺癌，临床研究阶段",
+        "revenue_pct": 0
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "b",
+        "announce_date": "2017-06-01",
+        "amount_usd": 22000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["启明创投"],
+        "notes": "融资1.5亿元人民币"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2020-07-01",
+        "amount_usd": 39400000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["同辐创新产业投资基金", "国药资本"],
+        "participants": ["物明投资", "国科嘉和", "荷塘创投"],
+        "notes": "融资2.8亿元人民币"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2021-02-01",
+        "amount_usd": 45100000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["中金启德基金"],
+        "participants": ["朗玛峰创投", "隆门创投", "荷塘基金"],
+        "notes": "D轮融资3.2亿元人民币"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2021-10-01",
+        "amount_usd": 45100000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["国寿大健康基金", "大钲资本"],
+        "notes": "D+轮融资3.2亿元，D轮合计6.4亿元"
+      },
+      {
+        "stage": "strategic",
+        "announce_date": "2023-07-03",
+        "amount_usd": 154900000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["国投创业", "金石投资", "国调基金", "通用技术创投"],
+        "notes": "超11亿元人民币战略融资，创当年国内医药领域最大市场化融资纪录，20+机构参与"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2024-12-01",
+        "amount_usd": 84500000,
+        "post_money_valuation_usd": 730700000,
+        "lead_investors": ["中信证券投资", "中金公司"],
+        "notes": "6亿元Pre-IPO融资，投后估值51.88亿元人民币(约7.3亿美元)"
+      }
+    ],
+    "thesis": {
+      "team_score": 7,
+      "team_notes": "创始人徐新盛销售出身，2014年率先押注创新核药赛道；联合CEO唐艳旻有GSK跨国药企营销背景。短板：研发技术背景相对薄弱，高度依赖海外in-license",
+      "market": {
+        "tam_usd": 5070000000,
+        "sam_usd": 1830000000,
+        "som_usd": 280000000,
+        "growth_rate": 0.22
+      },
+      "moat": "首家且唯一获NMPA批准创新放射性药物的国内企业；放射性药品生产许可(A证)极难获取；短半衰期同位素需就近生产配送形成地理壁垒；与十余家跨国药企建立独家中国权益合作",
+      "unit_economics": {
+        "gross_margin": 0.077
+      },
+      "growth": {
+        "arr_usd": 62000000,
+        "yoy_growth": 3.31
+      },
+      "competitors": [
+        "中国同辐(国内核药分销最大份额约50%)",
+        "东诚药业(A股上市，市场份额约21.6%)",
+        "远大医药(港股上市，2024年核药收入YoY +177%)",
+        "诺华制药Novartis(Lutathera/Pluvicto国际标杆)"
+      ],
+      "bull": [
+        "中国核药市场2023年仅54亿元，2030年预计达260亿元，CAGR约22%，渗透率极低",
+        "欧韦宁®是中国唯一获批的Aβ-PET显像剂，阿尔茨海默病早筛需求随老龄化爆发",
+        "放射性药品监管门槛极高(A证稀缺)，有效阻止新进入者",
+        "177Lu-PSMA如获批可进入前列腺癌治疗大市场",
+        "全产业链布局(核素→合成→制剂→配送→临床)",
+        "国家政策积极支持核医学发展(医用同位素中长期发展规划2021-2035)"
+      ],
+      "bear": [
+        "2023-2024年累计亏损超4.65亿元，短期盈利路径不明确",
+        "收入高度集中于单一产品欧韦宁®(占比85%+)，PET设备渗透率制约商业化",
+        "核心产品高度依赖海外in-license，自研管线比例低",
+        "港股biotech估值持续承压，IPO定价及流动性存在不确定性",
+        "177Lu等放射性核素国内供应依赖进口，地缘政治风险不可忽视"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 1300000000,
+      "deal_count_12m": 43,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "《医用同位素中长期发展规划(2021-2035年)》明确支持核医学产业",
+        "NMPA创新药审评加速通道适用于创新RDC",
+        "阿尔茨海默病早筛纳入部分省市慢病管理试点"
+      ],
+      "policy_headwinds": [
+        "放射性药品生产许可审批极为严格，产能扩张受限",
+        "DRG/DIP支付改革压缩高价诊断项目使用频次",
+        "核材料进出口受核不扩散条约约束"
+      ],
+      "exit_window": "2025-2026年港股IPO窗口期(已递表，联席保荐中金/中信)",
+      "hot_keywords": ["放射性核素偶联药物RDC", "核药", "Aβ-PET显像", "177Lu治疗", "PSMA靶向", "诊疗一体化", "港股18A"]
+    }
+  }
+}

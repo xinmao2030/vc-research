@@ -1,0 +1,147 @@
+{
+  "sources_hit": [
+    "[官网] 川土微电子官网 <https://www.chipanalog.com/>",
+    "[媒体] 36氪: 川土微电子完成数千万元A轮融资 <https://36kr.com/p/1723663826945>",
+    "[媒体] 新浪科技: 川土微电子完成B轮融资进军汽车市场 <https://finance.sina.com.cn/tech/2021-07-30/doc-ikqciyzk8438750.shtml>",
+    "[媒体] 磐霖资本: 川土微电子完成C轮和C+轮融资 <http://panlincap.com/cn/news/1683>",
+    "[媒体] 新浪财经: 80后交大教授造芯，4大车企组团投资 <https://finance.sina.cn/2023-10-24/detail-imzseses0044087.d.html>",
+    "[媒体] 新浪财经: 梦天家居拟购芯片企业川土微 <https://finance.sina.cn/2025-11-07/detail-infwqvpr0815960.d.html>",
+    "[官网] 川土微电子创立大会 <https://www.chipanalog.com/about/news/68>",
+    "[媒体] 投资界: 川土微电子获Pre-A轮融资 <https://m.pedaily.cn/news/429202>"
+  ],
+  "itjuzi": {
+    "legal_name": "上海川土微电子股份有限公司 (Chipanalog)",
+    "founded_date": "2016-05-23",
+    "headquarters": "上海",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "模拟芯片 / 隔离器 / 接口芯片",
+    "business_model": "Fabless模式设计高端模拟芯片，涵盖隔离与接口、驱动与电源、高性能模拟三大产品线，面向工业控制、汽车电子、电源能源、通讯计算等领域，累计合作客户超3000家",
+    "stage": "pre_ipo",
+    "employee_count": 300,
+    "one_liner": "上海交大教授创办的高端模拟芯片公司，隔离器芯片国产替代领先者，比亚迪/上汽/吉利/长安四大车企组团投资，估值突破60亿元",
+    "founders": [
+      {
+        "name": "陈东坡",
+        "title": "创始人/CEO",
+        "background": "浙江大学电路与系统专业博士(生于1980年)；上海交通大学微电子学院原副教授；模拟射频集成电路设计专家；15年微电子行业经验；2016年辞职创办川土微电子"
+      }
+    ],
+    "products": [
+      {
+        "name": "数字隔离器与隔离接口芯片",
+        "description": "高速数字隔离器、隔离RS-485/RS-422/CAN收发器等，国产替代TI/ADI核心产品，广泛应用于工业控制、新能源、汽车BMS等场景",
+        "revenue_pct": 0.45
+      },
+      {
+        "name": "驱动与电源管理芯片",
+        "description": "栅极驱动器、DC-DC转换器、LDO等电源管理芯片，面向汽车电子和工业电源",
+        "revenue_pct": 0.30
+      },
+      {
+        "name": "高性能模拟芯片",
+        "description": "运放、ADC/DAC、模拟开关等信号链产品，对标TI/ADI高端产品线",
+        "revenue_pct": 0.25
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2018-06-01",
+        "amount_usd": null,
+        "lead_investors": ["磐霖资本"],
+        "notes": "Pre-A轮融资，磐霖资本早期独家投资"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2020-03-01",
+        "amount_usd": null,
+        "lead_investors": ["磐霖资本"],
+        "participants": ["朗玛峰创投"],
+        "notes": "A轮融资数千万元，主攻射频与隔离器芯片国产化替代"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2021-07-01",
+        "amount_usd": null,
+        "lead_investors": ["元禾璞华"],
+        "participants": ["金浦投资", "磐霖资本", "朗玛峰创投"],
+        "notes": "B轮融资，进军汽车市场"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2023-10-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": 830000000,
+        "lead_investors": ["比亚迪", "上汽集团/尚颀资本"],
+        "participants": ["吉利控股", "长安汽车", "磐霖资本", "朗玛峰创投", "元禾璞华", "中汇金资本"],
+        "notes": "C轮+C+轮合计数亿元，4大头部车企组团投资，估值突破60亿元人民币(约8.3亿美元)"
+      },
+      {
+        "stage": "pre_ipo",
+        "announce_date": "2025-07-01",
+        "amount_usd": null,
+        "lead_investors": [],
+        "notes": "完成股改，更名为上海川土微电子股份有限公司；2025.11梦天家居拟收购控制权(借壳上市可能路径)"
+      }
+    ],
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "创始人陈东坡为浙大博士、上海交大前副教授，模拟芯片领域顶级学术+工程背景；成功将学术成果产业化，9轮融资获比亚迪/上汽/吉利/长安四大车企+元禾璞华/磐霖等顶级机构投资；但'夫妻店'治理结构引发部分市场疑虑",
+      "market": {
+        "tam_usd": 80000000000,
+        "sam_usd": 15000000000,
+        "som_usd": 800000000,
+        "growth_rate": 0.10
+      },
+      "moat": "隔离器芯片国内领先，国产替代TI/ADI的核心供应商；累计9轮融资获4大头部车企投资，客户即股东深度绑定；3000+客户基础构成渠道壁垒；与华虹半导体/中芯国际合作12英寸产线保障产能",
+      "unit_economics": {
+        "gross_margin": 0.50
+      },
+      "growth": {
+        "yoy_growth": null
+      },
+      "competitors": [
+        "德州仪器(TI，全球模拟芯片龙头)",
+        "亚德诺(ADI，高性能模拟芯片巨头)",
+        "纳芯微(科创板上市，隔离芯片竞品)",
+        "思瑞浦(科创板上市，信号链芯片)",
+        "圣邦股份(深交所上市，模拟芯片龙头)",
+        "芯海科技(A股上市，模拟+MCU)"
+      ],
+      "bull": [
+        "模拟芯片全球市场800亿美元，中国国产化率不足15%，替代空间巨大",
+        "比亚迪/上汽/吉利/长安四大车企组团投资，车规级导入有保障",
+        "隔离器芯片领域国内领先，具备对标TI/ADI的产品力",
+        "计划2026年月产能达50万片(12英寸)，规模效应即将释放",
+        "模拟芯片生命周期长(10-15年)，客户粘性强",
+        "中美芯片脱钩加速国产模拟芯片替代进程"
+      ],
+      "bear": [
+        "TI/ADI在全球模拟芯片市场份额超30%，技术代差仍存",
+        "国内纳芯微、思瑞浦等上市竞品也在加速追赶",
+        "具体营收/利润数据未公开，盈利能力待验证",
+        "'夫妻店'治理结构可能影响上市审批",
+        "梦天家居(家居企业)收购川土微(芯片)的跨界交易存在整合风险",
+        "汽车芯片降价压力持续，车企压价议价能力强"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3000000000,
+      "deal_count_12m": 65,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "大基金三期重点投向模拟芯片等薄弱环节",
+        "汽车芯片国产化率提升政策持续推进",
+        "关税壁垒成为国产芯片催化剂，加速替代进程"
+      ],
+      "policy_headwinds": [
+        "高端模拟芯片设计EDA工具依赖美国(Cadence/Synopsys)",
+        "模拟芯片品类极多(数万SKU)，全面替代周期漫长",
+        "A股科创板IPO审核趋严，上市进程不确定"
+      ],
+      "exit_window": "2025-2026年通过梦天家居借壳上市(已启动收购谈判)或独立IPO；估值已突破60亿元",
+      "hot_keywords": ["模拟芯片", "隔离器", "国产替代", "车规芯片", "信号链", "数字隔离", "TI替代"]
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "sources_hit": [
+    "[媒体] 投资界: 前蔚来副总裁创业做芯片，辉羲智能获小米领投5000万美元融资 <https://m.pedaily.cn/news/505094>",
+    "[媒体] 投资界: 辉羲智能完成A1轮融资 <https://news.pedaily.cn/202501/545240.shtml>",
+    "[媒体] 36氪: 前蔚来副总裁创业做芯片 <https://36kr.com/p/2033998293003271>",
+    "[媒体] 新华网: 辉羲智能发布高阶智驾芯片光至R1 <http://www.news.cn/auto/20241018/330f965781c1444d924227397c6c42df/c.html>",
+    "[媒体] 36氪: 辉羲智能发布高阶智驾芯片光至R1 <https://36kr.com/p/3001651130972551>",
+    "[媒体] 阿里云创新中心: 辉羲智能完成天使+轮融资 <https://startup.aliyun.com/info/1035290.html>",
+    "[媒体] 新浪科技: 辉羲智能完成超5000万美元天使+轮融资 <https://finance.sina.com.cn/tech/roll/2022-12-08/doc-imqqsmrp9008717.shtml>",
+    "[媒体] 北京经开区: 国产首款大算力芯片加速量产应用 <https://www.ncsti.gov.cn/kjdt/scyq/bjjjjskfq/jkdt/202411/t20241113_185659.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "辉羲智能科技（北京）有限公司",
+    "founded_date": "2022-04-01",
+    "headquarters": "北京亦庄",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "自动驾驶SoC芯片",
+    "business_model": "Fabless模式设计大算力自动驾驶SoC芯片，向汽车OEM销售芯片+配套软件工具链，提供从芯片到系统的智能驾驶计算平台解决方案",
+    "stage": "a",
+    "employee_count": 250,
+    "one_liner": "由清华系+蔚来系+商汤系联合创立的自动驾驶芯片新锐，首款芯片'光至R1'达500TOPS算力(7nm车规)，小米战略领投，已获国际车企量产定点",
+    "founders": [
+      {
+        "name": "徐宁仪",
+        "title": "创始人/CEO",
+        "background": "清华大学电子工程系本硕博；微软亚洲研究院硬件计算负责人；百度智能芯片事业部首席架构师；商汤科技量智事业部CEO；蔚来汽车副总裁(负责智能硬件)；2022年创立辉羲智能"
+      },
+      {
+        "name": "贺光辉",
+        "title": "联合创始人/首席科学家",
+        "background": "清华大学博士；上海交通大学微电子学院教授/系副主任；芯片架构与EDA领域权威"
+      },
+      {
+        "name": "章健勇",
+        "title": "联合创始人",
+        "background": "芯片设计与系统架构资深专家"
+      }
+    ],
+    "products": [
+      {
+        "name": "光至R1 (高阶智驾SoC芯片)",
+        "description": "首款产品，7nm车规级工艺，集成450亿晶体管，8核SIMT架构，500+ TOPS深度学习算力+420k DMIPS CPU算力(24核Arm Cortex-A78AE)，支持BEV+Transformer端到端自动驾驶，预计2025年量产",
+        "revenue_pct": 0.90
+      },
+      {
+        "name": "智驾计算平台与工具链",
+        "description": "配套软件开发工具链、模型编译器、仿真平台，降低OEM二次开发门槛",
+        "revenue_pct": 0.10
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2022-06-01",
+        "amount_usd": null,
+        "lead_investors": ["源码资本", "蔚来资本"],
+        "notes": "天使轮融资"
+      },
+      {
+        "stage": "seed",
+        "announce_date": "2022-12-08",
+        "amount_usd": 50000000,
+        "post_money_valuation_usd": 200000000,
+        "lead_investors": ["小米集团(战略投资)", "顺为资本"],
+        "participants": ["国汽投资", "凯辉基金", "奇绩创坛", "金沙江创投", "商汤国香资本"],
+        "notes": "天使+轮超5000万美元，项目估值2亿美元，小米战略领投"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2025-01-01",
+        "amount_usd": null,
+        "lead_investors": ["亦庄产投"],
+        "participants": ["商汤科技", "朗玛峰创投", "卓源亚洲"],
+        "notes": "A1轮融资，用于光至R1量产及工具链研发"
+      }
+    ],
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "创始人徐宁仪拥有清华博士+微软亚研院+百度+商汤+蔚来的顶级履历，横跨学术、互联网、AI、芯片、汽车五大领域；联创贺光辉为上海交大教授，芯片架构理论功底深厚；团队汇聚清华/蔚来/商汤基因，技术+产业资源兼备",
+      "market": {
+        "tam_usd": 30000000000,
+        "sam_usd": 8000000000,
+        "som_usd": 500000000,
+        "growth_rate": 0.30
+      },
+      "moat": "光至R1为国产首款500TOPS级车规SoC，7nm工艺+450亿晶体管的硬核指标比肩Nvidia Orin；小米战略投资+蔚来资本绑定整车厂资源；芯片+工具链全栈自研，软硬件协同优化壁垒高",
+      "unit_economics": {
+        "gross_margin": null
+      },
+      "growth": {},
+      "competitors": [
+        "Nvidia(Orin/Thor，全球自动驾驶芯片霸主)",
+        "地平线机器人(Journey 6，港股上市)",
+        "黑芝麻智能(华山A2000，港股上市)",
+        "Mobileye(英特尔旗下，EyeQ系列)",
+        "华为昇腾(MDC计算平台)",
+        "高通(Snapdragon Ride)"
+      ],
+      "bull": [
+        "光至R1达500TOPS算力，国产芯片中与地平线J6系列同属顶级梯队",
+        "已获国际汽车品牌量产定点，2025年上车验证在即",
+        "小米造车+小米战略投资，小米汽车潜在大客户",
+        "中国智能驾驶SoC市场2025年超200亿美元，增速30%+",
+        "中美芯片脱钩使国产替代Nvidia Orin成为刚需",
+        "清华+蔚来+商汤三重基因在自动驾驶芯片领域形成差异化优势"
+      ],
+      "bear": [
+        "成立仅3年，芯片尚未量产出货，收入为零",
+        "Nvidia Orin/Thor已大规模量产，先发优势巨大",
+        "地平线J6、黑芝麻A2000均已量产，国产竞争激烈",
+        "汽车芯片从流片到量产通常需3-5年，周期长风险大",
+        "大算力芯片流片成本高(单次数千万美元)，资金压力持续",
+        "估值已达2亿美元(天使+轮)，后续融资稀释压力大"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 5000000000,
+      "deal_count_12m": 50,
+      "gartner_phase": "Slope of Enlightenment",
+      "policy_tailwinds": [
+        "国家发改委将汽车芯片列为卡脖子技术攻关重点",
+        "大基金三期重点投向车规级芯片",
+        "L3级自动驾驶法规加速落地，刺激高算力芯片需求"
+      ],
+      "policy_headwinds": [
+        "7nm及以下先进制程依赖台积电等海外代工",
+        "美国对华芯片出口管制可能影响EDA工具和IP授权",
+        "汽车芯片车规认证(AEC-Q100/ISO 26262)周期长、门槛高"
+      ],
+      "exit_window": "预计2028-2030年科创板或港股IPO，需待光至R1量产出货后形成收入规模；亦存在被整车厂或芯片巨头战略收购的可能",
+      "hot_keywords": ["自动驾驶SoC", "大算力芯片", "500TOPS", "端到端智驾", "7nm车规", "国产替代Nvidia", "BEV+Transformer"]
+    }
+  }
+}

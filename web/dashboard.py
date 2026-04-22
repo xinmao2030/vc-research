@@ -283,7 +283,7 @@ _BUILD_STATUS: dict[str, str] = {}
 _BUILD_ERROR: dict[str, str] = {}
 _BUILD_START: dict[str, float] = {}  # 开始时间
 _BUILD_LOCK = threading.Lock()
-_BUILD_TIMEOUT_S = 300  # 5 分钟超时
+_BUILD_TIMEOUT_S = 600  # 10 分钟超时 (M1 芯片可能需要 5-8 分钟)
 
 
 def _check_ollama() -> tuple[bool, str]:
@@ -303,6 +303,45 @@ def _check_ollama() -> tuple[bool, str]:
         return False, f"Ollama 检查失败: {e}"
 
 
+def _sanitize_llm_data(d: dict) -> dict:
+    """清洗 LLM 输出: 确保应该是 dict/list/str 的字段类型正确."""
+    _DICT_FIELDS = {"thesis", "industry_data", "financials", "moat_analysis", "market",
+                     "unit_economics", "growth", "value_chain", "specs"}
+    _LIST_FIELDS = {"founders", "executives", "products", "key_customers", "milestones",
+                     "rounds", "competitors", "competitors_detailed", "bull", "bull_detailed",
+                     "bear", "bear_detailed", "extra_risks", "sub_segments", "top_players",
+                     "policy_tailwinds", "policy_headwinds", "hot_keywords",
+                     "growth_drivers", "barriers_to_entry", "lead_investors", "participants",
+                     "investor_details", "sector_focus", "notable_portfolio", "evidence",
+                     "news_items", "patents", "job_postings"}
+    # 应该是 str 但 LLM 可能返回 list 的字段
+    _STR_FIELDS = {"team_analysis", "market_analysis", "unit_economics_analysis",
+                    "growth_analysis", "team_notes", "moat", "exit_window",
+                    "gartner_phase", "use_of_proceeds", "notes", "share_class",
+                    "deal_thesis", "differentiator", "stage_or_status", "hq",
+                    "description", "founded_year_str"}
+    if not isinstance(d, dict):
+        return {}
+    for k, v in list(d.items()):
+        if k in _DICT_FIELDS and not isinstance(v, dict):
+            d[k] = {}
+        elif k in _LIST_FIELDS and not isinstance(v, list):
+            d[k] = []
+        elif k in _STR_FIELDS and not isinstance(v, (str, type(None))):
+            # list → 拼接为字符串; 其他类型 → str()
+            if isinstance(v, list):
+                d[k] = "；".join(str(x) for x in v if x)
+            else:
+                d[k] = str(v)
+        elif isinstance(v, dict):
+            _sanitize_llm_data(v)
+        elif isinstance(v, list):
+            for item in v:
+                if isinstance(item, dict):
+                    _sanitize_llm_data(item)
+    return d
+
+
 def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str, str] | None = None) -> VCReport | None:
     """从 fixtures 实时构建 VCReport (同步, 可能耗时很长)."""
     raw = DataAggregator(
@@ -310,6 +349,11 @@ def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str,
     ).fetch(name, hints=hints)
     if raw.is_empty():
         return None
+    # 清洗 LLM 输出,防止类型错误导致分析模块崩溃
+    for attr in ("itjuzi", "crunchbase", "qichacha"):
+        val = getattr(raw, attr, None)
+        if isinstance(val, dict):
+            _sanitize_llm_data(val)
     try:
         profile = analyze_profile(raw)
     except InsufficientDataError:
@@ -339,20 +383,24 @@ def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str,
 
 
 def _build_report_bg(name: str, from_search: bool = False, hints: dict[str, str] | None = None) -> None:
-    """后台线程: 构建研报并更新状态."""
+    """后台线程: 构建研报并更新状态. 首次失败自动重试一次(LLM 缓存命中后通常成功)."""
     import time as _time
-    try:
-        _BUILD_STATUS[name] = "running"
-        _BUILD_START[name] = _time.time()
-        report = _build_report_sync(name, from_search=from_search, hints=hints)
-        if report is None:
-            _BUILD_STATUS[name] = "error"
-            _BUILD_ERROR[name] = "Ollama 返回空结果 — 模型可能未正确加载,或公司名无法识别"
-        else:
+    _BUILD_STATUS[name] = "running"
+    _BUILD_START[name] = _time.time()
+    last_err = ""
+    for attempt in range(2):
+        try:
+            report = _build_report_sync(name, from_search=from_search, hints=hints)
+            if report is None:
+                last_err = "Ollama 返回空结果 — 模型可能未正确加载,或公司名无法识别"
+                continue
             _BUILD_STATUS[name] = "done"
-    except Exception as e:
-        _BUILD_STATUS[name] = "error"
-        _BUILD_ERROR[name] = str(e)
+            return
+        except Exception as e:
+            import traceback
+            last_err = f"{e}\n{traceback.format_exc()}"
+    _BUILD_STATUS[name] = "error"
+    _BUILD_ERROR[name] = last_err
 
 
 def _build_report(name: str, *, from_search: bool = False, hints: dict[str, str] | None = None) -> VCReport | None:
@@ -724,6 +772,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Location", redirect_to)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
 
@@ -733,7 +782,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=8800)
+    parser.add_argument("--port", type=int, default=8801)
     parser.add_argument("--no-browser", action="store_true")
     args = parser.parse_args()
 
