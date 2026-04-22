@@ -194,6 +194,21 @@ STYLE = """
     padding: .8em 1em; border-radius: 8px; margin: 1.5em 0;
   }
 
+  /* 搜索记录操作按钮 */
+  .card-actions { margin-top: .6em; display: flex; gap: .4em; }
+  .card-actions button {
+    border: 1px solid #d0d7de; background: #f6f8fa; color: #57606a;
+    padding: 2px 10px; border-radius: 6px; font-size: .75em; cursor: pointer;
+    transition: all .15s;
+  }
+  .card-actions button:hover { background: #eaeef2; color: #24292f; }
+  .card-actions button.btn-del { border-color: #cf222e44; color: #cf222e; }
+  .card-actions button.btn-del:hover { background: #ffebe9; border-color: #cf222e; }
+  .rename-input {
+    border: 1px solid #0366d6; border-radius: 6px; padding: 2px 8px;
+    font-size: .95em; width: 70%; outline: none;
+  }
+
   @media (prefers-color-scheme: dark) {
     body { background: #0d1117; color: #c9d1d9; }
     h1, h2, h3 { color: #f0f6fc; }
@@ -206,6 +221,10 @@ STYLE = """
     abbr { text-decoration-color: #58a6ff; }
     .badge.industry { background: #30363d; color: #c9d1d9; }
     .mermaid { background: #161b22; border-color: #30363d; }
+    .card-actions button { background: #21262d; border-color: #30363d; color: #8b949e; }
+    .card-actions button:hover { background: #30363d; color: #c9d1d9; }
+    .card-actions button.btn-del:hover { background: #3d1418; color: #f85149; border-color: #f85149; }
+    .rename-input { background: #0d1117; color: #c9d1d9; border-color: #58a6ff; }
   }
 </style>
 """
@@ -274,6 +293,52 @@ def _record_search(name: str) -> None:
     history.insert(0, {"name": name, "timestamp": datetime.utcnow().isoformat(timespec="seconds")})
     _SEARCH_HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     _SEARCH_HISTORY_FILE.write_text(_json.dumps(history, ensure_ascii=False, indent=2), "utf-8")
+
+
+def _delete_search_history_entry(name: str) -> bool:
+    """删除指定公司的搜索记录,同时清除内存缓存. 返回是否有实际删除."""
+    history = _load_search_history()
+    before = len(history)
+    history = [e for e in history if e.get("name") != name]
+    if len(history) == before:
+        return False
+    _SEARCH_HISTORY_FILE.write_text(_json.dumps(history, ensure_ascii=False, indent=2), "utf-8")
+    _REPORT_CACHE.pop(name, None)
+    _BUILD_STATUS.pop(name, None)
+    _BUILD_ERROR.pop(name, None)
+    _BUILD_START.pop(name, None)
+    return True
+
+
+def _rename_search_history_entry(old_name: str, new_name: str) -> bool:
+    """重命名搜索记录. 返回是否成功."""
+    new_name = new_name.strip()
+    if not new_name or new_name == old_name:
+        return False
+    history = _load_search_history()
+    found = False
+    for entry in history:
+        if entry.get("name") == old_name:
+            entry["name"] = new_name
+            found = True
+            break
+    if not found:
+        return False
+    # 去重: 如果新名字已存在则合并(删掉旧的同名记录)
+    seen: set[str] = set()
+    deduped = []
+    for e in history:
+        if e["name"] not in seen:
+            seen.add(e["name"])
+            deduped.append(e)
+    _SEARCH_HISTORY_FILE.write_text(_json.dumps(deduped, ensure_ascii=False, indent=2), "utf-8")
+    # 迁移内存缓存
+    if old_name in _REPORT_CACHE:
+        _REPORT_CACHE[new_name] = _REPORT_CACHE.pop(old_name)
+    _BUILD_STATUS.pop(old_name, None)
+    _BUILD_ERROR.pop(old_name, None)
+    _BUILD_START.pop(old_name, None)
+    return True
 
 
 # ──────────────────────────── 研报生成 (内存) ────────────────────────────
@@ -497,7 +562,13 @@ def _render_search_history_section() -> str:
     cards = []
     for entry in history:
         name = entry["name"]
+        name_esc = html.escape(name)
+        name_js = html.escape(_json.dumps(name, ensure_ascii=False), quote=True)
         ts = entry.get("timestamp", "")[:16].replace("T", " ")
+        actions = f"""<div class="card-actions">
+    <button onclick="renameEntry({name_js})">编辑</button>
+    <button class="btn-del" onclick="deleteEntry({name_js})">删除</button>
+  </div>"""
         report = _REPORT_CACHE.get(name)
         if report:
             verdict = report.recommendation.verdict
@@ -508,9 +579,9 @@ def _render_search_history_section() -> str:
             valuation_h = report.funding.latest_valuation_usd
             val_text = f"${int(valuation_h):,}" if valuation_h else "估值未披露"
             cards.append(
-                f"""<div class="card">
-  <a class="title" href="/report/{html.escape(name)}">🔍 {html.escape(name)}</a>
-  <div class="meta">{html.escape(one_liner)}…</div>
+                f"""<div class="card" id="card-{name_esc}">
+  <a class="title" href="/report/{name_esc}">{name_esc}</a>
+  <div class="meta">{html.escape(one_liner)}</div>
   <div class="meta">📈 {rounds_n} 轮 · 最新估值 {val_text}</div>
   <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
   <div class="badges">
@@ -519,28 +590,57 @@ def _render_search_history_section() -> str:
     <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
     <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
   </div>
+  {actions}
 </div>"""
             )
         else:
             # 报告不在内存缓存中(服务重启后),显示简化卡片
             cards.append(
-                f"""<div class="card">
-  <a class="title" href="/report/{html.escape(name)}?from=search">🔍 {html.escape(name)}</a>
+                f"""<div class="card" id="card-{name_esc}">
+  <a class="title" href="/report/{name_esc}?from=search">{name_esc}</a>
   <div class="meta" style="color:#8b949e">点击重新生成研报 (需 1-2 分钟)</div>
   <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
   <div class="badges">
     <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
   </div>
+  {actions}
 </div>"""
             )
 
     grid = f"<div class='grid'>{''.join(cards)}</div>"
+    js = """
+<script>
+function deleteEntry(name) {
+  if (!confirm('确定删除「' + name + '」的搜索记录？')) return;
+  fetch('/api/history/delete', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({name: name})
+  }).then(r => r.json()).then(d => {
+    if (d.ok) location.reload();
+    else alert('删除失败: ' + (d.error || '未知错误'));
+  });
+}
+function renameEntry(oldName) {
+  var newName = prompt('编辑公司名称:', oldName);
+  if (!newName || newName.trim() === oldName) return;
+  fetch('/api/history/rename', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({old_name: oldName, new_name: newName.trim()})
+  }).then(r => r.json()).then(d => {
+    if (d.ok) location.reload();
+    else alert('编辑失败: ' + (d.error || '未知错误'));
+  });
+}
+</script>"""
     return f"""
 <h2>🔍 搜索记录 ({len(cards)})</h2>
 <p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
   通过搜索框生成的研报记录,数据由本地 Qwen3 推断,仅供参考。
 </p>
 {grid}
+{js}
 """
 
 
@@ -773,6 +873,48 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_POST(self) -> None:
+        path = unquote(self.path)
+        content_len = int(self.headers.get("Content-Length", 0))
+        raw = self.rfile.read(content_len) if content_len else b""
+
+        if path == "/api/history/delete":
+            try:
+                data = _json.loads(raw)
+                name = data.get("name", "").strip()
+                if not name:
+                    resp = {"ok": False, "error": "缺少 name 参数"}
+                elif _delete_search_history_entry(name):
+                    resp = {"ok": True}
+                else:
+                    resp = {"ok": False, "error": "未找到该记录"}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        elif path == "/api/history/rename":
+            try:
+                data = _json.loads(raw)
+                old = data.get("old_name", "").strip()
+                new = data.get("new_name", "").strip()
+                if not old or not new:
+                    resp = {"ok": False, "error": "缺少 old_name 或 new_name 参数"}
+                elif _rename_search_history_entry(old, new):
+                    resp = {"ok": True}
+                else:
+                    resp = {"ok": False, "error": "未找到该记录或名称未变"}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        else:
+            resp = {"ok": False, "error": "未知接口"}
+
+        body = _json.dumps(resp, ensure_ascii=False).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 

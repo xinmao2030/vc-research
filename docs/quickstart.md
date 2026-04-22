@@ -34,7 +34,7 @@ pip install -e .
 vc-research list-examples
 ```
 
-你会看到六家 2025 IPO 标杆案例: **影石创新 / 澜起科技 / 银诺医药 / 比贝特医药 / 汉朔科技 / 强一股份**。
+你会看到六家 2025 IPO 标杆案例: **影石创新 / 澜起科技 / 银诺医药 / 必贝特医药 / 汉朔科技 / 强一股份**。
 
 任选一家生成研报:
 
@@ -84,7 +84,7 @@ vc-research analyze "影石创新" -o 影石.md
 ### 导出 PDF
 
 ```bash
-vc-research analyze "比贝特医药" -o 比贝特.md --pdf
+vc-research analyze "必贝特医药" -o 必贝特.md --pdf
 ```
 
 系统依赖缺失会自动降级到 `.html`,浏览器"打印为 PDF"即可。

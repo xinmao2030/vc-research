@@ -62,7 +62,7 @@
 - **XSS 修复**: `renderer._sanitize_html` 之前允许 `href="javascript:..."` / `data:text/html` / `vbscript:` URL scheme 通过,v0.1.13 新增 `_DANGEROUS_URL_ATTRS` 正则剥离 `href/src/action/formaction/xlink:href/background/poster` 属性里的危险 scheme (7 组新测试覆盖大小写混淆/单双引号/data URI/vbscript)
 
 ### Fixed — public repo 首日门面修缮
-- `docs/quickstart.md` 死示例:`字节跳动/商汤科技/蔚来` → `影石创新/银诺医药/比贝特医药` (v0.1.11 已替换 fixture,quickstart 未同步,新用户照做会 FileNotFoundError)
+- `docs/quickstart.md` 死示例:`字节跳动/商汤科技/蔚来` → `影石创新/银诺医药/必贝特医药` (v0.1.11 已替换 fixture,quickstart 未同步,新用户照做会 FileNotFoundError)
 - `requirements.lock` L72 版本漂移:`vc-research==0.1.0` → `0.1.13`
 - quickstart 新增 `vc-research history` 命令指引 (v0.1.12 已实现但入口文档缺失)
 
@@ -101,7 +101,7 @@
 | 影石创新 (Insta360) | 消费电子 · 全景相机 | 2025-06 科创板 | 688775.SH | 观望 |
 | 澜起科技 (Montage) | 半导体 · 内存接口芯片 | 2019-07 科创板 + 2026-01 A+H | 688008.SH / 2827.HK | 观望 |
 | 银诺医药 (Innogen) | 医药 · GLP-1 长效 | 2025-08 港股 18A | 2591.HK | 推荐 |
-| 比贝特医药 (BeBetter) | 医药 · HDAC 小分子 | 2025-10 科创板 | 688759.SH | 推荐 |
+| 必贝特医药 (BeBetter) | 医药 · HDAC 小分子 | 2025-10 科创板 | 688759.SH | 推荐 |
 | 汉朔科技 (Hanshow) | 硬件 · 电子价签 ESL | 2025-03 创业板 | 301275.SZ | 回避 |
 | 强一股份 (Maxone) | 半导体 · MEMS 探针卡 | 2025-12 科创板 | 688809.SH | 回避 |
 

@@ -224,7 +224,7 @@ BENCHMARKS = {
         "overall_risk": "high",  # GLP-1 红海竞争 + 单品依赖
         "stage": FundingStage.IPO,
     },
-    "比贝特医药": {
+    "必贝特医药": {
         "rounds": 3,
         "latest_valuation_usd": Decimal("1970000000"),
         "verdict": "参投",

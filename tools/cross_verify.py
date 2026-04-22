@@ -160,7 +160,7 @@ RULES: dict[str, list[VerifyRule]] = {
             lambda d: d["itjuzi"].get("sub_industry", ""),
         ),
     ],
-    "比贝特医药": [
+    "必贝特医药": [
         VerifyRule(
             "钱长庚_founder",
             "https://www.bebettermed.com/",

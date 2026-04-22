@@ -12,7 +12,7 @@
   ],
   "itjuzi": {
     "legal_name": "北京先通国际医药科技股份有限公司 (Sinotau Pharmaceutical Group)",
-    "founded_date": "2005-03-01",
+    "founded_date": "2004-12-01",
     "headquarters": "北京",
     "region": "中国",
     "industry": "医疗健康",
@@ -39,7 +39,7 @@
       {
         "name": "欧韦宁® 氟[18F]贝他苯注射液",
         "description": "中国首款获NMPA批准的Aβ-PET显像剂(2023年9月获批)，用于阿尔茨海默病早期精准诊断，已进入商业化",
-        "revenue_pct": 0.85
+        "revenue_pct": 1.0
       },
       {
         "name": "XTR008 (68Ga-FAPI肿瘤靶向诊断)",

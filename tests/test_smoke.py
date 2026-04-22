@@ -21,7 +21,7 @@ from vc_research.report import render_markdown
 from vc_research.schema import VCReport
 
 
-CASES = ["影石创新", "澜起科技", "银诺医药", "比贝特医药", "汉朔科技", "强一股份"]
+CASES = ["影石创新", "澜起科技", "银诺医药", "必贝特医药", "汉朔科技", "强一股份"]
 
 
 @pytest.mark.parametrize("company", CASES)

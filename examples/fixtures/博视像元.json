@@ -38,27 +38,27 @@
       {
         "name": "TDI线阵相机",
         "description": "时间延迟积分(TDI)线阵相机，面向半导体前道晶圆检测，拥有业界最高速度和性能，可突破进口垄断；支持DUV波段",
-        "revenue_pct": 35
+        "revenue_pct": 0.35
       },
       {
         "name": "CoaXPress高速相机",
         "description": "全球最小CXP12高速相机，业界最高速180 Gbps传输相机，面向半导体封装及高速检测场景",
-        "revenue_pct": 25
+        "revenue_pct": 0.25
       },
       {
         "name": "结构光3D相机",
         "description": "DLP工业投影与结构光3D智能相机，用于半导体封装检测、电子元器件3D测量，打破日系企业在该细分领域垄断",
-        "revenue_pct": 20
+        "revenue_pct": 0.20
       },
       {
         "name": "高端2D工业相机",
         "description": "首款国产量产4百万像素Pixel Shift相机，高像素移位相机打破国际垄断，面向消费电子、汽车、新能源等检测",
-        "revenue_pct": 12
+        "revenue_pct": 0.12
       },
       {
         "name": "SWIR短波红外线阵相机",
         "description": "2K SWIR短波红外线阵相机，用于半导体、锂电、食品等特殊波段检测",
-        "revenue_pct": 8
+        "revenue_pct": 0.08
       }
     ],
     "rounds": [

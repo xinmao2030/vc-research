@@ -393,7 +393,7 @@ echo -e "  ${CYAN}vcr list-examples${NC}                    # 查看标杆案例
 echo -e "  ${CYAN}vcr-dashboard${NC}                        # 终端启动 Dashboard"
 echo ""
 echo -e "  ${BOLD}6 家内置标杆企业（秒出报告,无需联网）:${NC}"
-echo -e "  影石创新 | 澜起科技 | 银诺医药 | 比贝特医药 | 汉朔科技 | 强一股份"
+echo -e "  影石创新 | 澜起科技 | 银诺医药 | 必贝特医药 | 汉朔科技 | 强一股份"
 echo ""
 echo -e "  ${BOLD}任意企业（需 Ollama 运行,首次约 2 分钟）:${NC}"
 echo -e "  vcr analyze \"企业名\" --live"

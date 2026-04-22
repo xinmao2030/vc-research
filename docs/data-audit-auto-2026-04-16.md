@@ -24,7 +24,7 @@
 | 🟢 | `itjuzi.headquarters(深圳)` | 深圳 | Shenzhen | [Insta360](https://en.wikipedia.org/wiki/Insta360) |
 | 🔴 | `刘靖康_南大_founder` | 1991 年生,广东中山人,南京大学软件学院 2014 届; | JK Liu | [Insta360](https://en.wikipedia.org/wiki/Insta360) |
 
-## 比贝特医药
+## 必贝特医药
 
 | 级别 | 字段 | fixture | 权威源 | 源 URL |
 |---|---|---|---|---|
