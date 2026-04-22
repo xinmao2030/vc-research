@@ -17,7 +17,7 @@ success() { echo -e "${GREEN}✓${NC}  $*"; }
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERSION=$(grep '__version__' "$PROJECT_DIR/src/vc_research/__init__.py" | cut -d'"' -f2)
-DMG_NAME="VC-Research-${VERSION}-Installer"
+DMG_NAME="VC-Research-${VERSION}-v11-Installer"
 BUILD_DIR="$PROJECT_DIR/dist/dmg-staging"
 DMG_PATH="$PROJECT_DIR/dist/${DMG_NAME}.dmg"
 

@@ -65,7 +65,7 @@ step 1 "复制源码"
 
 if [[ -n "$SOURCE_DIR" && -d "$SOURCE_DIR/src/vc_research" ]]; then
     mkdir -p "$INSTALL_DIR"
-    rsync -a --exclude='.git' --exclude='.venv' --exclude='__pycache__' \
+    rsync -a --delete --exclude='.git' --exclude='.venv' --exclude='__pycache__' --exclude='.env' \
           "$SOURCE_DIR/" "$INSTALL_DIR/"
     success "源码已复制到 $INSTALL_DIR"
 else

@@ -21,7 +21,7 @@ on run
 
     -- 杀掉旧 Dashboard 进程(确保加载最新代码)
     try
-        do shell script "lsof -ti:8800 2>/dev/null | xargs kill 2>/dev/null; true"
+        do shell script "lsof -ti:8801 2>/dev/null | xargs kill 2>/dev/null; true"
         delay 1
     end try
 
@@ -43,7 +43,7 @@ on run
     repeat 20 times
         delay 0.5
         try
-            set chk to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8800 2>/dev/null || echo 000"
+            set chk to do shell script "curl -s -o /dev/null -w '%{http_code}' --max-time 1 http://localhost:8801 2>/dev/null || echo 000"
             if chk is "200" then
                 set dashReady to true
                 exit repeat
@@ -51,10 +51,10 @@ on run
         end try
     end repeat
 
-    open location "http://localhost:8800"
+    open location "http://localhost:8801"
 
     if dashReady then
-        display notification "Dashboard running at localhost:8800" with title "VC Research"
+        display notification "Dashboard running at localhost:8801" with title "VC Research"
     end if
 end run
 APPLESCRIPT_DONE
