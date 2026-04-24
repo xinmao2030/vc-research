@@ -43,12 +43,17 @@ def analyze(
         None, "--fixtures", help="覆盖默认 fixtures 目录"
     ),
     use_llm: bool = typer.Option(
-        False, "--llm", help="启用 Claude 推理层增强 thesis (需 ANTHROPIC_API_KEY)"
+        False, "--llm", help="启用 LLM 推理层增强 thesis"
     ),
     live: bool = typer.Option(
         False,
         "--live",
-        help="未命中 fixtures 时用本地 Qwen3 (Ollama) 实时推断任意公司",
+        help="未命中 fixtures 时用 LLM 实时推断任意公司",
+    ),
+    model: str = typer.Option(
+        "auto",
+        "--model",
+        help="LLM 模型: claude/deepseek/gpt4o/kimi/perplexity/ollama/auto",
     ),
     pdf: bool = typer.Option(False, "--pdf", help="同时生成 PDF"),
 ) -> None:
@@ -62,14 +67,28 @@ def analyze(
     quest = QuestProgress.load(company)
     console.print(f"[magenta]🎮 闯关进度:[/magenta] {quest.status_bar()}")
 
+    # 获取 LLM provider (如果需要)
+    llm_provider = None
+    if use_llm or (live and model != "ollama"):
+        try:
+            from .llm import get_provider
+            llm_provider = get_provider(name=model if model != "auto" else None)
+            console.print(
+                f"[cyan]🤖 LLM: {llm_provider.name} ({llm_provider.model_id})[/cyan]"
+            )
+        except Exception as e:
+            console.print(f"[yellow]⚠️  LLM provider 加载失败: {e}[/yellow]")
+
     agg = DataAggregator(
         use_fixtures=True,
         fixtures_dir=str(fixtures_dir) if fixtures_dir else None,
         enable_llm_research=live,
+        llm_provider=llm_provider if live else None,
     )
     if live:
+        provider_name = llm_provider.name if llm_provider else "Ollama/Qwen3"
         console.print(
-            "[cyan]🤖 Live 模式:未命中 fixtures 将用本地 Qwen3 推断 "
+            f"[cyan]🤖 Live 模式:未命中 fixtures 将用 {provider_name} 推断 "
             "(首次约 60-120 秒,结果会缓存 30 天)[/cyan]"
         )
     raw = agg.fetch(company)
@@ -134,11 +153,12 @@ def analyze(
 
     # LLM 增强 (可选) — 失败时优雅降级到 base 逻辑,不污染 thesis
     if use_llm:
-        console.print("[cyan]🤖 Claude Opus 4.6 推理增强...[/cyan]")
+        provider_label = llm_provider.name if llm_provider else "auto"
+        console.print(f"[cyan]🤖 LLM 推理增强 ({provider_label})...[/cyan]")
         try:
-            from .llm import ClaudeAnalyzer, LLMEnhancementError
+            from .llm import ThesisEnhancer, LLMEnhancementError
 
-            analyzer = ClaudeAnalyzer()
+            analyzer = ThesisEnhancer(provider=llm_provider)
             enhanced = analyzer.enhance_thesis(
                 profile.model_dump(mode="python"),
                 funding.model_dump(mode="python"),
@@ -205,6 +225,27 @@ def analyze(
             console.print(f"📄 PDF: [cyan]{pdf_path}[/cyan]")
         except Exception as e:
             console.print(f"[yellow]⚠️  PDF 渲染失败: {e}[/yellow]")
+
+
+@app.command()
+def list_models() -> None:
+    """列出所有可用的 LLM 模型 provider."""
+    from rich.table import Table
+    from .llm import list_providers
+
+    providers = list_providers()
+    table = Table(title="🤖 LLM Provider 列表")
+    table.add_column("Provider", style="cyan")
+    table.add_column("模型", style="white")
+    table.add_column("状态", no_wrap=True)
+    for p in providers:
+        status = "[green]✓ 可用[/green]" if p["available"] else "[dim]✗ 未配置[/dim]"
+        table.add_row(p["name"], str(p["model"]), status)
+    console.print(table)
+    console.print(
+        "[dim]配置方式: 设置对应环境变量 (ANTHROPIC_API_KEY / DEEPSEEK_API_KEY / "
+        "OPENAI_API_KEY / KIMI_API_KEY / PERPLEXITY_API_KEY) 或启动 ollama serve[/dim]"
+    )
 
 
 @app.command()

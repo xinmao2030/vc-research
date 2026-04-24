@@ -46,12 +46,14 @@ class DataAggregator:
         sources: list[DataSource] | None = None,
         enable_llm_research: bool | None = None,
         enable_sec_edgar: bool = False,
+        llm_provider: Any = None,
     ):
         self.use_fixtures = use_fixtures
         self.fixtures_dir = fixtures_dir
         self._custom_sources = sources
         self._sources: list[DataSource] | None = None
         self.enable_sec_edgar = enable_sec_edgar
+        self.llm_provider = llm_provider
         # 控制本地 LLM 兜底:默认关闭(保证测试确定性),dashboard/CLI 显式开启
         if enable_llm_research is None:
             self.enable_llm_research = os.getenv(
@@ -81,11 +83,11 @@ class DataAggregator:
 
             chain.append(SecEdgarSource())
 
-        # 最终兜底:本地 LLM(任意公司名都能产出)
+        # 最终兜底:LLM 研究员(任意公司名都能产出)
         if self.enable_llm_research:
-            from .ollama_researcher import OllamaResearcher
+            from .ollama_researcher import LLMResearcher
 
-            chain.append(OllamaResearcher())
+            chain.append(LLMResearcher(provider=self.llm_provider))
         return chain
 
     def fetch(self, company_name: str, *, hints: dict[str, str] | None = None) -> RawCompanyData:
@@ -97,9 +99,9 @@ class DataAggregator:
             # 已有命中就短路,省掉本地 LLM 的 30-60 秒
             if not data.is_empty():
                 break
-            # OllamaResearcher 支持 hints 参数(股票代码提示)
-            from .ollama_researcher import OllamaResearcher
-            if hints and isinstance(src, OllamaResearcher):
+            # LLMResearcher 支持 hints 参数(股票代码提示)
+            from .ollama_researcher import LLMResearcher
+            if hints and isinstance(src, LLMResearcher):
                 payload = src.fetch(company_name, hints=hints)
             else:
                 payload = src.fetch(company_name)

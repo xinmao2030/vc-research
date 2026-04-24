@@ -1,8 +1,10 @@
-"""Ollama 本地 LLM 研究员 — 任意公司名 → Qwen3 生成结构化 RawCompanyData.
+"""LLM 研究员 — 任意公司名 → 大模型生成结构化 RawCompanyData.
 
-无需外部 API key。默认连 http://localhost:11434,模型 qwen3:8b (可通过 OLLAMA_MODEL 环境变量切换)。
-
+支持任意 LLMProvider (Ollama/DeepSeek/GPT-4o/Kimi 等)。
+默认使用 Ollama 本地 Qwen3，无需外部 API key。
 产出物直接 routing 到 raw.itjuzi,模块无需改动。
+
+向后兼容: OllamaResearcher 作为 LLMResearcher 的别名保留。
 """
 
 from __future__ import annotations
@@ -200,20 +202,26 @@ _PROMPT_PART2 = """你是一位资深创投分析师。我已有公司 "{company
 要求: moat_analysis 7维度全部出现, competitors_detailed 至少 3 家, sub_segments 至少 3 条。"""
 
 
-class OllamaResearcher:
-    """用本地 Ollama 运行的大模型做"任意公司结构化抽取"。"""
+class LLMResearcher:
+    """用任意 LLMProvider 做"任意公司结构化抽取"。
+
+    默认使用 OllamaProvider (本地 Qwen3)。
+    可传入 DeepSeek/GPT-4o/Kimi 等 provider 做云端推断。
+    """
 
     name = "itjuzi"  # 路由目标: payload 填入 raw.itjuzi,复用现有分析模块
-    provenance = "ollama/qwen3:8b"
 
     def __init__(
         self,
+        provider=None,  # LLMProvider | None — 不加类型注解避免循环导入
         model: str | None = None,
         base_url: str | None = None,
         timeout_s: int = DEFAULT_TIMEOUT_S,
         cache_dir: Path | None = None,
         cache_ttl_days: int | None = None,
     ):
+        self._provider = provider
+        # 向后兼容: 无 provider 时保持原有 Ollama 行为
         self.model = model or os.getenv("OLLAMA_MODEL", DEFAULT_MODEL)
         self.base_url = (
             base_url or os.getenv("OLLAMA_URL", DEFAULT_URL)
@@ -227,6 +235,12 @@ class OllamaResearcher:
             self.cache_ttl_days = int(ttl_env)
         else:
             self.cache_ttl_days = DEFAULT_CACHE_TTL_DAYS
+
+    @property
+    def provenance(self) -> str:
+        if self._provider:
+            return f"{self._provider.name}/{self._provider.model_id}"
+        return f"ollama/{self.model}"
 
     _SAFE_EXCHANGE = re.compile(r'^[A-Z]{2,10}$')
     _SAFE_CODE = re.compile(r'^\d{4,6}$')
@@ -263,7 +277,7 @@ class OllamaResearcher:
         # ── Part 1: 企业基础信息 ──
         logger.info("Part 1/2: 企业基础信息 — %s", company_name)
         prompt1 = _PROMPT_PART1.format(company=company_name, stock_hint=stock_hint) + "\n/no_think"
-        raw1 = self._call_ollama(prompt1)
+        raw1 = self._call_llm(prompt1)
         if not raw1:
             return None
         data = self._parse_json(raw1)
@@ -281,7 +295,7 @@ class OllamaResearcher:
             industry=data.get("industry", "未知"),
             stage=data.get("stage", "未知"),
         ) + "\n/no_think"
-        raw2 = self._call_ollama(prompt2)
+        raw2 = self._call_llm(prompt2)
         if raw2:
             part2 = self._parse_json(raw2)
             if part2 and isinstance(part2, dict):
@@ -375,7 +389,20 @@ class OllamaResearcher:
             r["investor_details"] = details
 
     # ──────────────────────────── internals ────────────────────────────
-    def _call_ollama(self, prompt: str) -> str | None:
+    def _call_llm(self, prompt: str) -> str | None:
+        """调用 LLM — 优先使用 provider，兜底走原生 Ollama HTTP."""
+        if self._provider:
+            try:
+                return self._provider.complete("", prompt, max_tokens=8192)
+            except Exception as e:
+                logger.warning("LLM provider 调用失败: %s", e)
+                return None
+
+        # 原生 Ollama HTTP 调用 (向后兼容)
+        return self._call_ollama_raw(prompt)
+
+    def _call_ollama_raw(self, prompt: str) -> str | None:
+        """原生 Ollama /api/generate 调用."""
         body = json.dumps(
             {
                 "model": self.model,
@@ -420,3 +447,7 @@ class OllamaResearcher:
         except json.JSONDecodeError as e:
             logger.warning("LLM JSON 解析失败: %s", e)
             return None
+
+
+# 向后兼容别名
+OllamaResearcher = LLMResearcher

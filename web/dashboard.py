@@ -687,7 +687,7 @@ def _index() -> bytes:
   <a href="/glossary">术语不懂?查术语表</a>
 </p>
 
-<h2>🔎 查任意公司</h2>
+<h2>🔎 查一查</h2>
 <form action="/search" method="get" style="display:flex;gap:.5em;margin:1em 0;max-width:520px"
       onsubmit="document.getElementById('spinner').style.display='block'">
   <input type="text" name="q" placeholder="公司名 + 股票代码 (如: 群核科技 港股00068、字节跳动)" required
