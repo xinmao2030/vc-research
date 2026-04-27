@@ -443,13 +443,111 @@ class Recommendation(BaseModel):
 
 
 # ────────────────────────────────────────────────────────────
+# 模块 8: VC 机构画像 (竞品 VC 分析)
+# ────────────────────────────────────────────────────────────
+class FundStats(BaseModel):
+    """基金关键统计."""
+
+    vintage_year: Optional[int] = Field(default=None, description="基金成立年份")
+    fund_size_usd: Optional[Decimal] = Field(default=None, description="基金规模 (USD)")
+    deployed_pct: Optional[float] = Field(
+        default=None, description="已投比例 0-1"
+    )
+    irr_net: Optional[float] = Field(default=None, description="净 IRR")
+    tvpi: Optional[float] = Field(default=None, description="Total Value to Paid-In")
+    dpi: Optional[float] = Field(default=None, description="Distributions to Paid-In")
+
+
+class PortfolioCompany(BaseModel):
+    """被投企业摘要."""
+
+    name: str
+    industry: Optional[str] = None
+    stage_at_entry: Optional[str] = Field(default=None, description="进入时轮次")
+    entry_year: Optional[int] = None
+    status: Optional[str] = Field(
+        default=None, description="active / exited_ipo / exited_ma / written_off"
+    )
+    valuation_at_entry_usd: Optional[Decimal] = None
+    current_valuation_usd: Optional[Decimal] = None
+    moic: Optional[float] = Field(default=None, description="Multiple on Invested Capital")
+
+
+class VCFundProfile(BaseModel):
+    """单个 VC 机构的完整画像."""
+
+    name: str
+    legal_name: Optional[str] = None
+    hq: Optional[str] = Field(default=None, description="总部城市")
+    founded_year: Optional[int] = None
+    website: Optional[str] = None
+    type: str = Field(
+        default="VC",
+        description="VC / PE / CVC / 政府引导基金 / 家族办公室 / 主权基金",
+    )
+    aum_usd: Optional[Decimal] = Field(default=None, description="总管理规模")
+    team_size: Optional[int] = None
+    key_partners: list[str] = Field(default_factory=list, description="核心合伙人")
+    sector_focus: list[str] = Field(default_factory=list, description="重点赛道")
+    stage_focus: list[str] = Field(
+        default_factory=list, description="偏好轮次: seed / A / B / growth"
+    )
+    geo_focus: list[str] = Field(
+        default_factory=list, description="地域偏好: 中国 / 美国 / 东南亚"
+    )
+    funds: list[FundStats] = Field(default_factory=list, description="旗下基金")
+    portfolio: list[PortfolioCompany] = Field(
+        default_factory=list, description="代表被投企业"
+    )
+    notable_exits: list[str] = Field(
+        default_factory=list, description="标志性退出案例"
+    )
+    investment_style: Optional[str] = Field(
+        default=None,
+        description="投资风格: 领投型 / 跟投型 / 孵化型 / 产业协同型",
+    )
+    co_invest_frequent: list[str] = Field(
+        default_factory=list, description="经常联合投资的机构"
+    )
+    one_liner: str = Field(default="", description="一句话介绍")
+
+
+class VCLandscape(BaseModel):
+    """目标公司相关的 VC 格局分析 — 从融资轮次中提取投资方画像并做竞品分析."""
+
+    target_company: str = Field(description="被分析的目标公司名")
+    investors_involved: list[VCFundProfile] = Field(
+        default_factory=list, description="参与投资的 VC 机构画像"
+    )
+    peer_investors: list[VCFundProfile] = Field(
+        default_factory=list,
+        description="同赛道活跃但未参投的竞品 VC (便于 BD)",
+    )
+    investor_quality_score: Optional[float] = Field(
+        default=None,
+        description="0-10 投资方阵容质量综合评分",
+    )
+    investor_quality_notes: str = Field(
+        default="", description="投资方阵容质量分析叙述"
+    )
+    syndicate_pattern: Optional[str] = Field(
+        default=None,
+        description="投资组合模式: 分散型 / 集中型 / 战投主导 / VC 主导",
+    )
+    follow_on_likelihood: Optional[str] = Field(
+        default=None,
+        description="现有投资方追加投资的可能性评估",
+    )
+
+
+# ────────────────────────────────────────────────────────────
 # 顶层聚合: 完整研报
 # ────────────────────────────────────────────────────────────
 class VCReport(BaseModel):
     """完整创投研报 — CLI 输出的核心对象."""
 
     generated_at: date
-    analyst: str = "vc-research v0.1.16"
+    analyst: str = "vc-research v0.1.17"
     profile: CompanyProfile
     funding: FundingHistory
     thesis: InvestmentThesis
@@ -457,6 +555,9 @@ class VCReport(BaseModel):
     valuation: Valuation
     risks: RiskMatrix
     recommendation: Recommendation
+    vc_landscape: Optional[VCLandscape] = Field(
+        default=None, description="VC 机构格局分析 (--vc-analysis 启用时填充)"
+    )
     data_sources: list[str] = Field(description="引用的数据源列表")
     disclaimer: str = (
         "本报告由 vc-research 自动生成,仅供学习研究使用,不构成投资建议。"

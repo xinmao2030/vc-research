@@ -522,6 +522,39 @@ flowchart LR
 {% endfor %}
 {% endif %}
 
+{% if vc_landscape %}
+---
+
+## 🏛️ 模块 8 · VC 机构格局
+
+### 投资方阵容质量
+
+| 项目 | 内容 |
+|------|------|
+| 质量评分 | **{{ vc_landscape.investor_quality_score or 0 }}/10** &nbsp; `{{ '█' * (vc_landscape.investor_quality_score or 0)|int }}{{ '░' * (10 - (vc_landscape.investor_quality_score or 0)|int) }}` |
+| 质量分析 | {{ vc_landscape.investor_quality_notes or "—" }} |
+| 投资组合模式 | {{ vc_landscape.syndicate_pattern or "—" }} |
+| 追加投资可能性 | {{ vc_landscape.follow_on_likelihood or "—" }} |
+
+{% if vc_landscape.investors_involved %}
+### 参与投资的 VC 机构
+
+| 机构 | 类型 | 总部 | 成立 | AUM | 重点赛道 | 投资风格 |
+|------|------|------|------|-----|----------|----------|
+{% for inv in vc_landscape.investors_involved %}| **{{ inv.name }}** | {{ inv.type or "—" }} | {{ inv.hq or "—" }} | {{ inv.founded_year or "—" }} | {% if inv.aum_usd %}{{ inv.aum_usd | money_cn }}{% else %}—{% endif %} | {{ inv.sector_focus | join(" · ") or "—" }} | {{ inv.investment_style or "—" }} |
+{% endfor %}
+{% endif %}
+
+{% if vc_landscape.peer_investors %}
+### 同赛道活跃 VC (未参投)
+
+| 机构 | 类型 | 备注 |
+|------|------|------|
+{% for inv in vc_landscape.peer_investors %}| {{ inv.name }} | {{ inv.type or "VC" }} | {{ inv.one_liner or "—" }} |
+{% endfor %}
+{% endif %}
+
+{% endif %}
 ---
 
 ## 📚 数据来源

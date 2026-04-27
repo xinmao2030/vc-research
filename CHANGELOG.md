@@ -7,9 +7,36 @@
 ## [Unreleased]
 
 ### Planned
-- Phase 2: IT桔子 / Crunchbase / Tushare API 真实接入(当前仅骨架)
 - Phase 3: Claude 推理深度增强 + 向量检索对标
 - Phase 4: Next.js Web Dashboard
+
+---
+
+## [0.1.17] - 2026-04-22
+
+### Added — M2: Perplexity 实时交叉验证
+- `WebVerifier` 模块: 用 Perplexity Sonar 实时验证 fixture 关键事实
+- `VerificationReport` + `ClaimVerification`: confirmed / disputed / unverifiable 三态
+- CLI `--verify` 选项: 研报生成后交叉验证, 列出存疑条目
+- 14 个新测试 (test_web_verifier.py)
+
+### Added — M3: VC 机构格局分析
+- `VCFundProfile` + `VCLandscape` schema: VC 画像 + 投资方阵容评分 (0-10)
+- `analyze_vc_landscape()`: 从融资轮次提取投资方, 识别 50+ 头部 VC
+- 投资组合模式 (战投/集中/跟投/分散) + 追加投资可能性评估
+- CLI `--vc-analysis` + 报告模板模块 8 渲染
+
+### Added — M4: IT桔子 API 真实接入
+- `ITJuziSource` 完整实现: 搜索→详情→融资事件→标准化
+- 中文金额解析 (亿/千万/万) + 人民币→USD 转换
+
+### Added — M5: Crunchbase API v4 真实接入
+- `CrunchbaseSource` 完整实现: autocomplete→organization→cards→标准化
+- Rate limiting (500ms) + funding_type 映射 + 员工枚举解析
+
+### Changed
+- 版本号 0.1.16 → 0.1.17, 模块数 7 → 8
+- 测试 81 → 95 全通过
 
 ---
 

@@ -19,6 +19,7 @@ from .modules import (
     analyze_risks,
     analyze_thesis,
     analyze_valuation,
+    analyze_vc_landscape,
 )
 from .modules.company_profile import InsufficientDataError
 from .modules.valuation import InsufficientValuationError
@@ -56,6 +57,12 @@ def analyze(
         help="LLM 模型: claude/deepseek/gpt4o/kimi/perplexity/ollama/auto",
     ),
     pdf: bool = typer.Option(False, "--pdf", help="同时生成 PDF"),
+    verify: bool = typer.Option(
+        False, "--verify", help="用 Perplexity 实时交叉验证关键事实"
+    ),
+    vc_analysis: bool = typer.Option(
+        False, "--vc-analysis", help="生成 VC 机构格局分析 (模块 8)"
+    ),
 ) -> None:
     """分析一家企业并生成研报."""
     console.rule(f"[bold cyan]分析: {company}[/bold cyan]")
@@ -149,6 +156,18 @@ def analyze(
         "模块 7: 投资建议",
         f"— [bold]{recommendation.verdict}[/bold]",
     )
+
+    vc_landscape = None
+    if vc_analysis:
+        vc_landscape = analyze_vc_landscape(raw, funding)
+        inv_count = len(vc_landscape.investors_involved)
+        vc_score = vc_landscape.investor_quality_score or 0
+        _tick(
+            "vc_landscape",
+            "模块 8: VC 格局",
+            f"({inv_count} 家机构, 质量 {vc_score}/10)",
+        )
+
     quest.save()
 
     # LLM 增强 (可选) — 失败时优雅降级到 base 逻辑,不污染 thesis
@@ -189,6 +208,7 @@ def analyze(
         valuation=valuation,
         risks=risks,
         recommendation=recommendation,
+        vc_landscape=vc_landscape,
         data_sources=raw.sources_hit,
     )
 
@@ -225,6 +245,32 @@ def analyze(
             console.print(f"📄 PDF: [cyan]{pdf_path}[/cyan]")
         except Exception as e:
             console.print(f"[yellow]⚠️  PDF 渲染失败: {e}[/yellow]")
+
+    if verify:
+        console.print("[cyan]🔍 Perplexity 交叉验证中...[/cyan]")
+        try:
+            from .data_sources.web_verifier import WebVerifier
+
+            pplx = None
+            if llm_provider and llm_provider.name == "perplexity":
+                pplx = llm_provider
+            verifier = WebVerifier(provider=pplx)
+            vr = verifier.verify(raw)
+            if vr.disputed_count:
+                console.print(
+                    f"[yellow]⚠️  {vr.disputed_count} 条事实存疑:[/yellow]"
+                )
+                for d in vr.disputed_items():
+                    console.print(
+                        f"   [yellow]✗[/yellow] {d.claim}: "
+                        f"数据={d.source_value} → 网上={d.web_value} ({d.notes})"
+                    )
+            else:
+                console.print(
+                    f"[green]✓[/green] 交叉验证通过 ({vr.confirmed_count} 条确认)"
+                )
+        except Exception as e:
+            console.print(f"[yellow]⚠️  交叉验证失败: {e}[/yellow]")
 
 
 @app.command()

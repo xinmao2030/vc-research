@@ -31,6 +31,7 @@ from vc_research.modules import (
     analyze_risks,
     analyze_thesis,
     analyze_valuation,
+    analyze_vc_landscape,
 )
 from vc_research.modules.company_profile import InsufficientDataError
 from vc_research.report import render_markdown
@@ -429,6 +430,7 @@ def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str,
     valuation = analyze_valuation(funding, thesis, industry=profile.industry)
     risks = analyze_risks(raw, funding, thesis)
     rec = analyze_recommendation(thesis, valuation, risks, funding, profile)
+    vc_landscape = analyze_vc_landscape(raw, funding)
 
     report = VCReport(
         generated_at=date.today(),
@@ -439,6 +441,7 @@ def _build_report_sync(name: str, *, from_search: bool = False, hints: dict[str,
         valuation=valuation,
         risks=risks,
         recommendation=rec,
+        vc_landscape=vc_landscape,
         data_sources=raw.sources_hit,
     )
     _REPORT_CACHE[name] = report
@@ -578,6 +581,11 @@ def _render_search_history_section() -> str:
             rounds_n = len(report.funding.rounds)
             valuation_h = report.funding.latest_valuation_usd
             val_text = f"${int(valuation_h):,}" if valuation_h else "估值未披露"
+            vc_badge = ""
+            if report.vc_landscape and report.vc_landscape.investor_quality_score:
+                vs = report.vc_landscape.investor_quality_score
+                vn = len(report.vc_landscape.investors_involved)
+                vc_badge = f'<span class="badge" style="background:#e8d5f5;color:#6f42c1">VC {vs}/10 · {vn}家</span>'
             cards.append(
                 f"""<div class="card" id="card-{name_esc}">
   <a class="title" href="/report/{name_esc}">{name_esc}</a>
@@ -588,6 +596,7 @@ def _render_search_history_section() -> str:
     <span class="badge industry">{html.escape(industry_str)}</span>
     <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
     <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
+    {vc_badge}
     <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
   </div>
   {actions}
@@ -661,6 +670,11 @@ def _index() -> bytes:
         val_text = (
             f"${int(valuation_h):,}" if valuation_h else "估值未披露"
         )
+        vc_score = ""
+        if report.vc_landscape and report.vc_landscape.investor_quality_score:
+            s = report.vc_landscape.investor_quality_score
+            inv_n = len(report.vc_landscape.investors_involved)
+            vc_score = f'<span class="badge" style="background:#e8d5f5;color:#6f42c1">VC {s}/10 · {inv_n}家</span>'
         cards.append(
             f"""<div class="card">
   <a class="title" href="/report/{html.escape(name)}">📊 {html.escape(name)}</a>
@@ -670,6 +684,7 @@ def _index() -> bytes:
     <span class="badge industry">{html.escape(industry_str)}</span>
     <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
     <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
+    {vc_score}
   </div>
 </div>"""
         )
@@ -683,7 +698,7 @@ def _index() -> bytes:
     available = ", ".join(companies) if companies else "(暂无)"
     body = f"""
 <h1>📊 VC Research Dashboard</h1>
-<p>创投企业投资分析系统 · 为零基础投资者打造 · 7 层分析框架 ·
+<p>创投企业投资分析系统 · 为零基础投资者打造 · 8 层分析框架 · 多 LLM 平台 ·
   <a href="/glossary">术语不懂?查术语表</a>
 </p>
 
@@ -767,7 +782,7 @@ def _about() -> bytes:
     body = """
 <h1>ℹ️ 关于 VC Research</h1>
 <p>创投企业投资分析系统 — 为零基础投资者打造的 AI 投研助手。</p>
-<h2>7 层分析框架</h2>
+<h2>8 层分析框架</h2>
 <ol>
   <li>🏢 企业画像</li>
   <li>💰 融资轨迹</li>
@@ -776,11 +791,14 @@ def _about() -> bytes:
   <li>💎 估值分析</li>
   <li>⚠️ 风险矩阵</li>
   <li>🎯 投资建议</li>
+  <li>🏛️ VC 机构格局</li>
 </ol>
+<h2>多 LLM 平台支持</h2>
+<p>Claude · DeepSeek · GPT-4o · Kimi · Perplexity · Ollama — 一键切换,自动选择最优可用模型。</p>
 <h2>教育哲学</h2>
 <p>连接+流动 · 神经可塑性 · 游戏化 · 刻意练习 — 每份研报都在训练"投前思考框架"。</p>
 <h2>版本</h2>
-<p>v0.1.0-alpha.3 · Phase 1 骨架 + 教育层注入 + 数据源契约</p>
+<p>v0.1.17 · 8 层分析 + 多 LLM Provider + Perplexity 交叉验证 + IT桔子/Crunchbase API</p>
 """
     return _page("关于", body)
 
