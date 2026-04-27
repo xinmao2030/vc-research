@@ -1,0 +1,410 @@
+{
+  "sources_hit": [
+    "[新闻] 腾讯新闻 · 三年业绩猛增300%！张江这家芯片独角兽启动IPO (2025-01-09) <https://news.qq.com/rain/a/20250109A07IPM00>",
+    "[新闻] 腾讯新闻 · 英韧科技启动A股IPO：成立7年搬家5次快速扩张，研发人员占比70% (2024-12-20) <https://news.qq.com/rain/a/20241220A05T6300>",
+    "[新闻] 瑞财经 · 英韧科技启动A股IPO：成立7年搬家5次快速扩张，研发人员占比70% <https://m.rccaijing.com/news-7275716365783857089.html>",
+    "[新闻] 搜狐 · 三年业绩猛增300%！独角兽英韧科技启动IPO <https://www.sohu.com/a/842393136_546816>",
+    "[新闻] C114 · 【IPO一线】存储芯片厂商英韧科技拟A股IPO 已进行上市辅导备案 <https://www.c114.net.cn/chip/92189.html>",
+    "[新闻] 知乎 · 英韧科技完成数千万B轮融资 <https://zhuanlan.zhihu.com/p/392158500>",
+    "[新闻] 亿邦动力 · 半导体芯片设计公司英韧科技完成数千万人民币B+轮融资 <https://m.ebrun.com/415757.html>",
+    "[行业] CFMS闪存市场峰会 · 英韧科技：成为一家有世界影响力的存储芯片公司 (2021) <https://cfms.chinaflashmarket.com/2021/a/92>",
+    "[行业] CFMS闪存市场峰会 · PCIe 5.0蓄势待发，英韧科技连续三年营收增长100% (2023) <https://cfms.chinaflashmarket.com/2023/a/135>",
+    "[官网] InnoGrit Corporation <https://www.innogritcorp.com/>",
+    "[技术] AnandTech · Innogrit Debuts With Four NVMe SSD Controllers <https://www.anandtech.com/show/14700/innogrit-debuts-with-four-nvme-ssd-controllers>",
+    "[技术] TechPowerUp · InnoGrit Starts Mass Producing YRS820 PCIe 5.0 Controller, Based on RISC-V Architecture <https://www.techpowerup.com/320788/innogrit-starts-mass-producing-yrs820-pcie-5-0-controller-based-on-risc-v-architecture>",
+    "[技术] Tom's Hardware · New T-Force GE Pro SSD to debut at CES, hits 14 GB/s with InnoGrit IG5666 controller <https://www.tomshardware.com/pc-components/ssds/new-t-force-ge-pro-ssd-lands-at-ces-hits-14-gbps-teamgroups-latest-uses-low-power-12nm-innogrit-ig5666-controller-2400-mts-nand>",
+    "[融资聚合] Tracxn · InnoGrit - 2025 Funding Rounds & List of Investors <https://tracxn.com/d/companies/innogrit/__3sFH9jf8OZ2ozZdQxkrR5wdXt0fF1dRoaSppou8L8FM/funding-and-investors>",
+    "[融资聚合] 36氪 · 英韧科技项目信息 <https://pitchhub.36kr.com/project/1679727485948676>",
+    "[媒体] 半导体行业观察 · 英韧科技：成为一家有世界影响力的存储芯片公司 <http://www.semiinsights.com/s/electronic_components/23/43637.shtml>"
+  ],
+  "itjuzi": {
+    "legal_name": "英韧科技（上海）有限公司 (InnoGrit Corporation / INNOGRIT)",
+    "founded_date": "2017-06-01",
+    "headquarters": "上海·张江高科技园区",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "存储芯片 - SSD主控芯片（NAND Flash Controller）",
+    "business_model": "Fabless芯片设计：销售SSD主控芯片（IP授权+量产芯片）给SSD品牌厂（ADATA、TeamGroup、海康威视等）；提供SDK方案至全交钥匙FTK方案多级服务模式；兼顾消费级/企业级/工业级/汽车级存储控制器",
+    "stage": "pre_ipo",
+    "employee_count": 800,
+    "one_liner": "国产高性能SSD主控芯片领军企业，由前Marvell全球CTO吴子宁创立，产品覆盖PCIe Gen4/Gen5全线，已批量出货至海外主流SSD品牌",
+    "founders": [
+      {
+        "name": "吴子宁 (Zining Wu)",
+        "title": "联合创始人/董事长/CEO",
+        "background": "清华大学电子工程学士，斯坦福大学电气工程硕士+博士；在Marvell工作17年（1999年入职），历任SSD存储控制器研发负责人、无线互联负责人，最终晋升为纳斯达克上市公司美满电子科技(Marvell)全球首席技术官(CTO)；2017年离职创办英韧科技，带领团队从零搭建全国产SSD主控芯片研发体系",
+        "equity_pct": null
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "angel",
+        "announce_date": "2017-06-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["武岳峰科创", "追远创投", "丰元资本 (RiverHead Capital)", "中关村硅谷创投"],
+        "notes": "天使/种子轮，公司成立同期获得初始机构投资，具体金额未披露；武岳峰是专注半导体的早期VC，追远创投聚焦科技早期项目"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2017-12-07",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["武岳峰科创", "追远创投", "丰元资本 (RiverHead Capital)", "中关村硅谷创投"],
+        "notes": "A轮，2017年12月完成，投资方与天使轮重叠，具体金额未公开披露；英韧完成核心团队搭建并进入芯片研发阶段"
+      },
+      {
+        "stage": "a_plus",
+        "announce_date": "2019-08-12",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["创徒丛林", "嘉远资本 (Perpetual Capital Partners)", "大榭鹏创"],
+        "notes": "A+轮，2019年8月完成，引入新投资方，为B轮前估值背书；英韧科技IG5236(Rainier) PCIe Gen4主控芯片进入流片阶段"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2020-04-14",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["招商资本 (China Merchants Capital)", "嘉御资本 (Sky9 Capital)", "融汇资本", "朗玛峰创投", "七晟资本"],
+        "notes": "B轮，2020年上半年完成，数千万人民币；招商资本为主要战略投资方；同期Rainier IG5236量产，ADATA/Biwin完成首批设计导入"
+      },
+      {
+        "stage": "b_plus",
+        "announce_date": "2021-06-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["招银鼎洪", "国泰君安投资"],
+        "notes": "B+轮，数千万人民币；引入券商系资本为Pre-IPO做铺垫；英韧科技连续3年营收实现100%以上增长"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2022-06-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["国家集成电路产业投资基金二期 (大基金二期)", "上海集成电路产业投资基金", "中信建投资本"],
+        "notes": "C轮或战略轮，引入国家大基金二期等国家队资本；为科创板IPO构筑股东结构，具体金额未公开披露；公司获评专精特新'小巨人'企业"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2023-01-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["联通中金基金", "海望资本", "联新资本", "海鼎资本"],
+        "notes": "D轮/Pre-IPO轮，2022年末至2023年初完成；公司累计融资10余轮，投资机构超25家；2024年12月19日于上海证监局完成IPO辅导备案，保荐机构为国泰君安证券"
+      }
+    ],
+    "investor_details": {
+      "武岳峰科创": {
+        "type": "vc",
+        "hq": "上海",
+        "sector_focus": ["半导体", "集成电路", "EDA", "芯片设计"],
+        "notable_portfolio": ["英韧科技", "澜起科技", "苏州芯动科技", "睿力集成", "晶视智能"]
+      },
+      "丰元资本 (RiverHead Capital)": {
+        "type": "vc",
+        "hq": "北京/硅谷",
+        "sector_focus": ["半导体", "中美科技", "企业服务"],
+        "notable_portfolio": ["英韧科技", "Insta360", "Ampere Computing", "PingCAP"]
+      },
+      "招商资本 (China Merchants Capital)": {
+        "type": "cvc_pe",
+        "hq": "深圳",
+        "sector_focus": ["科技", "制造", "基础设施", "半导体"],
+        "notable_portfolio": ["英韧科技", "招商银行系战略投资组合"]
+      },
+      "嘉御资本 (Sky9 Capital)": {
+        "type": "vc",
+        "hq": "上海/硅谷",
+        "sector_focus": ["消费科技", "SaaS", "半导体", "出海"],
+        "notable_portfolio": ["英韧科技", "SHEIN", "Nuvei", "Keep"]
+      },
+      "国家集成电路产业投资基金二期 (大基金二期)": {
+        "type": "government_fund",
+        "hq": "北京",
+        "sector_focus": ["集成电路", "半导体制造", "EDA", "芯片设计", "封测"],
+        "notable_portfolio": ["中芯国际", "长江存储", "英韧科技", "寒武纪", "华虹半导体", "长电科技"]
+      },
+      "上海集成电路产业投资基金": {
+        "type": "government_fund",
+        "hq": "上海",
+        "sector_focus": ["集成电路", "半导体", "EDA工具"],
+        "notable_portfolio": ["英韧科技", "澜起科技", "上海华力", "盛合晶微"]
+      },
+      "中信建投资本": {
+        "type": "pe",
+        "hq": "北京",
+        "sector_focus": ["科技", "半导体", "新能源", "医疗健康"],
+        "notable_portfolio": ["英韧科技", "多家Pre-IPO科创板企业"]
+      },
+      "国泰君安投资": {
+        "type": "pe",
+        "hq": "上海",
+        "sector_focus": ["科技", "半导体", "Pre-IPO"],
+        "notable_portfolio": ["英韧科技（同时为IPO保荐机构）"]
+      },
+      "朗玛峰创投": {
+        "type": "vc",
+        "hq": "上海",
+        "sector_focus": ["半导体", "硬科技", "新能源"],
+        "notable_portfolio": ["英韧科技", "影石创新 (Insta360)"]
+      }
+    },
+    "thesis": {
+      "team_score": 9,
+      "team_notes": "吴子宁是难得的'国际顶级大厂CTO+全国产创业'组合，在Marvell主导了SSD主控、HDD控制器、无线互联等多条产品线研发；创始团队多数来自Marvell、Toshiba、Western Digital、Broadcom、Cisco等全球存储行业高管，工程基因极强；研发人员占员工总数70%，截至2024年共申请数百项专利",
+      "market": {
+        "tam_usd": 25000000000,
+        "sam_usd": 8000000000,
+        "som_usd": 800000000,
+        "growth_rate": 0.13
+      },
+      "moat": "前Marvell CTO领衔的顶尖研发团队 + PCIe Gen4/Gen5全产品线量产能力 + 率先量产基于RISC-V架构的PCIe 5.0主控(YRS820) + SDK→FTK全方位客户服务模式 + 国家大基金二期战略背书 + 汽车级/工业级/企业级多市场布局形成差异化竞争",
+      "unit_economics": {
+        "gross_margin": null,
+        "payback_months": null
+      },
+      "growth": {
+        "arr_usd": null,
+        "yoy_growth": 1.00,
+        "mau": null,
+        "gmv_usd": null
+      },
+      "competitors": [
+        "Phison (群联电子, 台湾)",
+        "Silicon Motion (慧荣科技, 台湾)",
+        "Marvell (美满电子, 美国)",
+        "Samsung (三星, 韩国, 自研主控)",
+        "Maxio Technology (联芸科技, 中国)",
+        "ScaleFlux (中国/美国, 企业级CSD)",
+        "得一微电子 (中国, 消费级)"
+      ],
+      "bull": [
+        "前Marvell全球CTO带队创业，研发团队来自全球顶级存储公司，技术深度在国内芯片设计公司中极为罕见",
+        "近三年营收连续100%增长，2024年三年累计增长超300%，商业化验证充分，进入规模化盈利爬坡",
+        "率先量产PCIe Gen5 RISC-V架构主控(YRS820)，在去美化/国产替代背景下战略价值显著，AI PC时代存储带宽需求直接受益",
+        "已拿下ADATA(威刚)、TeamGroup(十铨)、Biwin(佰维存储)、海康威视等国内外主流品牌设计导入，量产背书完整",
+        "国家大基金二期+上海集成电路基金双线国家队背书，科创板IPO通道顺畅，退出路径清晰",
+        "SSD主控芯片市场2025-2035年CAGR预测13%+，AI存储+数据中心扩容是最强周期性顺风"
+      ],
+      "bear": [
+        "融资10余轮但金额均未披露，财务透明度低，投前估值和每轮稀释情况不明，投资人回报测算困难",
+        "台湾Phison/Silicon Motion具有强大的量产经验和客户生态积累，在PCIe 5.0时代已率先占据高端消费市场",
+        "主控芯片依赖台积电等境外先进制程代工，地缘政治风险（美国出口管制持续升级）可能影响流片",
+        "Fabless模式毛利率天花板受制于晶圆代工及封测成本，大客户议价能力强，盈利空间承压",
+        "国内SSD主控赛道竞争白热化（联芸、得一微、慧荣中国布局等），价格战压力不可忽视",
+        "IPO辅导刚于2024-12启动，实际上市时间窗口预计2026年，还需经历问询、注册等流程不确定性"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 3000000000,
+      "deal_count_12m": 45,
+      "gartner_phase": "成长期 (PCIe 5.0消费级SSD); 早期成长期 (RISC-V架构企业级SSD控制器); 高速增长期 (AI PC/数据中心存储带宽升级)",
+      "policy_tailwinds": [
+        "国家大基金二期重点支持SSD主控等存储关键芯片国产化",
+        "专精特新'小巨人'认定带来政府研发补贴和绿色通道支持",
+        "科创板对芯片设计Fabless企业的上市包容性政策",
+        "上海张江对集成电路企业的人才引进、用地、税收优惠政策",
+        "中国存储产业链自主可控战略：长江存储(NAND)+英韧(主控)形成国产闭环逻辑"
+      ],
+      "policy_headwinds": [
+        "美国商务部BIS实体清单及出口管制升级可能限制先进制程代工（台积电<7nm）供应",
+        "中美科技脱钩背景下海外品牌客户对中国供应链依赖度评估收紧",
+        "A股科创板IPO审核周期和问询节奏存在不确定性，半导体企业审核严格",
+        "RISC-V生态工具链成熟度不及ARM/x86，固件和驱动适配成本较高"
+      ],
+      "exit_window": "A股科创板IPO进行中，2024-12-19完成上海证监局辅导备案，保荐机构国泰君安证券；预计2025-2026年递交招股书；对标澜起科技(688008.SH)市值约300-500亿人民币区间",
+      "hot_keywords": [
+        "SSD主控芯片", "PCIe 5.0", "NVMe 2.0", "RISC-V", "Fabless",
+        "国产替代", "AI存储", "数据中心SSD", "汽车级存储",
+        "长江存储生态", "英韧科技IPO", "独角兽"
+      ]
+    },
+    "products": [
+      {
+        "name": "Rainier IG5236 (PCIe Gen4)",
+        "category": "消费级高端SSD主控芯片",
+        "description": "英韧科技首款量产高性能SSD主控芯片，面向消费级和企业级高端市场，8通道PCIe 4.0 x4接口，支持NVMe 1.4协议，采用端到端数据保护，首批导入ADATA XPG S70、Patriot Viper VP4300等旗舰产品",
+        "specs": {
+          "interface": "PCIe 4.0 x4 / NVMe 1.4",
+          "nand_channels": 8,
+          "sequential_read": "7000 MB/s",
+          "sequential_write": "6500 MB/s",
+          "random_read_iops": "1000K",
+          "random_write_iops": "1000K",
+          "process_node": "12nm",
+          "features": "端到端数据保护, LDPC ECC, 低延迟算法"
+        },
+        "launched": "2020-01-01",
+        "revenue_contribution": 0.40
+      },
+      {
+        "name": "Tacoma IG5666 (PCIe Gen5)",
+        "category": "消费级PCIe 5.0 SSD主控芯片",
+        "description": "英韧科技第二代旗舰主控，全球首批量产的PCIe 5.0消费级SSD芯片之一；8通道设计，12nm工艺制程，搭载多核LDPC ECC引擎；已被TeamGroup T-Force GE Pro等主流PCIe 5.0 SSD产品采用，实现14 GB/s顺序读取速度，无需风扇散热",
+        "specs": {
+          "interface": "PCIe 5.0 x4 / NVMe 2.0",
+          "nand_channels": 8,
+          "sequential_read": "14000 MB/s",
+          "sequential_write": "12000 MB/s",
+          "random_read_iops": "2000K",
+          "random_write_iops": "1500K",
+          "process_node": "12nm",
+          "max_capacity": "4TB",
+          "features": "低功耗设计, 多核LDPC ECC, DRAM-less支持"
+        },
+        "launched": "2023-06-01",
+        "revenue_contribution": 0.35
+      },
+      {
+        "name": "Tacoma IG5669 (PCIe Gen5 企业/数据中心)",
+        "category": "企业级/数据中心PCIe 5.0 SSD主控芯片",
+        "description": "面向数据中心和企业级存储市场的高端主控，支持PCIe 5.0 x4、NVMe 2.0，16/18通道NAND设计，最大支持32TB容量；2022年FMS大会首发，定位高端计算机、数据中心、工业级应用",
+        "specs": {
+          "interface": "PCIe 5.0 x4 / NVMe 2.0",
+          "nand_channels": "16/18",
+          "sequential_read": "14000 MB/s",
+          "sequential_write": "11000 MB/s",
+          "random_read_iops": "3000K",
+          "max_capacity": "32TB",
+          "features": "企业级端到端数据保护, 高容量支持, 数据中心功耗优化"
+        },
+        "launched": "2022-06-01",
+        "revenue_contribution": 0.15
+      },
+      {
+        "name": "YRS820 (PCIe Gen5 · RISC-V架构)",
+        "category": "消费级PCIe 5.0 SSD主控芯片（RISC-V）",
+        "description": "英韧科技首款基于RISC-V指令集架构的PCIe 5.0 SSD主控，也是全球首批量产的RISC-V SSD控制器之一；采用PCIe 5.0 x4接口，8通道NAND，支持NVMe 2.0协议，接口速率2667 MT/s，最大支持8TB；定位AI PC和高性能消费级市场，已进入量产阶段",
+        "specs": {
+          "interface": "PCIe 5.0 x4 / NVMe 2.0",
+          "nand_channels": 8,
+          "sequential_read": "14200 MB/s",
+          "sequential_write": "12000 MB/s",
+          "random_read_iops": "2000K",
+          "random_write_iops": "1500K",
+          "architecture": "RISC-V",
+          "nand_interface_speed": "2667 MT/s",
+          "max_capacity": "8TB",
+          "features": "RISC-V架构国产自主可控, AI PC数据加速, 无风扇设计"
+        },
+        "launched": "2024-03-01",
+        "revenue_contribution": 0.10
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "ADATA (威刚科技)",
+        "type": "SSD品牌厂/主要客户",
+        "cooperation_since": "2020",
+        "cooperation_detail": "首批采用InnoGrit Rainier IG5236主控的品牌客户，推出XPG S70 PCIe Gen4旗舰SSD，验证了英韧科技的量产能力；持续深化合作扩展到PCIe Gen5产品线",
+        "result": "帮助英韧科技完成首个主流品牌设计导入，确立量产背书",
+        "annual_value_usd": null
+      },
+      {
+        "name": "TeamGroup (十铨科技)",
+        "type": "SSD品牌厂/主要客户",
+        "cooperation_since": "2022",
+        "cooperation_detail": "采用IG5666/IG5669主控推出T-Force GE Pro/GC PRO等PCIe 5.0旗舰SSD产品；在CES/Computex等展会积极展示InnoGrit平台产品",
+        "result": "IG5666成为TeamGroup PCIe 5.0旗舰产品核心方案，市场认可度高",
+        "annual_value_usd": null
+      },
+      {
+        "name": "Biwin Storage (佰维存储)",
+        "type": "存储模组厂/战略客户",
+        "cooperation_since": "2020",
+        "cooperation_detail": "国内存储模组龙头厂商，与英韧科技在Rainier平台上深度合作，将英韧主控整合至自有品牌和OEM SSD产品中",
+        "result": "拓宽英韧在国内市场的出货规模和客户渠道",
+        "annual_value_usd": null
+      },
+      {
+        "name": "海康威视",
+        "type": "工业/安防存储客户",
+        "cooperation_since": "2022",
+        "cooperation_detail": "将英韧SSD主控方案应用于安防监控和工业存储设备，英韧同步推出工业级/汽车级主控（-40°C至125°C认证）扩展应用边界",
+        "result": "打开工业级和安防存储市场入口，增加非消费级营收比例",
+        "annual_value_usd": null
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2017-06",
+        "event": "吴子宁博士从Marvell全球CTO职位离职，联合前Marvell/Toshiba/WD等存储行业高管在上海张江创办英韧科技（InnoGrit），同期完成天使轮融资",
+        "impact": "公司正式成立，确立高性能SSD主控芯片Fabless研发路线，以'赶超台湾Phison/Silicon Motion'为目标"
+      },
+      {
+        "date": "2019-06",
+        "event": "在Flash Memory Summit（FMS 2019）首次公开亮相，发布包括IG5208/IG5228/IG5236/IG5268在内的四款NVMe SSD主控芯片",
+        "impact": "从Stealth模式正式走向公开，向行业展示多产品线并行研发能力，国际技术媒体（AnandTech/StorageReview）开始跟踪报道"
+      },
+      {
+        "date": "2020-01",
+        "event": "CES 2020宣布Rainier(IG5236) PCIe Gen4主控获得ADATA、Biwin等多家厂商设计导入；同年获B轮融资",
+        "impact": "首批设计胜出（Design Win），量产能力得到主流品牌验证，公司从研发期进入规模化商业化阶段"
+      },
+      {
+        "date": "2021-06",
+        "event": "CFMS2021峰会上，英韧科技宣布连续多年营收实现100%增长，发布PCIe Gen5路线图并开始Tacoma平台研发",
+        "impact": "商业化加速，公司跻身中国存储主控芯片头部阵营，并明确PCIe Gen5 + 企业级双轮驱动战略"
+      },
+      {
+        "date": "2022-06",
+        "event": "FMS 2022演示Tacoma IG5669 PCIe 5.0 x4企业级主控，随机读IOPS最高300万；同期引入国家大基金二期等国家队战略投资",
+        "impact": "明确企业级/数据中心赛道方向，国家大基金背书大幅提升公司战略价值和IPO条件"
+      },
+      {
+        "date": "2023-06",
+        "event": "IG5666 PCIe Gen5消费级主控开始量产交货，TeamGroup等品牌率先推出搭载IG5666的14GB/s旗舰SSD",
+        "impact": "英韧科技成为全球少数具备PCIe Gen5量产能力的SSD主控供应商之一，确立高端消费级市场地位"
+      },
+      {
+        "date": "2024-03",
+        "event": "英韧科技宣布YRS820 RISC-V架构PCIe 5.0主控开始量产，成为全球首批量产RISC-V SSD控制器的厂商",
+        "impact": "在国产芯片去美化（去ARM架构）大背景下树立里程碑，媒体（Tom's Hardware / TechPowerUp / The Register）广泛报道，品牌国际认知度大幅提升"
+      },
+      {
+        "date": "2024-12-19",
+        "event": "英韧科技于上海证监局完成A股科创板IPO辅导备案，保荐机构为国泰君安证券，正式启动上市征程",
+        "impact": "公司进入Pre-IPO关键节点，三年营收累计增长超300%的基本面为上市创造有利条件；目标估值对标澜起科技等国内存储半导体龙头"
+      }
+    ],
+    "financials": {
+      "burn_rate_usd_monthly": null,
+      "cash_usd": null,
+      "revenue_yoy_3yr": 1.00,
+      "notes": "近三年每年营收增长约100%，三年合计增长超300%（2022-2024），具体财务数据未公开披露，待IPO招股书披露"
+    },
+    "extra_risks": [
+      {
+        "category": "供应链/代工风险",
+        "description": "SSD主控芯片采用12nm及以下先进制程，主要依赖台积电等境外代工厂；美国出口管制升级（BIS规则收紧）可能限制对中国公司的先进制程代工服务",
+        "level": "high",
+        "mitigation": "积极探索国内中芯国际、华虹等成熟制程替代方案；RISC-V架构替代ARM进一步降低IP授权风险"
+      },
+      {
+        "category": "竞争压力",
+        "description": "台湾Phison(群联)、Silicon Motion(慧荣)在PCIe 5.0市场深耕多年，客户关系和量产经验积累深厚；国内联芸科技等对手也在快速追赶",
+        "level": "medium",
+        "mitigation": "差异化切入企业级/汽车级/工业级高利润赛道；RISC-V自主架构在国产替代场景具有天然优势；价格竞争力在国内市场优于台系厂商"
+      },
+      {
+        "category": "财务透明度",
+        "description": "融资10余轮但所有轮次金额均未公开，精确估值和稀释情况不明，投资人内部回报测算困难；IPO前财务数据不透明",
+        "level": "medium",
+        "mitigation": "科创板IPO将强制要求完整财务信息披露，透明度问题将在上市进程中自动解决"
+      },
+      {
+        "category": "地缘政治",
+        "description": "英韧科技产品已批量出口ADATA(台湾)、TeamGroup(台湾)等台湾厂商，台海局势变化可能影响供应链正常运转",
+        "level": "medium",
+        "mitigation": "拓展国内佰维存储、海康威视等本土客户比例；企业级/政府级国产替代需求在地缘风险上升时反而成为利好"
+      },
+      {
+        "category": "IPO不确定性",
+        "description": "A股科创板半导体IPO审核趋严，辅导期到实际上市周期通常1.5-3年；证监会对芯片企业盈利能力要求提高，能否在IPO前实现持续盈利是关键",
+        "level": "medium",
+        "mitigation": "三年100%增速和国家大基金股东背书是重要加分项；国泰君安作为保荐机构具有丰富科创板半导体IPO经验"
+      }
+    ]
+  }
+}

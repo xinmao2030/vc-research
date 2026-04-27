@@ -1,0 +1,482 @@
+{
+  "sources_hit": [
+    "[官网] Neolix - Autonomous Delivery Vehicles <https://www.neolix.ai/en>",
+    "[融资公告] PR Newswire · Neolix Raises US$600+ Million in Series D Funding, Setting New Record for Private Financing of China's Autonomous Driving Industry (2025-10-23) <https://www.prnewswire.com/news-releases/neolix-raises-us600-million-in-series-d-funding-setting-new-record-for-private-financing-of-chinas-autonomous-driving-industry-302593531.html>",
+    "[融资公告] 鼎晖投资 · 鼎晖VGC联合领投「新石器」逾6亿美元D轮融资，创中国自动驾驶领域融资记录 <https://www.cdhfund.com/news_65/1701.html>",
+    "[新闻] 动点科技 · 新石器无人车完成6亿元C轮融资 (2024-03-27) <https://cn.technode.com/post/2024-03-27/neolix-c/>",
+    "[新闻] 动点科技 · 新石器无人车完成数亿元B轮融资，中金资本、软银亚洲联合领投 (2021-08-18) <https://cn.technode.com/post/2021-08-18/neolix-b/>",
+    "[新闻] 证券时报 · 新石器无人车完成6亿元C轮融资，今年已获得近万台订单<https://www.stcn.com/article/detail/1159822.html>",
+    "[新闻] 证券时报 · 新石器完成10亿元C+轮融资 将交付万台无人驾驶车队 <https://stcn.com/article/detail/1534888.html>",
+    "[新闻] 每经网 · 余恩源和他的新石器，何以7年蛰伏，一朝\"豹变\"？ (2025-10-27) <https://www.nbd.com.cn/articles/2025-10-27/4110199.html>",
+    "[新闻] 新华网 · 智瞰AI丨新石器余恩源：让无人车驶向全球 (2026-03-10) <https://www.news.cn/tech/20260310/a9be55f49f7943049fe332b9cf83d48e/c.html>",
+    "[媒体] 重庆大学新闻网 · 20余年扎根新物流 重大人将无人车开向全球 (2026-01-23) <https://news.cqu.edu.cn/archives/news2/content/2026/01/23/66af6ae5f505687c885e3861c5057faebf27d865.html>",
+    "[媒体] ChinaBizInsider · From 'Despair' to a $600 Million Funding Round: How Neolix Is Betting on the Mass Commercialization of Autonomous Delivery <https://chinabizinsider.com/from-despair-to-a-600-million-funding-round-how-neolix-is-betting-on-the-mass-commercialization-of-autonomous-delivery/>",
+    "[媒体] TechBuzzChina · The Vans That Beat the Robotaxis <https://techbuzzchina.substack.com/p/the-vans-that-beat-the-robotaxis>",
+    "[融资聚合] Crunchbase · Neolix <https://www.crunchbase.com/organization/neolix-neolithic-century-technology>",
+    "[融资聚合] Tracxn · Neolix 2026 Company Profile <https://tracxn.com/d/companies/neolix/__2Tn35_YMIdRg0FPgpQ_9cIR__KRRvKvUdX1gVFJ-Ip0>",
+    "[新闻] PR Newswire · Neolix Makes CES Debut with Next-Generation AI-Powered Autonomous Logistics Solutions (2026-01-07) <https://www.prnewswire.com/news-releases/neolix-makes-ces-debut-with-next-generation-ai-powered-autonomous-logistics-solutions-and-comprehensive-robovan-portfolio-302655119.html>",
+    "[新闻] 首尔经济日报 · China's Autonomous Delivery Vehicles Surge Ninefold in One Year (2026-04-06) <https://en.sedaily.com/finance/2026/04/06/chinas-autonomous-delivery-vehicles-surge-ninefold-in-one>",
+    "[IPO分析] GlobeNewswire · Burghley Capital: Neolix Gains Support Ahead of IPO (2025-11-05) <https://www.globenewswire.com/news-release/2025/11/05/3181683/0/en/Burghley-Capital-Neolix-Gains-Support-Ahead-of-IPO.html>",
+    "[合作公告] PR Newswire · Neolix RoboVans Adopted by IKEA China After Successful Pilot <https://www.prnewswire.co.uk/news-releases/neolix-robovans-adopted-by-ikea-china-after-successful-pilot-302705173.html>"
+  ],
+  "itjuzi": {
+    "legal_name": "新石器慧通（北京）科技有限公司 (Neolix / Neolithic Century Technology Co., Ltd.)",
+    "founded_date": "2018-02-13",
+    "headquarters": "北京 (北京经济技术开发区)",
+    "region": "中国",
+    "industry": "自动驾驶",
+    "sub_industry": "L4级无人配送车 - 无人零售车 - 智慧物流",
+    "business_model": "车辆销售为主（AI产品模式）+ 软件/服务订阅（SaaS运营平台）+ 无人车车队运营服务；核心工厂在江苏盐城，硬件成本较竞品低40-50%；中国占有率第一，向全球输出",
+    "stage": "pre-ipo",
+    "employee_count": 500,
+    "one_liner": "全球L4级无人配送车量产与部署第一梯队，以RoboVan产品矩阵覆盖\"最后一公里\"到\"城市内配送\"全链路，已在15个国家300余城市落地超1.6万台",
+    "founders": [
+      {
+        "name": "余恩源 (Yu Enyuan)",
+        "title": "创始人/CEO",
+        "background": "重庆大学工业自动化专业1996届毕业生；毕业后放弃\"铁饭碗\"进入物流行业，在电子通讯设备制造、销售及物流领域深耕逾20年；2009年正式进入物流科技赛道，此前曾创办多家互联网与电信工程公司；2015年开始调研无人车可行性，2018年创办新石器，将物流行业积累与L4自动驾驶技术深度融合，是典型的行业老兵跨界创业路径",
+        "equity_pct": null
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "seed",
+        "announce_date": "2018-04-01",
+        "amount_usd": null,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["水木华控 (Oriza Seed Capital)"],
+        "all_investors": ["水木华控 (Oriza Seed Capital)", "理想汽车 (Li Auto / Lixiang)"],
+        "notes": "种子轮，金额未披露；理想汽车李想以战略投资人身份入局，并出任早期董事，为新石器提供造车资源背书"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2019-05-01",
+        "amount_usd": 14300000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["云启资本 (Yunqi Partners)"],
+        "all_investors": ["云启资本 (Yunqi Partners)", "耀途资本 (Glory Ventures)"],
+        "notes": "A轮约1亿元人民币（按2019年汇率~$1430万），云启资本领投；新石器同年建成全球首个L4级无人车智造基地"
+      },
+      {
+        "stage": "a+",
+        "announce_date": "2020-03-01",
+        "amount_usd": 28200000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["理想汽车 (Li Auto)"],
+        "all_investors": ["理想汽车 (Li Auto)", "毅达资本 (Addor Capital)", "云启资本 (Yunqi Partners)", "耀途资本 (Glory Ventures)"],
+        "notes": "A+轮约2亿元人民币（按2020年汇率~$2820万），理想汽车领投；恰逢新冠疫情，无人车在上海、北京隔离区完成消杀配送任务，大幅提升公众认知"
+      },
+      {
+        "stage": "b",
+        "announce_date": "2021-08-18",
+        "amount_usd": 46000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["中金资本 (CICC Capital)", "软银亚洲 (SoftBank Ventures Asia)"],
+        "all_investors": ["中金资本 (CICC Capital)", "软银亚洲 (SoftBank Ventures Asia)", "云启资本 (Yunqi Partners)", "耀途资本 (Glory Ventures)"],
+        "notes": "B轮\"数亿元\"人民币，估算约3亿元（~$4600万），中金资本与软银亚洲联合领投；本轮资金用于无人车服务网络规模化扩张；同年北京亦庄区为无人配送车颁发全国首批路权牌照"
+      },
+      {
+        "stage": "c",
+        "announce_date": "2024-03-27",
+        "amount_usd": 83000000,
+        "post_money_valuation_usd": 555000000,
+        "lead_investors": ["北京亦庄国际投资发展有限公司 (Beijing E-town International)"],
+        "all_investors": [
+          "北京亦庄国际投资发展有限公司 (Beijing E-town International)",
+          "前海方舟资产管理 (Qianhai Ark)",
+          "中金汇融 (CICC Huirong)",
+          "资阳中金启阳产业发展基金 (CICC Qiyang Industrial Fund)",
+          "壳牌创投 (Shell Ventures)"
+        ],
+        "notes": "C轮6亿元人民币（~$8300万），投后估值40亿元人民币（~$5.55亿）；当年订单量接近1万台，月交付规模突破2000台；壳牌创投加入体现能源转型战略布局"
+      },
+      {
+        "stage": "c+",
+        "announce_date": "2025-02-01",
+        "amount_usd": 138000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["中金公司 (CICC)", "Affirma Capital"],
+        "all_investors": [
+          "中金公司 (CICC)",
+          "Affirma Capital",
+          "合创资本 (Vinno Capital)",
+          "高鹄资本 (Cygnus Equity)"
+        ],
+        "notes": "C+轮10亿元人民币（~$1.38亿），中金公司与Affirma Capital领投；累计交付超1万台里程碑前的最后一轮，Affirma为新加坡专注亚洲成长期的PE基金"
+      },
+      {
+        "stage": "d",
+        "announce_date": "2025-10-23",
+        "amount_usd": 600000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["磊石资本 (StoneVenture)", "鼎晖VGC (CDH VGC)", "高成投资 (Gaocheng Capital)", "信宸资本 (CITIC Capital)", "朝希资本 (Sparkedge Capital)", "北京市人工智能产业投资基金 (Beijing AI Fund)"],
+        "all_investors": [
+          "磊石资本 (StoneVenture，阿联酋)",
+          "鼎晖VGC (CDH Investments)",
+          "高成投资 (Gaocheng Capital)",
+          "信宸资本 (CITIC Capital)",
+          "朝希资本 (Sparkedge Capital)",
+          "北京市人工智能产业投资基金 (Beijing AI Fund)",
+          "某大型互联网平台 (未披露名称)",
+          "君联资本 (Legend Capital)",
+          "高榕创投 (Gaorong Capital)",
+          "善水资本 (Templewater)",
+          "恒旭资本 (Hengyuan Capital)",
+          "亦庄科创二期基金 (Yizhuang Science & Technology Innovation Secondary Fund)",
+          "华泰天府数智基金 (Huatai Tianfu Digital Intelligence Fund)",
+          "云启资本 (Yunqi Partners，老股东跟投)"
+        ],
+        "notes": "D轮逾6亿美元，创中国自动驾驶行业私募融资纪录，也是当年中国最大私募融资之一；磊石资本为阿联酋主权关联基金，中东资本深度押注；公司目标2026年全面盈利；Burghley Capital分析，港股IPO估值区间约100亿至150亿美元"
+      }
+    ],
+    "investor_details": {
+      "云启资本 (Yunqi Partners)": {
+        "type": "venture_capital",
+        "hq": "上海",
+        "sector_focus": ["企业软件", "人工智能", "自动驾驶", "智能制造"],
+        "notable_portfolio": ["新石器 (Neolix)", "元戎启行 (DeepRoute.ai)", "Rokid", "影谱科技"],
+        "notes": "从A轮起即参与新石器，持续跟投至D轮，是最长期陪跑的机构之一"
+      },
+      "耀途资本 (Glory Ventures)": {
+        "type": "venture_capital",
+        "hq": "北京",
+        "sector_focus": ["人工智能", "自动驾驶", "航空航天", "物联网"],
+        "notable_portfolio": ["新石器 (Neolix)", "极飞科技", "星际荣耀"],
+        "notes": "专注硬科技领域早期投资的中国本土VC，从A轮持续陪跑"
+      },
+      "理想汽车 (Li Auto)": {
+        "type": "corporate_strategic",
+        "hq": "北京",
+        "sector_focus": ["新能源汽车", "智能出行", "自动驾驶"],
+        "notable_portfolio": ["新石器 (Neolix)"],
+        "notes": "李想担任新石器早期董事，战略投资；理想自身在智能驾驶领域积累与新石器形成协同"
+      },
+      "中金资本 (CICC Capital)": {
+        "type": "pe_cvc",
+        "hq": "北京",
+        "sector_focus": ["科技、医疗、消费、新基建"],
+        "notable_portfolio": ["新石器 (Neolix)", "寒武纪", "商汤科技"],
+        "notes": "中金公司旗下私募股权/风险投资部门，从B轮领投至C+轮持续支持"
+      },
+      "软银亚洲 (SoftBank Ventures Asia)": {
+        "type": "venture_capital",
+        "hq": "首尔 (韩国)",
+        "sector_focus": ["人工智能", "深度科技", "亚洲成长期科技"],
+        "notable_portfolio": ["新石器 (Neolix)", "Krafton", "Moloco"],
+        "notes": "软银集团旗下专注亚洲早中期科技投资基金，B轮联合领投"
+      },
+      "磊石资本 (StoneVenture)": {
+        "type": "sovereign_cvc",
+        "hq": "阿布扎比 (阿联酋)",
+        "sector_focus": ["自动驾驶", "人工智能", "物流科技", "新能源"],
+        "notable_portfolio": ["新石器 (Neolix)"],
+        "notes": "阿联酋主权关联投资机构，D轮领投超6亿美元，是中东资本系统性押注中国自动驾驶赛道的代表性案例"
+      },
+      "鼎晖VGC (CDH Investments VGC)": {
+        "type": "pe_vc",
+        "hq": "北京",
+        "sector_focus": ["TMT", "新经济", "消费科技", "硬科技"],
+        "notable_portfolio": ["新石器 (Neolix)", "蔚来汽车", "李宁", "现代牧业"],
+        "notes": "鼎晖投资旗下成长期基金，D轮联合领投，有中国PE/VC头部机构背书"
+      },
+      "高成投资 (Gaocheng Capital)": {
+        "type": "venture_capital",
+        "hq": "北京",
+        "sector_focus": ["企业服务", "人工智能", "自动驾驶", "半导体"],
+        "notable_portfolio": ["新石器 (Neolix)", "文远知行 (WeRide)", "追觅科技"],
+        "notes": "高瓴系分拆出的独立VC平台，专注中国科技成长期投资，D轮联合领投"
+      },
+      "信宸资本 (CITIC Capital)": {
+        "type": "pe",
+        "hq": "香港",
+        "sector_focus": ["私募股权", "跨境并购", "新经济", "大消费"],
+        "notable_portfolio": ["新石器 (Neolix)", "麦当劳中国", "汉堡王亚太"],
+        "notes": "中信集团旗下独立运营的私募股权平台，D轮联合领投；有助于新石器港股IPO的资本市场资源"
+      },
+      "高榕创投 (Gaorong Capital)": {
+        "type": "venture_capital",
+        "hq": "北京",
+        "sector_focus": ["消费科技", "人工智能", "企业服务"],
+        "notable_portfolio": ["新石器 (Neolix)", "拼多多", "快手", "字节跳动"],
+        "notes": "中国互联网领域头部VC，D轮参投，为新石器引入互联网生态资源"
+      },
+      "Affirma Capital": {
+        "type": "private_equity",
+        "hq": "新加坡",
+        "sector_focus": ["亚洲成长期企业", "东南亚科技", "中国出海"],
+        "notable_portfolio": ["新石器 (Neolix)"],
+        "notes": "原渣打私人股权部门独立运营，专注亚洲成长型企业，C+轮领投"
+      },
+      "壳牌创投 (Shell Ventures)": {
+        "type": "corporate_vc",
+        "hq": "荷兰 海牙",
+        "sector_focus": ["清洁能源", "移动出行", "物流技术", "碳减排"],
+        "notable_portfolio": ["新石器 (Neolix)"],
+        "notes": "壳牌集团战略投资部门，C轮参投；壳牌看中无人配送车在新能源物流转型中的战略价值"
+      },
+      "君联资本 (Legend Capital)": {
+        "type": "venture_capital",
+        "hq": "北京",
+        "sector_focus": ["TMT", "医疗健康", "企业服务", "先进制造"],
+        "notable_portfolio": ["新石器 (Neolix)", "卡特彼勒中国", "中汽研"],
+        "notes": "联想控股旗下VC，D轮参投；管理资产超600亿人民币"
+      }
+    },
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "余恩源是少有的以\"物流行业老兵\"视角切入L4无人车赛道的创始人，20年物流积累使其对商业模式、客户痛点和落地路径的判断极为精准；团队在2019-2022年\"寒冬\"中坚守量产路线而未追逐robotaxi风口，证明战略定力；核心管理层稳定，CTO/COO团队多来自百度、华为、滴滴等头部公司",
+      "market": {
+        "tam_usd": 430000000000,
+        "sam_usd": 15000000000,
+        "som_usd": 1400000000,
+        "growth_rate": 0.615,
+        "notes": "中国城市配送市场规模约3万亿人民币（~$4300亿）；中国无人配送车行业2024年营收约10.5亿元（$1.45亿），同比+61.5%；苏州证券预测2025年中国单年交付量超3万台；Neolix目标2025年营收超$1.4亿"
+      },
+      "moat": "全球L4无人配送车累计交付量第一（>1.6万台，市占率60%+）+ 自研Neolix-VA视觉-行动基础模型（业界首个量产端到端模型）+ 无图驾驶解决方案（降低80%部署成本）+ 盐城自建工厂（硬件成本较竞品低40-50%）+ 覆盖15国300城的运营网络 + IKEA/顺丰/通达系等头部客户壁垒",
+      "unit_economics": {
+        "gross_margin": null,
+        "payback_months": 24,
+        "vehicle_cost_usd": 14000,
+        "notes": "第四代X3车型成本已低于10万元人民币（~$1.4万）；公司称2025年上半年已实现单月盈利，2026年目标全面盈利"
+      },
+      "growth": {
+        "arr_usd": 140000000,
+        "yoy_growth": 3.0,
+        "vehicles_deployed": 16000,
+        "cities_covered": 300,
+        "countries": 15,
+        "notes": "2024年营收约$3500万（约2.5亿人民币），2025年目标$1.4亿；X3/X6单车型各已突破4000单日交付量"
+      },
+      "competitors": [
+        "白犀牛 (Rino.AI) — 背靠永辉超市，专注商超配送",
+        "Zelos Technology (速豹) — 阿里菜鸟系，2024-2025阿里合并后估值约$20亿",
+        "美团无人配送 — 平台自建车队，已与Pony.ai深度合作",
+        "京东物流 — 自研无人车+无人机双线布局",
+        "Starship Technologies — 欧美小型末端配送机器人",
+        "Nuro — 美国L4无人配送车，已实现商业运营"
+      ],
+      "bull": [
+        "中国无人配送车行业2024年营收同比+61.5%，2025年预计交付量激增至3万台；政策从\"试点\"到\"全面放开\"，窗口期已至",
+        "累计交付1.6万台，60%以上市场份额，护城河领先第二名2-3年；单车成本已降至$1.4万，接近传统快递三轮车TCO临界点",
+        "Neolix-VA端到端模型 + 无图驾驶商业落地，技术代际跨越：部署成本下降80%，打开三四线城市及海外增量市场",
+        "15国300城运营网络叠加IKEA、顺丰、通达系头部客户，形成正向飞轮：客户背书→规模订单→成本摊薄→更多客户",
+        "阿联酋磊石资本领投$6亿D轮，释放中东市场战略落地信号；中东+东南亚政策更友好，有望成为全球化\"桥头堡\"",
+        "港股IPO预期估值$100-150亿，当前D轮估值隐含的IRR空间充足；RoboSense已签30万台独家LiDAR订单，产能预期强劲"
+      ],
+      "bear": [
+        "B端客户议价能力强，顺丰/通达系订单规模大但利润率薄；无人车运营服务SaaS模式尚未规模化，主营仍是卖车",
+        "中美科技脱钩压力：美国市场实际准入极困难（Nuro已撤退），欧盟监管路权认证周期长，海外扩张面临系统性政策壁垒",
+        "Zelos+阿里菜鸟合并后体量剧增，低价订阅模式可能引发价格战，侵蚀新石器主力客群",
+        "自动驾驶技术迭代快，端到端模型的行业竞争格局仍不明朗；若华为/百度Apollo以成本优势入场低速配送，格局可能重构",
+        "港股IPO窗口依赖市场情绪，若宏观或地缘风险恶化，高科技成长股估值中枢下移将使融资节奏受阻"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 900000000,
+      "deal_count_12m": 15,
+      "gartner_phase": "快速增长期 (中国无人配送车量产落地期)；概念验证期 (欧美市场)",
+      "policy_tailwinds": [
+        "2021年北京亦庄率先颁发全国首批无人配送车路权牌照",
+        "2023年工信部等四部委发布L3/L4车辆公开道路商业运营试点指南",
+        "深圳、上海、杭州相继出台无人配送地方性法规，北京试点区从160平方公里扩至600平方公里",
+        "国家\"新质生产力\"战略对自动驾驶产业链的资金与政策倾斜",
+        "中东/东南亚政府主动引进中国自动驾驶技术解决劳动力短缺问题"
+      ],
+      "policy_headwinds": [
+        "美国对中国自动驾驶车辆实际市场准入极为严格，联邦与州级双重监管壁垒",
+        "欧盟对L4车辆路权认证周期长（通常3-5年），新石器欧洲市场扩张节奏受限",
+        "国内不同城市路权政策不一致，大规模全国商业化需等待统一立法",
+        "数据安全与地图数据监管（无图驾驶方案可部分缓解）"
+      ],
+      "exit_window": "目标2026年赴香港联交所IPO，Burghley Capital预测估值区间$100-150亿；D轮前估值未披露，但$6亿融资规模暗示投后估值显著超过C+轮水平",
+      "hot_keywords": ["RoboVan", "L4无人配送", "无图驾驶", "端到端模型", "最后一公里", "新质生产力", "中东出海", "港股IPO"]
+    },
+    "products": [
+      {
+        "name": "Neolix RoboVan X1",
+        "category": "末端配送无人车（室内外一体）",
+        "description": "2026年CES全球首秀，专为\"最后百米\"设计，支持室内外无缝切换与乘梯配送，可进入写字楼、商场、居民楼的电梯完成末端配送，cargo volume < 1m³",
+        "specs": {
+          "cargo_volume": "<1 m³",
+          "autonomy": "L4",
+          "environment": "室内+室外混合场景",
+          "elevator_capable": true
+        },
+        "launched": "2026-01",
+        "image_url": "https://www.neolix.ai/en"
+      },
+      {
+        "name": "Neolix RoboVan X3",
+        "category": "最后一公里配送无人车",
+        "description": "新石器主力走量车型，第四代成本已低于10万元人民币（约$1.4万），适合高密度城市配送；X3单车型日交付已突破4000单，是新石器最主要的收入来源",
+        "specs": {
+          "cargo_volume": "3 m³",
+          "max_speed_kmh": 40,
+          "range_km": 100,
+          "payload_kg": 500,
+          "autonomy": "L4",
+          "hd_map_required": false,
+          "cost_usd": 14000
+        },
+        "launched": "2019-01",
+        "revenue_contribution": 0.50
+      },
+      {
+        "name": "Neolix RoboVan X6",
+        "category": "城市中段配送无人车",
+        "description": "更大载重/容积版本，主打多站点城市中段路线；X6单车型日交付同样突破4000单，适合快递站点到门店/快递柜的批量补货",
+        "specs": {
+          "cargo_volume": "6 m³",
+          "payload_kg": 1000,
+          "autonomy": "L4",
+          "hd_map_required": false
+        },
+        "launched": "2021-01",
+        "revenue_contribution": 0.30
+      },
+      {
+        "name": "Neolix RoboVan H12",
+        "category": "城市内旗舰大型配送无人车",
+        "description": "最大容积旗舰车型，面向郊区干线补货与区域分拨中心到末端站点的高载量配送，适合大型商超和仓储物流客户",
+        "specs": {
+          "cargo_volume": "12 m³",
+          "autonomy": "L4",
+          "environment": "城市内+郊区"
+        },
+        "launched": "2024-01",
+        "revenue_contribution": 0.10
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "顺丰速运 (SF Express)",
+        "type": "快递物流客户",
+        "cooperation_since": "2020",
+        "cooperation_detail": "与顺丰合作在北京亦庄等地进行无人配送车快递派送试点，并参与顺丰智慧物流园区落地",
+        "result": "验证大型快递企业对无人配送车的规模化采购意愿，为通达系客户拓展提供背书",
+        "annual_value_usd": null
+      },
+      {
+        "name": "IKEA China (宜家中国)",
+        "type": "零售/商超客户",
+        "cooperation_since": "2024",
+        "cooperation_detail": "试点成功后IKEA中国正式采购Neolix RoboVan，用于城市门店到用户家庭/自提点的\"最后一公里\"配送",
+        "result": "成为国际零售巨头采购中国L4无人车的标杆案例，有助于新石器开拓欧洲及全球IKEA供应链",
+        "annual_value_usd": null
+      },
+      {
+        "name": "通达系 (圆通/中通/韵达等)",
+        "type": "快递物流客户",
+        "cooperation_since": "2021",
+        "cooperation_detail": "\"通达兔\"快递旺季期间，新石器拿下通达系超70%的无人配送车订单需求，覆盖高峰期末端配送补充运力",
+        "result": "单一旺季拿下超7成订单份额，验证规模化商业模式，2025年每月交付突破2000台",
+        "annual_value_usd": null
+      },
+      {
+        "name": "美团 (Meituan)",
+        "type": "平台客户",
+        "cooperation_since": "2021",
+        "cooperation_detail": "参与北京公开道路无人配送测试，美团获批路权的同期Neolix也获批，两者在城市配送领域有合作有竞争",
+        "result": "验证无人配送在外卖/即时零售场景的商业可行性，推动相关城市政策持续开放",
+        "annual_value_usd": null
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2018-02",
+        "event": "余恩源在北京创办新石器慧通（北京）科技有限公司，确立L4级无人配送车量产方向",
+        "impact": "公司正式成立，切入当时几乎无人聚焦的\"无人配送车量产\"而非robotaxi赛道，形成差异化定位"
+      },
+      {
+        "date": "2018-12",
+        "event": "发布首款可量产L4级无人配送车，完成首批交付",
+        "impact": "成为全球极少数实现L4无人车量产的公司之一，奠定技术先发优势"
+      },
+      {
+        "date": "2019-06",
+        "event": "建成全球首个L4级无人车智造基地（江苏盐城），实现规模化量产",
+        "impact": "自建工厂使硬件成本较竞品降低40-50%，是长期成本领先的核心来源"
+      },
+      {
+        "date": "2020-02",
+        "event": "新冠疫情暴发，新石器无人车在上海、北京隔离区承担消杀/物资配送任务，CCTV等媒体大规模报道",
+        "impact": "疫情成为无人配送车的天然教育场景，公众认知从\"概念\"转向\"刚需\"，订单量大幅提升"
+      },
+      {
+        "date": "2021-05",
+        "event": "与京东、美团共同获得北京市首批无人配送车公开道路测试牌照",
+        "impact": "里程碑性路权突破，为全国各城市政策参照标准的建立发挥关键作用"
+      },
+      {
+        "date": "2022-06",
+        "event": "上海疫情封控期间，新石器无人车大规模进入上海社区承担生活物资配送",
+        "impact": "再次验证极端场景下无人配送的不可替代性，上海由此加速推出无人车地方性法规"
+      },
+      {
+        "date": "2024-03",
+        "event": "完成6亿元C轮融资，投后估值40亿元；当年累计交付超1万台，成为全球首个L4无人车部署突破万台的企业",
+        "impact": "\"一万台\"是行业公认的商业化规模临界点，新石器以此确立全球第一的市场地位"
+      },
+      {
+        "date": "2025-01",
+        "event": "在全球率先将Neolix-VA端到端视觉-行动基础模型推向商业化，实现无图（无需高精度地图）自动驾驶量产落地",
+        "impact": "无图驾驶使单车部署成本下降约80%，打开大量原本无HD地图覆盖的城市和海外市场"
+      },
+      {
+        "date": "2025-02",
+        "event": "完成10亿元C+轮融资，Affirma Capital领投；累计交付量突破1.3万台",
+        "impact": "港股IPO前最后储粮，资金用于全球化扩张和产能爬坡"
+      },
+      {
+        "date": "2025-10",
+        "event": "完成逾6亿美元D轮融资，阿联酋磊石资本领投，创中国自动驾驶领域私募融资纪录",
+        "impact": "中东主权资本入局，验证全球化扩张战略；公司宣布2025年上半年已实现单月盈利，目标2026年全年盈利"
+      },
+      {
+        "date": "2026-01",
+        "event": "首次亮相CES 2026，发布X1全球首款室内外一体无人配送车，展示X3/X6/H12全系产品矩阵",
+        "impact": "进入全球顶级科技展台，品牌国际化破圈；RoboSense同期披露与新石器签订30万台独家LiDAR订单"
+      }
+    ],
+    "financials": {
+      "burn_rate_usd_monthly": null,
+      "cash_usd": null,
+      "revenue_2024_usd": 35000000,
+      "revenue_2025_target_usd": 140000000,
+      "monthly_profitable_since": "2025-H1",
+      "notes": "2024年营收约$3500万（约2.5亿人民币）；2025年目标$1.4亿（4倍增长目标）；D轮超6亿美元现金储备充足，现金跑道充裕支撑至IPO"
+    },
+    "extra_risks": [
+      {
+        "category": "地缘/出口管制",
+        "description": "美国市场实际准入几乎封闭（参照Nuro撤出案例）；中美脱钩背景下，欧美客户对中国自动驾驶供应链存在安全顾虑",
+        "level": "high",
+        "mitigation": "重心转移至中东（阿联酋/沙特）、东南亚（新加坡/泰国）和中东欧市场；磊石资本的阿联酋背景有助于中东政府合同落地"
+      },
+      {
+        "category": "竞争/价格战",
+        "description": "Zelos+阿里菜鸟合并后体量剧增，估值约$20亿，有望以低价订阅模式打压市场；价格战将侵蚀新石器毛利率",
+        "level": "high",
+        "mitigation": "自建工厂成本优势（低40-50%）+ 技术代差（无图驾驶/端到端模型）+ 先发客户锁定；Neolix向\"AI产品\"定位而非纯硬件抵御价格内卷"
+      },
+      {
+        "category": "商业模式验证",
+        "description": "主营仍是卖车，SaaS运营服务收入占比低；B端大客户议价能力强，毛利率承压",
+        "level": "medium",
+        "mitigation": "逐步推进\"订阅+服务\"模式（参照Neolix Platform）；头部快递/零售客户粘性高，大单采购降低逐单谈判成本"
+      },
+      {
+        "category": "技术迭代风险",
+        "description": "华为/百度Apollo/元戎启行等若将技术能力下沉至低速配送场景，可能以成本优势颠覆现有格局",
+        "level": "medium",
+        "mitigation": "Neolix-VA端到端模型为护城河，但需持续高研发投入（D轮$6亿部分用于AI研发）；先发量产数据飞轮难以短期追赶"
+      },
+      {
+        "category": "IPO时间窗口",
+        "description": "港股IPO计划目标2026年，但全球宏观/中美关系/港股流动性均有不确定性，若窗口关闭则估值中枢下移",
+        "level": "medium",
+        "mitigation": "D轮完成后现金储备充足，即使IPO推迟1-2年亦不影响运营；盈利拐点已至，减少对外部融资依赖"
+      }
+    ]
+  }
+}

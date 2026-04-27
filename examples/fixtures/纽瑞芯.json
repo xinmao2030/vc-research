@@ -1,0 +1,346 @@
+{
+  "sources_hit": [
+    "[融资新闻] 36氪独家 · 「纽瑞芯科技」完成2亿人民币A轮融资，UWB系列系统芯片已完成试量产 <https://36kr.com/p/1592387423996681>",
+    "[融资新闻] 36氪首发 · 「纽瑞芯」完成数千万元天使轮融资，即将量产5G射频前端及UWB通信系统芯片 <https://36kr.com/p/1725174235137>",
+    "[融资新闻] 和讯网 · 芯片设计公司纽瑞芯科技完成近亿元Pre-A轮融资 (2021-01-19) <https://tech.hexun.com/2021-01-19/202858068.html>",
+    "[融资新闻] 和讯网 · 纽瑞芯科技完成2亿元A轮融资 芯云资本领投 (2022-01-31) <https://pe.hexun.com/2022-01-31/205233951.html>",
+    "[产品新闻] 与非网 · 全球首款集成UWB和射频前端，纽瑞芯发布UWB芯片NRT81880 <https://www.eefocus.com/article/1524107.html>",
+    "[产品新闻] 芯师爷 · 国内车规UWB首家！纽瑞芯NRT81750通过AEC-Q100车规认证 <https://www.gsi24.com/a/1800.html>",
+    "[人物报道] 读特新闻 · 纽瑞芯CEO陈振骐：做100%中国芯片，我们从未动摇 <https://www.dutenews.com/n/article/8786689>",
+    "[人物报道] 腾讯新闻 · 纽瑞芯CEO陈振骐：领航UWB，要做就做「中国芯」(2025-04-03) <https://news.qq.com/rain/a/20250403A08U1C00>",
+    "[行业分析] 电子工程专辑 · 纽瑞芯：国产UWB通信定位系统芯片全面对标欧美厂商 <https://www.eet-china.com/news/202305142489.html>",
+    "[行业分析] OFweek · UWB芯片深入城市每一条「神经末梢」！纽瑞芯「创芯版图」再升级 (2024-09) <https://ee.ofweek.com/2024-09/ART-8500-2800-30644696.html>",
+    "[市场数据] 格隆汇 · 2025年UWB定位通信系统芯片行业重点企业市场占有率及规模增长分析 <https://www.gelonghui.com/p/2988981>",
+    "[英文数据] DealStreetAsia · China Digest: IC chip designer Nurlink bags $29m (2020) <https://www.dealstreetasia.com/stories/nurlink-bocloud-207337>",
+    "[数据库] Crunchbase · Nurlink <https://www.crunchbase.com/organization/nurlink>",
+    "[数据库] PitchBook · Nurlink 2025 Company Profile <https://pitchbook.com/profiles/company/438532-57>"
+  ],
+  "itjuzi": {
+    "legal_name": "深圳市纽瑞芯科技有限公司 (NovuMind Technology / Nurlink Technology)",
+    "founded_date": "2016-12-01",
+    "headquarters": "深圳",
+    "region": "中国",
+    "industry": "半导体",
+    "sub_industry": "芯片设计 - UWB超宽带通信定位系统芯片",
+    "business_model": "Fabless芯片设计：自研UWB SoC芯片授权+芯片销售，覆盖智能手机/汽车数字钥匙/工业IoT/AR&VR/智能家居等应用场景，向整机厂商、方案商、模组商销售芯片",
+    "stage": "a",
+    "employee_count": 150,
+    "one_liner": "国产UWB超宽带定位通信系统芯片龙头，大熊座系列已量产8款芯片，国内汽车UWB市场覆盖率超80%，全球FiRa认证数量第一",
+    "founders": [
+      {
+        "name": "陈振骐",
+        "title": "联合创始人/CEO/CTO",
+        "background": "清华大学通信专业本硕、美国奥本大学微电子学博士；曾任美国高通公司主任工程师，负责多款世界领先通信芯片产品核心技术开发；归国后被认定为国家级技术专家；2016年回国在深圳创办纽瑞芯，IEEE高级会员",
+        "equity_pct": null
+      }
+    ],
+    "rounds": [
+      {
+        "stage": "angel",
+        "announce_date": "2020-02-28",
+        "amount_usd": 4000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["芯云创投"],
+        "other_investors": [],
+        "notes": "数千万元天使轮，由芯云创投领投；资金用于射频及模拟混合芯片技术平台研发，以及5G射频天线智能调谐、UWB定位通信两款芯片的产业化；2019年底UWB大熊座系列已完成首次流片"
+      },
+      {
+        "stage": "pre_a",
+        "announce_date": "2021-01-19",
+        "amount_usd": 15000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["亦庄国投"],
+        "other_investors": ["中科科创", "朗玛峰创投", "芯云资本", "守正资本"],
+        "notes": "近亿元Pre-A轮，由北京亦庄国际投资发展有限公司（亦庄国投）领投；UWB芯片计划2021年投入应用；公司在北京经开区设有研发中心"
+      },
+      {
+        "stage": "a",
+        "announce_date": "2022-01-31",
+        "amount_usd": 31000000,
+        "post_money_valuation_usd": null,
+        "lead_investors": ["芯云资本"],
+        "other_investors": ["中科科创", "歌尔微电子", "屹唐中艺", "守正资本"],
+        "notes": "2亿元人民币A轮，由芯云资本领投；NRT81600系列及NRT81800系列多款芯片完成试量产；全球第一篇IEEE 802.15.4z UWB系统芯片ISSCC论文被2022年ISSCC收录；资金用于UWB芯片产品化、研发迭代、客户拓展"
+      }
+    ],
+    "investor_details": {
+      "芯云创投": {
+        "type": "vc",
+        "hq": "深圳",
+        "sector_focus": ["半导体", "无线通信", "IoT芯片"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "纽瑞芯天使轮领投方，专注半导体及无线通信赛道的早期投资机构"
+      },
+      "亦庄国投": {
+        "type": "government_fund",
+        "hq": "北京",
+        "sector_focus": ["半导体", "智能制造", "新能源汽车", "机器人"],
+        "notable_portfolio": ["纽瑞芯", "小米机器人战略投资"],
+        "notes": "北京亦庄国际投资发展有限公司，北京经济技术开发区国资平台，参设基金65支总规模近七千亿，重点支持北京经开区产业聚集"
+      },
+      "芯云资本": {
+        "type": "vc",
+        "hq": "深圳/北京",
+        "sector_focus": ["半导体", "芯片设计", "无线通信"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "从天使轮到A轮持续跟投纽瑞芯的专业半导体投资机构；A轮领投"
+      },
+      "中科科创": {
+        "type": "vc",
+        "hq": "北京",
+        "sector_focus": ["硬科技", "半导体", "AI"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "中国科学院系背景科技投资机构，Pre-A与A轮持续跟投"
+      },
+      "歌尔微电子": {
+        "type": "corporate_vc",
+        "hq": "潍坊",
+        "sector_focus": ["声学器件", "MEMS传感器", "无线通信模组", "IoT"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "歌尔股份旗下产业投资平台（歌尔股份A股上市002241），A轮战略跟投；歌尔是AirPods代工商及MEMS麦克风全球龙头，UWB芯片与其TWS/AR耳机产品有协同"
+      },
+      "屹唐中艺": {
+        "type": "corporate_vc",
+        "hq": "深圳",
+        "sector_focus": ["半导体设备", "集成电路"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "屹唐半导体旗下产业投资平台，屹唐是国内半导体热处理/等离子体设备龙头"
+      },
+      "守正资本": {
+        "type": "vc",
+        "hq": "中国",
+        "sector_focus": ["科技", "半导体"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "Pre-A与A轮持续跟投，专注硬科技赛道"
+      },
+      "朗玛峰创投": {
+        "type": "vc",
+        "hq": "深圳",
+        "sector_focus": ["硬科技", "IoT", "半导体"],
+        "notable_portfolio": ["纽瑞芯"],
+        "notes": "Pre-A轮参投"
+      }
+    },
+    "thesis": {
+      "team_score": 8,
+      "team_notes": "陈振骐清华本硕+奥本博士+高通主任工程师，是少数同时具备顶级学术背景与顶级工业界经验的芯片创业者；团队70%以上为硕博，含3位IEEE高级会员+10+位海归博士；深圳+北京双中心布局覆盖市场与研发",
+      "market": {
+        "tam_usd": 1700000000,
+        "sam_usd": 600000000,
+        "som_usd": 150000000,
+        "growth_rate": 0.142,
+        "notes": "2024年全球UWB定位通信系统芯片市场约121.4亿元人民币(~17亿美元)，预计2031年达305.1亿元，CAGR 14.2%；汽车UWB SoC 2024年约5500万美元，2031年预计2.33亿美元，CAGR 14.9%"
+      },
+      "moat": "全球首家实现UWB SiP全系统自主设计及产品化 + 全球FiRa联盟认证UWB芯片数量第一(6颗) + 全球首篇ISSCC UWB系统芯片论文 + 国内首款AEC-Q100车规级UWB芯片NRT81750 + 国内汽车UWB覆盖率>80% + 全正向自主知识产权(无Decawave/Qorvo技术授权依赖) + 100%国产芯片战略定位契合国产替代大趋势",
+      "unit_economics": {
+        "gross_margin": null,
+        "payback_months": null,
+        "notes": "Fabless模式，毛利率通常在40-60%区间，具体数据未公开披露"
+      },
+      "growth": {
+        "arr_usd": null,
+        "yoy_growth": null,
+        "notes": "已量产8款UWB芯片；汽车客户超40家；2024年下半年进入国内头部手机厂商旗舰机量产；2022年实现国产首家UWB量产出货"
+      },
+      "competitors": [
+        "Qorvo/Decawave (DW3000系列，曾占全球95%+份额，美国)",
+        "恩智浦 NXP (SR040/SR150，汽车UWB强势入局，荷兰)",
+        "苹果 Apple (U1/U2内部芯片，iPhone/AirTag，美国)",
+        "三星 Samsung (UWB内部芯片，Galaxy系列，韩国)",
+        "驰芯半导体 (国内竞品，深圳)",
+        "清研讯科 (国内竞品，北京)",
+        "精位科技 (国内竞品，工业定位方向)",
+        "瀚巍微电子 (国内竞品)",
+        "优智联 (国内竞品)"
+      ],
+      "bull": [
+        "全球首家量产UWB SiP + FiRa认证数量全球第一，技术先发优势显著；2019年起深耕至今积累无可复制",
+        "汽车数字钥匙爆发元年(2024)，纽瑞芯国内汽车UWB覆盖率>80%，AEC-Q100车规认证护城河极高，先发客户锁定效应强",
+        "国产替代政策红利：Qorvo/NXP受中美博弈影响，国内整车厂/手机厂有强烈国产化动力；纽瑞芯是国内唯一量产车规UWB的选项",
+        "UWB进入消费电子大爆发期：小米、荣耀、OPPO等旗舰机导入，每颗手机UWB芯片ASP约2-5美元，千万颗级出货确定性高",
+        "产品矩阵完整(800系列/700车规系列/600系列/NRT81880消费)，覆盖全场景，客户切换成本高",
+        "全正向自主IP不依赖境外授权，供应链安全，抵御制裁风险能力强"
+      ],
+      "bear": [
+        "Qorvo/NXP技术积累深厚，在欧美日车厂和苹果产业链中壁垒难以撼动，出海受限",
+        "国内竞品(驰芯、清研讯科等)同样获得融资，内卷压力抬升；价格战风险",
+        "A轮为止融资总额约5000万美元，研发+流片+市场多线作战资本消耗大，下一轮节奏关键",
+        "UWB市场消费电子爆发依赖苹果U-wideband生态扩散，若苹果放弃UWB转用其他定位技术则市场收缩",
+        "车规芯片从认证到稳定出货周期2-3年，汽车客户付款周期长，现金流管理压力较大"
+      ]
+    },
+    "industry_data": {
+      "funding_total_12m_usd": 200000000,
+      "deal_count_12m": 15,
+      "gartner_phase": "增长期 (汽车数字钥匙UWB); 成熟早期 (消费电子UWB); 复苏期 (工业精密定位UWB)",
+      "policy_tailwinds": [
+        "国产替代政策：工信部推动集成电路自主可控，车规芯片国产化战略重点",
+        "智能网联汽车政策加持：工业和信息化部/国家发改委支持汽车数字钥匙及V2X相关基础设施",
+        "北京经开区对半导体企业的专项扶持(亦庄国投战略投资背书)",
+        "深圳硬科技创业生态支持：深圳市人才引进+芯片设计企业补贴"
+      ],
+      "policy_headwinds": [
+        "中美科技脱钩风险：EDA工具/先进制程代工(台积电/三星)可能受出口管制影响",
+        "UWB频段监管：不同国家对UWB频谱使用有差异化规定，出海需分国认证",
+        "车规芯片认证周期长、要求严，AEC-Q100级别要求高启动成本"
+      ],
+      "exit_window": "Pre-IPO阶段尚远；预计需完成B轮(2-3亿元)/C轮后方具备科创板申报条件；汽车UWB规模出货后盈利节点或在2025-2026年",
+      "hot_keywords": ["UWB", "超宽带", "数字钥匙", "精准定位", "FiRa", "车规芯片", "AEC-Q100", "国产替代", "IoT", "RTLS"]
+    },
+    "products": [
+      {
+        "name": "NRT81750 (大熊座700系列)",
+        "category": "车规级UWB SoC芯片",
+        "description": "全球首款获得FiRa认证的车规级UWB芯片，也是中国第一款车规级UWB芯片，通过AEC-Q100资质认证，2023年12月实现量产。专为汽车数字钥匙设计，支持Passive Entry/Passive Start(PEPS)功能，高精度测距精度<10cm",
+        "specs": {
+          "standard": "IEEE 802.15.4 / 4z, FiRa certified",
+          "automotive_grade": "AEC-Q100",
+          "ranging_accuracy": "<10cm",
+          "frequency": "6-9GHz UWB",
+          "application": "汽车数字钥匙 (PEPS), 车内人员探测"
+        },
+        "launched": "2023-12-01",
+        "revenue_contribution": null
+      },
+      {
+        "name": "NRT81880 (大熊座800系列)",
+        "category": "消费级UWB+射频前端集成SoC",
+        "description": "全球首款将UWB SOC与射频前端(PA+LNA)集成于单颗芯片的产品，2023年5月松山湖IC设计峰会发布。集成ARM Cortex-M4F处理器，支持UWB 3D PDoA和AoA算法及UWB雷达功能，面向智能手机/AR&VR/消费IoT",
+        "specs": {
+          "standard": "IEEE 802.15.4 / 4z, FiRa certified",
+          "processor": "ARM Cortex-M4F",
+          "integration": "UWB SoC + PA + LNA (业界首款)",
+          "algorithms": "3D PDoA, AoA, UWB Radar",
+          "frequency": "3-9GHz UWB",
+          "application": "智能手机, AR/VR交互, 智能家居"
+        },
+        "launched": "2023-05-01",
+        "revenue_contribution": null
+      },
+      {
+        "name": "NRT82660 (大熊座800系列)",
+        "category": "低功耗UWB SoC (集成RRAM)",
+        "description": "2024年4月发布，全球首款集成RRAM(电阻式存储器)的UWB芯片，搭载ARM Cortex-M0+处理器，主打超低功耗IoT定位场景",
+        "specs": {
+          "processor": "ARM Cortex-M0+",
+          "memory": "集成RRAM (全球首款)",
+          "application": "消费IoT, 智能标签, 资产追踪"
+        },
+        "launched": "2024-04-01",
+        "revenue_contribution": null
+      },
+      {
+        "name": "NRT81600系列 (大熊座600系列)",
+        "category": "工业/通用UWB SoC",
+        "description": "面向工业互联网RTLS精密定位、人员资产追踪等场景的UWB定位通信系统芯片，2021年完成试量产，2022年实现国内首家量产出货",
+        "specs": {
+          "standard": "IEEE 802.15.4z, FiRa certified",
+          "application": "工业RTLS, 智慧仓储, 人员定位, 矿井安全"
+        },
+        "launched": "2022-01-01",
+        "revenue_contribution": null
+      }
+    ],
+    "key_customers": [
+      {
+        "name": "国内头部手机厂商 (未公开具体名称)",
+        "type": "消费电子整机厂",
+        "cooperation_since": "2023",
+        "cooperation_detail": "2024年下半年纽瑞芯UWB芯片在国内头部手机厂商旗舰机中实现量产；另有多家手机厂商完成技术验证导入或正在进行项目验证",
+        "result": "手机端UWB芯片规模出货起量，打破Qorvo在手机市场的垄断",
+        "annual_value_usd": null
+      },
+      {
+        "name": "40+汽车整车及Tier1客户",
+        "type": "汽车行业",
+        "cooperation_since": "2022",
+        "cooperation_detail": "已建立覆盖超40家汽车客户的生态，包含整车厂和Tier1供应商，正在进行项目超10个；国内汽车UWB市场覆盖率超80%",
+        "result": "NRT81750已量产交付，成为国内汽车数字钥匙UWB方案首选；2024年比亚迪/小鹏等新能源车型跟进UWB导入",
+        "annual_value_usd": null
+      }
+    ],
+    "milestones": [
+      {
+        "date": "2016-01",
+        "event": "陈振骐从高通归国，在深圳创办纽瑞芯科技，聚焦无线通信系统芯片自主研发",
+        "impact": "公司成立，坚持100%自主知识产权路线，确立UWB+5G射频双赛道方向"
+      },
+      {
+        "date": "2019-12",
+        "event": "大熊座(Ursa Major)系列UWB SoC完成首次流片，验证芯片功能",
+        "impact": "完成最高技术风险节点，产品化进入加速阶段"
+      },
+      {
+        "date": "2020-02",
+        "event": "完成数千万元天使轮融资，由芯云创投领投；苹果iPhone 11 U1芯片点燃全球UWB市场关注",
+        "impact": "获得资金支持，2020年苹果催化全球UWB市场进入新阶段"
+      },
+      {
+        "date": "2021-01",
+        "event": "完成近亿元Pre-A轮融资，由亦庄国投领投，布局北京研发中心",
+        "impact": "产业资本与地方国资联合背书，UWB芯片进入量产准备阶段"
+      },
+      {
+        "date": "2022-01",
+        "event": "完成2亿元A轮融资，由芯云资本领投，歌尔微电子等产业战略方跟投；实现国内首家UWB芯片量产出货",
+        "impact": "国内首家量产里程碑确立行业地位；歌尔战投打通TWS/AR耳机应用渠道"
+      },
+      {
+        "date": "2022-02",
+        "event": "全球首篇IEEE 802.15.4z UWB系统芯片论文被ISSCC 2022收录并发表",
+        "impact": "学术制高点确立，全球半导体顶会背书技术领先性，提升品牌国际影响力"
+      },
+      {
+        "date": "2023-05",
+        "event": "松山湖IC设计高峰论坛发布NRT81880，全球首款UWB SoC+射频前端集成芯片",
+        "impact": "技术代际领先，集成度突破降低客户BOM成本和PCB面积，加速手机厂导入"
+      },
+      {
+        "date": "2023-11",
+        "event": "NRT81750通过AEC-Q100车规认证，成为全球首款FiRa认证车规UWB芯片，2023年12月量产",
+        "impact": "汽车UWB赛道卡位成功；汽车数字钥匙从Demo走向量产，打开数十亿元新市场"
+      },
+      {
+        "date": "2024-04",
+        "event": "发布大熊座800/600系列4款全新芯片，含全球首款集成RRAM的UWB芯片NRT82660",
+        "impact": "产品矩阵完整化，覆盖手机/汽车/IoT/AR-VR全场景，已量产8款芯片"
+      },
+      {
+        "date": "2024-09",
+        "event": "国内头部手机厂商旗舰机导入纽瑞芯UWB芯片进入量产，汽车客户超40家",
+        "impact": "消费级出货量开始规模爬升，营收拐点临近，B轮融资条件成熟"
+      }
+    ],
+    "financials": {
+      "burn_rate_usd_monthly": null,
+      "cash_usd": null,
+      "notes": "A轮2亿元人民币(约3100万美元)为最新已披露融资；Fabless模式无重资产；研发+流片为主要支出项；量产后进入营收正反馈阶段"
+    },
+    "extra_risks": [
+      {
+        "category": "技术/制程依赖",
+        "description": "UWB SoC需要28nm以下先进制程，主要依赖台积电/三星，受美国出口管制约束存在断供风险",
+        "level": "medium",
+        "mitigation": "积极与中芯国际14/28nm对接国产化制程；国内车规对制程要求相对宽松"
+      },
+      {
+        "category": "竞争",
+        "description": "Qorvo DW3000系列在欧美日市场及苹果产业链中地位牢固；国内驰芯、清研讯科等竞品追赶；NXP在博世/大陆等Tier1强势",
+        "level": "medium",
+        "mitigation": "深耕国内市场+车规先发优势；差异化技术(SiP集成、RRAM、射频前端一体化)持续拉开差距"
+      },
+      {
+        "category": "融资节奏",
+        "description": "截至2024年累计融资约5000万美元，多产品线并行研发+流片+量产+市场投入压力大；2024-2025年需完成B轮",
+        "level": "high",
+        "mitigation": "手机/汽车量产出货产生营收正向现金流；歌尔、亦庄国投等战略股东可提供资源背书加速B轮"
+      },
+      {
+        "category": "客户集中度",
+        "description": "汽车客户超40家但整体市场仍处于爬坡阶段；手机客户尚未公开具名，存在关键客户波动风险",
+        "level": "medium",
+        "mitigation": "多场景多应用布局分散风险；推动客户公开合作以提升资本市场认可度"
+      }
+    ]
+  }
+}

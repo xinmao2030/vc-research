@@ -1,4 +1,4 @@
-"""烟雾测试 — 确保 6 个标杆案例都能跑通."""
+"""烟雾测试 — 确保所有标杆案例都能跑通."""
 
 from __future__ import annotations
 
@@ -21,7 +21,10 @@ from vc_research.report import render_markdown
 from vc_research.schema import VCReport
 
 
-CASES = ["影石创新", "澜起科技", "银诺医药", "必贝特医药", "汉朔科技", "强一股份"]
+CASES = [
+    "影石创新", "澜起科技", "银诺医药", "必贝特医药", "汉朔科技", "强一股份",
+    "纽瑞芯", "英韧科技", "东方算芯", "图灵量子", "新石器无人车",
+]
 
 
 @pytest.mark.parametrize("company", CASES)

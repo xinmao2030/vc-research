@@ -195,8 +195,8 @@ STYLE = """
     padding: .8em 1em; border-radius: 8px; margin: 1.5em 0;
   }
 
-  /* 搜索记录操作按钮 */
-  .card-actions { margin-top: .6em; display: flex; gap: .4em; }
+  /* 卡片操作按钮 */
+  .card-actions { margin-top: .6em; display: flex; gap: .4em; align-items: center; }
   .card-actions button {
     border: 1px solid #d0d7de; background: #f6f8fa; color: #57606a;
     padding: 2px 10px; border-radius: 6px; font-size: .75em; cursor: pointer;
@@ -209,6 +209,17 @@ STYLE = """
     border: 1px solid #0366d6; border-radius: 6px; padding: 2px 8px;
     font-size: .95em; width: 70%; outline: none;
   }
+
+  /* 拖拽排序 */
+  .card[draggable="true"] { cursor: grab; }
+  .card[draggable="true"]:active { cursor: grabbing; }
+  .card.drag-over { border: 2px dashed #0366d6; background: #f0f7ff; }
+  .card.dragging { opacity: .4; }
+  .drag-handle {
+    cursor: grab; color: #8b949e; font-size: .85em; margin-right: auto;
+    user-select: none; padding: 0 4px;
+  }
+  .drag-handle:hover { color: #57606a; }
 
   @media (prefers-color-scheme: dark) {
     body { background: #0d1117; color: #c9d1d9; }
@@ -226,6 +237,7 @@ STYLE = """
     .card-actions button:hover { background: #30363d; color: #c9d1d9; }
     .card-actions button.btn-del:hover { background: #3d1418; color: #f85149; border-color: #f85149; }
     .rename-input { background: #0d1117; color: #c9d1d9; border-color: #58a6ff; }
+    .card.drag-over { border-color: #58a6ff; background: #161b22; }
   }
 </style>
 """
@@ -340,6 +352,77 @@ def _rename_search_history_entry(old_name: str, new_name: str) -> bool:
     _BUILD_ERROR.pop(old_name, None)
     _BUILD_START.pop(old_name, None)
     return True
+
+
+# ──────────────────────────── 标杆案例排序 (磁盘持久化) ────────────────────
+_FIXTURE_ORDER_FILE = Path.home() / ".vc-research" / "fixture_order.json"
+
+
+def _load_fixture_order() -> list[str]:
+    """读取标杆案例自定义排序. 返回有序公司名列表."""
+    if not _FIXTURE_ORDER_FILE.exists():
+        return []
+    try:
+        return _json.loads(_FIXTURE_ORDER_FILE.read_text("utf-8"))
+    except (ValueError, OSError):
+        return []
+
+
+def _save_fixture_order(order: list[str]) -> None:
+    _FIXTURE_ORDER_FILE.parent.mkdir(parents=True, exist_ok=True)
+    _FIXTURE_ORDER_FILE.write_text(_json.dumps(order, ensure_ascii=False, indent=2), "utf-8")
+
+
+def _get_ordered_fixtures() -> list[str]:
+    """返回按自定义顺序排列的 fixture 名称. 新增的排在末尾."""
+    all_names = sorted(p.stem for p in FIXTURES_DIR.glob("*.json"))
+    custom = _load_fixture_order()
+    # 保留 custom 中仍存在的,然后追加新增的
+    ordered = [n for n in custom if n in set(all_names)]
+    remaining = [n for n in all_names if n not in set(ordered)]
+    return ordered + remaining
+
+
+def _delete_fixture(name: str) -> tuple[bool, str]:
+    """删除标杆案例 fixture 文件. 返回 (ok, message)."""
+    path = FIXTURES_DIR / f"{name}.json"
+    if not path.exists():
+        return False, "fixture 文件不存在"
+    try:
+        path.unlink()
+        _REPORT_CACHE.pop(name, None)
+        # 从排序中移除
+        order = _load_fixture_order()
+        order = [n for n in order if n != name]
+        _save_fixture_order(order)
+        return True, ""
+    except OSError as e:
+        return False, str(e)
+
+
+def _rename_fixture(old_name: str, new_name: str) -> tuple[bool, str]:
+    """重命名标杆案例. 返回 (ok, message)."""
+    new_name = new_name.strip()
+    if not new_name or new_name == old_name:
+        return False, "新名称为空或未变"
+    old_path = FIXTURES_DIR / f"{old_name}.json"
+    new_path = FIXTURES_DIR / f"{new_name}.json"
+    if not old_path.exists():
+        return False, "原 fixture 文件不存在"
+    if new_path.exists():
+        return False, f"「{new_name}」已存在"
+    try:
+        old_path.rename(new_path)
+        # 迁移缓存
+        if old_name in _REPORT_CACHE:
+            _REPORT_CACHE[new_name] = _REPORT_CACHE.pop(old_name)
+        # 更新排序
+        order = _load_fixture_order()
+        order = [new_name if n == old_name else n for n in order]
+        _save_fixture_order(order)
+        return True, ""
+    except OSError as e:
+        return False, str(e)
 
 
 # ──────────────────────────── 研报生成 (内存) ────────────────────────────
@@ -554,74 +637,43 @@ def _loading_page(name: str) -> bytes:
 
 # ──────────────────────────── 搜索历史卡片 ────────────────────────────
 def _render_search_history_section() -> str:
-    """渲染搜索记录卡片栏,样式与标杆案例一致."""
+    """渲染搜索记录卡片栏,统一风格 + 拖拽排序."""
     fixture_names = {p.stem for p in FIXTURES_DIR.glob("*.json")}
     history = _load_search_history()
-    # 排除标杆 fixture 公司
     history = [e for e in history if e["name"] not in fixture_names]
     if not history:
         return ""
 
+    llm_badge = '<span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>'
     cards = []
     for entry in history:
         name = entry["name"]
-        name_esc = html.escape(name)
-        name_js = html.escape(_json.dumps(name, ensure_ascii=False), quote=True)
         ts = entry.get("timestamp", "")[:16].replace("T", " ")
-        actions = f"""<div class="card-actions">
-    <button onclick="renameEntry({name_js})">编辑</button>
-    <button class="btn-del" onclick="deleteEntry({name_js})">删除</button>
-  </div>"""
+        subtitle = f'<div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>'
         report = _REPORT_CACHE.get(name)
-        if report:
-            verdict = report.recommendation.verdict
-            risk = report.risks.overall_level.value
-            industry_str = report.profile.industry
-            one_liner = report.profile.one_liner[:50]
-            rounds_n = len(report.funding.rounds)
-            valuation_h = report.funding.latest_valuation_usd
-            val_text = f"${int(valuation_h):,}" if valuation_h else "估值未披露"
-            vc_badge = ""
-            if report.vc_landscape and report.vc_landscape.investor_quality_score:
-                vs = report.vc_landscape.investor_quality_score
-                vn = len(report.vc_landscape.investors_involved)
-                vc_badge = f'<span class="badge" style="background:#e8d5f5;color:#6f42c1">VC {vs}/10 · {vn}家</span>'
-            cards.append(
-                f"""<div class="card" id="card-{name_esc}">
-  <a class="title" href="/report/{name_esc}">{name_esc}</a>
-  <div class="meta">{html.escape(one_liner)}</div>
-  <div class="meta">📈 {rounds_n} 轮 · 最新估值 {val_text}</div>
-  <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
-  <div class="badges">
-    <span class="badge industry">{html.escape(industry_str)}</span>
-    <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
-    <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
-    {vc_badge}
-    <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
-  </div>
-  {actions}
-</div>"""
-            )
-        else:
-            # 报告不在内存缓存中(服务重启后),显示简化卡片
-            cards.append(
-                f"""<div class="card" id="card-{name_esc}">
-  <a class="title" href="/report/{name_esc}?from=search">{name_esc}</a>
-  <div class="meta" style="color:#8b949e">点击重新生成研报 (需 1-2 分钟)</div>
-  <div class="meta" style="font-size:.8em;color:#8b949e">🕐 {html.escape(ts)} UTC</div>
-  <div class="badges">
-    <span class="badge" style="background:#ddf4ff;color:#0550ae">LLM 推断</span>
-  </div>
-  {actions}
-</div>"""
-            )
+        cards.append(
+            _render_card(name, report, section="history", extra_badges=llm_badge, subtitle=subtitle)
+        )
 
-    grid = f"<div class='grid'>{''.join(cards)}</div>"
-    js = """
+    grid = f"<div class='grid' id='grid-history'>{''.join(cards)}</div>"
+    return f"""
+<h2>🔍 搜索记录 ({len(cards)}) <span style="font-size:.6em;color:#8b949e;font-weight:normal">拖拽卡片可排序</span></h2>
+<p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
+  通过搜索框生成的研报记录,数据由本地 Qwen3 推断,仅供参考。
+</p>
+{grid}
+"""
+
+
+# ──────────────────────────── 统一 CRUD + 拖拽 JS ────────────────────────
+_CARD_CRUD_JS = """
 <script>
-function deleteEntry(name) {
-  if (!confirm('确定删除「' + name + '」的搜索记录？')) return;
-  fetch('/api/history/delete', {
+// ── 删除 ──
+function deleteItem(name, section) {
+  var label = section === 'fixture' ? '标杆案例' : '搜索记录';
+  if (!confirm('确定删除' + label + '「' + name + '」？')) return;
+  var url = section === 'fixture' ? '/api/fixture/delete' : '/api/history/delete';
+  fetch(url, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({name: name})
@@ -630,10 +682,13 @@ function deleteEntry(name) {
     else alert('删除失败: ' + (d.error || '未知错误'));
   });
 }
-function renameEntry(oldName) {
-  var newName = prompt('编辑公司名称:', oldName);
+
+// ── 编辑/重命名 ──
+function renameItem(oldName, section) {
+  var newName = prompt('编辑名称:', oldName);
   if (!newName || newName.trim() === oldName) return;
-  fetch('/api/history/rename', {
+  var url = section === 'fixture' ? '/api/fixture/rename' : '/api/history/rename';
+  fetch(url, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({old_name: oldName, new_name: newName.trim()})
@@ -642,60 +697,153 @@ function renameEntry(oldName) {
     else alert('编辑失败: ' + (d.error || '未知错误'));
   });
 }
-</script>"""
-    return f"""
-<h2>🔍 搜索记录 ({len(cards)})</h2>
-<p style="color:#6a737d;font-size:.9em;margin-top:-.5em">
-  通过搜索框生成的研报记录,数据由本地 Qwen3 推断,仅供参考。
-</p>
-{grid}
-{js}
+
+// ── 拖拽排序 ──
+var dragSrc = null;
+
+function onDragStart(e) {
+  dragSrc = e.currentTarget;
+  dragSrc.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', dragSrc.dataset.name);
+}
+
+function onDragOver(e) {
+  e.preventDefault();
+  var target = e.currentTarget;
+  if (target === dragSrc) return;
+  if (target.dataset.section !== dragSrc.dataset.section) return;
+  target.classList.add('drag-over');
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function onDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function onDragEnd(e) {
+  e.currentTarget.classList.remove('dragging');
+  document.querySelectorAll('.card.drag-over').forEach(c => c.classList.remove('drag-over'));
+}
+
+function onDrop(e) {
+  e.preventDefault();
+  var target = e.currentTarget;
+  target.classList.remove('drag-over');
+  if (target === dragSrc) return;
+  if (target.dataset.section !== dragSrc.dataset.section) return;
+
+  var section = target.dataset.section;
+  var gridId = 'grid-' + section;
+  var grid = document.getElementById(gridId);
+  if (!grid) return;
+
+  // DOM 重排
+  var cards = Array.from(grid.children);
+  var fromIdx = cards.indexOf(dragSrc);
+  var toIdx = cards.indexOf(target);
+  if (fromIdx < toIdx) {
+    grid.insertBefore(dragSrc, target.nextSibling);
+  } else {
+    grid.insertBefore(dragSrc, target);
+  }
+
+  // 保存新顺序到后端
+  var newOrder = Array.from(grid.children).map(c => c.dataset.name);
+  var url = section === 'fixture' ? '/api/fixture/reorder' : '/api/history/reorder';
+  fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({order: newOrder})
+  }).then(r => r.json()).then(d => {
+    if (!d.ok) console.warn('排序保存失败:', d.error);
+  });
+}
+</script>
 """
 
 
 # ──────────────────────────── 路由 handlers ────────────────────────────
+
+# ── 通用卡片渲染 ──
+def _render_card(
+    name: str,
+    report: "VCReport | None",
+    *,
+    section: str,          # "fixture" | "history"
+    extra_badges: str = "",
+    subtitle: str = "",
+) -> str:
+    """渲染统一的可编辑卡片 (支持编辑/删除/拖拽)."""
+    name_esc = html.escape(name)
+    name_js = html.escape(_json.dumps(name, ensure_ascii=False), quote=True)
+    sec_js = html.escape(_json.dumps(section, ensure_ascii=False), quote=True)
+
+    if report:
+        verdict = report.recommendation.verdict
+        risk = report.risks.overall_level.value
+        industry_str = report.profile.industry
+        one_liner = report.profile.one_liner[:50]
+        rounds_n = len(report.funding.rounds)
+        valuation_h = report.funding.latest_valuation_usd
+        val_text = f"${int(valuation_h):,}" if valuation_h else "估值未披露"
+        vc_badge = ""
+        if report.vc_landscape and report.vc_landscape.investor_quality_score:
+            vs = report.vc_landscape.investor_quality_score
+            vn = len(report.vc_landscape.investors_involved)
+            vc_badge = f'<span class="badge" style="background:#e8d5f5;color:#6f42c1">VC {vs}/10 · {vn}家</span>'
+        href = f"/report/{name_esc}" if section == "fixture" else f"/report/{name_esc}?from=search"
+        content = f"""
+  <a class="title" href="{href}">📊 {name_esc}</a>
+  <div class="meta">{html.escape(one_liner)}…</div>
+  <div class="meta">📈 {rounds_n} 轮 · 最新估值 {val_text}</div>
+  {subtitle}
+  <div class="badges">
+    <span class="badge industry">{html.escape(industry_str)}</span>
+    <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
+    <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
+    {vc_badge}
+    {extra_badges}
+  </div>"""
+    else:
+        href = f"/report/{name_esc}?from=search"
+        content = f"""
+  <a class="title" href="{href}">{name_esc}</a>
+  <div class="meta" style="color:#8b949e">点击生成研报</div>
+  {subtitle}
+  <div class="badges">{extra_badges}</div>"""
+
+    return f"""<div class="card" draggable="true" data-name="{name_esc}" data-section="{html.escape(section)}"
+     ondragstart="onDragStart(event)" ondragover="onDragOver(event)"
+     ondragleave="onDragLeave(event)" ondrop="onDrop(event)" ondragend="onDragEnd(event)">
+  {content}
+  <div class="card-actions">
+    <span class="drag-handle" title="拖拽排序">⠿</span>
+    <button onclick="renameItem({name_js},{sec_js})">编辑</button>
+    <button class="btn-del" onclick="deleteItem({name_js},{sec_js})">删除</button>
+  </div>
+</div>"""
+
+
 def _index() -> bytes:
     """首页 — 列出 fixtures 下所有公司,实时构建卡片元信息."""
-    companies = sorted(p.stem for p in FIXTURES_DIR.glob("*.json"))
+    companies = _get_ordered_fixtures()
     cards = []
     for name in companies:
         report = _build_report(name)
         if report is None:
             continue
-        verdict = report.recommendation.verdict
-        risk = report.risks.overall_level.value
-        industry_str = report.profile.industry
-        rounds_n = len(report.funding.rounds)
-        valuation_h = report.funding.latest_valuation_usd
-        val_text = (
-            f"${int(valuation_h):,}" if valuation_h else "估值未披露"
-        )
-        vc_score = ""
-        if report.vc_landscape and report.vc_landscape.investor_quality_score:
-            s = report.vc_landscape.investor_quality_score
-            inv_n = len(report.vc_landscape.investors_involved)
-            vc_score = f'<span class="badge" style="background:#e8d5f5;color:#6f42c1">VC {s}/10 · {inv_n}家</span>'
-        cards.append(
-            f"""<div class="card">
-  <a class="title" href="/report/{html.escape(name)}">📊 {html.escape(name)}</a>
-  <div class="meta">{html.escape(report.profile.one_liner[:50])}…</div>
-  <div class="meta">📈 {rounds_n} 轮 · 最新估值 {val_text}</div>
-  <div class="badges">
-    <span class="badge industry">{html.escape(industry_str)}</span>
-    <span class="badge verdict-{html.escape(verdict)}">{html.escape(verdict)}</span>
-    <span class="badge risk-{html.escape(risk)}">风险 {html.escape(risk)}</span>
-    {vc_score}
-  </div>
-</div>"""
-        )
+        cards.append(_render_card(name, report, section="fixture"))
 
     cards_html = (
-        f"<div class='grid'>{''.join(cards)}</div>"
+        f"<div class='grid' id='grid-fixture'>{''.join(cards)}</div>"
         if cards
-        else "<p>暂无 fixtures。</p>"
+        else "<p>暂无标杆案例。</p>"
     )
 
-    available = ", ".join(companies) if companies else "(暂无)"
+    # 搜索记录
+    search_html = _render_search_history_section()
+
     body = f"""
 <h1>📊 VC Research Dashboard</h1>
 <p>创投企业投资分析系统 · 为零基础投资者打造 · 8 层分析框架 · 多 LLM 平台 ·
@@ -720,13 +868,10 @@ def _index() -> bytes:
   <b>提示:</b> 输入时可附加股票代码避免同名混淆,如「群核科技 港股00068」「蔚来 HK:09866」。
 </p>
 
-<h2>🗂️ 标杆案例 ({len(cards)})</h2>
+<h2>🗂️ 标杆案例 ({len(cards)}) <span style="font-size:.6em;color:#8b949e;font-weight:normal">拖拽卡片可排序</span></h2>
 {cards_html}
-<p style="color:#6a737d;font-size:.9em;margin-top:2em">
-  💡 点击任意案例查看完整研报,关键术语悬停即显示类比解释。
-</p>
 
-{_render_search_history_section()}
+{search_html}
 
 <div class="disclaimer" style="margin-top:2.5em">
   ⚠️ <b>免责声明</b>:本系统所有研报仅供学习研究,<b>不构成投资建议</b>。
@@ -740,6 +885,8 @@ def _index() -> bytes:
   <a href="/glossary">📖 术语表</a> ·
   <a href="/about">ℹ️ 关于</a>
 </p>
+
+{_CARD_CRUD_JS}
 """
     return _page("首页", body)
 
@@ -923,6 +1070,62 @@ class Handler(BaseHTTPRequestHandler):
                     resp = {"ok": True}
                 else:
                     resp = {"ok": False, "error": "未找到该记录或名称未变"}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        elif path == "/api/history/reorder":
+            try:
+                data = _json.loads(raw)
+                order = data.get("order", [])
+                if not isinstance(order, list):
+                    resp = {"ok": False, "error": "order 须为数组"}
+                else:
+                    history = _load_search_history()
+                    by_name = {e["name"]: e for e in history}
+                    reordered = [by_name[n] for n in order if n in by_name]
+                    # 保留 order 中未出现的
+                    remaining = [e for e in history if e["name"] not in set(order)]
+                    _SEARCH_HISTORY_FILE.write_text(
+                        _json.dumps(reordered + remaining, ensure_ascii=False, indent=2), "utf-8"
+                    )
+                    resp = {"ok": True}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        elif path == "/api/fixture/delete":
+            try:
+                data = _json.loads(raw)
+                name = data.get("name", "").strip()
+                if not name:
+                    resp = {"ok": False, "error": "缺少 name 参数"}
+                else:
+                    ok, msg = _delete_fixture(name)
+                    resp = {"ok": ok, "error": msg} if not ok else {"ok": True}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        elif path == "/api/fixture/rename":
+            try:
+                data = _json.loads(raw)
+                old = data.get("old_name", "").strip()
+                new = data.get("new_name", "").strip()
+                if not old or not new:
+                    resp = {"ok": False, "error": "缺少 old_name 或 new_name 参数"}
+                else:
+                    ok, msg = _rename_fixture(old, new)
+                    resp = {"ok": ok, "error": msg} if not ok else {"ok": True}
+            except (ValueError, KeyError) as e:
+                resp = {"ok": False, "error": str(e)}
+
+        elif path == "/api/fixture/reorder":
+            try:
+                data = _json.loads(raw)
+                order = data.get("order", [])
+                if not isinstance(order, list):
+                    resp = {"ok": False, "error": "order 须为数组"}
+                else:
+                    _save_fixture_order(order)
+                    resp = {"ok": True}
             except (ValueError, KeyError) as e:
                 resp = {"ok": False, "error": str(e)}
 
